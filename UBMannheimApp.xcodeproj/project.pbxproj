@@ -405,6 +405,7 @@
 				B270CEEA1A778D3F003C981B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B270CEEB1A778D3F003C981B /* Build configuration list for PBXNativeTarget "UBMannheimAppTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +414,7 @@
 				B270CEED1A778D3F003C981B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

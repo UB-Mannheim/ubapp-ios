@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -85,10 +86,10 @@
                                             <mask key="constraints">
                                                 <exclude reference="7p8-My-wFp"/>
                                                 <exclude reference="BdP-Rc-piS"/>
-                                                <exclude reference="f9L-iy-wwY"/>
-                                                <exclude reference="kiL-Sd-oMa"/>
                                                 <exclude reference="Lmr-2u-9mB"/>
                                                 <exclude reference="hxT-bM-GOc"/>
+                                                <exclude reference="f9L-iy-wwY"/>
+                                                <exclude reference="kiL-Sd-oMa"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -99,10 +100,10 @@
                                             <mask key="constraints">
                                                 <include reference="7p8-My-wFp"/>
                                                 <include reference="BdP-Rc-piS"/>
-                                                <include reference="f9L-iy-wwY"/>
-                                                <include reference="kiL-Sd-oMa"/>
                                                 <include reference="Lmr-2u-9mB"/>
                                                 <include reference="hxT-bM-GOc"/>
+                                                <include reference="f9L-iy-wwY"/>
+                                                <include reference="kiL-Sd-oMa"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -168,10 +169,10 @@
                                             <mask key="constraints">
                                                 <exclude reference="ICv-KC-Kus"/>
                                                 <exclude reference="VjN-qG-26t"/>
-                                                <exclude reference="tQa-6Z-XOU"/>
-                                                <exclude reference="wFq-NX-n1W"/>
                                                 <exclude reference="clm-U7-6iO"/>
                                                 <exclude reference="xZy-Ci-dhs"/>
+                                                <exclude reference="tQa-6Z-XOU"/>
+                                                <exclude reference="wFq-NX-n1W"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -182,10 +183,10 @@
                                             <mask key="constraints">
                                                 <include reference="ICv-KC-Kus"/>
                                                 <include reference="VjN-qG-26t"/>
-                                                <include reference="tQa-6Z-XOU"/>
-                                                <include reference="wFq-NX-n1W"/>
                                                 <include reference="clm-U7-6iO"/>
                                                 <include reference="xZy-Ci-dhs"/>
+                                                <include reference="tQa-6Z-XOU"/>
+                                                <include reference="wFq-NX-n1W"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -251,10 +252,10 @@
                                             <mask key="constraints">
                                                 <exclude reference="1iC-3T-4SI"/>
                                                 <exclude reference="FyG-JF-Kyi"/>
-                                                <exclude reference="Rn6-9O-fmi"/>
-                                                <exclude reference="psb-Ac-SpH"/>
                                                 <exclude reference="D0g-zF-LQo"/>
                                                 <exclude reference="ahZ-VN-cSB"/>
+                                                <exclude reference="Rn6-9O-fmi"/>
+                                                <exclude reference="psb-Ac-SpH"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -265,10 +266,10 @@
                                             <mask key="constraints">
                                                 <include reference="1iC-3T-4SI"/>
                                                 <include reference="FyG-JF-Kyi"/>
-                                                <include reference="Rn6-9O-fmi"/>
-                                                <include reference="psb-Ac-SpH"/>
                                                 <include reference="D0g-zF-LQo"/>
                                                 <include reference="ahZ-VN-cSB"/>
+                                                <include reference="Rn6-9O-fmi"/>
+                                                <include reference="psb-Ac-SpH"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -334,10 +335,10 @@
                                             <mask key="constraints">
                                                 <exclude reference="Qzm-B4-dTv"/>
                                                 <exclude reference="WXF-vp-Umy"/>
-                                                <exclude reference="t8V-Y0-4Fz"/>
-                                                <exclude reference="ybT-7m-evC"/>
                                                 <exclude reference="Sc8-5s-xOa"/>
                                                 <exclude reference="wpx-YV-dsG"/>
+                                                <exclude reference="t8V-Y0-4Fz"/>
+                                                <exclude reference="ybT-7m-evC"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -348,10 +349,10 @@
                                             <mask key="constraints">
                                                 <include reference="Qzm-B4-dTv"/>
                                                 <include reference="WXF-vp-Umy"/>
-                                                <include reference="t8V-Y0-4Fz"/>
-                                                <include reference="ybT-7m-evC"/>
                                                 <include reference="Sc8-5s-xOa"/>
                                                 <include reference="wpx-YV-dsG"/>
+                                                <include reference="t8V-Y0-4Fz"/>
+                                                <include reference="ybT-7m-evC"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -409,25 +410,38 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8f1-rT-UEg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="aAw-fH-lzy"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8f1-rT-UEg" secondAttribute="trailing" id="0K3-0f-DQn"/>
                             <constraint firstAttribute="centerX" secondItem="oqo-pD-A3p" secondAttribute="centerX" id="PMg-P3-o1h"/>
+                            <constraint firstItem="8f1-rT-UEg" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="UnW-dP-qlB"/>
                             <constraint firstAttribute="centerY" secondItem="oqo-pD-A3p" secondAttribute="centerY" id="b5K-1k-fru"/>
                             <constraint firstItem="BpC-PN-Wj5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="nUf-Re-tVe"/>
                             <constraint firstItem="BpC-PN-Wj5" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="p9w-id-Em2"/>
                             <constraint firstAttribute="bottom" secondItem="BpC-PN-Wj5" secondAttribute="bottom" id="pCH-X0-66b"/>
                             <constraint firstAttribute="trailing" secondItem="BpC-PN-Wj5" secondAttribute="trailing" id="uAb-ux-xwR"/>
+                            <constraint firstItem="8f1-rT-UEg" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="xMd-LL-HP0"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="BpC-PN-Wj5"/>
                                 <exclude reference="oqo-pD-A3p"/>
+                                <exclude reference="8f1-rT-UEg"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="nUf-Re-tVe"/>
                                 <exclude reference="p9w-id-Em2"/>
                                 <exclude reference="pCH-X0-66b"/>
                                 <exclude reference="uAb-ux-xwR"/>
+                                <exclude reference="0K3-0f-DQn"/>
+                                <exclude reference="UnW-dP-qlB"/>
+                                <exclude reference="xMd-LL-HP0"/>
                                 <exclude reference="PMg-P3-o1h"/>
                                 <exclude reference="b5K-1k-fru"/>
                             </mask>
@@ -436,12 +450,16 @@
                             <mask key="subviews">
                                 <include reference="BpC-PN-Wj5"/>
                                 <include reference="oqo-pD-A3p"/>
+                                <include reference="8f1-rT-UEg"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="nUf-Re-tVe"/>
                                 <include reference="p9w-id-Em2"/>
                                 <include reference="pCH-X0-66b"/>
                                 <include reference="uAb-ux-xwR"/>
+                                <include reference="0K3-0f-DQn"/>
+                                <include reference="UnW-dP-qlB"/>
+                                <include reference="xMd-LL-HP0"/>
                                 <include reference="PMg-P3-o1h"/>
                                 <include reference="b5K-1k-fru"/>
                             </mask>
@@ -450,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="456" y="538"/>
+            <point key="canvasLocation" x="214.5" y="442"/>
         </scene>
     </scenes>
     <resources>
