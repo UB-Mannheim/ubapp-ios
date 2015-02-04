@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="01k-gS-w7e">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" userLabel="Main View Controller" customClass="ViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -48,6 +48,9 @@
                                                         <include reference="Zjr-MB-clE"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <segue destination="T1i-kN-BFg" kind="show" id="x3r-JB-qnL"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxp-8b-eqy">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -410,38 +413,25 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8f1-rT-UEg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="aAw-fH-lzy"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8f1-rT-UEg" secondAttribute="trailing" id="0K3-0f-DQn"/>
                             <constraint firstAttribute="centerX" secondItem="oqo-pD-A3p" secondAttribute="centerX" id="PMg-P3-o1h"/>
-                            <constraint firstItem="8f1-rT-UEg" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="UnW-dP-qlB"/>
                             <constraint firstAttribute="centerY" secondItem="oqo-pD-A3p" secondAttribute="centerY" id="b5K-1k-fru"/>
                             <constraint firstItem="BpC-PN-Wj5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="nUf-Re-tVe"/>
                             <constraint firstItem="BpC-PN-Wj5" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="p9w-id-Em2"/>
                             <constraint firstAttribute="bottom" secondItem="BpC-PN-Wj5" secondAttribute="bottom" id="pCH-X0-66b"/>
                             <constraint firstAttribute="trailing" secondItem="BpC-PN-Wj5" secondAttribute="trailing" id="uAb-ux-xwR"/>
-                            <constraint firstItem="8f1-rT-UEg" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="xMd-LL-HP0"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="BpC-PN-Wj5"/>
                                 <exclude reference="oqo-pD-A3p"/>
-                                <exclude reference="8f1-rT-UEg"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="nUf-Re-tVe"/>
                                 <exclude reference="p9w-id-Em2"/>
                                 <exclude reference="pCH-X0-66b"/>
                                 <exclude reference="uAb-ux-xwR"/>
-                                <exclude reference="0K3-0f-DQn"/>
-                                <exclude reference="UnW-dP-qlB"/>
-                                <exclude reference="xMd-LL-HP0"/>
                                 <exclude reference="PMg-P3-o1h"/>
                                 <exclude reference="b5K-1k-fru"/>
                             </mask>
@@ -450,25 +440,79 @@
                             <mask key="subviews">
                                 <include reference="BpC-PN-Wj5"/>
                                 <include reference="oqo-pD-A3p"/>
-                                <include reference="8f1-rT-UEg"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="nUf-Re-tVe"/>
                                 <include reference="p9w-id-Em2"/>
                                 <include reference="pCH-X0-66b"/>
                                 <include reference="uAb-ux-xwR"/>
-                                <include reference="0K3-0f-DQn"/>
-                                <include reference="UnW-dP-qlB"/>
-                                <include reference="xMd-LL-HP0"/>
                                 <include reference="PMg-P3-o1h"/>
                                 <include reference="b5K-1k-fru"/>
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="UB Mannheim" id="u1Z-5p-7v1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="214.5" y="442"/>
+            <point key="canvasLocation" x="340.5" y="436"/>
+        </scene>
+        <!--WebView Controller-->
+        <scene sceneID="ptJ-Z5-oUX">
+            <objects>
+                <viewController id="T1i-kN-BFg" userLabel="WebView Controller" customClass="WebViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cob-kc-tc6"/>
+                        <viewControllerLayoutGuide type="bottom" id="2WZ-tX-bGo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3Lp-RF-w9B">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCD-Lw-GMe">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="OCD-Lw-GMe"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="OCD-Lw-GMe"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="OCD-Lw-GMe" id="zPW-1S-PwK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8zM-pC-mOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1245" y="-258"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="STT-dV-Xjx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="01k-gS-w7e" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9mM-pE-Wxe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="bgY-Y4-UAY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zpQ-zD-1qB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-577.5" y="436"/>
         </scene>
     </scenes>
     <resources>
