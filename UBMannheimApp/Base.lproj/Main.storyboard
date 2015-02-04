@@ -27,6 +27,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cL-qC-0t9" userLabel="UpperLeftView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
+                                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Uu-EP-JHY" userLabel="LabelViewWebsite">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="22" y="128" width="75" height="24"/>
+                                                </variation>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydc-dl-FRZ">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
@@ -72,7 +79,6 @@
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="7p8-My-wFp"/>
                                             <constraint firstAttribute="height" constant="160" id="BdP-Rc-piS"/>
@@ -83,6 +89,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
+                                                <exclude reference="8Uu-EP-JHY"/>
                                                 <exclude reference="ydc-dl-FRZ"/>
                                                 <exclude reference="fxp-8b-eqy"/>
                                             </mask>
@@ -97,6 +104,7 @@
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
+                                                <include reference="8Uu-EP-JHY"/>
                                                 <include reference="ydc-dl-FRZ"/>
                                                 <include reference="fxp-8b-eqy"/>
                                             </mask>
@@ -113,6 +121,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4j-su-Ojg" userLabel="UpperRIghtView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
+                                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKp-4Y-VBc" userLabel="LabelViewPrimo">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="30" y="128" width="60" height="23"/>
+                                                </variation>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0f-Wf-85Y">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
@@ -155,7 +170,6 @@
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="ICv-KC-Kus"/>
                                             <constraint firstAttribute="width" constant="120" id="VjN-qG-26t"/>
@@ -166,6 +180,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
+                                                <exclude reference="kKp-4Y-VBc"/>
                                                 <exclude reference="j0f-Wf-85Y"/>
                                                 <exclude reference="61L-c1-x8x"/>
                                             </mask>
@@ -180,6 +195,7 @@
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
+                                                <include reference="kKp-4Y-VBc"/>
                                                 <include reference="j0f-Wf-85Y"/>
                                                 <include reference="61L-c1-x8x"/>
                                             </mask>
@@ -196,6 +212,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKc-H1-nBD" userLabel="LowerLeftView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
+                                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6q-jz-Lt4" userLabel="ViewLabelNews">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="30" y="128" width="60" height="24"/>
+                                                </variation>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcL-PB-ajU">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
@@ -238,7 +261,6 @@
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="1iC-3T-4SI"/>
                                             <constraint firstItem="pCi-wv-p9m" firstAttribute="top" secondItem="rcL-PB-ajU" secondAttribute="bottom" constant="10" id="D0g-zF-LQo"/>
@@ -249,6 +271,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
+                                                <exclude reference="e6q-jz-Lt4"/>
                                                 <exclude reference="rcL-PB-ajU"/>
                                                 <exclude reference="pCi-wv-p9m"/>
                                             </mask>
@@ -263,6 +286,7 @@
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
+                                                <include reference="e6q-jz-Lt4"/>
                                                 <include reference="rcL-PB-ajU"/>
                                                 <include reference="pCi-wv-p9m"/>
                                             </mask>
@@ -279,6 +303,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IDb-Zq-OYy" userLabel="LowerRightView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
+                                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4d8-f4-SX7" userLabel="ViewLabelSeats">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="8" y="128" width="104" height="23"/>
+                                                </variation>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDa-Im-vxb">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
@@ -321,7 +352,6 @@
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="Qzm-B4-dTv"/>
                                             <constraint firstItem="a6a-CH-P2r" firstAttribute="leading" secondItem="IDb-Zq-OYy" secondAttribute="leading" id="Sc8-5s-xOa"/>
@@ -332,6 +362,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
+                                                <exclude reference="4d8-f4-SX7"/>
                                                 <exclude reference="DDa-Im-vxb"/>
                                                 <exclude reference="a6a-CH-P2r"/>
                                             </mask>
@@ -346,6 +377,7 @@
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
+                                                <include reference="4d8-f4-SX7"/>
                                                 <include reference="DDa-Im-vxb"/>
                                                 <include reference="a6a-CH-P2r"/>
                                             </mask>
@@ -452,6 +484,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="UB Mannheim" id="u1Z-5p-7v1"/>
+                    <connections>
+                        <outlet property="labelNews" destination="e6q-jz-Lt4" id="pQr-VD-Mzc"/>
+                        <outlet property="labelPrimo" destination="kKp-4Y-VBc" id="8lT-6j-HGL"/>
+                        <outlet property="labelSeats" destination="4d8-f4-SX7" id="B2A-fC-prg"/>
+                        <outlet property="labelWebsite" destination="8Uu-EP-JHY" id="ag3-dw-yCL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

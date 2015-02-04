@@ -10,6 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var labelWebsite: UIView!
+    @IBOutlet weak var labelPrimo: UIView!
+    @IBOutlet weak var labelNews: UIView!
+    @IBOutlet weak var labelSeats: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,7 +26,14 @@ class ViewController: UIViewController {
         // self.navigationController?.navigationBar.barTintColor = UIColor.redColor()
         // white
         // self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-
+        
+        // custom label
+        // border radius
+        labelWebsite.layer.cornerRadius = 5;
+        labelPrimo.layer.cornerRadius = 5;
+        labelNews.layer.cornerRadius = 5;
+        labelSeats.layer.cornerRadius = 5;
+        
     }
 
     override func didReceiveMemoryWarning() {
