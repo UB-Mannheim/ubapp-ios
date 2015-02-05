@@ -40,6 +40,26 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        let destinationViewController = segue.destinationViewController as WebViewController
+        
+        var website:NSString = ""
+        
+        if (segue.identifier == "showWebsite") {
+            
+            website = "http://www.bib.uni-mannheim.de/mobile"
+        }
+        
+        if (segue.identifier == "showPrimo") {
+        
+            website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+        }
+        
+        destinationViewController.website = website
+        
+    }
 
 
 }

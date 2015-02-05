@@ -56,7 +56,7 @@
                                                     </mask>
                                                 </variation>
                                                 <connections>
-                                                    <segue destination="T1i-kN-BFg" kind="show" id="x3r-JB-qnL"/>
+                                                    <segue destination="T1i-kN-BFg" kind="show" identifier="showWebsite" id="x3r-JB-qnL"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxp-8b-eqy">
@@ -149,6 +149,9 @@
                                                         <include reference="fjb-WV-tUC"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <segue destination="T1i-kN-BFg" kind="show" identifier="showPrimo" id="Phc-Df-0op"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61L-c1-x8x">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -504,6 +507,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2WZ-tX-bGo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3Lp-RF-w9B">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCD-Lw-GMe">
@@ -560,4 +564,7 @@
         <image name="seats" width="200" height="200"/>
         <image name="website" width="200" height="200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Phc-Df-0op"/>
+    </inferredMetricsTieBreakers>
 </document>
