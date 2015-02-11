@@ -10,17 +10,21 @@ import UIKit
 
 // extend class https://www.weheartswift.com/how-to-make-a-simple-table-view-with-ios-8-and-swift/
 
+// custom header http://www.ioscreator.com/tutorials/customizing-header-footer-table-view-ios8-swift
+
 class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet
     var tableView: UITableView!
-    var dataset: [String] = ["Ehrenhof", "BWL", "A3"]
-    // var dataset: [[String]] = [["initialize", "array"]]
+    // var dataset: [String] = ["Ehrenhof", "BWL", "A3"]
+    var dataset: [[String]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // self.dataset = setTableData()
+        self.tableView.rowHeight = 70
+        
+        self.dataset = setTableData()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
     }
@@ -57,8 +61,20 @@ class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+        var value:Int? = self.dataset[indexPath.row][1].toInt()
         
-        cell.textLabel?.text = self.dataset[indexPath.row]
+        cell.textLabel?.text = self.dataset[indexPath.row][0] + " (" + self.dataset[indexPath.row][1] + " %)"
+        
+        
+        if(value < 30) {
+            cell.imageView?.image = UIImage (named: "sign_green.png")
+            }
+        if(value >= 30) {
+            cell.imageView?.image = UIImage (named: "sign_yellow.png")
+        }
+        if(value > 60) {
+            cell.imageView?.image = UIImage (named: "sign_red.png")
+        }
         
         return cell
     

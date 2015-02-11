@@ -16,6 +16,12 @@
 		B270CEE51A778D3F003C981B /* UBMannheimAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CEE41A778D3F003C981B /* UBMannheimAppTests.swift */; };
 		B2C4A7A21A8B413500B79B10 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A11A8B413500B79B10 /* MainViewController.swift */; };
 		B2C4A7A41A8B483800B79B10 /* SeatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */; };
+		B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A71A8B842700B79B10 /* TableViewController.swift */; };
+		B2FF89F31A8B9D3E00786581 /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */; };
+		B2FF89F41A8B9D3E00786581 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */; };
+		B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */; };
+		B2FF89F61A8B9D3E00786581 /* FeedWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89F11A8B9D3E00786581 /* FeedWebPageViewController.swift */; };
+		B2FF89F71A8B9D3E00786581 /* XmlParserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89F21A8B9D3E00786581 /* XmlParserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 		B270CEE41A778D3F003C981B /* UBMannheimAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBMannheimAppTests.swift; sourceTree = "<group>"; };
 		B2C4A7A11A8B413500B79B10 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatsViewController.swift; sourceTree = "<group>"; };
+		B2C4A7A71A8B842700B79B10 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
+		B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeedViewController.swift; sourceTree = "<group>"; };
+		B2FF89F11A8B9D3E00786581 /* FeedWebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedWebPageViewController.swift; sourceTree = "<group>"; };
+		B2FF89F21A8B9D3E00786581 /* XmlParserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmlParserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +96,16 @@
 			isa = PBXGroup;
 			children = (
 				B270CECE1A778D3F003C981B /* AppDelegate.swift */,
+				B2C4A7A71A8B842700B79B10 /* TableViewController.swift */,
 				B270CED01A778D3F003C981B /* ViewController.swift */,
 				B2266FB31A825C1500C11E08 /* WebViewController.swift */,
 				B2C4A7A11A8B413500B79B10 /* MainViewController.swift */,
 				B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */,
+				B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */,
+				B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */,
+				B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */,
+				B2FF89F11A8B9D3E00786581 /* FeedWebPageViewController.swift */,
+				B2FF89F21A8B9D3E00786581 /* XmlParserManager.swift */,
 				B270CED21A778D3F003C981B /* Main.storyboard */,
 				B270CED51A778D3F003C981B /* Images.xcassets */,
 				B270CED71A778D3F003C981B /* LaunchScreen.xib */,
@@ -221,11 +239,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2FF89F61A8B9D3E00786581 /* FeedWebPageViewController.swift in Sources */,
+				B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */,
 				B270CED11A778D3F003C981B /* ViewController.swift in Sources */,
+				B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */,
 				B2266FB41A825C1500C11E08 /* WebViewController.swift in Sources */,
+				B2FF89F71A8B9D3E00786581 /* XmlParserManager.swift in Sources */,
+				B2FF89F41A8B9D3E00786581 /* FeedTableViewController.swift in Sources */,
 				B270CECF1A778D3F003C981B /* AppDelegate.swift in Sources */,
 				B2C4A7A21A8B413500B79B10 /* MainViewController.swift in Sources */,
 				B2C4A7A41A8B483800B79B10 /* SeatsViewController.swift in Sources */,
+				B2FF89F31A8B9D3E00786581 /* FeedPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
