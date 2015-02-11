@@ -9,7 +9,7 @@
         <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" userLabel="Main View Controller" customClass="ViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" userLabel="Main View Controller" customClass="MainViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -243,6 +243,9 @@
                                                         <include reference="gll-mE-e9V"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <segue destination="PoO-jd-Yy3" kind="show" id="N5I-pl-Jw9"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCi-wv-p9m">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -334,6 +337,9 @@
                                                         <include reference="vEO-In-7rK"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <segue destination="PYL-1U-SZR" kind="show" id="IvB-o9-xRp"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freie Plätze" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-CH-P2r">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -487,16 +493,78 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="UB Mannheim" id="u1Z-5p-7v1"/>
-                    <connections>
-                        <outlet property="labelNews" destination="e6q-jz-Lt4" id="pQr-VD-Mzc"/>
-                        <outlet property="labelPrimo" destination="kKp-4Y-VBc" id="8lT-6j-HGL"/>
-                        <outlet property="labelSeats" destination="4d8-f4-SX7" id="B2A-fC-prg"/>
-                        <outlet property="labelWebsite" destination="8Uu-EP-JHY" id="ag3-dw-yCL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="340.5" y="436"/>
+        </scene>
+        <!--SeatsView Controller-->
+        <scene sceneID="3oC-qA-p9Q">
+            <objects>
+                <viewController id="PYL-1U-SZR" userLabel="SeatsView Controller" customClass="SeatsViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f16-Ty-4gL"/>
+                        <viewControllerLayoutGuide type="bottom" id="n3d-dh-KHU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gBv-kj-Ya7">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2yl-7n-iQd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="536"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="PYL-1U-SZR" id="y4X-2C-br4"/>
+                                    <outlet property="delegate" destination="PYL-1U-SZR" id="UeG-Xx-nMS"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="2yl-7n-iQd"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="2yl-7n-iQd"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="2yl-7n-iQd" id="4Xt-fN-3Rd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yAi-zK-a2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1245" y="436"/>
+        </scene>
+        <!--NewsView Controller-->
+        <scene sceneID="Iyl-Co-Bku">
+            <objects>
+                <tableViewController id="PoO-jd-Yy3" userLabel="NewsView Controller" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wmg-bc-doT">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="neP-H9-YQH">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="neP-H9-YQH" id="NgU-zo-9C4">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PoO-jd-Yy3" id="0RM-QH-mDz"/>
+                            <outlet property="delegate" destination="PoO-jd-Yy3" id="QLH-xp-bLt"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsp-Ib-xDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1245" y="1184"/>
         </scene>
         <!--WebView Controller-->
         <scene sceneID="ptJ-Z5-oUX">
@@ -513,20 +581,45 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCD-Lw-GMe">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                </variation>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OCD-Lw-GMe" firstAttribute="top" secondItem="Cob-kc-tc6" secondAttribute="bottom" constant="64" id="18f-jN-0g7"/>
+                            <constraint firstItem="OCD-Lw-GMe" firstAttribute="leading" secondItem="3Lp-RF-w9B" secondAttribute="leadingMargin" id="1Ni-8s-Odf">
+                                <variation key="widthClass=compact" constant="-16"/>
+                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="OCD-Lw-GMe" secondAttribute="centerX" id="8eR-kw-16Y"/>
+                            <constraint firstItem="OCD-Lw-GMe" firstAttribute="top" secondItem="Cob-kc-tc6" secondAttribute="bottom" id="H6U-hP-7kK"/>
+                            <constraint firstItem="2WZ-tX-bGo" firstAttribute="top" secondItem="OCD-Lw-GMe" secondAttribute="bottom" id="Nr4-u3-h6p"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OCD-Lw-GMe" secondAttribute="trailing" id="Suf-Nw-gQC">
+                                <variation key="widthClass=compact" constant="-16"/>
+                            </constraint>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="OCD-Lw-GMe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="18f-jN-0g7"/>
+                                <exclude reference="1Ni-8s-Odf"/>
+                                <exclude reference="8eR-kw-16Y"/>
+                                <exclude reference="H6U-hP-7kK"/>
+                                <exclude reference="Suf-Nw-gQC"/>
+                                <exclude reference="Nr4-u3-h6p"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="OCD-Lw-GMe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="18f-jN-0g7"/>
+                                <include reference="1Ni-8s-Odf"/>
+                                <include reference="8eR-kw-16Y"/>
+                                <include reference="H6U-hP-7kK"/>
+                                <include reference="Suf-Nw-gQC"/>
+                                <include reference="Nr4-u3-h6p"/>
                             </mask>
                         </variation>
                     </view>
@@ -536,7 +629,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zM-pC-mOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="-258"/>
+            <point key="canvasLocation" x="1245" y="-302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="STT-dV-Xjx">
