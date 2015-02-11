@@ -8,28 +8,50 @@
 
 import UIKit
 
-class WebViewController: UIViewController {
+class MainViewController: UIViewController {
 
-    @IBOutlet weak var webView: UIWebView!
     
-    // Fallback
-    var website:NSString = "http://www.google.de"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        let requestURL = NSURL(string: website)
-        let request = NSURLRequest(URL: requestURL!)
-        
-        webView.loadRequest(request)
-        
+/*
+        labelWebsite.layer.cornerRadius = 5;
+        labelPrimo.layer.cornerRadius = 5;
+        labelNews.layer.cornerRadius = 5;
+        labelSeats.layer.cornerRadius = 5;
+*/        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        
+        if (segue.identifier == "showWebsite") {
+        
+            let destinationViewController = segue.destinationViewController as WebViewController
+            var website:NSString = ""
+            website = "http://www.bib.uni-mannheim.de/mobile"
+            destinationViewController.website = website
+            
+        }
+        
+        if (segue.identifier == "showPrimo") {
+        
+            let destinationViewController = segue.destinationViewController as WebViewController
+            var website:NSString = ""
+            website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            destinationViewController.website = website
+            
+        }
+        
+        
+    }
+    
+    
 
 
 }

@@ -8,19 +8,28 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class WebViewController: UIViewController {
 
+    @IBOutlet weak var webView: UIWebView!
+    
+    // Fallback
+    var website:NSString = "http://www.google.de"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        let requestURL = NSURL(string: website)
+        let request = NSURLRequest(URL: requestURL!)
+        
+        webView.loadRequest(request)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 
 
 }
