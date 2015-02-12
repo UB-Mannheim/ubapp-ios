@@ -454,6 +454,18 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-s1-XWR">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Test">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="177" y="550" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="7BZ-aZ-4L3" kind="show" id="RhY-g3-8rT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="oqo-pD-A3p" secondAttribute="centerX" id="PMg-P3-o1h"/>
@@ -467,6 +479,7 @@
                             <mask key="subviews">
                                 <exclude reference="BpC-PN-Wj5"/>
                                 <exclude reference="oqo-pD-A3p"/>
+                                <exclude reference="cSc-s1-XWR"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="nUf-Re-tVe"/>
@@ -481,6 +494,7 @@
                             <mask key="subviews">
                                 <include reference="BpC-PN-Wj5"/>
                                 <include reference="oqo-pD-A3p"/>
+                                <include reference="cSc-s1-XWR"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="nUf-Re-tVe"/>
@@ -493,6 +507,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="UB Mannheim" id="u1Z-5p-7v1"/>
+                    <connections>
+                        <outlet property="labelNews" destination="e6q-jz-Lt4" id="o7m-4v-wOH"/>
+                        <outlet property="labelPrimo" destination="kKp-4Y-VBc" id="059-7h-EWW"/>
+                        <outlet property="labelSeats" destination="4d8-f4-SX7" id="sjy-6D-mZI"/>
+                        <outlet property="labelWebsite" destination="8Uu-EP-JHY" id="a1v-lm-j9V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -541,6 +561,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAi-zK-a2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1245" y="436"/>
+        </scene>
+        <!--TestView Controller-->
+        <scene sceneID="de2-XC-EXv">
+            <objects>
+                <viewController id="7BZ-aZ-4L3" userLabel="TestView Controller" customClass="TestViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dvm-kG-a6e"/>
+                        <viewControllerLayoutGuide type="bottom" id="chr-zo-ovG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xQX-mA-gHx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8u-47-ctt">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="173" y="111" width="42" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QB6-mp-PQH">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="173" y="162" width="42" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="C8u-47-ctt"/>
+                                <exclude reference="QB6-mp-PQH"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="C8u-47-ctt"/>
+                                <include reference="QB6-mp-PQH"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="C8u-47-ctt" id="InB-KR-SQb"/>
+                        <outlet property="timeLabel" destination="QB6-mp-PQH" id="9Yl-9i-cdH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qEa-1C-7UH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="1184"/>
         </scene>
         <!--NewsView Controller-->
         <scene sceneID="Iyl-Co-Bku">
@@ -600,6 +674,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Fgg-oo-JPZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Auw-Sx-c6Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQv-60-B32">

@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B2266FB41A825C1500C11E08 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2266FB31A825C1500C11E08 /* MainViewController.swift */; };
+		B25923EE1A8CDC26000654B8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25923ED1A8CDC26000654B8 /* TestViewController.swift */; };
 		B270CECF1A778D3F003C981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CECE1A778D3F003C981B /* AppDelegate.swift */; };
 		B270CED11A778D3F003C981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CED01A778D3F003C981B /* ViewController.swift */; };
-		B270CED41A778D3F003C981B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B270CED21A778D3F003C981B /* Main.storyboard */; };
 		B270CED61A778D3F003C981B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B270CED51A778D3F003C981B /* Images.xcassets */; };
 		B270CED91A778D3F003C981B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B270CED71A778D3F003C981B /* LaunchScreen.xib */; };
 		B270CEE51A778D3F003C981B /* UBMannheimAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CEE41A778D3F003C981B /* UBMannheimAppTests.swift */; };
+		B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2266FB31A825C1500C11E08 /* MainViewController.swift */; };
 		B2C4A7A21A8B413500B79B10 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A11A8B413500B79B10 /* WebViewController.swift */; };
 		B2C4A7A41A8B483800B79B10 /* SeatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */; };
 		B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A71A8B842700B79B10 /* TableViewController.swift */; };
+		B2E46A3A1A8CA77A00C88E7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B270CED21A778D3F003C981B /* Main.storyboard */; };
 		B2FF89F31A8B9D3E00786581 /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */; };
 		B2FF89F41A8B9D3E00786581 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */; };
 		B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		B2266FB31A825C1500C11E08 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B25923ED1A8CDC26000654B8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		B270CEC91A778D3F003C981B /* UBMannheimApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UBMannheimApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B270CECD1A778D3F003C981B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270CECE1A778D3F003C981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				B2FF89F11A8B9D3E00786581 /* FeedWebPageViewController.swift */,
 				B2FF89F21A8B9D3E00786581 /* XmlParserManager.swift */,
 				B270CED21A778D3F003C981B /* Main.storyboard */,
+				B25923ED1A8CDC26000654B8 /* TestViewController.swift */,
 				B270CED51A778D3F003C981B /* Images.xcassets */,
 				B270CED71A778D3F003C981B /* LaunchScreen.xib */,
 				B270CECC1A778D3F003C981B /* Supporting Files */,
@@ -219,7 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B270CED41A778D3F003C981B /* Main.storyboard in Resources */,
+				B2E46A3A1A8CA77A00C88E7C /* Main.storyboard in Resources */,
 				B270CED91A778D3F003C981B /* LaunchScreen.xib in Resources */,
 				B270CED61A778D3F003C981B /* Images.xcassets in Resources */,
 			);
@@ -239,16 +242,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */,
 				B2FF89F61A8B9D3E00786581 /* FeedWebPageViewController.swift in Sources */,
 				B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */,
 				B270CED11A778D3F003C981B /* ViewController.swift in Sources */,
 				B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */,
-				B2266FB41A825C1500C11E08 /* MainViewController.swift in Sources */,
 				B2FF89F71A8B9D3E00786581 /* XmlParserManager.swift in Sources */,
 				B2FF89F41A8B9D3E00786581 /* FeedTableViewController.swift in Sources */,
 				B270CECF1A778D3F003C981B /* AppDelegate.swift in Sources */,
 				B2C4A7A21A8B413500B79B10 /* WebViewController.swift in Sources */,
 				B2C4A7A41A8B483800B79B10 /* SeatsViewController.swift in Sources */,
+				B25923EE1A8CDC26000654B8 /* TestViewController.swift in Sources */,
 				B2FF89F31A8B9D3E00786581 /* FeedPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

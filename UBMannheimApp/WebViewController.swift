@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WebViewController.swift
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 27.01.15.

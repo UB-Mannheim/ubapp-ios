@@ -86,6 +86,9 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
+        // Feed Image
+        // cell.imageView?.image = UIImage (named: "news_pre")
+        
         // Feeds dictionary.
         var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as NSDictionary
         

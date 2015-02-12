@@ -29,11 +29,12 @@ class ViewController: UIViewController {
         
         // custom label
         // border radius
+        /*
         labelWebsite.layer.cornerRadius = 5;
         labelPrimo.layer.cornerRadius = 5;
         labelNews.layer.cornerRadius = 5;
         labelSeats.layer.cornerRadius = 5;
-        
+        */
     }
 
     override func didReceiveMemoryWarning() {

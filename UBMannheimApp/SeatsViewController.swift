@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SeatsViewController.swift
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 27.01.15.
@@ -12,12 +12,14 @@ import UIKit
 
 // custom header http://www.ioscreator.com/tutorials/customizing-header-footer-table-view-ios8-swift
 
-class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate {
 
     @IBOutlet
     var tableView: UITableView!
     // var dataset: [String] = ["Ehrenhof", "BWL", "A3"]
     var dataset: [[String]] = [[]]
+    var data = NSMutableData()
+    var result = NSArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +35,19 @@ class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
+    
+    let urlPath: String = "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json"
+
     
     func setTableData() -> [[String]] {
-
+    
         // Arrays in Swift
         // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
-        
+    
         var ic: [String] = ["Info-Center", "23"]
+// var ic: [String] = [result.objectAtIndex(1) as String, "23"]
         // var ic = ["Info-Center", "23"]
         var lc: [String] = ["Learning-Center", "17"]
         var eo: [String] = ["Ehrenhof (Hasso-Plattner-Bibliothek)", "64"]
@@ -49,7 +56,7 @@ class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var a5: [String] = ["Bereich A5", "52"]
         
         var sections = [ic, lc, eo, bwl, a3, a5]
-
+        
         return sections
     }
 

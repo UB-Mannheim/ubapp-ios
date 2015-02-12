@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 27.01.15.
@@ -10,16 +10,19 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    
+    @IBOutlet weak var labelWebsite: UIView!
+    @IBOutlet weak var labelPrimo: UIView!
+    @IBOutlet weak var labelNews: UIView!
+    @IBOutlet weak var labelSeats: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-/*
+
         labelWebsite.layer.cornerRadius = 5;
         labelPrimo.layer.cornerRadius = 5;
         labelNews.layer.cornerRadius = 5;
         labelSeats.layer.cornerRadius = 5;
-*/        
+        
     }
 
     override func didReceiveMemoryWarning() {
