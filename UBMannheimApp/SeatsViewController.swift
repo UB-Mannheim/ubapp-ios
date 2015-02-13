@@ -7,48 +7,62 @@
 //
 
 import UIKit
+import Alamofire
 
 // extend class https://www.weheartswift.com/how-to-make-a-simple-table-view-with-ios-8-and-swift/
 
 // custom header http://www.ioscreator.com/tutorials/customizing-header-footer-table-view-ios8-swift
 
-class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate {
+class SeatsViewController: UITableViewController {
 
-    @IBOutlet
-    var tableView: UITableView!
-    // var dataset: [String] = ["Ehrenhof", "BWL", "A3"]
     var dataset: [[String]] = [[]]
     var data = NSMutableData()
     var result = NSArray()
     
+    var ids: [String] = []
+    var names: [String] = []
+    var percent: [Int] = []
+    var max: [Int] = []
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.rowHeight = 70
+        loadSections()
         
-        self.dataset = setTableData()
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        //self.tableView.rowHeight = 70
+        // self.dataset = setTableData()
+        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
     }
 
+    func loadSections() {
+        Alamofire.request(.GET, "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json")
+            .responseSwiftyJSON {(request, response, jsonObj, error) in
+                for index in 0...jsonObj.count-1 {
+                    self.names.append(jsonObj["sections"][index]["names"].stringValue)
+                    self.ids.append(jsonObj["sections"][index]["ids"].stringValue)
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView!.reloadData()
+                })
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    
-    
-    let urlPath: String = "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json"
-
-    
     func setTableData() -> [[String]] {
-    
+
         // Arrays in Swift
         // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
     
         var ic: [String] = ["Info-Center", "23"]
-// var ic: [String] = [result.objectAtIndex(1) as String, "23"]
-        // var ic = ["Info-Center", "23"]
         var lc: [String] = ["Learning-Center", "17"]
         var eo: [String] = ["Ehrenhof (Hasso-Plattner-Bibliothek)", "64"]
         var bwl: [String] = ["BWL", "32"]
@@ -59,36 +73,21 @@ class SeatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return sections
     }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.dataset.count;
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.names.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
-        var value:Int? = self.dataset[indexPath.row][1].toInt()
-        
-        cell.textLabel?.text = self.dataset[indexPath.row][0] + " (" + self.dataset[indexPath.row][1] + " %)"
-        
-        
-        if(value < 30) {
-            cell.imageView?.image = UIImage (named: "sign_green.png")
-            }
-        if(value >= 30) {
-            cell.imageView?.image = UIImage (named: "sign_yellow.png")
-        }
-        if(value > 60) {
-            cell.imageView?.image = UIImage (named: "sign_red.png")
-        }
-        
+        cell.textLabel?.text = self.names[indexPath.row]
+        cell.detailTextLabel?.text = self.ids[indexPath.row]
         return cell
-    
-        // return UITableViewCell()
+        
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("You selected cell #\(indexPath.row)!")
     }
 

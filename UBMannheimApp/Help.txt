@@ -1,0 +1,81 @@
+
+/*
+var ic_id: String! = json["sections"]["ic"]["id"].string
+var ic_name: String! = json["sections"]["ic"]["name"].string
+var ic_percent: String! = json["sections"]["ic"]["percent"].string
+var ic_max: String! = json["sections"]["ic"]["max"].string
+
+var ic_element: [String] = [ic_id, ic_name, ic_percent, ic_max]
+sections[1] = ic_element
+
+println(ic_name)
+
+var lc_id: String! = json["sections"]["lc"]["id"].string
+var lc_name: String! = json["sections"]["lc"]["name"].string
+var lc_percent: String! = json["sections"]["lc"]["percent"].string
+var lc_max: String! = json["sections"]["lc"]["max"].string
+
+var lc_element: [String] = [lc_id, lc_name, lc_percent, lc_max]
+sections[2] = lc_element
+
+println(lc_name)
+
+var bwl_id: String! = json["sections"]["bwl"]["id"].string
+var bwl_name: String! = json["sections"]["bwl"]["name"].string
+var bwl_percent: String! = json["sections"]["bwl"]["percent"].string
+var bwl_max: String! = json["sections"]["bwl"]["max"].string
+
+var bwl_element: [String] = [bwl_id, bwl_name, bwl_percent, bwl_max]
+sections[3] = bwl_element
+
+println(bwl_name)
+
+var eo_id: String! = json["sections"]["eo"]["id"].string
+var eo_name: String! = json["sections"]["eo"]["name"].string
+var eo_percent: String! = json["sections"]["eo"]["percent"].string
+var eo_max: String! = json["sections"]["eo"]["max"].string
+
+var eo_element: [String] = [eo_id, eo_name, eo_percent, eo_max]
+sections[4] = eo_element
+
+println(eo_name)
+
+var a3_id: String! = json["sections"]["a3"]["id"].string
+var a3_name: String! = json["sections"]["a3"]["name"].string
+var a3_percent: String! = json["sections"]["a3"]["percent"].string
+var a3_max: String! = json["sections"]["a3"]["max"].string
+
+var a3_element: [String] = [a3_id, a3_name, a3_percent, a3_max]
+sections[5] = a3_element
+
+println(a3_name)
+
+var a5_id: String! = json["sections"]["a5"]["id"].string
+var a5_name: String! = json["sections"]["a5"]["name"].string
+var a5_percent: String! = json["sections"]["a5"]["percent"].string
+var a5_max: String! = json["sections"]["a5"]["max"].string
+
+var a5_element: [String] = [a5_id, a5_name, a5_percent, a5_max]
+sections[6] = a5_element
+
+println(a5_name)
+*/
+
+/*
+var elements: [String] = ["ic", "lc", "bwl", "eo", "a3", "a5"]
+var c = 0;
+
+for index in elements {
+
+var id: String! = json["sections"][index]["id"].string
+var name: String! = json["sections"][index]["name"].string
+var percent: String! = json["sections"][index]["percent"].string
+var max: String! = json["sections"][index]["max"].string
+
+var element: [String] = [id, name, percent, max]
+
+sections[c] = element
+println("---")
+println(name)
+}
+*/

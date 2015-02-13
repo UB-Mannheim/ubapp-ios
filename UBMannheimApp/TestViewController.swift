@@ -28,16 +28,52 @@ class TestViewController: UIViewController, NSURLConnectionDelegate {
         // let urlAsString = "http://date.jsontest.com"
         let urlAsString = "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json"
         
+        // 1
+        let url = NSURL(string: urlAsString)!
+        let urlSession = NSURLSession.sharedSession()
+        
+        //2
+        let jsonQuery = urlSession.dataTaskWithURL(url, completionHandler: { data, response, error -> Void in
+            if (error != nil) {
+                println(error.localizedDescription)
+            }
+            var err: NSError?
+            
+            // 3
+            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+            if (err != nil) {
+                println("JSON Error \(err!.localizedDescription)")
+            }
+
+            let json = JSON(jsonResult)
+            
+            // 4
+            let name = json["sections"]["ic"]["name"].string
+            let perc = json["sections"]["ic"]["percent"].stringValue
+            //With a string from JSON supposed to an Dictionary
+            let date = json["date"].stringValue
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.dateLabel.text = name
+                self.timeLabel.text = perc
+            })
+        })
+        // 5
+        jsonQuery.resume()
+        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        startConnection()
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    /*
+    override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    startConnection()
+    }
+    
     
     func startConnection(){
         let urlPath: String = "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json"
@@ -61,7 +97,9 @@ class TestViewController: UIViewController, NSURLConnectionDelegate {
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
         println(jsonResult)
         
+        // var labelString = jsonResult["date"] as String
+        
     }
-    
+    */
 
 }
