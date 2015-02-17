@@ -243,9 +243,6 @@
                                                         <include reference="gll-mE-e9V"/>
                                                     </mask>
                                                 </variation>
-                                                <connections>
-                                                    <segue destination="PoO-jd-Yy3" kind="show" id="N5I-pl-Jw9"/>
-                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCi-wv-p9m">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -338,7 +335,7 @@
                                                     </mask>
                                                 </variation>
                                                 <connections>
-                                                    <segue destination="PYL-1U-SZR" kind="show" id="IvB-o9-xRp"/>
+                                                    <segue destination="H6L-xW-tWA" kind="show" id="rhP-6s-h27"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freie Plätze" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-CH-P2r">
@@ -561,6 +558,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAi-zK-a2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1245" y="436"/>
+        </scene>
+        <!--Seats Table View Controller-->
+        <scene sceneID="fqw-HM-5HC">
+            <objects>
+                <tableViewController id="H6L-xW-tWA" customClass="SeatsTableViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tkx-V0-LcM">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2ya-1T-gDP">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2ya-1T-gDP" id="jpm-Y5-aiv">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="H6L-xW-tWA" id="GXU-cU-mjq"/>
+                            <outlet property="delegate" destination="H6L-xW-tWA" id="GkH-5V-jZx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FnR-RH-dNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137.5" y="436"/>
         </scene>
         <!--TestView Controller-->
         <scene sceneID="de2-XC-EXv">

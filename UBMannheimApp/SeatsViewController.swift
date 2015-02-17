@@ -13,32 +13,73 @@ import Alamofire
 
 // custom header http://www.ioscreator.com/tutorials/customizing-header-footer-table-view-ios8-swift
 
+
+var api = JsonAPI()
+
+
 class SeatsViewController: UITableViewController {
 
+    
     var dataset: [[String]] = [[]]
     var data = NSMutableData()
     var result = NSArray()
     
     var ids: [String] = []
-    var names: [String] = []
-    var percent: [Int] = []
-    var max: [Int] = []
+    var names = NSArray()
+    // var percent: [Int] = []
+    // var max: [Int] = []
     
+    var items: NSMutableArray = []
+    
+    /*
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
     }
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSections()
+        //self.tableView = UITableView(frame:self.view!.frame)
+        //self.tableView!.delegate = self
+        //self.tableView!.dataSource = self
+        //self.tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        //self.tableView.rowHeight = 70
-        // self.dataset = setTableData()
-        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        // loadSections()
+        
+        self.tableView.rowHeight = 70
+        self.dataset = setTableData()
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        /*
+        api.getData({data, error -> Void in
+            if (data != nil) {
+                self.items = NSMutableArray(array: data)
+                self.tableView!.reloadData()            } else {
+                println("api.getData failed")
+                println(error)
+            }
+        })
+        */
+
+    }
+    
+    /*
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        
+        cell.textLabel?.text = self.items[indexPath.row]["bereiche"] as? NSString
+        cell.detailTextLabel?.text = self.items[indexPath.row]["bereiche"] as? NSString
+        return cell
         
     }
+    */
 
+    /*
     func loadSections() {
         Alamofire.request(.GET, "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json")
             .responseSwiftyJSON {(request, response, jsonObj, error) in
@@ -56,7 +97,9 @@ class SeatsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
+    */
     func setTableData() -> [[String]] {
 
         // Arrays in Swift
@@ -71,6 +114,8 @@ class SeatsViewController: UITableViewController {
         
         var sections = [ic, lc, eo, bwl, a3, a5]
         
+        self.names = sections
+        
         return sections
     }
     
@@ -81,7 +126,7 @@ class SeatsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel?.text = self.names[indexPath.row]
+        cell.textLabel?.text = self.names[indexPath.row] as? String
         cell.detailTextLabel?.text = self.ids[indexPath.row]
         return cell
         
