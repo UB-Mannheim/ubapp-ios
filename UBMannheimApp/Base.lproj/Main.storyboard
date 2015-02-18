@@ -243,6 +243,9 @@
                                                         <include reference="gll-mE-e9V"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <segue destination="PoO-jd-Yy3" kind="show" id="KZD-T1-d03"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCi-wv-p9m">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -564,6 +567,7 @@
             <objects>
                 <tableViewController id="H6L-xW-tWA" customClass="SeatsTableViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tkx-V0-LcM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
