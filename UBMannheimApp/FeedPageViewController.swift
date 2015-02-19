@@ -10,8 +10,10 @@ import UIKit
 
 class FeedPageViewController: UIViewController {
 
-    @IBOutlet var textView: UITextView!
     
+    @IBOutlet weak var textLabel: UILabel!
+    
+    @IBOutlet weak var textView: UITextView!
     var selectedFeedTitle = String()
     var selectedFeedFeedContent = String()
     var selectedFeedURL = String()
@@ -19,11 +21,19 @@ class FeedPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Populate Label
+        textLabel.text = "\(selectedFeedTitle)"
+        
+        // Config Text Area
         textView.editable = false
-        textView.contentInset = UIEdgeInsets(top: +60,left: 0,bottom: 0,right: 0)
+        // textView.contentInset = UIEdgeInsets(top: +60,left: 0,bottom: 0,right: 0)
+       
+        
         // Populate Text Area
-        textView.text = "\(selectedFeedTitle)\n\n\(selectedFeedFeedContent)"
-
+        textView.text = "\(selectedFeedFeedContent)"
+        
+        
+        
         // Do any additional setup after loading the view.
     }
     

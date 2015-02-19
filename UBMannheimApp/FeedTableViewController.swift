@@ -67,10 +67,23 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
 
             fpvc.selectedFeedTitle = selectedFTitle
             fpvc.selectedFeedFeedContent = selectedFContent
+            // println(selectedFContent)
             fpvc.selectedFeedURL = selectedFURL
         }
     }
-    
+
+    /*
+    func imageFromRSSContent(content: String) -> Void {
+        
+        var image: String = String()
+        var content: String = content
+        
+        if let match = content.rangeOfString("<a\\s(?=.*?)[^>]*>$", options: .RegularExpressionSearch) {
+            println("\(content) with image")
+        }
+
+    }
+    */
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -100,7 +113,16 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         //cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
 
         cell.detailTextLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
-
+        
         return cell
     }
+    /*
+    extension String
+    {
+        func replace(target: String, withString: String) -> String
+        {
+            return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
+        }
+    }
+    */
 }
