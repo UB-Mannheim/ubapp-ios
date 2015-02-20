@@ -8,12 +8,15 @@
 
 import UIKit
 
+
 class FeedPageViewController: UIViewController {
 
     
-    @IBOutlet weak var textLabel: UILabel!
     
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
+    
     var selectedFeedTitle = String()
     var selectedFeedFeedContent = String()
     var selectedFeedURL = String()
@@ -22,7 +25,9 @@ class FeedPageViewController: UIViewController {
         super.viewDidLoad()
         
         // Populate Label
-        textLabel.text = "\(selectedFeedTitle)"
+         textLabel.text = "\(selectedFeedTitle)"
+        // textView.text = "\(selectedFeedFeedContent)"
+        
         
         // Config Text Area
         textView.editable = false
@@ -30,8 +35,41 @@ class FeedPageViewController: UIViewController {
        
         
         // Populate Text Area
-        textView.text = "\(selectedFeedFeedContent)"
+        // Downcast (String -> NSString) for better String operations
+        var formattedFeedFeedContent = selectedFeedFeedContent as NSString
         
+        var endOfStrPos = formattedFeedFeedContent.rangeOfString("<a").location
+        // endOfStrPos = formattedFeedFeedContent.length
+        
+        // Cast backwards (NSString->String)
+        var outputStr = formattedFeedFeedContent.substringToIndex(endOfStrPos) as String
+        // and get rid of unwanted utf-8 xml chars
+        // 124, 8230
+        
+        // outputStr.substringFromIndex(advance(outputStr.startIndex,7))
+        
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#124;", withString: "\n", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#8230;", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#160;", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#62;", withString: "&", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        // outputStr = outputStr.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        // strip whitespaces in between
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("  ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("   ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("    ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        outputStr = outputStr.stringByReplacingOccurrencesOfString("     ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        // strip whitespaces and linebreaks beginning and end
+        outputStr = outputStr.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+        println(outputStr)
+        
+        textView.text = "\(outputStr)"+" \(selectedFeedURL)"
+        
+        
+        // let myHTMLString:String! = "\(selectedFeedFeedContent)"
+        // self.webView.loadHTMLString(myHTMLString, baseURL: nil)
         
         
         // Do any additional setup after loading the view.

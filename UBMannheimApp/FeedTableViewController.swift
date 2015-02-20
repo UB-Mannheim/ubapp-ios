@@ -112,7 +112,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // If the above line throws an error then comment it out and uncomment the below line.
         //cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
 
-        cell.detailTextLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
+        var formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
+        
+        var date: String = formattedFeedTitle!
+        let stringLength = countElements(date)
+        let substringIndex = stringLength - 12
+        date = date.substringToIndex(advance(date.startIndex, substringIndex))
+        
+        cell.detailTextLabel?.text = date
         
         return cell
     }
