@@ -705,85 +705,121 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cL-uH-VkM" userLabel="NewsDetailContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="200" y="300" width="0.0" height="0.0"/>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnL-3b-EVq" userLabel="LabelView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyg-HR-YCt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ym-Pd-ETo">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Label">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="17" y="8" width="366" height="90"/>
-                                        </variation>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1a-WB-D28">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <attributedString key="attributedText">
-                                            <fragment>
-                                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <attributes>
-                                                    <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <rect key="frame" x="17" y="63" width="337" height="465"/>
-                                        </variation>
-                                    </textView>
-                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LvR-uL-CEm">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="17" y="474" width="366" height="54"/>
-                                        </variation>
-                                    </webView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5ym-Pd-ETo" firstAttribute="top" secondItem="wnL-3b-EVq" secondAttribute="top" constant="10" id="0Av-Kv-Nw0"/>
+                                    <constraint firstAttribute="bottom" secondItem="5ym-Pd-ETo" secondAttribute="bottom" constant="10" id="KBm-bU-MIq">
+                                        <variation key="widthClass=compact" constant="14"/>
+                                    </constraint>
+                                    <constraint firstAttribute="centerY" secondItem="5ym-Pd-ETo" secondAttribute="centerY" id="S8w-F0-UY7">
+                                        <variation key="widthClass=compact" constant="2"/>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="5ym-Pd-ETo" secondAttribute="trailing" constant="10" id="k45-ai-Vbf"/>
+                                    <constraint firstItem="5ym-Pd-ETo" firstAttribute="leading" secondItem="wnL-3b-EVq" secondAttribute="leading" constant="10" id="mmH-nm-Ho0">
+                                        <variation key="widthClass=compact" constant="5"/>
+                                    </constraint>
+                                    <constraint firstAttribute="centerX" secondItem="5ym-Pd-ETo" secondAttribute="centerX" id="s6u-Cj-QKU">
+                                        <variation key="widthClass=compact" constant="2.5"/>
+                                    </constraint>
+                                </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
-                                        <exclude reference="nyg-HR-YCt"/>
-                                        <exclude reference="i1a-WB-D28"/>
-                                        <exclude reference="LvR-uL-CEm"/>
+                                        <exclude reference="5ym-Pd-ETo"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="0Av-Kv-Nw0"/>
+                                        <exclude reference="KBm-bU-MIq"/>
+                                        <exclude reference="S8w-F0-UY7"/>
+                                        <exclude reference="k45-ai-Vbf"/>
+                                        <exclude reference="mmH-nm-Ho0"/>
+                                        <exclude reference="s6u-Cj-QKU"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="536"/>
+                                <variation key="widthClass=compact">
                                     <mask key="subviews">
-                                        <include reference="nyg-HR-YCt"/>
-                                        <include reference="i1a-WB-D28"/>
-                                        <include reference="LvR-uL-CEm"/>
+                                        <include reference="5ym-Pd-ETo"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="0Av-Kv-Nw0"/>
+                                        <include reference="KBm-bU-MIq"/>
+                                        <include reference="S8w-F0-UY7"/>
+                                        <include reference="k45-ai-Vbf"/>
+                                        <include reference="mmH-nm-Ho0"/>
+                                        <include reference="s6u-Cj-QKU"/>
                                     </mask>
                                 </variation>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BT5-8g-C8C">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="16" y="117" width="368" height="471"/>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="wnL-3b-EVq" secondAttribute="centerX" id="4nE-eC-oQn"/>
+                            <constraint firstItem="wnL-3b-EVq" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leadingMargin" id="7FX-f1-f5z"/>
+                            <constraint firstItem="wnL-3b-EVq" firstAttribute="top" secondItem="TQY-eG-yNP" secondAttribute="bottom" id="gKb-1S-F4R"/>
+                            <constraint firstItem="wnL-3b-EVq" firstAttribute="trailing" secondItem="Auw-Sx-c6Q" secondAttribute="trailingMargin" id="o9c-X2-eVw"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="8cL-uH-VkM"/>
+                                <exclude reference="wnL-3b-EVq"/>
+                                <exclude reference="BT5-8g-C8C"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4nE-eC-oQn"/>
+                                <exclude reference="7FX-f1-f5z"/>
+                                <exclude reference="gKb-1S-F4R"/>
+                                <exclude reference="o9c-X2-eVw"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="8cL-uH-VkM"/>
+                                <include reference="wnL-3b-EVq"/>
+                                <include reference="BT5-8g-C8C"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4nE-eC-oQn"/>
+                                <include reference="7FX-f1-f5z"/>
+                                <include reference="gKb-1S-F4R"/>
+                                <include reference="o9c-X2-eVw"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="textLabel" destination="nyg-HR-YCt" id="jaA-GF-rUL"/>
-                        <outlet property="textView" destination="i1a-WB-D28" id="3DW-Q6-SoT"/>
-                        <outlet property="webView" destination="LvR-uL-CEm" id="mMh-eK-y67"/>
+                        <outlet property="textLabel" destination="5ym-Pd-ETo" id="g9b-7N-c0F"/>
+                        <outlet property="textView" destination="BT5-8g-C8C" id="Pe8-tR-cjr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUs-2a-ccI" userLabel="First Responder" sceneMemberID="firstResponder"/>

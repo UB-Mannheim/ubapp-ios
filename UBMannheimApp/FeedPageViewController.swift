@@ -14,6 +14,7 @@ class FeedPageViewController: UIViewController {
     
     
     @IBOutlet weak var webView: UIWebView!
+    
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     
@@ -27,8 +28,7 @@ class FeedPageViewController: UIViewController {
         // Populate Label
          textLabel.text = "\(selectedFeedTitle)"
         // textView.text = "\(selectedFeedFeedContent)"
-        
-        
+
         // Config Text Area
         textView.editable = false
         // textView.contentInset = UIEdgeInsets(top: +60,left: 0,bottom: 0,right: 0)
