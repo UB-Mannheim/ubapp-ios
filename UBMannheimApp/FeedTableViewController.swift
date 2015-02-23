@@ -12,9 +12,22 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
 
     var myFeed : NSArray = []
     var url: NSURL = NSURL()
+    
+    // UIRefreshControl
+    func refresh(sender:AnyObject)
+    {
+        // Updating your data here...
+        loadRss(url);
+        
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // if pulled down, refresh
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
 
         // Cell height.
         self.tableView.rowHeight = 70
@@ -24,6 +37,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // Set feed url. http://www.formula1.com/rss/news/latest.rss
         // url = NSURL(string: "http://www.skysports.com/rss/0,20514,11661,00.xml")!
         url = NSURL(string: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
+        // url = NSURL(string: "http://blog.bib.uni-mannheim.de/Aktuelles_Ex/?feed=rss2&cat=4")!
         // Call custom function.
         loadRss(url);
 

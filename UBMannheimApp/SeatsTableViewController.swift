@@ -16,8 +16,21 @@ class SeatsTableViewController: UITableViewController {
     var items: NSArray = NSArray()
     var data: NSMutableData = NSMutableData()
     
+    // UIRefreshControl
+    func refresh(sender:AnyObject)
+    {
+        // Updating your data here...
+        loadJSONFromURL()
+        
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // if pulled down, refresh
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
         // searchItunesFor("JQ Software")
         loadJSONFromURL()
