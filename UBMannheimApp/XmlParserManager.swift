@@ -19,6 +19,8 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
     var fdescription = NSMutableString()
     var fdate = NSMutableString()
     
+    var fcontent = NSMutableString()
+    
     // initilise parser
     func initWithURL(url :NSURL) -> AnyObject {
         startParse(url)
@@ -52,6 +54,8 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
             link = ""
             fdescription = NSMutableString.alloc()
             fdescription = ""
+            fcontent = NSMutableString.alloc()
+            fcontent = ""
             fdate = NSMutableString.alloc()
             fdate = ""
         }
@@ -73,6 +77,10 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
                 elements.setObject(fdescription, forKey: "description")
             }
             
+            if fcontent != "" {
+                elements.setObject(fcontent, forKey: "content:encoded")
+            }
+            
             if fdate != "" {
                 elements.setObject(fdate, forKey: "pubDate")
             }
@@ -90,6 +98,8 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
             link.appendString(string)
         }else if element.isEqualToString("description") {
             fdescription.appendString(string)
+        }else if element.isEqualToString("content:encoded") {
+            fcontent.appendString(string)
         }else if element.isEqualToString("pubDate") {
             fdate.appendString(string)
         }

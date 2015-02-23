@@ -57,9 +57,10 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         else if segue.identifier == "openPage" {
             
             var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
-            //let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
+            // let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
             let selectedFTitle: String = myFeed[indexPath.row].objectForKey("title") as String
-            let selectedFContent: String = myFeed[indexPath.row].objectForKey("description") as String
+            // let selectedFContent: String = myFeed[indexPath.row].objectForKey("description") as String
+            let selectedFContent: String = myFeed[indexPath.row].objectForKey("content:encoded") as String
             let selectedFURL: String = myFeed[indexPath.row].objectForKey("link") as String
             
             // Instance of our feedpageviewcontrolelr
@@ -69,6 +70,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             fpvc.selectedFeedFeedContent = selectedFContent
             // println(selectedFContent)
             fpvc.selectedFeedURL = selectedFURL
+            
         }
     }
 
@@ -120,6 +122,9 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         date = date.substringToIndex(advance(date.startIndex, substringIndex))
         
         cell.detailTextLabel?.text = date
+        
+        var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
+        println("FeedTableView: "+content!)
         
         return cell
     }

@@ -38,6 +38,7 @@ class FeedPageViewController: UIViewController {
         // Downcast (String -> NSString) for better String operations
         var formattedFeedFeedContent = selectedFeedFeedContent as NSString
         
+/*
         var endOfStrPos = formattedFeedFeedContent.rangeOfString("<a").location
         // endOfStrPos = formattedFeedFeedContent.length
         
@@ -63,10 +64,13 @@ class FeedPageViewController: UIViewController {
         // strip whitespaces and linebreaks beginning and end
         outputStr = outputStr.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        println(outputStr)
+        println("FeedPageDetail: "+outputStr)
         
         textView.text = "\(outputStr)"+" \(selectedFeedURL)"
-        
+*/
+        var attributedHTMLFeedFeedContent = NSAttributedString(data: formattedFeedFeedContent.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil, error: nil)
+
+        textView.attributedText = attributedHTMLFeedFeedContent
         
         // let myHTMLString:String! = "\(selectedFeedFeedContent)"
         // self.webView.loadHTMLString(myHTMLString, baseURL: nil)
