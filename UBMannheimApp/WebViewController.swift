@@ -32,7 +32,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         webView.delegate = self
         // check if necessary and why
         // self.view.addSubview(webView)
-        
+      
+
+   
+   
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,10 +55,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     //  call: self.webViewDidStartLoad(webView)
     
     func webViewDidStartLoad(webView: UIWebView) { //start
+        // print("Webview started Loading")
+        
         var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         var activityBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         navigationItem.rightBarButtonItem = activityBarButtonItem
         activityIndicator.startAnimating()
+        
+        // print("Webview started Loading")
     }
     
     // show circular progress activity in upper navigation bar
@@ -63,7 +70,36 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     //  call: self.webViewDidFinishLoad(webView)
     
     func webViewDidFinishLoad(webView: UIWebView) { //stop
+        // print("Webview did finish load")
+        
         navigationItem.rightBarButtonItem = nil
+        
+        /*
+        var js: String = "var script = document.createElement('script');" +
+        "script.type = 'text/javascript';" +
+        "script.text = \"function myFunction() { " +
+        // "var field = document.getElementById('field_3');" +
+        //"field.value='Calling function - OK';" +
+        "alert('Hello');" +
+        "}\";" +
+        "document.getElementsByTagName('head')[0].appendChild(script);"
+        */
+        
+        var www_js:String = "document.getElementById('mobile_trailer').style.backgroundColor = 'white'; " + 
+        "document.getElementById('mobile_trailer').style.transition = 'background-color 1000ms linear'; "
+        
+        var primo_js:String = "document.getElementById('exlidUserAreaTile').style.padding = '10px'; " +
+            "document.getElementById('logos').style.visibility = 'hidden'; " +
+            "document.getElementById('exlidSearchTile').style.position = 'relative'; " +
+            "document.getElementById('exlidSearchTile').style.top = '-80px'; " +
+            "document.getElementById('exlidMainMenuRibbon').style.display = 'none'; " +
+            "document.getElementById('exlidHeaderContainer').style.height = '100px'; "
+            
+            
+        self.webView.stringByEvaluatingJavaScriptFromString(primo_js)
+        // self.webView.stringByEvaluatingJavaScriptFromString("myFunction();")
+        
+        self.webView.stringByEvaluatingJavaScriptFromString(www_js)
     }
 
     
@@ -88,20 +124,37 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     // webview start loading
     
-    func webViewDidStartLoad(webView: UIWebView!) {
+    /* func webViewDidStartLoad(webView: UIWebView!) {
         // print("Webview started Loading")
         
-        webViewDidStartLoad(self.webView)
-    }
+         webViewDidStartLoad(self.webView)
+    } */
     
     // webview finished loading
     
-    func webViewDidFinishLoad(webView: UIWebView!) {
+    /* func webViewDidFinishLoad(webView: UIWebView!) {
         // print("Webview did finish load")
         
         webViewDidFinishLoad(self.webView)
         
-    }
+        // let myjsaction = self.webView.stringByEvaluatingJavaScriptFromString("alert(document.documentElement.innerHTML);")
+        
+        // http://iphoneincubator.com/blog/windows-views/how-to-inject-javascript-functions-into-a-uiwebview
+        
+        /*
+        var js: String = "var script = document.createElement('script');" +
+        "script.type = 'text/javascript';" +
+        "script.text = \"function myFunction() { " +
+        // "var field = document.getElementById('field_3');" +
+        //"field.value='Calling function - OK';" +
+        "alert('Hello');" +
+        "}\";" +
+        "document.getElementsByTagName('head')[0].appendChild(script);"
+        
+        self.webView.stringByEvaluatingJavaScriptFromString("document.write('this works')")
+        self.webView.stringByEvaluatingJavaScriptFromString("myFunction();")
+        */
+    }*/
     
 
 }

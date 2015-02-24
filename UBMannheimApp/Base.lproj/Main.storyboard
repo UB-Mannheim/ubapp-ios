@@ -560,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAi-zK-a2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="436"/>
+            <point key="canvasLocation" x="2145" y="-302"/>
         </scene>
         <!--Seats Table View Controller-->
         <scene sceneID="fqw-HM-5HC">
@@ -589,7 +589,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FnR-RH-dNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2137.5" y="436"/>
+            <point key="canvasLocation" x="1245" y="436"/>
         </scene>
         <!--TestView Controller-->
         <scene sceneID="de2-XC-EXv">
@@ -830,7 +830,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUs-2a-ccI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2770.5" y="1364"/>
+            <point key="canvasLocation" x="2145" y="1184"/>
         </scene>
         <!--WebView Controller-->
         <scene sceneID="ptJ-Z5-oUX">

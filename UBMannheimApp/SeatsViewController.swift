@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+// import Alamofire
 
 // extend class https://www.weheartswift.com/how-to-make-a-simple-table-view-with-ios-8-and-swift/
 
