@@ -38,6 +38,10 @@ class FeedPageViewController: UIViewController {
         // Downcast (String -> NSString) for better String operations
         var formattedFeedFeedContent = selectedFeedFeedContent as NSString
         
+        // 2DOs
+        // ggf nach <img> IMMER ein <br/>
+        // ueberfluessige zeichen an anfang und ende abschneiden
+        
 /*
         var endOfStrPos = formattedFeedFeedContent.rangeOfString("<a").location
         // endOfStrPos = formattedFeedFeedContent.length
