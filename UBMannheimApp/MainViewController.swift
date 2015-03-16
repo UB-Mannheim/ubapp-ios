@@ -24,6 +24,26 @@ class MainViewController: UIViewController {
         labelSeats.layer.cornerRadius = 5;
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        var nav = self.navigationController?.navigationBar
+        
+        // nav?.barStyle = UIBarStyle.Black
+        // nav?.tintColor = UIColor.yellowColor()
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        imageView.contentMode = .ScaleAspectFit
+        
+        let image = UIImage(named: "icon_32x32")
+        imageView.image = image
+        // navigationItem.titleView = imageView
+        
+        // let barButtomItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: "barButtonItemClicked")
+        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = barButtomItem
+        
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
