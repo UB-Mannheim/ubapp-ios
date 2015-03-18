@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		B25923EE1A8CDC26000654B8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25923ED1A8CDC26000654B8 /* TestViewController.swift */; };
+		B25C7A0B1AB9ABA90069BB55 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */; };
+		B25C7A0D1AB9ABE20069BB55 /* DataBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A0C1AB9ABE20069BB55 /* DataBaseTest.swift */; };
+		B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */; };
+		B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A231AB9AE1A0069BB55 /* FMDatabaseAdditions.m */; };
+		B25C7A2D1AB9AE1A0069BB55 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A251AB9AE1A0069BB55 /* FMDatabasePool.m */; };
+		B25C7A2E1AB9AE1A0069BB55 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A271AB9AE1A0069BB55 /* FMDatabaseQueue.m */; };
+		B25C7A2F1AB9AE1A0069BB55 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A2A1AB9AE1A0069BB55 /* FMResultSet.m */; };
+		B25C7A321AB9AFFE0069BB55 /* DBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */; };
 		B270CECF1A778D3F003C981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CECE1A778D3F003C981B /* AppDelegate.swift */; };
 		B270CED11A778D3F003C981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CED01A778D3F003C981B /* ViewController.swift */; };
 		B270CED61A778D3F003C981B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B270CED51A778D3F003C981B /* Images.xcassets */; };
@@ -53,6 +61,21 @@
 /* Begin PBXFileReference section */
 		B2266FB31A825C1500C11E08 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B25923ED1A8CDC26000654B8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B25C7A0C1AB9ABE20069BB55 /* DataBaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataBaseTest.swift; path = ../DataBaseTest.swift; sourceTree = "<group>"; };
+		B25C7A1F1AB9AE1A0069BB55 /* UBMannheimApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UBMannheimApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		B25C7A201AB9AE1A0069BB55 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		B25C7A221AB9AE1A0069BB55 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		B25C7A231AB9AE1A0069BB55 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		B25C7A241AB9AE1A0069BB55 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		B25C7A251AB9AE1A0069BB55 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		B25C7A261AB9AE1A0069BB55 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		B25C7A271AB9AE1A0069BB55 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		B25C7A281AB9AE1A0069BB55 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		B25C7A291AB9AE1A0069BB55 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		B25C7A2A1AB9AE1A0069BB55 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBViewController.swift; sourceTree = "<group>"; };
 		B270CEC91A778D3F003C981B /* UBMannheimApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UBMannheimApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B270CECD1A778D3F003C981B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270CECE1A778D3F003C981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25C7A0B1AB9ABA90069BB55 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,9 +119,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B25C7A301AB9AE480069BB55 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				B25C7A201AB9AE1A0069BB55 /* FMDatabase.h */,
+				B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */,
+				B25C7A221AB9AE1A0069BB55 /* FMDatabaseAdditions.h */,
+				B25C7A231AB9AE1A0069BB55 /* FMDatabaseAdditions.m */,
+				B25C7A241AB9AE1A0069BB55 /* FMDatabasePool.h */,
+				B25C7A251AB9AE1A0069BB55 /* FMDatabasePool.m */,
+				B25C7A261AB9AE1A0069BB55 /* FMDatabaseQueue.h */,
+				B25C7A271AB9AE1A0069BB55 /* FMDatabaseQueue.m */,
+				B25C7A281AB9AE1A0069BB55 /* FMDB.h */,
+				B25C7A291AB9AE1A0069BB55 /* FMResultSet.h */,
+				B25C7A2A1AB9AE1A0069BB55 /* FMResultSet.m */,
+				B25C7A1F1AB9AE1A0069BB55 /* UBMannheimApp-Bridging-Header.h */,
+			);
+			name = fmdb;
+			sourceTree = "<group>";
+		};
 		B270CEC01A778D3E003C981B = {
 			isa = PBXGroup;
 			children = (
+				B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */,
 				B270CECB1A778D3F003C981B /* UBMannheimApp */,
 				B270CEE11A778D3F003C981B /* UBMannheimAppTests */,
 				B270CECA1A778D3F003C981B /* Products */,
@@ -127,6 +171,7 @@
 				B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */,
 				B2FF89F11A8B9D3E00786581 /* FeedWebPageViewController.swift */,
 				B270CED21A778D3F003C981B /* Main.storyboard */,
+				B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */,
 				B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */,
 				B270CED51A778D3F003C981B /* Images.xcassets */,
 				B270CED71A778D3F003C981B /* LaunchScreen.xib */,
@@ -164,6 +209,7 @@
 		B2C8B0AF1A8E09F0002CBA11 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B25C7A301AB9AE480069BB55 /* fmdb */,
 				B2C8B0AD1A8E069A002CBA11 /* SwiftyJSON.swift */,
 				B2FF89F21A8B9D3E00786581 /* XmlParserManager.swift */,
 				B29F73D31A92468000C54592 /* JsonAPI.swift */,
@@ -177,6 +223,7 @@
 				B2C4A7A71A8B842700B79B10 /* TableViewController.swift */,
 				B25923ED1A8CDC26000654B8 /* TestViewController.swift */,
 				B270CED01A778D3F003C981B /* ViewController.swift */,
+				B25C7A0C1AB9ABE20069BB55 /* DataBaseTest.swift */,
 			);
 			name = test;
 			sourceTree = "<group>";
@@ -286,8 +333,15 @@
 			files = (
 				B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */,
 				B2FF89F61A8B9D3E00786581 /* FeedWebPageViewController.swift in Sources */,
+				B25C7A321AB9AFFE0069BB55 /* DBViewController.swift in Sources */,
+				B25C7A2D1AB9AE1A0069BB55 /* FMDatabasePool.m in Sources */,
+				B25C7A0D1AB9ABE20069BB55 /* DataBaseTest.swift in Sources */,
 				B29F73D61A9332C100C54592 /* SeatsTableViewController.swift in Sources */,
+				B25C7A2E1AB9AE1A0069BB55 /* FMDatabaseQueue.m in Sources */,
+				B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */,
+				B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */,
 				B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */,
+				B25C7A2F1AB9AE1A0069BB55 /* FMResultSet.m in Sources */,
 				B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */,
 				B270CED11A778D3F003C981B /* ViewController.swift in Sources */,
 				B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */,
@@ -421,12 +475,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = UBMannheimApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "UBMannheimApp/UBMannheimApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -434,12 +491,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = UBMannheimApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "UBMannheimApp/UBMannheimApp-Bridging-Header.h";
 			};
 			name = Release;
 		};
