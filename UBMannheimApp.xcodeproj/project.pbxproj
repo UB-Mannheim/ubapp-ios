@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B24261D01ABACF4300124AAB /* IJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24261CF1ABACF4300124AAB /* IJReachability.swift */; };
+		B24261D21ABAD1AE00124AAB /* offline.html in Resources */ = {isa = PBXBuildFile; fileRef = B24261D11ABAD1AE00124AAB /* offline.html */; };
+		B24261D61ABAD54C00124AAB /* ublogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B24261D51ABAD54C00124AAB /* ublogo.png */; };
 		B25923EE1A8CDC26000654B8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25923ED1A8CDC26000654B8 /* TestViewController.swift */; };
 		B25C7A0B1AB9ABA90069BB55 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */; };
-		B25C7A0D1AB9ABE20069BB55 /* DataBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A0C1AB9ABE20069BB55 /* DataBaseTest.swift */; };
 		B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */; };
 		B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A231AB9AE1A0069BB55 /* FMDatabaseAdditions.m */; };
 		B25C7A2D1AB9AE1A0069BB55 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A251AB9AE1A0069BB55 /* FMDatabasePool.m */; };
@@ -60,9 +62,11 @@
 
 /* Begin PBXFileReference section */
 		B2266FB31A825C1500C11E08 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B24261CF1ABACF4300124AAB /* IJReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IJReachability.swift; path = ../IJReachability.swift; sourceTree = "<group>"; };
+		B24261D11ABAD1AE00124AAB /* offline.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = offline.html; sourceTree = "<group>"; };
+		B24261D51ABAD54C00124AAB /* ublogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ublogo.png; sourceTree = "<group>"; };
 		B25923ED1A8CDC26000654B8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		B25C7A0C1AB9ABE20069BB55 /* DataBaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataBaseTest.swift; path = ../DataBaseTest.swift; sourceTree = "<group>"; };
 		B25C7A1F1AB9AE1A0069BB55 /* UBMannheimApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UBMannheimApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		B25C7A201AB9AE1A0069BB55 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 				B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */,
 				B2FF89F11A8B9D3E00786581 /* FeedWebPageViewController.swift */,
 				B270CED21A778D3F003C981B /* Main.storyboard */,
+				B24261D11ABAD1AE00124AAB /* offline.html */,
+				B24261D51ABAD54C00124AAB /* ublogo.png */,
 				B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */,
 				B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */,
 				B270CED51A778D3F003C981B /* Images.xcassets */,
@@ -211,6 +217,7 @@
 			children = (
 				B25C7A301AB9AE480069BB55 /* fmdb */,
 				B2C8B0AD1A8E069A002CBA11 /* SwiftyJSON.swift */,
+				B24261CF1ABACF4300124AAB /* IJReachability.swift */,
 				B2FF89F21A8B9D3E00786581 /* XmlParserManager.swift */,
 				B29F73D31A92468000C54592 /* JsonAPI.swift */,
 			);
@@ -223,7 +230,6 @@
 				B2C4A7A71A8B842700B79B10 /* TableViewController.swift */,
 				B25923ED1A8CDC26000654B8 /* TestViewController.swift */,
 				B270CED01A778D3F003C981B /* ViewController.swift */,
-				B25C7A0C1AB9ABE20069BB55 /* DataBaseTest.swift */,
 			);
 			name = test;
 			sourceTree = "<group>";
@@ -313,7 +319,9 @@
 				B2E46A3A1A8CA77A00C88E7C /* Main.storyboard in Resources */,
 				B270CED91A778D3F003C981B /* LaunchScreen.xib in Resources */,
 				B270CED61A778D3F003C981B /* Images.xcassets in Resources */,
+				B24261D21ABAD1AE00124AAB /* offline.html in Resources */,
 				B2C8B0B21A8E2688002CBA11 /* Help.txt in Resources */,
+				B24261D61ABAD54C00124AAB /* ublogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,8 +342,8 @@
 				B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */,
 				B2FF89F61A8B9D3E00786581 /* FeedWebPageViewController.swift in Sources */,
 				B25C7A321AB9AFFE0069BB55 /* DBViewController.swift in Sources */,
+				B24261D01ABACF4300124AAB /* IJReachability.swift in Sources */,
 				B25C7A2D1AB9AE1A0069BB55 /* FMDatabasePool.m in Sources */,
-				B25C7A0D1AB9ABE20069BB55 /* DataBaseTest.swift in Sources */,
 				B29F73D61A9332C100C54592 /* SeatsTableViewController.swift in Sources */,
 				B25C7A2E1AB9AE1A0069BB55 /* FMDatabaseQueue.m in Sources */,
 				B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */,

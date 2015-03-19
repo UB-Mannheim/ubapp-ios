@@ -11,6 +11,8 @@ import UIKit
 class WebViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     
     // Fallback
     var website:NSString = "http://www.google.de"
@@ -26,15 +28,23 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         */
         
         
-        // check if necessary and why
-        // let webView:UIWebView = UIWebView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: self.website)!))
-        webView.delegate = self
-        // check if necessary and why
-        // self.view.addSubview(webView)
+        if IJReachability.isConnectedToNetwork() {
+        
+            // check if necessary and why
+            // let webView:UIWebView = UIWebView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+            webView.loadRequest(NSURLRequest(URL: NSURL(string: self.website)!))
+            webView.delegate = self
+            // check if necessary and why
+            // self.view.addSubview(webView)
       
+        } else {
+            
+            let url = NSBundle.mainBundle().URLForResource("offline", withExtension:"html")
+            let request = NSURLRequest(URL: url!)
+            webView.loadRequest(request)
+            webView.delegate = self
+        }  
 
-   
    
     }
 
@@ -57,6 +67,15 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     func webViewDidStartLoad(webView: UIWebView) { //start
         // print("Webview started Loading")
         
+        // Centered Activity Bar
+        // stackoverflow.com/questions/72388711/activity-picker-forweb-view-in-swift
+        
+        // special color and black frame
+        // coderwall.com/p/su1ta/ios-customized-activity-indicator-with-swift
+        activity.hidden = false
+        activity.startAnimating()
+        
+        // Activity Bar in Top Bar
         var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         var activityBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         navigationItem.rightBarButtonItem = activityBarButtonItem
@@ -71,6 +90,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     func webViewDidFinishLoad(webView: UIWebView) { //stop
         // print("Webview did finish load")
+        
+        activity.hidden = true
+        activity.stopAnimating()
         
         navigationItem.rightBarButtonItem = nil
         
