@@ -9,7 +9,7 @@
         <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" userLabel="Main View Controller" customClass="MainViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainView" id="vXZ-lx-hvc" userLabel="Main View Controller" customClass="MainViewController" customModule="UBMannheimApp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -986,9 +986,6 @@
                             </webView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YqV-aR-o4A">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="190" y="323" width="20" height="20"/>
-                                </variation>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1012,14 +1009,14 @@
                                 <exclude reference="YqV-aR-o4A"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Nr4-u3-h6p"/>
+                                <exclude reference="8d8-2O-ONt"/>
+                                <exclude reference="yyW-gY-X6B"/>
                                 <exclude reference="18f-jN-0g7"/>
                                 <exclude reference="1Ni-8s-Odf"/>
                                 <exclude reference="8eR-kw-16Y"/>
                                 <exclude reference="H6U-hP-7kK"/>
                                 <exclude reference="Suf-Nw-gQC"/>
-                                <exclude reference="8d8-2O-ONt"/>
-                                <exclude reference="yyW-gY-X6B"/>
-                                <exclude reference="Nr4-u3-h6p"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1028,14 +1025,14 @@
                                 <include reference="YqV-aR-o4A"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Nr4-u3-h6p"/>
+                                <include reference="8d8-2O-ONt"/>
+                                <include reference="yyW-gY-X6B"/>
                                 <exclude reference="18f-jN-0g7"/>
                                 <include reference="1Ni-8s-Odf"/>
                                 <include reference="8eR-kw-16Y"/>
                                 <include reference="H6U-hP-7kK"/>
                                 <include reference="Suf-Nw-gQC"/>
-                                <include reference="8d8-2O-ONt"/>
-                                <include reference="yyW-gY-X6B"/>
-                                <include reference="Nr4-u3-h6p"/>
                             </mask>
                         </variation>
                     </view>

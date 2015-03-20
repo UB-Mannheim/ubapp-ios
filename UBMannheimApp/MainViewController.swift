@@ -42,6 +42,10 @@ class MainViewController: UIViewController {
         let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = barButtomItem
         
+        // right Navigation Item, System Icon
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
+        
+        let tabBarController = UITabBarController()
         
     }
 
@@ -72,6 +76,10 @@ class MainViewController: UIViewController {
         }
         
         
+    }
+    
+    func openConfigDialog() {
+    
     }
     
     

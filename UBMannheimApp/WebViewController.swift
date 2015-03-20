@@ -43,6 +43,32 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             let request = NSURLRequest(URL: url!)
             webView.loadRequest(request)
             webView.delegate = self
+            
+            
+            // UIAlertController
+            
+            // http://appcoda.com/uialertcontroller-swift-closures-enum
+            // http://nshipster/uialertcontroller
+            // http://stackoverflow.com/questions/25375409/how-to-switch-view-controllers-in-swift
+            
+            let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                // MainView set as storyboard ID of MainViewController
+                let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as MainViewController
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+            }
+            
+            let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                self.viewDidLoad()
+            }
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            
         }  
 
    
