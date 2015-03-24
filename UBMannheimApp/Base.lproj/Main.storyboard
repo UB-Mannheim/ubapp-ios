@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="01k-gS-w7e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="01k-gS-w7e">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -687,6 +687,35 @@
                                     <rect key="frame" x="40" y="162" width="93" height="21"/>
                                 </variation>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QHh-QJ-yxg">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="146" y="375" width="214" height="30"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCb-yP-gOa">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="177" y="442" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="findNews:" destination="fzl-aV-dy4" eventType="touchUpInside" id="ZIU-Ow-xkv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO9-Z1-pSQ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="40" y="379" width="91" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -700,6 +729,9 @@
                                 <exclude reference="1DE-bO-dma"/>
                                 <exclude reference="H7T-jo-I3S"/>
                                 <exclude reference="3lb-Wn-9aB"/>
+                                <exclude reference="QHh-QJ-yxg"/>
+                                <exclude reference="sCb-yP-gOa"/>
+                                <exclude reference="ZO9-Z1-pSQ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -713,12 +745,16 @@
                                 <include reference="1DE-bO-dma"/>
                                 <include reference="H7T-jo-I3S"/>
                                 <include reference="3lb-Wn-9aB"/>
+                                <include reference="QHh-QJ-yxg"/>
+                                <include reference="sCb-yP-gOa"/>
+                                <include reference="ZO9-Z1-pSQ"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="address" destination="Cdm-L6-tDh" id="zwh-rm-nrU"/>
                         <outlet property="name" destination="KvO-sA-Ivk" id="wKi-Yq-ivV"/>
+                        <outlet property="news" destination="QHh-QJ-yxg" id="Qia-kh-Enj"/>
                         <outlet property="phone" destination="1DE-bO-dma" id="kQ0-sT-b53"/>
                         <outlet property="status" destination="H7T-jo-I3S" id="47x-4h-PYE"/>
                     </connections>

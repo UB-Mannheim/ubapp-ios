@@ -17,16 +17,23 @@ class DBViewController: UIViewController {
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var status: UILabel!
     
+    @IBOutlet weak var news: UITextField!
     var databasePath = NSString()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let db = DBHelper()
+        println("DBHelper Class loaded")
         
         let filemgr = NSFileManager.defaultManager()
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)
         let docsDir = dirPaths[0] as String
         
+        // let currentPath = docsDir
+        // println(currentPath)
+        // databasePath = docsDir.stringByAppendingPathComponent(currentPath+"/"+"database.db")
         databasePath = docsDir.stringByAppendingPathComponent("database.db")
         
         if !filemgr.fileExistsAtPath(databasePath) {
@@ -47,12 +54,20 @@ class DBViewController: UIViewController {
             } else {
                 println("Error: \(contactDB.lastErrorMessage())")
             }
-        }
         
+        // } else {
+        //    println("DBViewController.swift: File not found")
+        // }
+        
+        }
     }
     
     @IBAction func saveData(sender: AnyObject) {
         let contactDB = FMDatabase(path: databasePath)
+        
+        println(__FUNCTION__ + " in " + __FILE__.lastPathComponent)
+        println("------------------------------------------------")
+        println("-"+databasePath+"-")
         
         if contactDB.open() {
             
@@ -103,6 +118,41 @@ class DBViewController: UIViewController {
         
     }
     
-    
+
+    @IBAction func findNews(sender: AnyObject) {
+        
+        let filemgr = NSFileManager.defaultManager()
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)
+        let docsDir = dirPaths[0] as String
+        
+        // let currentPath = docsDir
+        // println(currentPath)
+        // databasePath = docsDir.stringByAppendingPathComponent(currentPath+"/"+"database.db")
+        var dbPath = docsDir.stringByAppendingPathComponent("bibservice.db")
+        
+        let myDB = FMDatabase(path: dbPath)
+        
+        if myDB.open() {
+            let querySQL = "SELECT id, news_id, description from News where id = 1"
+            
+            let results:FMResultSet? = myDB.executeQuery(querySQL, withArgumentsInArray: nil)
+            
+            if results?.next() == true {
+                news.text = results?.stringForColumn("description")
+            } else {
+                status.text = "Record not found"
+                address.text = ""
+                phone.text = ""
+            }
+            myDB.close()
+            
+        } else {
+            println("Error: \(myDB.lastErrorMessage())")
+            
+        }
+        
+    }
+
     
 }

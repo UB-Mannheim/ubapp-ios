@@ -2,7 +2,7 @@
 //  DBHelper.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 20.03.15.
+//  Created by Alexander Wagner on 24.03.15.
 //  Copyright (c) 2015 Alexander Wagner. All rights reserved.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 class DBHelper {
 
-    // Database Definition and Structure
+    // Demo Class with example Values from DBViewController (Contacts)
     
     // Database Version
-    var DATABASE_VERSION: integer_t = 1
+    var DATABASE_VERSION: Int = 1
     // Database Name
-    var DATABASE_NAME: String = "bibservice"
+    var DATABASE_NAME: String = "bibservice.db"
     
     // Table Names
     var TABLE_MODULES: String = "Modules"
@@ -54,58 +54,70 @@ class DBHelper {
     var INIT_DATABASE_MODULES_LOAD: String = ""
     
     
-    // Construct
-    func DBHelper() {
+    var mydatabasePath = NSString()
+    
+    init() {
+        
+        createSQLStatements()
+        prepare()
+        
+        createNews()
         
     }
     
-    // initializeData
-    func initTables(db: String) ->Void {
+    func prepare() ->Void {
     
         let filemgr = NSFileManager.defaultManager()
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-            .UserDomainMask, true)
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = dirPaths[0] as String
-        
-        var databasePath = docsDir.stringByAppendingPathComponent(db)
-        
-        if !filemgr.fileExistsAtPath(databasePath) {
-            
-            let db = FMDatabase(path: databasePath)
-            
-            if db == nil {
-                println("Error: \(db.lastErrorMessage())")
+    
+        self.mydatabasePath = docsDir.stringByAppendingPathComponent("bibservice.db")
+    
+        if filemgr.fileExistsAtPath(self.mydatabasePath) {
+    
+            let bibDB = FMDatabase(path: self.mydatabasePath)
+    
+            if bibDB == nil {
+                println("Error: \(bibDB.lastErrorMessage())")
             }
+    
+        if bibDB.open() {
+    
+            // let sql_stmt = "CREATE TABLE IF NOT EXISTS CONTACTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT, PHONE TEXT)"
             
-            if db.open() {
+            let sql_statements =
+            [
+                self.CREATE_TABLE_MODULES,
+                self.CREATE_TABLE_HISTORY,
+                self.CREATE_TABLE_LOAD,
+                self.CREATE_TABLE_NEWS,
+                self.INIT_DATABASE_MODULES_LOAD,
+                self.INIT_DATABASE_MODULES_NEWS
+            ]
+            
+            for sql in sql_statements {
                 
-                let sql_statements =
-                            [
-                            self.CREATE_TABLE_MODULES,
-                            self.CREATE_TABLE_HISTORY,
-                            self.CREATE_TABLE_LOAD,
-                            self.CREATE_TABLE_NEWS,
-                            self.INIT_DATABASE_MODULES_LOAD,
-                            self.INIT_DATABASE_MODULES_NEWS
-                            ]
+                println(sql)
                 
-                for sql in sql_statements {
-                    
-                    if !db.executeStatements(sql) {
-                        println("Error: \(db.lastErrorMessage())")
-                    }
-                    db.close()
-                
+                if !bibDB.executeStatements(sql) {
+                    println("Error: \(bibDB.lastErrorMessage())")
                 }
-            } else {
-                println("Error: \(db.lastErrorMessage())")
+                
             }
+    
+            bibDB.close()
+    
+            } else {
+    
+                println("Error: \(bibDB.lastErrorMessage())")
+            }
+    
         }
-        
+    
     }
     
-    // Setup Table Create Statements
-    func createTableStatements() ->Void{
+    // Setup Table Create Statements and assign them to global variables
+    func createSQLStatements() ->Void {
         
         // Module table create statement
         self.CREATE_TABLE_MODULES =
@@ -114,7 +126,7 @@ class DBHelper {
             KEY_ID + " INTEGER PRIMARY KEY NOT NULL UNIQUE, " +
             KEY_MODULES_NAME + " VARCHAR(50), " +
             KEY_MODULES_SAVE_MODE + " INTEGER NOT NULL DEFAULT(1)" +
-            ");"
+        ");"
         
         // History table create statement
         self.CREATE_TABLE_HISTORY =
@@ -123,7 +135,7 @@ class DBHelper {
             KEY_ID + " INTEGER PRIMARY KEY NOT NULL UNIQUE, " +
             KEY_HISTORY_MODULE_ID + " INTEGER REFERENCES Modules(id), " +
             KEY_HISTORY_LAST_UPDATE + " DATETIME" +
-            ");"
+        ");"
         
         // Load table create statement
         self.CREATE_TABLE_LOAD =
@@ -132,7 +144,7 @@ class DBHelper {
             KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, " +
             KEY_LOAD_SECTOR + " VARCHAR(100), " +
             KEY_LOAD_LOAD + " INTEGER" +
-            ");"
+        ");"
         
         // News table create statement
         self.CREATE_TABLE_NEWS =
@@ -143,20 +155,61 @@ class DBHelper {
             KEY_NEWS_DESCRIPTION + " VARCHAR(255), " +
             KEY_NEWS_URL + " VARCHAR(100), " +
             KEY_NEWS_POST_ID + " INTEGER" +
-            ");"
+        ");"
         
         // Initialize Modules
         self.INIT_DATABASE_MODULES_NEWS =
             "INSERT INTO " + TABLE_MODULES +
             " (" + KEY_ID + ", " + KEY_MODULES_NAME + ")" +
-            " VALUES (1, 'News');";
+        " VALUES (1, 'News');";
         
         self.INIT_DATABASE_MODULES_LOAD =
             "INSERT INTO " + TABLE_MODULES +
             " (" + KEY_ID + ", " + KEY_MODULES_NAME + ")" +
-            " VALUES (2, 'Load');";
-    
+        " VALUES (2, 'Load');";
+        
     }
+    
+    func createNews() ->Int {
+        
+        // get news
+        let id = 1
+        let title = "MyTitle"
+        let desc = "Content of News entry ..."
+        let url = "http://www.google.de"
+        let post_id = 5236
+        
+        
+        let db = FMDatabase(path: self.mydatabasePath)
+        println(self.mydatabasePath)
+        
+        if db.open() {
+            
+            // insert news
+            let insertSQL = "INSERT INTO "+TABLE_NEWS+" ("+KEY_ID+", "+KEY_NEWS_TITLE+", "+KEY_NEWS_DESCRIPTION+", "+KEY_NEWS_URL+", "+KEY_NEWS_POST_ID+") VALUES ('\(id)', '\(title)', '\(desc)', '\(url)', '\(post_id)')"
+            
+            let result = db.executeUpdate(insertSQL, withArgumentsInArray: nil)
+            println(result)
+            
+            if !result {
+                println("Failed to add to news")
+                println("Error: \(db.lastErrorMessage())")
+            } else {
+                println("Success: News added")
+            }
+            db.close() //?
+            
+        } else {
+            println("EEEE")
+            println("Error: \(db.lastErrorMessage())")
+        }
+        
+        
+        
+        return id
+        
+    }
+
     
     
 }
