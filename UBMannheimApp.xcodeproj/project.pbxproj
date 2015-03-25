@@ -30,6 +30,7 @@
 		B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A71A8B842700B79B10 /* TableViewController.swift */; };
 		B2C8B0AE1A8E069A002CBA11 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8B0AD1A8E069A002CBA11 /* SwiftyJSON.swift */; };
 		B2C8B0B21A8E2688002CBA11 /* Help.txt in Resources */ = {isa = PBXBuildFile; fileRef = B2C8B0B11A8E2688002CBA11 /* Help.txt */; };
+		B2CD07B91AC2D482007E1E3E /* ConfigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD07B81AC2D482007E1E3E /* ConfigController.swift */; };
 		B2CF14CA1AC2B25C00F56F36 /* DBHelper_.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CF14C91AC2B25C00F56F36 /* DBHelper_.swift */; };
 		B2CF14CC1AC2B2C000F56F36 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CF14CB1AC2B2C000F56F36 /* DBHelper.swift */; };
 		B2CF14CE1AC2B30700F56F36 /* IJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CF14CD1AC2B30700F56F36 /* IJReachability.swift */; };
@@ -98,6 +99,7 @@
 		B2C4A7A71A8B842700B79B10 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B2C8B0AD1A8E069A002CBA11 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		B2C8B0B11A8E2688002CBA11 /* Help.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Help.txt; sourceTree = "<group>"; };
+		B2CD07B81AC2D482007E1E3E /* ConfigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigController.swift; sourceTree = "<group>"; };
 		B2CF14C91AC2B25C00F56F36 /* DBHelper_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper_.swift; sourceTree = "<group>"; };
 		B2CF14CB1AC2B2C000F56F36 /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		B2CF14CD1AC2B30700F56F36 /* IJReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJReachability.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				B2C8B0AF1A8E09F0002CBA11 /* lib */,
 				B2C8B0B01A8E0A76002CBA11 /* test */,
 				B270CECE1A778D3F003C981B /* AppDelegate.swift */,
+				B2CD07B81AC2D482007E1E3E /* ConfigController.swift */,
 				B2266FB31A825C1500C11E08 /* MainViewController.swift */,
 				B2C4A7A11A8B413500B79B10 /* WebViewController.swift */,
 				B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */,
@@ -356,6 +359,7 @@
 				B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */,
 				B25C7A2F1AB9AE1A0069BB55 /* FMResultSet.m in Sources */,
 				B2CF14CC1AC2B2C000F56F36 /* DBHelper.swift in Sources */,
+				B2CD07B91AC2D482007E1E3E /* ConfigController.swift in Sources */,
 				B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */,
 				B270CED11A778D3F003C981B /* ViewController.swift in Sources */,
 				B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */,

@@ -456,14 +456,26 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzQ-s9-fPu">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Datenbank Test">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="177" y="525" width="46" height="30"/>
+                                    <rect key="frame" x="216" y="525" width="134" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="fzl-aV-dy4" kind="show" id="yhp-0v-qO4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkH-ya-laW">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Config Test">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="50" y="525" width="138" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="aPX-70-5vf" kind="show" id="bgF-9n-HYC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -480,6 +492,7 @@
                                 <exclude reference="BpC-PN-Wj5"/>
                                 <exclude reference="oqo-pD-A3p"/>
                                 <exclude reference="PzQ-s9-fPu"/>
+                                <exclude reference="ZkH-ya-laW"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="nUf-Re-tVe"/>
@@ -495,6 +508,7 @@
                                 <include reference="BpC-PN-Wj5"/>
                                 <include reference="oqo-pD-A3p"/>
                                 <include reference="PzQ-s9-fPu"/>
+                                <include reference="ZkH-ya-laW"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="nUf-Re-tVe"/>
@@ -1003,6 +1017,105 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUs-2a-ccI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2145" y="1184"/>
+        </scene>
+        <!--Config Controller-->
+        <scene sceneID="N8y-Ok-pft">
+            <objects>
+                <viewController id="aPX-70-5vf" userLabel="Config Controller" customClass="ConfigController" customModule="UBMannheimApp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4ej-To-d4h"/>
+                        <viewControllerLayoutGuide type="bottom" id="MQC-rw-AUd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XSB-ZC-W8Q">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xor-Pu-NNq">
+                                <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="325" y="75" width="51" height="31"/>
+                                </variation>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angezeigte News-Einträge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oH6-IR-mOp">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="128" width="208" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starte UB-App mit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEL-oo-R3S">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="327" width="210" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngS-wc-hey">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Speichern">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="155" y="526" width="90" height="30"/>
+                                </variation>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Wo-4w-NRc">
+                                <rect key="frame" x="0.0" y="-162" width="320" height="162"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="157" width="368" height="162"/>
+                                </variation>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDe-WM-ZsF">
+                                <rect key="frame" x="0.0" y="-162" width="320" height="162"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="356" width="368" height="162"/>
+                                </variation>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daten-Cache" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhD-DN-qig">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="80" width="180" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="xor-Pu-NNq"/>
+                                <exclude reference="oH6-IR-mOp"/>
+                                <exclude reference="nEL-oo-R3S"/>
+                                <exclude reference="ngS-wc-hey"/>
+                                <exclude reference="7Wo-4w-NRc"/>
+                                <exclude reference="YDe-WM-ZsF"/>
+                                <exclude reference="vhD-DN-qig"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="xor-Pu-NNq"/>
+                                <include reference="oH6-IR-mOp"/>
+                                <include reference="nEL-oo-R3S"/>
+                                <include reference="ngS-wc-hey"/>
+                                <include reference="7Wo-4w-NRc"/>
+                                <include reference="YDe-WM-ZsF"/>
+                                <include reference="vhD-DN-qig"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="news" destination="7Wo-4w-NRc" id="0wE-dU-ogq"/>
+                        <outlet property="startup" destination="YDe-WM-ZsF" id="koU-MJ-VIz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j8k-UA-aW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="310.5" y="-304"/>
         </scene>
         <!--WebView Controller-->
         <scene sceneID="ptJ-Z5-oUX">

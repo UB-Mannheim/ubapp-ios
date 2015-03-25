@@ -97,7 +97,7 @@ class DBHelper {
                 
                 for sql in sql_statements {
                     
-                    println(sql)
+                    // println(sql)
                     
                     if !bibDB.executeStatements(sql) {
                         println("Error: \(bibDB.lastErrorMessage())")
@@ -156,7 +156,7 @@ class DBHelper {
             KEY_NEWS_URL + " VARCHAR(100), " +
             KEY_NEWS_POST_ID + " INTEGER" +
         ");"
-        
+    /*
         // Initialize Modules
         self.INIT_DATABASE_MODULES_NEWS =
             "INSERT INTO " + TABLE_MODULES +
@@ -167,6 +167,7 @@ class DBHelper {
             "INSERT INTO " + TABLE_MODULES +
             " (" + KEY_ID + ", " + KEY_MODULES_NAME + ")" +
         " VALUES (2, 'Load');";
+    */
         
     }
     
@@ -178,15 +179,38 @@ class DBHelper {
         let desc = "Content of News entry ..."
         let url = "http://www.google.de"
         let post_id = 5236
-        
+        var newscount:Int32! = 0
         
         let db = FMDatabase(path: self.mydatabasePath)
         println(self.mydatabasePath)
         
+        // get news latest news id
+        if db.open() {
+            let querySQL = "SELECT count(*) from "+TABLE_NEWS
+            
+            let results:FMResultSet? = db.executeQuery(querySQL, withArgumentsInArray: nil)
+            
+            if results?.next() == true {
+                println("---")
+                println(results?.intForColumnIndex(0))
+                println("---")
+                newscount = results?.intForColumnIndex(0)
+            } else {
+                println("Query returned emtpy result")
+            }
+            db.close()
+            
+        } else {
+            println("Error: \(db.lastErrorMessage())")
+            
+        }
+        
+        let next_id = newscount + 1
+        
         if db.open() {
             
             // insert news
-            let insertSQL = "INSERT INTO "+TABLE_NEWS+" ("+KEY_ID+", "+KEY_NEWS_TITLE+", "+KEY_NEWS_DESCRIPTION+", "+KEY_NEWS_URL+", "+KEY_NEWS_POST_ID+") VALUES ('\(id)', '\(title)', '\(desc)', '\(url)', '\(post_id)')"
+            let insertSQL = "INSERT INTO "+TABLE_NEWS+" ("+KEY_ID+", "+KEY_NEWS_TITLE+", "+KEY_NEWS_DESCRIPTION+", "+KEY_NEWS_URL+", "+KEY_NEWS_POST_ID+") VALUES ('\(next_id)', '\(title)', '\(desc)', '\(url)', '\(post_id)')"
             
             let result = db.executeUpdate(insertSQL, withArgumentsInArray: nil)
             println(result)
