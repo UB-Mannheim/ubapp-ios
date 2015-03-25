@@ -9,7 +9,7 @@
 import Foundation
 
 class DBHelper {
-
+    
     // Demo Class with example Values from DBViewController (Contacts)
     
     // Database Version
@@ -66,54 +66,54 @@ class DBHelper {
     }
     
     func prepare() ->Void {
-    
+        
         let filemgr = NSFileManager.defaultManager()
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = dirPaths[0] as String
-    
+        
         self.mydatabasePath = docsDir.stringByAppendingPathComponent("bibservice.db")
-    
+        
         if filemgr.fileExistsAtPath(self.mydatabasePath) {
-    
+            
             let bibDB = FMDatabase(path: self.mydatabasePath)
-    
+            
             if bibDB == nil {
                 println("Error: \(bibDB.lastErrorMessage())")
             }
-    
-        if bibDB.open() {
-    
-            // let sql_stmt = "CREATE TABLE IF NOT EXISTS CONTACTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT, PHONE TEXT)"
             
-            let sql_statements =
-            [
-                self.CREATE_TABLE_MODULES,
-                self.CREATE_TABLE_HISTORY,
-                self.CREATE_TABLE_LOAD,
-                self.CREATE_TABLE_NEWS,
-                self.INIT_DATABASE_MODULES_LOAD,
-                self.INIT_DATABASE_MODULES_NEWS
-            ]
-            
-            for sql in sql_statements {
+            if bibDB.open() {
                 
-                println(sql)
+                // let sql_stmt = "CREATE TABLE IF NOT EXISTS CONTACTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT, PHONE TEXT)"
                 
-                if !bibDB.executeStatements(sql) {
-                    println("Error: \(bibDB.lastErrorMessage())")
+                let sql_statements =
+                [
+                    self.CREATE_TABLE_MODULES,
+                    self.CREATE_TABLE_HISTORY,
+                    self.CREATE_TABLE_LOAD,
+                    self.CREATE_TABLE_NEWS,
+                    self.INIT_DATABASE_MODULES_LOAD,
+                    self.INIT_DATABASE_MODULES_NEWS
+                ]
+                
+                for sql in sql_statements {
+                    
+                    println(sql)
+                    
+                    if !bibDB.executeStatements(sql) {
+                        println("Error: \(bibDB.lastErrorMessage())")
+                    }
+                    
                 }
                 
-            }
-    
-            bibDB.close()
-    
+                bibDB.close()
+                
             } else {
-    
+                
                 println("Error: \(bibDB.lastErrorMessage())")
             }
-    
+            
         }
-    
+        
     }
     
     // Setup Table Create Statements and assign them to global variables
@@ -209,7 +209,7 @@ class DBHelper {
         return id
         
     }
-
+    
     
     
 }
