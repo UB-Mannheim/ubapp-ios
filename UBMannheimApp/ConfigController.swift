@@ -14,12 +14,21 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     
     @IBOutlet weak var news: UIPickerView!
     @IBOutlet weak var startup: UIPickerView!
-
+    
+    @IBOutlet weak var cacheSwitch: UISwitch!
+    
     let news_picker = ["5","10","15"]
     let startup_picker = ["Startmenü","Website","Primo","News","Freie Plätze"]
     
+    var news_selected: Int = 0
+    var startup_selected: Int = 0
+    var cache_enabled = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // http://www.ioscreator.com/tutorials/uiswitch-tutorial-in-ios8-with-swift
+        cacheSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
         // news = UIPickerView()
         // startup = UIPickerView()
@@ -59,13 +68,64 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         
         if pickerView.tag == 1 {
             name = news_picker[row]
+            self.news_selected = row
         }
         if pickerView.tag == 2 {
             name = startup_picker[row]
+            self.startup_selected = row
         }
         
         return name
         
+    }
+    
+    /*
+    //selfmade and probably senceless
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> Int! {
+        
+        var selected = row
+        
+        return selected
+    }
+    */
+    
+    @IBAction func showConfig() {
+        
+        
+        let cache_on = cache_enabled
+        let news_entries = self.news_selected
+        let startup = self.startup_selected
+        let m = "Einstellungen auswgewählt: \(cache_on) : \(news_entries) : \(startup)"
+        
+        let alertController = UIAlertController(title: "Fehler", message: m, preferredStyle: .Alert)
+        
+        /*
+        let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+            // MainView set as storyboard ID of MainViewController
+            let cfgViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConfigView") as ConfigController
+            self.navigationController?.pushViewController(cfgViewController, animated: true)
+        }
+        */
+        
+        let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+            self.viewDidLoad()
+        }
+        
+        // alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+
+    }
+    
+    func stateChanged(switchState: UISwitch) {
+        if switchState.on {
+            // myTextField.text = "The Switch is On"
+            cache_enabled = true
+        } else {
+            // myTextField.text = "The Switch is Off"
+            cache_enabled = false
+        }
     }
     
     /*
