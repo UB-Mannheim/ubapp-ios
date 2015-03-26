@@ -33,6 +33,10 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         // news = UIPickerView()
         // startup = UIPickerView()
         
+        // http://www.codingexplorer.com/nsuserdefaults-a-swift-introduction/
+        
+        // 2DO: PREFERENCE MANAGER
+        
         news.tag = 1
         startup.tag = 2
         
