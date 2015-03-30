@@ -59,6 +59,10 @@ class MainController: UIViewController {
         alert.addAction(alertAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
+        /*
+        switch(indexPath) {
+            case 1
+        }*/
     }
     
     // reservierter platz fuer bild
@@ -84,6 +88,42 @@ class MainController: UIViewController {
             viewDidLoad()
         } else {
             viewDidLoad()
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        
+        if (segue.identifier == "showWebsite") {
+            
+            let destinationViewController = segue.destinationViewController as WebViewController
+            var website:NSString = ""
+            website = "http://www.bib.uni-mannheim.de/mobile"
+            destinationViewController.website = website
+            
+        }
+        
+        if (segue.identifier == "showPrimo") {
+            
+            let destinationViewController = segue.destinationViewController as WebViewController
+            var website:NSString = ""
+            website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            destinationViewController.website = website
+            
+        }
+        
+        if (segue.identifier == "showNews") {
+            
+            let destinationViewController = segue.destinationViewController as TableViewController
+            destinationViewController.viewDidLoad()
+            
+        }
+        
+        if (segue.identifier == "showSeats") {
+            
+            let destinationViewController = segue.destinationViewController as ViewController
+            destinationViewController.viewDidLoad()
+            
         }
     }
     

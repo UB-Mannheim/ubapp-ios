@@ -5,18 +5,26 @@
 	<dict>
 		<key>itemImage</key>
 		<string>website</string>
+		<key>itemTitle</key>
+		<string>Website</string>
 	</dict>
 	<dict>
 		<key>itemImage</key>
 		<string>primo</string>
+		<key>itemTitle</key>
+		<string>Primo</string>
 	</dict>
 	<dict>
 		<key>itemImage</key>
 		<string>news</string>
+		<key>itemTitle</key>
+		<string>News</string>
 	</dict>
 	<dict>
 		<key>itemImage</key>
 		<string>seats</string>
+		<key>itemTitle</key>
+		<string>Freie Plätze</string>
 	</dict>
 </array>
 </plist>

@@ -12,9 +12,11 @@ import UIKit
 class MenuItemCollectionViewCell: UICollectionViewCell {
         
     @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var itemTitleView: UILabel!
     
     func setMenuItem(item: MenuItem) {
         itemImageView.image = UIImage(named: item.itemImage)
+        itemTitleView.text = item.itemTitle
     }
     
 }

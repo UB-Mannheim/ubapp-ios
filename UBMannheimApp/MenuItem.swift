@@ -11,9 +11,11 @@ import Foundation
 class MenuItem {
     
     var itemImage:String
+    var itemTitle:String
     
     init(dataDictionary:Dictionary<String,String>) {
         itemImage = dataDictionary["itemImage"]!
+        itemTitle = dataDictionary["itemTitle"]!
     }
     
     class func newMenuItem(dataDictionary:Dictionary<String,String>) -> MenuItem {
