@@ -13,7 +13,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
-    
     // Fallback
     var website:NSString = "http://www.google.de"
     

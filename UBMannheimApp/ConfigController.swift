@@ -12,10 +12,9 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     
     // http://makeapppie.com/tag/uipickerview-in-swift/
     
-    @IBOutlet weak var news: UIPickerView!
-    @IBOutlet weak var startup: UIPickerView!
-    
     @IBOutlet weak var cacheSwitch: UISwitch!
+    @IBOutlet weak var startup: UIPickerView!
+    @IBOutlet weak var news: UIPickerView!
     
     let news_picker = ["5","10","15"]
     let startup_picker = ["Startmenü","Website","Primo","News","Freie Plätze"]

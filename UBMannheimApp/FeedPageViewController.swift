@@ -11,10 +11,6 @@ import UIKit
 
 class FeedPageViewController: UIViewController {
 
-    
-    
-    @IBOutlet weak var webView: UIWebView!
-    
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     
@@ -26,7 +22,7 @@ class FeedPageViewController: UIViewController {
         super.viewDidLoad()
         
         // Populate Label
-         textLabel.text = "\(selectedFeedTitle)"
+         textLabel.text = "title ... \(selectedFeedTitle)"
         // textView.text = "\(selectedFeedFeedContent)"
 
         // Config Text Area
@@ -75,6 +71,7 @@ class FeedPageViewController: UIViewController {
         var attributedHTMLFeedFeedContent = NSAttributedString(data: formattedFeedFeedContent.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil, error: nil)
 
         textView.attributedText = attributedHTMLFeedFeedContent
+        
         
         // let myHTMLString:String! = "\(selectedFeedFeedContent)"
         // self.webView.loadHTMLString(myHTMLString, baseURL: nil)
