@@ -10,7 +10,11 @@ import UIKit
 
 class MainController: UIViewController {
 
+    // used grid
     // http://swiftiostutorials.com/tutorial-using-uicollectionview-uicollectionviewflowlayout
+    
+    // alternative grid
+    // http://www.raywenderlich.com/83130/beginning-auto-layout-tutorial-swift-part-2
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -58,15 +62,55 @@ class MainController: UIViewController {
         let alertAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
         alert.addAction(alertAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
-        /*
-        switch(indexPath) {
-            case 1
-        }*/
+        // self.presentViewController(alert, animated: true, completion: nil)
+        
+        
+        switch(indexPath.item) {
+        case 0: showWebView("website")
+                break
+        case 1: showWebView("primo")
+                break
+        case 2: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as FeedTableViewController
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+                break
+        case 3: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as SeatsTableViewController
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+                break
+            
+        default: println("default action")
+        }
     }
+    
+    func showWebView(destination: String) {
+        
+        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as WebViewController
+        
+        var url: NSString = ""
+        
+        if (destination=="website") {
+            url = "http://www.bib.uni-mannheim.de/mobile"
+        }
+        
+        if (destination=="primo") {
+            url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+        }
+        
+        webViewController.website = url
+        
+        self.navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    func showSeats() {
+        
+        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as TableViewController
+        
+        self.navigationController?.pushViewController(tableViewController, animated: true)
+    }
+    
     
     // reservierter platz fuer bild
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
         let picDimensionX = self.view.frame.size.width / 2.5 // 16.0
         let picDimensionY = self.view.frame.size.height / 2.5
         
@@ -83,13 +127,34 @@ class MainController: UIViewController {
         return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        
+        // http://stackoverflow.com/questions/27817055/orientation-change-in-swift-height-change-and-uibutton-hide-on-landscape
+        
+        //  Add custom view sizing constraints here
+        
+        var currentDevice: UIDevice = UIDevice.currentDevice()
+        var orientation: UIDeviceOrientation = currentDevice.orientation
+        
+        if orientation.isLandscape {
+            viewDidLoad()
+        }
+        
+        if orientation.isPortrait {
+            viewDidLoad()
+        }
+    }
+    
+    /*
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
         if UIDevice.currentDevice().orientation.isLandscape.boolValue {
             viewDidLoad()
         } else {
             viewDidLoad()
         }
-    }
+    }*/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
