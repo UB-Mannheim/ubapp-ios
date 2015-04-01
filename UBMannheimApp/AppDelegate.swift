@@ -26,13 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        var navigationBarAppearace = UINavigationBar.appearance()
+        var navigationBarAppearance = UINavigationBar.appearance()
         
-        navigationBarAppearace.tintColor = uicolorFromHex(0xffffff)
-        navigationBarAppearace.barTintColor = uicolorFromHex(0x990000)
+        navigationBarAppearance.tintColor = uicolorFromHex(0xffffff)
+        navigationBarAppearance.barTintColor = uicolorFromHex(0x990000)
         
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        /*
+        var toolBarAppearance = UIToolbar.appearance()
+        toolBarAppearance.tintColor = uicolorFromHex(0xffffff)
+        toolBarAppearance.barTintColor = uicolorFromHex(0x990000)
+        */
+        
         
         return true
     }

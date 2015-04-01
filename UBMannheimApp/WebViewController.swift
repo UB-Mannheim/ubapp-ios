@@ -66,7 +66,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             
             self.presentViewController(alertController, animated: true, completion: nil)
             
-            
+            // UINavigationController(rootViewController: WebViewController())
         }  
 
    
@@ -238,6 +238,17 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     // end
 
+    @IBAction func back(sender: UIBarButtonItem) {
+        if (self.webView.canGoBack) {
+            self.webView.goBack()
+        }
+    }
+    
+    @IBAction func forward(sender: UIBarButtonItem) {
+        if (self.webView.canGoForward) {
+            self.webView.goForward()
+        }
+    }
     
 }
 

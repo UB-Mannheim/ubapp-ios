@@ -17,7 +17,7 @@ class MainController: UIViewController {
     // http://www.raywenderlich.com/83130/beginning-auto-layout-tutorial-swift-part-2
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     var menuItems: [MenuItem] = []
     
     override func viewDidLoad() {
@@ -25,6 +25,31 @@ class MainController: UIViewController {
         
         initMenuItems()
         collectionView.reloadData()
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        var nav = self.navigationController?.navigationBar
+        
+        // nav?.barStyle = UIBarStyle.Black
+        // nav?.tintColor = UIColor.yellowColor()
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        imageView.contentMode = .ScaleAspectFit
+        
+        let image = UIImage(named: "icon_32x32")
+        imageView.image = image
+        // navigationItem.titleView = imageView
+        
+        // let barButtomItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: "barButtonItemClicked")
+        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = barButtomItem
+        
+        // right Navigation Item, System Icon
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
+        
+        let tabBarController = UITabBarController()
+        
     }
     
     private func initMenuItems() {
@@ -107,6 +132,21 @@ class MainController: UIViewController {
         self.navigationController?.pushViewController(tableViewController, animated: true)
     }
     
+    /*
+    @IBAction func showConfigView() {
+        
+        let confViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConfigView") as ConfigController
+        
+        self.navigationController?.pushViewController(confViewController, animated: true)
+    }
+    
+    @IBAction func showDBView() {
+        
+        let dbViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DBView") as DBViewController
+        
+        self.navigationController?.pushViewController(dbViewController, animated: true)
+    }
+    */
     
     // reservierter platz fuer bild
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -192,5 +232,8 @@ class MainController: UIViewController {
         }
     }
     
+    func openConfigDialog() {
+        
+    }
 
 }
