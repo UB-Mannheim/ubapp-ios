@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         toolBarAppearance.barTintColor = uicolorFromHex(0x990000)
         */
         
-        
         return true
     }
 
