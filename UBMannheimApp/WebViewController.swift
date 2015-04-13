@@ -250,5 +250,12 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    @IBAction func stop(sender: UIBarButtonItem) {
+        self.webView.stopLoading()
+    }
+    
+    @IBAction func reload(sender: UIBarButtonItem) {
+        self.webView.reload()
+    }
 }
 

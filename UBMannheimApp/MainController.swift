@@ -48,7 +48,8 @@ class MainController: UIViewController {
         // right Navigation Item, System Icon
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
         
-        let tabBarController = UITabBarController()
+        // delete
+        // let tabBarController = UITabBarController()
         
     }
     
