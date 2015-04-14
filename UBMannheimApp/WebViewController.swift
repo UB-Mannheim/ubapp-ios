@@ -10,6 +10,11 @@ import UIKit
 
 class WebViewController: UIViewController, UIWebViewDelegate {
 
+    
+    //Toolbar Icons
+    // Iconbeast
+    // http://www.iconbeast.com/free/
+    
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     

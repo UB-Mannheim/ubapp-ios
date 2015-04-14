@@ -37,7 +37,7 @@ class MyCollectionViewCell: UICollectionViewCell {
     }
     
     func setMenuItem(item: MenuItem) {
-        self.backgroundColor = UIColor.blackColor()
+        // self.backgroundColor = UIColor.blackColor()
         self.textLabel?.text = item.itemTitle
         self.imageView?.image = UIImage(named: item.itemImage)
     }

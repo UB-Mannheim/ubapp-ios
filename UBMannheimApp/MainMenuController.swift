@@ -59,6 +59,41 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         // collectionView.reloadData() ?
     }
     
+    override func viewDidAppear(animated: Bool) {
+        var nav = self.navigationController?.navigationBar
+        
+        // Logo and Upper Right MenuButton
+        //
+        
+        // nav?.barStyle = UIBarStyle.Black
+        // nav?.tintColor = UIColor.yellowColor()
+        
+        /*
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        imageView.contentMode = .ScaleAspectFit
+        
+        let image = UIImage(named: "icon_32x32")
+        imageView.image = image
+        // navigationItem.titleView = imageView
+        */
+        
+        // let barButtomItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: "barButtonItemClicked")
+        
+        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = barButtomItem
+        
+        // right Navigation Item, System Icon
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
+        
+        // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "learning_center")!)
+        
+        // alternate right button, still not shown
+        // let image = UIImage(named: "system20")
+        // let barButtomItemC = UIBarButtonItem(image: image, style: .Plain, target: nil, action: nil)
+        // navigationItem.rightBarButtonItem = barButtomItemC
+        
+    }
+    
     func setLayout(myLayout: NSString) -> Void {
     
         var marginTop: CGFloat = 80
@@ -80,7 +115,16 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.registerClass(MyCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
-        self.collectionView.backgroundColor = UIColor.whiteColor()
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "learning_center")?.drawInRect(self.view.bounds)
+        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        self.collectionView.backgroundColor = UIColor(patternImage: image)
+        
+        // self.collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "learning_center", d)!)
+        
         self.view.addSubview(self.collectionView!)
     
     }
@@ -117,6 +161,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as MyCollectionViewCell
         
         // cell.backgroundColor = UIColor.blackColor()
@@ -127,6 +172,124 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         return cell
     }
+    
+    // Images as Buttons and Actions
+    // 
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let alert = UIAlertController(title: "didSelectItemAtIndexPath:", message: "Indexpath = \(indexPath)", preferredStyle: .Alert)
+        
+        let alertAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+        alert.addAction(alertAction)
+        
+        // self.presentViewController(alert, animated: true, completion: nil)
+        
+        
+        switch(indexPath.item) {
+        case 0: showWebView("website")
+            break
+        case 1: showWebView("primo")
+            break
+        case 2: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as FeedTableViewController
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+            break
+        case 3: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as SeatsTableViewController
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+            break
+            
+        default: println("default action")
+        }
+    }
+    
+    func showWebView(destination: String) {
+        
+        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as WebViewController
+        
+        var url: NSString = ""
+        
+        if (destination=="website") {
+            url = "http://www.bib.uni-mannheim.de/mobile"
+        }
+        
+        if (destination=="primo") {
+            url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+        }
+        
+        webViewController.website = url
+        
+        self.navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    func showSeats() {
+        
+        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as TableViewController
+        
+        self.navigationController?.pushViewController(tableViewController, animated: true)
+    }
+    
+    /*
+    @IBAction func showConfigView() {
+    
+    let confViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConfigView") as ConfigController
+    
+    self.navigationController?.pushViewController(confViewController, animated: true)
+    }
+    
+    @IBAction func showDBView() {
+    
+    let dbViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DBView") as DBViewController
+    
+    self.navigationController?.pushViewController(dbViewController, animated: true)
+    }
+    */
+    
+    // Images as Buttons and actions END
+    
+    // Segue Perparation
+    //
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        
+        if (segue.identifier == "showWebsite") {
+            
+            let destinationViewController = segue.destinationViewController as WebViewController
+            var website:NSString = ""
+            website = "http://www.bib.uni-mannheim.de/mobile"
+            destinationViewController.website = website
+            
+        }
+        
+        if (segue.identifier == "showPrimo") {
+            
+            let destinationViewController = segue.destinationViewController as WebViewController
+            var website:NSString = ""
+            website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            destinationViewController.website = website
+            
+        }
+        
+        if (segue.identifier == "showNews") {
+            
+            let destinationViewController = segue.destinationViewController as TableViewController
+            destinationViewController.viewDidLoad()
+            
+        }
+        
+        if (segue.identifier == "showSeats") {
+            
+            let destinationViewController = segue.destinationViewController as ViewController
+            destinationViewController.viewDidLoad()
+            
+        }
+    }
+    
+    func openConfigDialog() {
+        
+    }
+    
+    // Segue Preparation END
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

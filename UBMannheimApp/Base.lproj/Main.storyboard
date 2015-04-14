@@ -900,7 +900,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-gH-SCb" userLabel="LabelView">
-                                <rect key="frame" x="16" y="72" width="568" height="44.5"/>
+                                <rect key="frame" x="16" y="72" width="568" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tea-BR-CWt">
                                         <rect key="frame" x="8" y="12" width="560" height="21"/>
@@ -984,16 +984,15 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5hp-TF-aA8"/>
+                    <navigationItem key="navigationItem" title="UB Mannheim" id="5hp-TF-aA8"/>
                     <connections>
                         <outlet property="collectionView" destination="i0g-Go-fh5" id="eDk-1X-ZqK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c68-Op-UDn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209.75" y="-1047"/>
+            <point key="canvasLocation" x="1209" y="-1047"/>
         </scene>
         <!--Main-->
         <scene sceneID="TkU-Yy-LbZ">
@@ -1023,7 +1022,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
+                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-bT-Iih" userLabel="Label View">
@@ -1044,7 +1043,7 @@
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                    <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                         <rect key="frame" x="75" y="4" width="0.0" height="44"/>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
@@ -1287,7 +1286,7 @@
         <image name="website" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="MZ2-Q0-gUJ"/>
         <segue reference="Phc-Df-0op"/>
-        <segue reference="7va-fp-L62"/>
     </inferredMetricsTieBreakers>
 </document>
