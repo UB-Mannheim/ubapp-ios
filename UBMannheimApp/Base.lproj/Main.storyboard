@@ -1022,7 +1022,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-bT-Iih" userLabel="Label View">
@@ -1185,17 +1185,18 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMV-CF-Mhd">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="rewind" id="Ngv-Ud-EzJ">
+                                    <barButtonItem image="Btn_ArrLeft" id="Ngv-Ud-EzJ" userLabel="BarButton Back">
                                         <connections>
                                             <action selector="back:" destination="T1i-kN-BFg" id="W6p-cv-ZSZ"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fcO-0n-R30"/>
-                                    <barButtonItem systemItem="fastForward" id="Zv8-kn-EGE">
+                                    <barButtonItem image="Btn_ArrRight" id="Zv8-kn-EGE" userLabel="BarButton Forward">
                                         <connections>
                                             <action selector="forward:" destination="T1i-kN-BFg" id="0Gh-yj-emr"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="refresh" id="CsW-5b-AFP" userLabel="BarButton Refresh"/>
+                                    <barButtonItem image="Btn_Home_iconbeast" id="Blo-iP-0tN" userLabel="BarButton Home"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -1279,6 +1280,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Btn_ArrLeft" width="24" height="32"/>
+        <image name="Btn_ArrRight" width="24" height="32"/>
+        <image name="Btn_Home_iconbeast" width="30" height="30"/>
         <image name="learning_center" width="1069" height="1280"/>
         <image name="news" width="200" height="200"/>
         <image name="primo" width="200" height="200"/>
