@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate {
 
     // exkurs: tutorial adaptive layout
     // https://youtu.be/E3glNbNnokw
@@ -55,10 +55,32 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         collectionView!.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(collectionView!)
         */
+    
+        
         
         // collectionView.reloadData() ?
+        
+        // popover menu
+        // http://gracefullycoded.com/display-a-popover-in-swift/
+        // created popover, with/without according view in storyboard
+        
+        //alternate
+        // https://www.shinobicontrols.com/blog/posts/2014/08/26/ios8-day-by-day-day-21-alerts-and-popovers
+        // https://github.com/ShinobiControls/iOS8-day-by-day/tree/master/21-alerts-and-popovers/AppAlert/AppAlert
+        
+        
     }
+
+    // popover trial wenderlich
+    //
+    // http://www.raywenderlich.com/forums/viewtopic.php?f=20&t=19908&start=50s
     
+    
+    func adaptivePresentationStyleForPresentationController(
+        controller: UIPresentationController!) -> UIModalPresentationStyle {
+            return .None
+    }
+
     override func viewDidAppear(animated: Bool) {
         var nav = self.navigationController?.navigationBar
         
@@ -82,8 +104,18 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = barButtomItem
         
-        // right Navigation Item, System Icon
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
+        // right Navigation Item, SystemButton
+        // self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
+        
+        /*
+        // right Navigation Item as UIButton Btn_DotMore_iconbeast
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "Btn_DotMore_iconbeast"), style: .Plain, target: self, action: "handlePopover"), animated: true)
+        */
+
+
+        // set of icons
+        // http://iostechsolutions.blogspot.de/2014/11/swift-add-custom-right-bar-button-item.html
+        // self.navigationItem.setLeftBarButtonItems(<#items: [AnyObject]?#>, animated: <#Bool#>)
         
         // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "learning_center")!)
         
@@ -285,12 +317,51 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         }
     }
     
-    func openConfigDialog() {
+    // Segue Preparation END
         
+    func openConfigDialog() {
+        println("opened")
     }
     
-    // Segue Preparation END
+    /*
+    @IBAction func openPopover(sender: UIBarButtonItem){
+    // http://makeapppie.com/2014/08/30/the-swift-swift-tutorials-adding-modal-views-and-popovers/
+    //performSegueWithIdentifier("Popover", sender: self)
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("PopoverViewController") as UIViewController
+        vc.modalPresentationStyle = .Popover
+        let aPopover =  UIPopoverController(contentViewController: vc)
+        aPopover.presentPopoverFromBarButtonItem(sender, permittedArrowDirections: .Any, animated: true)
+    }
     
+    @IBAction func btnPopover(sender: AnyObject) {
+        let button = sender as UIBarButtonItem
+        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PopoverViewController")! as TableViewController
+        let popover = UIPopoverController(contentViewController: tableViewController)
+        popover.presentPopoverFromBarButtonItem(button, permittedArrowDirections: .Any, animated: true)
+    }
+    */
+    
+    @IBAction func handlePopoverPressed(sender: UIView) {
+        
+        
+        let storyboard : UIStoryboard = UIStoryboard(
+        name: "Main",
+        bundle: nil)
+        
+        let popoverVC = storyboard.instantiateViewControllerWithIdentifier("PopoverViewController") as UIViewController
+        popoverVC.modalPresentationStyle = .Popover
+        popoverVC.preferredContentSize = CGSizeMake(200,100)
+        
+        if let popoverController = popoverVC.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+            popoverController.permittedArrowDirections = .Any
+            popoverController.delegate = self
+        }
+        presentViewController(popoverVC, animated: true, completion: nil)
+    }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

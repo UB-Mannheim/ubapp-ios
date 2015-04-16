@@ -985,7 +985,20 @@
                             </collectionView>
                         </subviews>
                     </view>
-                    <navigationItem key="navigationItem" title="UB Mannheim" id="5hp-TF-aA8"/>
+                    <navigationItem key="navigationItem" title="UB Mannheim" id="5hp-TF-aA8">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Xgc-6U-X3N">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0iJ-gK-IDz">
+                                <rect key="frame" x="451" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Btn_DotMore_iconbeast">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handlePopoverPressed:" destination="VMB-HH-gsK" eventType="touchUpInside" id="stk-XA-K1V"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="i0g-Go-fh5" id="eDk-1X-ZqK"/>
                     </connections>
@@ -1260,6 +1273,100 @@
             </objects>
             <point key="canvasLocation" x="-571.5" y="-302"/>
         </scene>
+        <!--PopoverController-->
+        <scene sceneID="2Ge-H0-8yS">
+            <objects>
+                <viewController storyboardIdentifier="PopoverController" id="gPm-G0-mRJ" userLabel="PopoverController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GmZ-Gk-vw1"/>
+                        <viewControllerLayoutGuide type="bottom" id="a0h-9c-Dhz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cMB-s6-ANC">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="101"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adF-2O-rtR">
+                                        <rect key="frame" x="8" y="10" width="184" height="30"/>
+                                        <state key="normal" title="Einstellungen">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-Qg-XeC">
+                                <rect key="frame" x="0.0" y="51" width="200" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8c-v9-IMG">
+                                        <rect key="frame" x="8" y="10" width="184" height="30"/>
+                                        <state key="normal" title="Hilfe">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="101"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="45s-Uc-Lnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="-2329.5"/>
+        </scene>
+        <!--PopMenuController-->
+        <scene sceneID="Bym-BA-HMz">
+            <objects>
+                <tableViewController storyboardIdentifier="PopoverViewController" id="yqO-21-lOa" userLabel="PopMenuController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lEm-rI-O1h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kfh-yL-V4F">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfh-yL-V4F" id="HT0-eC-HRQ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sce-ZU-RBz">
+                                            <rect key="frame" x="0.0" y="7" width="600" height="30"/>
+                                            <state key="normal" title="Einstellungen">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IHF-go-Z9Z">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IHF-go-Z9Z" id="dBT-Pe-RhQ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkX-n4-Xmc">
+                                            <rect key="frame" x="0.0" y="7" width="600" height="30"/>
+                                            <state key="normal" title="Hilfe">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yqO-21-lOa" id="9UK-u5-OvR"/>
+                            <outlet property="delegate" destination="yqO-21-lOa" id="eO1-qV-SCe"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oP8-d8-pSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="-1863"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hkk-sf-lD6">
             <objects>
@@ -1282,6 +1389,7 @@
     <resources>
         <image name="Btn_ArrLeft" width="24" height="32"/>
         <image name="Btn_ArrRight" width="24" height="32"/>
+        <image name="Btn_DotMore_iconbeast" width="30" height="30"/>
         <image name="Btn_Home_iconbeast" width="30" height="30"/>
         <image name="learning_center" width="1069" height="1280"/>
         <image name="news" width="200" height="200"/>
