@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ofo-XN-qPt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ofo-XN-qPt">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -947,6 +947,64 @@
             </objects>
             <point key="canvasLocation" x="2145" y="1184"/>
         </scene>
+        <!--SubMenu Controller-->
+        <scene sceneID="qsl-r1-IHu">
+            <objects>
+                <tableViewController id="dhg-zm-4Ea" userLabel="SubMenu Controller" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="I9E-eK-bYp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="MEX-PT-3Tb">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ydM-LC-kUR">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ydM-LC-kUR" id="o1n-Z6-oUk">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYW-Mf-ipp">
+                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                    <state key="normal" title="Einstellungen">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="aPX-70-5vf" kind="show" id="59a-Km-xOU"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ffg-3d-Mig">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ffg-3d-Mig" id="r8s-ZX-4nO">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gsw-bJ-OEv">
+                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                    <state key="normal" title="Hilfe">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="PCp-Zc-AiC" kind="show" id="IXk-By-faD"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="dhg-zm-4Ea" id="p8o-VR-yg0"/>
+                            <outlet property="delegate" destination="dhg-zm-4Ea" id="6kL-0S-RRL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOi-YG-obi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457" y="-1798"/>
+        </scene>
         <!--MainMenu Controller-->
         <scene sceneID="gHF-b3-htT">
             <objects>
@@ -990,11 +1048,9 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0iJ-gK-IDz">
                                 <rect key="frame" x="451" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Btn_DotMore_iconbeast">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <state key="normal" image="Btn_List_iconbeast_own"/>
                                 <connections>
-                                    <action selector="handlePopoverPressed:" destination="VMB-HH-gsK" eventType="touchUpInside" id="stk-XA-K1V"/>
+                                    <segue destination="dhg-zm-4Ea" kind="show" id="Y4E-AA-arg"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1124,7 +1180,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MQC-rw-AUd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XSB-ZC-W8Q">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daten-Cache" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqc-fX-jGf">
@@ -1155,8 +1211,8 @@
                                 <rect key="frame" x="-215" y="306" width="600" height="162"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btH-Ea-OnR">
-                                <rect key="frame" x="160" y="476" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="194" y="476" width="94" height="30"/>
+                                <state key="normal" title="Speichern">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1166,6 +1222,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
                     <connections>
                         <outlet property="cacheSwitch" destination="XZN-aF-dfQ" id="Q3J-uP-FaB"/>
                         <outlet property="news" destination="8SC-NS-uke" id="Yqp-6q-63B"/>
@@ -1174,7 +1232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8k-UA-aW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1228" y="-304"/>
+            <point key="canvasLocation" x="2340" y="-1452"/>
         </scene>
         <!--WebView Controller-->
         <scene sceneID="ptJ-Z5-oUX">
@@ -1276,53 +1334,95 @@
         <!--PopoverController-->
         <scene sceneID="2Ge-H0-8yS">
             <objects>
-                <viewController storyboardIdentifier="PopoverController" id="gPm-G0-mRJ" userLabel="PopoverController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopoverController" id="gPm-G0-mRJ" userLabel="PopoverController" customClass="PopoverController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GmZ-Gk-vw1"/>
                         <viewControllerLayoutGuide type="bottom" id="a0h-9c-Dhz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cMB-s6-ANC">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="101"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adF-2O-rtR">
                                         <rect key="frame" x="8" y="10" width="184" height="30"/>
                                         <state key="normal" title="Einstellungen">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="aPX-70-5vf" kind="show" id="vgt-S6-7ze"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-Qg-XeC">
-                                <rect key="frame" x="0.0" y="51" width="200" height="50"/>
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-Qg-XeC">
+                                <rect key="frame" x="0.0" y="51" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8c-v9-IMG">
                                         <rect key="frame" x="8" y="10" width="184" height="30"/>
                                         <state key="normal" title="Hilfe">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="PCp-Zc-AiC" kind="show" id="637-DY-pMt"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="vZv-Qg-XeC" secondAttribute="trailing" constant="-16" id="6DB-no-xbm"/>
+                            <constraint firstItem="6fI-8D-W95" firstAttribute="leading" secondItem="cMB-s6-ANC" secondAttribute="leadingMargin" constant="-16" id="Aed-0H-oDk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6fI-8D-W95" secondAttribute="trailing" constant="-16" id="L0O-VT-7OG"/>
+                            <constraint firstItem="vZv-Qg-XeC" firstAttribute="top" secondItem="6fI-8D-W95" secondAttribute="bottom" constant="1" id="MLZ-RU-rbp"/>
+                            <constraint firstItem="vZv-Qg-XeC" firstAttribute="leading" secondItem="cMB-s6-ANC" secondAttribute="leadingMargin" constant="-16" id="Sqg-yM-mPd"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1s4-jF-Ktv"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="200" height="101"/>
+                    <size key="freeformSize" width="400" height="100"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45s-Uc-Lnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="755" y="-2329.5"/>
+            <point key="canvasLocation" x="2340" y="-1944"/>
         </scene>
-        <!--PopMenuController-->
+        <!--HelpView Controller-->
+        <scene sceneID="EFu-cg-OLE">
+            <objects>
+                <viewController storyboardIdentifier="HelpView" id="PCp-Zc-AiC" userLabel="HelpView Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jle-Vl-rK8"/>
+                        <viewControllerLayoutGuide type="bottom" id="aQz-hz-Oee"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7A1-5A-rGk" customClass="HelpViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hilfetexte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YG-rK-gDZ">
+                                <rect key="frame" x="78" y="65" width="249" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PtR-eo-k7n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2988" y="-1452"/>
+        </scene>
+        <!--PopoverViewController-->
         <scene sceneID="Bym-BA-HMz">
             <objects>
-                <tableViewController storyboardIdentifier="PopoverViewController" id="yqO-21-lOa" userLabel="PopMenuController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PopoverViewController" id="yqO-21-lOa" userLabel="PopoverViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lEm-rI-O1h">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1362,6 +1462,8 @@
                             <outlet property="delegate" destination="yqO-21-lOa" id="eO1-qV-SCe"/>
                         </connections>
                     </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oP8-d8-pSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1389,8 +1491,8 @@
     <resources>
         <image name="Btn_ArrLeft" width="24" height="32"/>
         <image name="Btn_ArrRight" width="24" height="32"/>
-        <image name="Btn_DotMore_iconbeast" width="30" height="30"/>
         <image name="Btn_Home_iconbeast" width="30" height="30"/>
+        <image name="Btn_List_iconbeast_own" width="30" height="30"/>
         <image name="learning_center" width="1069" height="1280"/>
         <image name="news" width="200" height="200"/>
         <image name="primo" width="200" height="200"/>
@@ -1400,5 +1502,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="MZ2-Q0-gUJ"/>
         <segue reference="Phc-Df-0op"/>
+        <segue reference="IXk-By-faD"/>
+        <segue reference="59a-Km-xOU"/>
     </inferredMetricsTieBreakers>
 </document>

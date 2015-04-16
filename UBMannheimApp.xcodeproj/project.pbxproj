@@ -23,6 +23,8 @@
 		B25C7A2E1AB9AE1A0069BB55 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A271AB9AE1A0069BB55 /* FMDatabaseQueue.m */; };
 		B25C7A2F1AB9AE1A0069BB55 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A2A1AB9AE1A0069BB55 /* FMResultSet.m */; };
 		B25C7A321AB9AFFE0069BB55 /* DBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */; };
+		B268FC1B1ADFAC5D0025E318 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */; };
+		B268FC1D1ADFB6530025E318 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268FC1C1ADFB6530025E318 /* PopoverController.swift */; };
 		B270CECF1A778D3F003C981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CECE1A778D3F003C981B /* AppDelegate.swift */; };
 		B270CED11A778D3F003C981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CED01A778D3F003C981B /* ViewController.swift */; };
 		B270CED61A778D3F003C981B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B270CED51A778D3F003C981B /* Images.xcassets */; };
@@ -60,6 +62,7 @@
 			isEditable = 1;
 			outputFiles = (
 			);
+			script = "";
 		};
 /* End PBXBuildRule section */
 
@@ -98,6 +101,8 @@
 		B25C7A291AB9AE1A0069BB55 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		B25C7A2A1AB9AE1A0069BB55 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBViewController.swift; sourceTree = "<group>"; };
+		B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		B268FC1C1ADFB6530025E318 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 		B270CEC91A778D3F003C981B /* UBMannheimApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UBMannheimApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B270CECD1A778D3F003C981B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270CECE1A778D3F003C981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +240,8 @@
 				B22D05091AC93A5C00904165 /* MenuItem.swift */,
 				B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */,
 				B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */,
+				B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */,
+				B268FC1C1ADFB6530025E318 /* PopoverController.swift */,
 			);
 			path = UBMannheimApp;
 			sourceTree = "<group>";
@@ -409,6 +416,7 @@
 				B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */,
 				B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */,
 				B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */,
+				B268FC1B1ADFAC5D0025E318 /* HelpViewController.swift in Sources */,
 				B25C7A2F1AB9AE1A0069BB55 /* FMResultSet.m in Sources */,
 				B22D050A1AC93A5C00904165 /* MenuItem.swift in Sources */,
 				B2CF14CC1AC2B2C000F56F36 /* DBHelper.swift in Sources */,
@@ -419,6 +427,7 @@
 				B2CF14CA1AC2B25C00F56F36 /* DBHelper_.swift in Sources */,
 				B2CF14CE1AC2B30700F56F36 /* IJReachability.swift in Sources */,
 				B2FF89F71A8B9D3E00786581 /* XmlParserManager.swift in Sources */,
+				B268FC1D1ADFB6530025E318 /* PopoverController.swift in Sources */,
 				B22D05081AC9390600904165 /* MenuItemCollectionViewCell.swift in Sources */,
 				B2FF89F41A8B9D3E00786581 /* FeedTableViewController.swift in Sources */,
 				B2E222FE1AC6D747000D1B76 /* CustomCollectionViewCell.swift in Sources */,
