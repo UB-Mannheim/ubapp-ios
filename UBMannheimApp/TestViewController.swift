@@ -40,7 +40,7 @@ class TestViewController: UIViewController, NSURLConnectionDelegate {
             var err: NSError?
             
             // 3
-            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
             if (err != nil) {
                 println("JSON Error \(err!.localizedDescription)")
             }

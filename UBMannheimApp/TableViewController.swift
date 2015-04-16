@@ -35,7 +35,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
     }
     
-    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
             
         element = elementName
             
@@ -55,7 +55,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
     
     }
 
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!) {
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         // process feed elements
         if(elementName as NSString).isEqualToString("item") {
@@ -78,19 +78,19 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
     }
     
-    func parser(parser: NSXMLParser!, foundCharacters string: String!) {
+    func parser(parser: NSXMLParser, foundCharacters string: String?) {
         
         if element.isEqualToString("title") {
-            ftitle.appendString(string)
+            ftitle.appendString(string!)
         } else if element.isEqualToString("link") {
-            link.appendString(string)
+            link.appendString(string!)
         } else if element.isEqualToString("description") {
-            fdescription.appendString(string)
+            fdescription.appendString(string!)
         }
     
     }
     
-    func parserDidEndDocument(parser: NSXMLParser!) {
+    func parserDidEndDocument(parser: NSXMLParser) {
         self.tableView.reloadData()
     }
     
@@ -114,7 +114,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
 
         cell.textLabel?.text = feeds.objectAtIndex(indexPath.row).objectForKey("title") as? String
         cell.detailTextLabel?.numberOfLines = 3

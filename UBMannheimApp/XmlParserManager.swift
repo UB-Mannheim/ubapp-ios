@@ -5,6 +5,8 @@
 //  Created by Arled Kola on 20/10/2014.
 //  Copyright (c) 2014 Arled. All rights reserved.
 //
+//  Changed by Alexander Wagner on 16/04/2015
+//
 
 import Foundation
 
@@ -19,6 +21,7 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
     var fdescription = NSMutableString()
     var fdate = NSMutableString()
     
+    // Added additional VAR for content
     var fcontent = NSMutableString()
     
     // initilise parser
@@ -41,8 +44,7 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
         return feeds
     }
     
-    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName: String!, attributes attributeDict: NSDictionary!) {
-        
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         element = elementName
         
         if (element as NSString).isEqualToString("item") {
@@ -54,15 +56,15 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
             link = ""
             fdescription = NSMutableString.alloc()
             fdescription = ""
-            fcontent = NSMutableString.alloc()
-            fcontent = ""
             fdate = NSMutableString.alloc()
             fdate = ""
+            
+            fcontent = NSMutableString.alloc()
+            fcontent = ""
         }
-
     }
     
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!) {
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         if (elementName as NSString).isEqualToString("item") {
             if ftitle != "" {
@@ -77,12 +79,12 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
                 elements.setObject(fdescription, forKey: "description")
             }
             
-            if fcontent != "" {
-                elements.setObject(fcontent, forKey: "content:encoded")
-            }
-            
             if fdate != "" {
                 elements.setObject(fdate, forKey: "pubDate")
+            }
+            
+            if fcontent != "" {
+                elements.setObject(fcontent, forKey: "content:encoded")
             }
             
             feeds.addObject(elements)
@@ -90,20 +92,20 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
         
     }
     
-    func parser(parser: NSXMLParser!, foundCharacters string: String!) {
+    func parser(parser: NSXMLParser, foundCharacters string: String?) {
         
         if element.isEqualToString("title") {
-            ftitle.appendString(string)
+            ftitle.appendString(string!)
         } else if element.isEqualToString("link") {
-            link.appendString(string)
-        }else if element.isEqualToString("description") {
-            fdescription.appendString(string)
-        }else if element.isEqualToString("content:encoded") {
-            fcontent.appendString(string)
-        }else if element.isEqualToString("pubDate") {
-            fdate.appendString(string)
+            link.appendString(string!)
+        } else if element.isEqualToString("description") {
+            fdescription.appendString(string!)
+        } else if element.isEqualToString("pubDate") {
+            fdate.appendString(string!)
+        } else if element.isEqualToString("content:encoded") {
+            fcontent.appendString(string!)
         }
     }
-
+    
     
 }

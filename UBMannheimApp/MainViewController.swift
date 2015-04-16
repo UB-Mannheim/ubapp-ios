@@ -59,7 +59,7 @@ class MainViewController: UIViewController {
         
         if (segue.identifier == "showWebsite") {
         
-            let destinationViewController = segue.destinationViewController as WebViewController
+            let destinationViewController = segue.destinationViewController as! WebViewController
             var website:NSString = ""
             website = "http://www.bib.uni-mannheim.de/mobile"
             destinationViewController.website = website
@@ -68,7 +68,7 @@ class MainViewController: UIViewController {
         
         if (segue.identifier == "showPrimo") {
         
-            let destinationViewController = segue.destinationViewController as WebViewController
+            let destinationViewController = segue.destinationViewController as! WebViewController
             var website:NSString = ""
             website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
             destinationViewController.website = website

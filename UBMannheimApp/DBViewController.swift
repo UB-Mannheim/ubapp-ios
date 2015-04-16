@@ -29,16 +29,16 @@ class DBViewController: UIViewController {
         let filemgr = NSFileManager.defaultManager()
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)
-        let docsDir = dirPaths[0] as String
+        let docsDir = dirPaths[0] as! String
         
         // let currentPath = docsDir
         // println(currentPath)
         // databasePath = docsDir.stringByAppendingPathComponent(currentPath+"/"+"database.db")
         databasePath = docsDir.stringByAppendingPathComponent("database.db")
         
-        if !filemgr.fileExistsAtPath(databasePath) {
+        if !filemgr.fileExistsAtPath(databasePath as String) {
             
-            let contactDB = FMDatabase(path: databasePath)
+            let contactDB = FMDatabase(path: databasePath as String)
             
             if contactDB == nil {
                 println("Error: \(contactDB.lastErrorMessage())")
@@ -63,11 +63,11 @@ class DBViewController: UIViewController {
     }
     
     @IBAction func saveData(sender: AnyObject) {
-        let contactDB = FMDatabase(path: databasePath)
+        let contactDB = FMDatabase(path: databasePath as String)
         
         println(__FUNCTION__ + " in " + __FILE__.lastPathComponent)
         println("------------------------------------------------")
-        println("-"+databasePath+"-")
+        println("-"+(databasePath as String)+"-")
         
         if contactDB.open() {
             
@@ -93,7 +93,7 @@ class DBViewController: UIViewController {
     }
     
     @IBAction func findContact(sender: AnyObject) {
-        let contactDB = FMDatabase(path: databasePath)
+        let contactDB = FMDatabase(path: databasePath as String)
     
         if contactDB.open() {
             let querySQL = "SELECT address, phone from CONTACTS where name = '\(name.text)'"
@@ -124,7 +124,7 @@ class DBViewController: UIViewController {
         let filemgr = NSFileManager.defaultManager()
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)
-        let docsDir = dirPaths[0] as String
+        let docsDir = dirPaths[0] as! String
         
         // let currentPath = docsDir
         // println(currentPath)

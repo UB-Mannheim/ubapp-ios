@@ -77,7 +77,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     
     func adaptivePresentationStyleForPresentationController(
-        controller: UIPresentationController!) -> UIModalPresentationStyle {
+        controller: UIPresentationController) -> UIModalPresentationStyle {
             return .None
     }
 
@@ -194,7 +194,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as MyCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! MyCollectionViewCell
         
         // cell.backgroundColor = UIColor.blackColor()
         // cell.textLabel?.text = "\(indexPath.section):\(indexPath.row)"
@@ -223,10 +223,10 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
             break
         case 1: showWebView("primo")
             break
-        case 2: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as FeedTableViewController
+        case 2: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as! FeedTableViewController
         self.navigationController?.pushViewController(homeViewController, animated: true)
             break
-        case 3: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as SeatsTableViewController
+        case 3: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as! SeatsTableViewController
         self.navigationController?.pushViewController(homeViewController, animated: true)
             break
             
@@ -236,7 +236,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func showWebView(destination: String) {
         
-        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as WebViewController
+        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as! WebViewController
         
         var url: NSString = ""
         
@@ -255,7 +255,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func showSeats() {
         
-        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as TableViewController
+        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as!TableViewController
         
         self.navigationController?.pushViewController(tableViewController, animated: true)
     }
@@ -286,7 +286,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (segue.identifier == "showWebsite") {
             
-            let destinationViewController = segue.destinationViewController as WebViewController
+            let destinationViewController = segue.destinationViewController as! WebViewController
             var website:NSString = ""
             website = "http://www.bib.uni-mannheim.de/mobile"
             destinationViewController.website = website
@@ -295,7 +295,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (segue.identifier == "showPrimo") {
             
-            let destinationViewController = segue.destinationViewController as WebViewController
+            let destinationViewController = segue.destinationViewController as! WebViewController
             var website:NSString = ""
             website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
             destinationViewController.website = website
@@ -304,14 +304,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (segue.identifier == "showNews") {
             
-            let destinationViewController = segue.destinationViewController as TableViewController
+            let destinationViewController = segue.destinationViewController as! TableViewController
             destinationViewController.viewDidLoad()
             
         }
         
         if (segue.identifier == "showSeats") {
             
-            let destinationViewController = segue.destinationViewController as ViewController
+            let destinationViewController = segue.destinationViewController as! ViewController
             destinationViewController.viewDidLoad()
             
         }
@@ -348,7 +348,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         name: "Main",
         bundle: nil)
         
-        let popoverVC = storyboard.instantiateViewControllerWithIdentifier("PopoverViewController") as UIViewController
+        let popoverVC = storyboard.instantiateViewControllerWithIdentifier("PopoverViewController") as! UIViewController
         popoverVC.modalPresentationStyle = .Popover
         popoverVC.preferredContentSize = CGSizeMake(200,100)
         
@@ -375,7 +375,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         let inputDataArray = NSArray(contentsOfFile: inputFile!)
         
-        for inputItem in inputDataArray as [Dictionary<String, String>] {
+        for inputItem in inputDataArray as! [Dictionary<String, String>] {
             let menuItem = MenuItem(dataDictionary: inputItem)
             items.append(menuItem)
         }

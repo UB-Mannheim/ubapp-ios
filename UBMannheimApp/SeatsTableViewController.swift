@@ -54,10 +54,10 @@ class SeatsTableViewController: UITableViewController {
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        var rowData: NSDictionary = self.items[indexPath.row] as NSDictionary
+        var rowData: NSDictionary = self.items[indexPath.row] as! NSDictionary
         
         // cell.textLabel?.text = rowData["trackName"] as String!
-        cell.textLabel?.text = rowData["id"] as String!
+        cell.textLabel?.text = rowData["id"] as! String!
         
         // Grab the artworkUrl60 key to get an image URL for the app's thumbnail
         // var urlString: NSString = rowData["artworkUrl60"] as NSString
@@ -69,8 +69,8 @@ class SeatsTableViewController: UITableViewController {
         
         // Get the formatted price string for display in the subtitle
         // var formattedPrice: NSString = rowData["formattedPrice"] as NSString
-        var loadInPercent: Int = rowData["percent"] as Int
-        var maxCountOfSeats: Int = rowData["max"] as Int
+        var loadInPercent: Int = rowData["percent"] as! Int
+        var maxCountOfSeats: Int = rowData["max"] as! Int
         
         
         if(loadInPercent >= 81) {
@@ -132,10 +132,10 @@ class SeatsTableViewController: UITableViewController {
         // Request complete, self.data should now hold the resulting info
         // Convert the retrieved data in to an object through JSON deserialization
         var err: NSError
-        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
         
         if jsonResult.count>0 /*&& jsonResult["results"].count>0*/ {
-            var results: NSArray = jsonResult["sections"] as NSArray
+            var results: NSArray = jsonResult["sections"] as! NSArray
             self.items = results
             self.tableView.reloadData()
             

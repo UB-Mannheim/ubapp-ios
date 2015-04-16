@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        let destinationViewController = segue.destinationViewController as WebViewController
+        let destinationViewController = segue.destinationViewController as! WebViewController
         
         var website:NSString = ""
         

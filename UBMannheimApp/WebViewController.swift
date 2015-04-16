@@ -35,7 +35,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
             // check if necessary and why
             // let webView:UIWebView = UIWebView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-            webView.loadRequest(NSURLRequest(URL: NSURL(string: self.website)!))
+            webView.loadRequest(NSURLRequest(URL: NSURL(string: self.website as String)!))
             webView.delegate = self
             // check if necessary and why
             // self.view.addSubview(webView)
@@ -58,7 +58,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             
             let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
                 // MainView set as storyboard ID of MainViewController
-                let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as MainViewController
+                let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
             }
             
@@ -164,13 +164,13 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     // webview error
     
-    func webView(webView: UIWebView!, didFailLoadWithError error: NSError!) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         print("Webview fail with error \(error)");
     }
     
     // webview request
     
-    func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
     return true;
     }
     

@@ -69,13 +69,13 @@ class DBHelper {
         
         let filemgr = NSFileManager.defaultManager()
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let docsDir = dirPaths[0] as String
+        let docsDir = dirPaths[0] as! String
         
         self.mydatabasePath = docsDir.stringByAppendingPathComponent("bibservice.db")
         
-        if filemgr.fileExistsAtPath(self.mydatabasePath) {
+        if filemgr.fileExistsAtPath(self.mydatabasePath as String) {
             
-            let bibDB = FMDatabase(path: self.mydatabasePath)
+            let bibDB = FMDatabase(path: self.mydatabasePath as String)
             
             if bibDB == nil {
                 println("Error: \(bibDB.lastErrorMessage())")
@@ -181,7 +181,7 @@ class DBHelper {
         let post_id = 5236
         var newscount:Int32! = 0
         
-        let db = FMDatabase(path: self.mydatabasePath)
+        let db = FMDatabase(path: self.mydatabasePath as String)
         println(self.mydatabasePath)
         
         // get news latest news id

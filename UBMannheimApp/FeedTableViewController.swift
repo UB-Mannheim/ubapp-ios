@@ -45,7 +45,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     func loadRss(data: NSURL) {
         // XmlParserManager instance/object/variable
-        var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as XmlParserManager
+        var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as! XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
         
@@ -72,13 +72,13 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             
             var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
             // let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
-            let selectedFTitle: String = myFeed[indexPath.row].objectForKey("title") as String
+            let selectedFTitle: String = myFeed[indexPath.row].objectForKey("title") as! String
             // let selectedFContent: String = myFeed[indexPath.row].objectForKey("description") as String
-            let selectedFContent: String = myFeed[indexPath.row].objectForKey("content:encoded") as String
-            let selectedFURL: String = myFeed[indexPath.row].objectForKey("link") as String
+            let selectedFContent: String = myFeed[indexPath.row].objectForKey("content:encoded") as! String
+            let selectedFURL: String = myFeed[indexPath.row].objectForKey("link") as! String
             
             // Instance of our feedpageviewcontrolelr
-            let fpvc: FeedPageViewController = segue.destinationViewController as FeedPageViewController
+            let fpvc: FeedPageViewController = segue.destinationViewController as! FeedPageViewController
 
             fpvc.selectedFeedTitle = selectedFTitle
             fpvc.selectedFeedFeedContent = selectedFContent
@@ -113,13 +113,13 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         
         // Feed Image
         // cell.imageView?.image = UIImage (named: "news_pre")
         
         // Feeds dictionary.
-        var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as NSDictionary
+        var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as! NSDictionary
         
         // Set cell properties.
         cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
@@ -131,14 +131,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         var formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
         
         var date: String = formattedFeedTitle!
-        let stringLength = countElements(date)
+        let stringLength = count(date)
         let substringIndex = stringLength - 12
         date = date.substringToIndex(advance(date.startIndex, substringIndex))
         
         cell.detailTextLabel?.text = date
         
         var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
-        println("FeedTableView: "+content!)
+        // println("FeedTableView: "+content!)
         
         return cell
     }
