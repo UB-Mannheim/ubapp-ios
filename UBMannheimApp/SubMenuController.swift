@@ -19,16 +19,15 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
         self.items = [  ["title": "Einstellungen", "subtitle": "(Personalisieren Sie Ihre App)"],
                         ["title": "Hilfe", "subtitle": "(Hier finden Sie nützliche Tipps zur Bedienung der App)"]
                         ]
-        
-        var config = ["Einstellungen", "(Personalisieren Sie Ihre App)"]
-        var help = ["Hilfe", "(Nützliche Tipps zum Umgang mit Ihrer App)"]
-        
         // Cell height.
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        // get rid of empty lines
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         // self.tableView.reloadData()
         

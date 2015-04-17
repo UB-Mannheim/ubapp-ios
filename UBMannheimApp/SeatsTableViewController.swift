@@ -42,6 +42,10 @@ class SeatsTableViewController: UITableViewController {
         
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
+        // get rid of empty lines
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+
+        
         // self.tableView.reloadData()
         
     }

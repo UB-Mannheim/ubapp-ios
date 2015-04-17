@@ -34,6 +34,11 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        // get rid of empty lines
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+
+        
         // Set feed url. http://www.formula1.com/rss/news/latest.rss
         // url = NSURL(string: "http://www.skysports.com/rss/0,20514,11661,00.xml")!
         url = NSURL(string: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
