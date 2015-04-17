@@ -25,6 +25,7 @@
 		B25C7A321AB9AFFE0069BB55 /* DBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */; };
 		B268FC1B1ADFAC5D0025E318 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */; };
 		B268FC1D1ADFB6530025E318 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268FC1C1ADFB6530025E318 /* PopoverController.swift */; };
+		B26BB8521AE0E254001D3EB5 /* SubMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26BB8511AE0E254001D3EB5 /* SubMenuController.swift */; };
 		B270CECF1A778D3F003C981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CECE1A778D3F003C981B /* AppDelegate.swift */; };
 		B270CED11A778D3F003C981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CED01A778D3F003C981B /* ViewController.swift */; };
 		B270CED61A778D3F003C981B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B270CED51A778D3F003C981B /* Images.xcassets */; };
@@ -103,6 +104,7 @@
 		B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBViewController.swift; sourceTree = "<group>"; };
 		B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		B268FC1C1ADFB6530025E318 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
+		B26BB8511AE0E254001D3EB5 /* SubMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubMenuController.swift; sourceTree = "<group>"; };
 		B270CEC91A778D3F003C981B /* UBMannheimApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UBMannheimApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B270CECD1A778D3F003C981B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270CECE1A778D3F003C981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */,
 				B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */,
 				B268FC1C1ADFB6530025E318 /* PopoverController.swift */,
+				B26BB8511AE0E254001D3EB5 /* SubMenuController.swift */,
 			);
 			path = UBMannheimApp;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				B2CD07B91AC2D482007E1E3E /* ConfigController.swift in Sources */,
 				B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */,
 				B270CED11A778D3F003C981B /* ViewController.swift in Sources */,
+				B26BB8521AE0E254001D3EB5 /* SubMenuController.swift in Sources */,
 				B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */,
 				B2CF14CA1AC2B25C00F56F36 /* DBHelper_.swift in Sources */,
 				B2CF14CE1AC2B30700F56F36 /* IJReachability.swift in Sources */,

@@ -950,56 +950,29 @@
         <!--SubMenu Controller-->
         <scene sceneID="qsl-r1-IHu">
             <objects>
-                <tableViewController id="dhg-zm-4Ea" userLabel="SubMenu Controller" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="I9E-eK-bYp">
+                <tableViewController id="dhg-zm-4Ea" userLabel="SubMenu Controller" customClass="SubMenuController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="I9E-eK-bYp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection id="MEX-PT-3Tb">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ydM-LC-kUR">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ydM-LC-kUR" id="o1n-Z6-oUk">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYW-Mf-ipp">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
-                                                    <state key="normal" title="Einstellungen">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="aPX-70-5vf" kind="show" id="59a-Km-xOU"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ffg-3d-Mig">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ffg-3d-Mig" id="r8s-ZX-4nO">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gsw-bJ-OEv">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
-                                                    <state key="normal" title="Hilfe">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="PCp-Zc-AiC" kind="show" id="IXk-By-faD"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ydM-LC-kUR">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ydM-LC-kUR" id="o1n-Z6-oUk">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="dhg-zm-4Ea" id="p8o-VR-yg0"/>
                             <outlet property="delegate" destination="dhg-zm-4Ea" id="6kL-0S-RRL"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="aPX-70-5vf" kind="show" identifier="showConfig" id="mmG-0k-rgi"/>
+                        <segue destination="PCp-Zc-AiC" kind="show" identifier="showHelp" id="yc9-8k-Thj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOi-YG-obi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1343,7 +1316,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
+                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adF-2O-rtR">
@@ -1358,7 +1331,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-Qg-XeC">
+                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-Qg-XeC">
                                 <rect key="frame" x="0.0" y="51" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8c-v9-IMG">
@@ -1502,7 +1475,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="MZ2-Q0-gUJ"/>
         <segue reference="Phc-Df-0op"/>
-        <segue reference="IXk-By-faD"/>
-        <segue reference="59a-Km-xOU"/>
+        <segue reference="mmG-0k-rgi"/>
+        <segue reference="yc9-8k-Thj"/>
     </inferredMetricsTieBreakers>
 </document>
