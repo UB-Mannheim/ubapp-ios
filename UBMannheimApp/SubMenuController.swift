@@ -13,6 +13,8 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
     
     var items: NSArray = NSArray()
     
+    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -30,6 +32,14 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         // self.tableView.reloadData()
+        
+        
+        
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        
+        println("\(kcache) :: \(kstartup) :: \(knews)")
         
     }
     
