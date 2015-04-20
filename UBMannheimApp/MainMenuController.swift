@@ -21,6 +21,8 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     var menuItems: [MenuItem] = []
     
+    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    
     /*
     var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     var picDimensionX: CGFloat = 0.0
@@ -28,6 +30,22 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // simple redirection if startup option ist chosen
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        
+        if ((kstartup != nil) && (kstartup != 0)) {
+            
+            if(kstartup == 1) { showWebView("website") }
+            if(kstartup == 2) { showWebView("primo") }
+            if(kstartup == 3) { showNews() }
+            if(kstartup == 4) { showSeats() }
+        
+            // old way
+            // let startController = self.storyboard!.instantiateViewControllerWithIdentifier("ConfigView") as! ConfigController
+            // self.navigationController!.pushViewController(startController, animated: true)
+        }
+    
         initMenuItems()
         
         // init toolbar (hidden in storyboard)
@@ -269,7 +287,8 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     // Images as Buttons and Actions
     // 
-    
+    // LATEST MENU ACTIONS ...
+    // 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let alert = UIAlertController(title: "didSelectItemAtIndexPath:", message: "Indexpath = \(indexPath)", preferredStyle: .Alert)
@@ -322,6 +341,12 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.navigationController?.pushViewController(tableViewController, animated: true)
     }
     
+    func showNews() {
+        
+        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as! FeedTableViewController
+        
+        self.navigationController?.pushViewController(tableViewController, animated: true)
+    }
     
     func showSubMenu() {
         

@@ -62,6 +62,7 @@ var newsCount:Int = 0
         
         // switch
         cacheSwitch.setOn(kcache!, animated: true)
+        cache_enabled = (kcache! as Bool?)!
         
         // news picker selected
         news.selectRow(knews!, inComponent: 0, animated: true)
@@ -237,6 +238,7 @@ var newsCount:Int = 0
         */
     }
     
+    // nur wenn statechanged ... 2do auch sonst speichern saveConfig()
     func stateChanged(switchState: UISwitch) {
         if switchState.on {
             // myTextField.text = "The Switch is On"
