@@ -336,7 +336,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func showSeats() {
         
-        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as! TableViewController
+        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as! SeatsTableViewController
         
         self.navigationController?.pushViewController(tableViewController, animated: true)
     }

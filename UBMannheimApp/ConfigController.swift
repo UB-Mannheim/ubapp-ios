@@ -22,6 +22,22 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     var news_selected: Int = 0
     var startup_selected: Int = 0
     var cache_enabled = false
+    
+    var myArray : Array<Double>! {
+        get {
+            if let myArray: AnyObject! = NSUserDefaults.standardUserDefaults().objectForKey("myArray") {
+                println("\(myArray)")
+                return myArray as! Array<Double>!
+            }
+            
+            return nil
+        }
+        set {
+            println(myArray)
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "myArray")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
 /*
 var cacheEnabled:Bool = false
 var startupWith:Int = 0
@@ -34,11 +50,24 @@ var newsCount:Int = 0
         
         // init_preferences()
         
+        // Delete ALL USER PREFERENCES
+        // let appDomain = NSBundle.mainBundle().bundleIdentifier!
+        // NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        
+        
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
+        
+        let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
         println("Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries")
+        
+        if((knews_items?.last != nil) && (knews_items!.count > 0)) {
+            println("News stack contains \(knews_items!.count) elements")
+        }
+        
         // http://www.ioscreator.com/tutorials/uiswitch-tutorial-in-ios8-with-swift
         cacheSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
@@ -61,21 +90,35 @@ var newsCount:Int = 0
         // layout form elements
         
         // switch
-        cacheSwitch.setOn(kcache!, animated: true)
-        cache_enabled = (kcache! as Bool?)!
-        
-        // news picker selected
-        news.selectRow(knews!, inComponent: 0, animated: true)
-        
-        // set picker view-news inactive if cache=off
-        if (kcache == false) {
-            news.userInteractionEnabled = false
-        } else {
-            news.userInteractionEnabled = true
+        if(kcache != nil) {
+            cacheSwitch.setOn(kcache!, animated: true)
+            cache_enabled = (kcache! as Bool?)!
         }
         
+        
+        // news picker selected
+        
+        if(knews != nil) {
+        
+            news.selectRow(knews!, inComponent: 0, animated: true)
+        
+            // set picker view-news inactive if cache=off
+            if (kcache == false) {
+                news.userInteractionEnabled = false
+            } else {
+                news.userInteractionEnabled = true
+            }
+        }
+        
+        
         // startup selected
-        startup.selectRow(kstartup!, inComponent: 0, animated: true)
+        
+        if(kstartup != nil) {
+            
+            startup.selectRow(kstartup!, inComponent: 0, animated: true)
+        
+        }
+        
     }
     
     /*
@@ -189,9 +232,20 @@ var newsCount:Int = 0
     }
     */
     
+    func generateNewsEntry(id: Int) -> [AnyObject] {
+        
+        var news_id = id
+        var date = "01.04.2015"
+        var title = "Titel der News No \(news_id)"
+        var description = "Beschreibung der News No \(news_id)"
+        var link = "http://www.bib.uni-mannheim.de/news/\(news_id)"
+        
+        var element = [news_id, date, title, description, link] as Array<AnyObject>
+        
+        return element
+    }
+    
     @IBAction func saveConfig() {
-        
-        
         
         // EINFACH PREFS ÄNDENR UND NEU LADEN
         
@@ -201,7 +255,29 @@ var newsCount:Int = 0
         userDefaults.setObject(cache_enabled, forKey: "cacheEnabled")
         userDefaults.setObject(startup_selected, forKey: "startupWith")
         userDefaults.setObject(news_selected, forKey: "newsCount")
+        
+        // ggf News Items auch hier speichern?
+        var nitems = [AnyObject]()
+        
+        // auslesen und zurückspeichern der news
+        if (userDefaults.objectForKey("newsItems")?.count <= 0) {
+            var tmp = generateNewsEntry(1)
+            nitems.append(tmp)
+
+        } else {
+            nitems = (userDefaults.objectForKey("newsItems") as! [NSArray]?)!
+            if(nitems.count > 0) {
+                // nitems.append("test \(nitems.count+1)")
+                // var tmp = ["Date", "Title of News", "Description", "Link", "href"] as Array<AnyObject>
+                var tmp = generateNewsEntry(nitems.count)
+                nitems.append(tmp)
+            }
+        }
+        
+        userDefaults.setObject(nitems, forKey: "newsItems")
         userDefaults.synchronize()
+        
+        println("News ITEMS: \(nitems)")
         
         // reload
         viewDidLoad()
