@@ -78,7 +78,7 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
         }
         
         if ( row==1 ) {
-            performSegueWithIdentifier("showHelp", sender: self)
+            performSegueWithIdentifier("showHelp2", sender: self)
         }
         
         println(row)

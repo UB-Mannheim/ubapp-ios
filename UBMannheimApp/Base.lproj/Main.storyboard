@@ -973,6 +973,7 @@
                     <connections>
                         <segue destination="aPX-70-5vf" kind="show" identifier="showConfig" id="mmG-0k-rgi"/>
                         <segue destination="IEC-1N-fSO" kind="show" identifier="showHelp" id="syD-tU-Jln"/>
+                        <segue destination="C2m-TP-OQh" kind="show" identifier="showHelp2" id="efh-fn-Wdk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOi-YG-obi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1479,6 +1480,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8m-vn-A6V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="340" y="-1046"/>
+        </scene>
+        <!--Help2ViewController-->
+        <scene sceneID="hpO-QX-F9W">
+            <objects>
+                <tableViewController id="C2m-TP-OQh" userLabel="Help2ViewController" customClass="Help2ViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="1y0-q5-0Nh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="68" id="pjT-fM-wNC" customClass="CustomTableViewCell" customModule="UBMannheimApp" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pjT-fM-wNC" id="2RB-Xr-Suv">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="68" id="Pry-nH-6Uw" customClass="CustomTableViewCell" customModule="UBMannheimApp" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pry-nH-6Uw" id="wK1-NU-t9H">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" text="Name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okk-S9-U9S">
+                                            <rect key="frame" x="96" y="8" width="290" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBF-3w-S74">
+                                            <rect key="frame" x="8" y="4" width="59" height="59"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35" id="WuH-T8-GuC"/>
+                                                <constraint firstAttribute="height" constant="35" id="qdg-kF-ugH"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Address" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCB-5x-XBx">
+                                            <rect key="frame" x="96" y="37" width="290" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="okk-S9-U9S" firstAttribute="top" secondItem="wK1-NU-t9H" secondAttribute="topMargin" id="9l3-Jc-d5Q"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="eCB-5x-XBx" secondAttribute="trailing" constant="7" id="9pV-Xm-T9H"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="okk-S9-U9S" secondAttribute="trailing" constant="7" id="B4t-VD-gca"/>
+                                        <constraint firstItem="eCB-5x-XBx" firstAttribute="bottom" secondItem="wK1-NU-t9H" secondAttribute="bottomMargin" constant="2.5" id="Di9-If-tv4"/>
+                                        <constraint firstItem="okk-S9-U9S" firstAttribute="leading" secondItem="RBF-3w-S74" secondAttribute="trailing" constant="7" id="Hm8-DG-he1"/>
+                                        <constraint firstItem="RBF-3w-S74" firstAttribute="top" secondItem="wK1-NU-t9H" secondAttribute="topMargin" id="Ido-aC-jdx"/>
+                                        <constraint firstItem="RBF-3w-S74" firstAttribute="leading" secondItem="wK1-NU-t9H" secondAttribute="leadingMargin" constant="7" id="QYH-yX-HPX"/>
+                                        <constraint firstItem="eCB-5x-XBx" firstAttribute="top" secondItem="okk-S9-U9S" secondAttribute="bottom" constant="7" id="RaI-nY-0SN"/>
+                                        <constraint firstItem="eCB-5x-XBx" firstAttribute="leading" secondItem="RBF-3w-S74" secondAttribute="trailing" constant="7" id="haA-ac-KSO"/>
+                                        <constraint firstItem="eCB-5x-XBx" firstAttribute="leading" secondItem="RBF-3w-S74" secondAttribute="trailing" constant="7" id="hdx-JU-o73"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addressLabel" destination="eCB-5x-XBx" id="isf-7p-wJB"/>
+                                    <outlet property="cellImage" destination="RBF-3w-S74" id="RqL-Sy-826"/>
+                                    <outlet property="nameLabel" destination="okk-S9-U9S" id="cvt-aG-3lB"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="C2m-TP-OQh" id="UAE-bq-3Ip"/>
+                            <outlet property="delegate" destination="C2m-TP-OQh" id="LFP-MH-JrM"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9F7-DJ-bb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3088" y="-1368"/>
         </scene>
     </scenes>
     <resources>

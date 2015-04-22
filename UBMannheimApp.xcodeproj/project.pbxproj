@@ -11,6 +11,8 @@
 		B22D05081AC9390600904165 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D05071AC9390600904165 /* MenuItemCollectionViewCell.swift */; };
 		B22D050A1AC93A5C00904165 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D05091AC93A5C00904165 /* MenuItem.swift */; };
 		B22D050C1AC93CE800904165 /* items.plist in Resources */ = {isa = PBXBuildFile; fileRef = B22D050B1AC93CE800904165 /* items.plist */; };
+		B241F4E61AE7B9DF00ADE3A1 /* Help2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B241F4E51AE7B9DF00ADE3A1 /* Help2ViewController.swift */; };
+		B241F4E81AE7BC6200ADE3A1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B241F4E71AE7BC6200ADE3A1 /* CustomTableViewCell.swift */; };
 		B24261D21ABAD1AE00124AAB /* offline.html in Resources */ = {isa = PBXBuildFile; fileRef = B24261D11ABAD1AE00124AAB /* offline.html */; };
 		B24261D61ABAD54C00124AAB /* ublogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B24261D51ABAD54C00124AAB /* ublogo.png */; };
 		B2506BD91AD6ACD90057AE61 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */; };
@@ -83,6 +85,8 @@
 		B22D05071AC9390600904165 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		B22D05091AC93A5C00904165 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		B22D050B1AC93CE800904165 /* items.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = items.plist; sourceTree = "<group>"; };
+		B241F4E51AE7B9DF00ADE3A1 /* Help2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Help2ViewController.swift; sourceTree = "<group>"; };
+		B241F4E71AE7BC6200ADE3A1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B24261D11ABAD1AE00124AAB /* offline.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = offline.html; sourceTree = "<group>"; };
 		B24261D51ABAD54C00124AAB /* ublogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ublogo.png; sourceTree = "<group>"; };
 		B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 				B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */,
 				B268FC1C1ADFB6530025E318 /* PopoverController.swift */,
 				B26BB8511AE0E254001D3EB5 /* SubMenuController.swift */,
+				B241F4E51AE7B9DF00ADE3A1 /* Help2ViewController.swift */,
+				B241F4E71AE7BC6200ADE3A1 /* CustomTableViewCell.swift */,
 			);
 			path = UBMannheimApp;
 			sourceTree = "<group>";
@@ -405,7 +411,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B241F4E61AE7B9DF00ADE3A1 /* Help2ViewController.swift in Sources */,
 				B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */,
+				B241F4E81AE7BC6200ADE3A1 /* CustomTableViewCell.swift in Sources */,
 				B22D05041AC935D800904165 /* MenuViewController.swift in Sources */,
 				B2506BDB1ADBB72E0057AE61 /* MyCollectionViewCell.swift in Sources */,
 				B2FF89F61A8B9D3E00786581 /* FeedWebPageViewController.swift in Sources */,
