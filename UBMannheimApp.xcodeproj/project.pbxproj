@@ -172,6 +172,7 @@
 			children = (
 				B2E222FB1AC44E92000D1B76 /* MainController.swift */,
 				B2266FB31A825C1500C11E08 /* MainViewController.swift */,
+				B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */,
 				B22D05071AC9390600904165 /* MenuItemCollectionViewCell.swift */,
 			);
 			name = _;
@@ -225,7 +226,6 @@
 				B270CECE1A778D3F003C981B /* AppDelegate.swift */,
 				B2CD07B81AC2D482007E1E3E /* ConfigController.swift */,
 				B2C4A7A11A8B413500B79B10 /* WebViewController.swift */,
-				B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */,
 				B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */,
 				B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */,
 				B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */,
@@ -233,7 +233,6 @@
 				B270CED21A778D3F003C981B /* Main.storyboard */,
 				B24261D11ABAD1AE00124AAB /* offline.html */,
 				B24261D51ABAD54C00124AAB /* ublogo.png */,
-				B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */,
 				B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */,
 				B270CED51A778D3F003C981B /* Images.xcassets */,
 				B270CED71A778D3F003C981B /* LaunchScreen.xib */,
@@ -294,6 +293,7 @@
 			children = (
 				B2C4A7A71A8B842700B79B10 /* TableViewController.swift */,
 				B25923ED1A8CDC26000654B8 /* TestViewController.swift */,
+				B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */,
 				B270CED01A778D3F003C981B /* ViewController.swift */,
 			);
 			name = test;

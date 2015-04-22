@@ -547,7 +547,7 @@
         <!--SeatsView Controller-->
         <scene sceneID="3oC-qA-p9Q">
             <objects>
-                <viewController id="PYL-1U-SZR" userLabel="SeatsView Controller" customClass="SeatsViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Freie Plätze (OLD, Static)" id="PYL-1U-SZR" userLabel="SeatsView Controller" customClass="SeatsViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f16-Ty-4gL"/>
                         <viewControllerLayoutGuide type="bottom" id="n3d-dh-KHU"/>
@@ -580,10 +580,10 @@
             </objects>
             <point key="canvasLocation" x="3063" y="-302"/>
         </scene>
-        <!--Seats Table View Controller-->
+        <!--Freie Plätze-->
         <scene sceneID="fqw-HM-5HC">
             <objects>
-                <tableViewController storyboardIdentifier="SeatsView" id="H6L-xW-tWA" customClass="SeatsTableViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SeatsView" title="Freie Plätze" id="H6L-xW-tWA" customClass="SeatsTableViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tkx-V0-LcM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -603,6 +603,7 @@
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="vxi-i9-c6c">
                         <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FnR-RH-dNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -838,7 +839,7 @@
         <!--NewsView Controller-->
         <scene sceneID="Iyl-Co-Bku">
             <objects>
-                <tableViewController storyboardIdentifier="NewsView" id="PoO-jd-Yy3" userLabel="NewsView Controller" customClass="FeedTableViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NewsView" title="News" id="PoO-jd-Yy3" userLabel="NewsView Controller" customClass="FeedTableViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wmg-bc-doT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1064,7 +1065,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-bT-Iih" userLabel="Label View">
@@ -1234,7 +1235,7 @@
         <!--WebView Controller-->
         <scene sceneID="ptJ-Z5-oUX">
             <objects>
-                <viewController storyboardIdentifier="WebView" id="T1i-kN-BFg" userLabel="WebView Controller" customClass="WebViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebView" title="Website" id="T1i-kN-BFg" userLabel="WebView Controller" customClass="WebViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cob-kc-tc6"/>
                         <viewControllerLayoutGuide type="bottom" id="2WZ-tX-bGo"/>
