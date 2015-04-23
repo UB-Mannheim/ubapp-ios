@@ -897,7 +897,7 @@
         <!--NewsDetailView Controller-->
         <scene sceneID="c8y-FT-RIN">
             <objects>
-                <viewController id="OR5-sq-U1U" userLabel="NewsDetailView Controller" customClass="FeedPageViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail" id="OR5-sq-U1U" userLabel="NewsDetailView Controller" customClass="FeedPageViewController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TQY-eG-yNP"/>
                         <viewControllerLayoutGuide type="bottom" id="Fgg-oo-JPZ"/>
@@ -907,16 +907,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-gH-SCb" userLabel="LabelView">
-                                <rect key="frame" x="16" y="72" width="568" height="55"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="55"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tea-BR-CWt">
-                                        <rect key="frame" x="8" y="12" width="560" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tea-BR-CWt">
+                                        <rect key="frame" x="16" y="17" width="544" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Tea-BR-CWt" firstAttribute="leading" secondItem="QdW-gH-SCb" secondAttribute="leading" constant="15" id="0tX-zc-vuA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tea-BR-CWt" secondAttribute="trailing" constant="15" id="pTM-C8-Awr"/>
+                                </constraints>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="16" y="64" width="368" height="44.5"/>
                                 </variation>
@@ -924,43 +928,21 @@
                                     <rect key="frame" x="16" y="72" width="568" height="45"/>
                                 </variation>
                             </view>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNI-zY-bmp">
-                                <rect key="frame" x="16" y="109" width="568" height="471"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <attributes>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <rect key="frame" x="16" y="117" width="368" height="471"/>
-                                </variation>
-                            </textView>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJR-o9-6Rt">
-                                <rect key="frame" x="16" y="109" width="568" height="491"/>
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJR-o9-6Rt">
+                                <rect key="frame" x="0.0" y="127" width="600" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QdW-gH-SCb" firstAttribute="top" secondItem="TQY-eG-yNP" secondAttribute="bottom" id="7cg-kp-jai"/>
-                            <constraint firstItem="QdW-gH-SCb" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leadingMargin" constant="7" id="BbO-Hv-S0R"/>
-                            <constraint firstItem="tNI-zY-bmp" firstAttribute="top" secondItem="TQY-eG-yNP" secondAttribute="bottom" constant="55" id="Bu5-Wk-fv3"/>
-                            <constraint firstItem="Fgg-oo-JPZ" firstAttribute="top" secondItem="tNI-zY-bmp" secondAttribute="bottom" constant="250" id="MRN-xI-buC"/>
-                            <constraint firstItem="QdW-gH-SCb" firstAttribute="trailing" secondItem="Auw-Sx-c6Q" secondAttribute="trailingMargin" constant="7" id="Rrk-Sw-pbj"/>
-                            <constraint firstItem="tNI-zY-bmp" firstAttribute="trailing" secondItem="Auw-Sx-c6Q" secondAttribute="trailingMargin" constant="7" id="Ycg-0n-PJv"/>
-                            <constraint firstItem="tNI-zY-bmp" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leadingMargin" constant="7" id="hYb-6x-bln"/>
+                            <constraint firstItem="QdW-gH-SCb" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leading" id="Ryq-T4-wMK"/>
+                            <constraint firstItem="zJR-o9-6Rt" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leadingMargin" id="VdC-zO-wUO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zJR-o9-6Rt" secondAttribute="trailing" id="d5Q-PW-xkj"/>
+                            <constraint firstAttribute="trailing" secondItem="QdW-gH-SCb" secondAttribute="trailing" id="sKC-Lb-xbz"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="textLabel" destination="Tea-BR-CWt" id="dgX-CW-zT6"/>
-                        <outlet property="textView" destination="tNI-zY-bmp" id="cML-MD-ikS"/>
                         <outlet property="webView" destination="zJR-o9-6Rt" id="ciR-dZ-unF"/>
                     </connections>
                 </viewController>

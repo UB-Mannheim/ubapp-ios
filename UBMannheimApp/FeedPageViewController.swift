@@ -12,7 +12,7 @@ import UIKit
 class FeedPageViewController: UIViewController {
 
     @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    // @IBOutlet weak var textView: UITextView!
     
     @IBOutlet weak var webView: UIWebView!
     
@@ -30,7 +30,7 @@ class FeedPageViewController: UIViewController {
         // textView.text = "\(selectedFeedFeedContent)"
 
         // Config Text Area
-        textView.editable = false
+        // textView.editable = false
         // textView.contentInset = UIEdgeInsets(top: +60,left: 0,bottom: 0,right: 0)
        
         
@@ -74,11 +74,15 @@ class FeedPageViewController: UIViewController {
         
         textView.text = "\(outputStr)"+" \(selectedFeedURL)"
 */
+        
+        // Variration with AttributedText
+        /*
         var attributedHTMLFeedFeedContent = NSAttributedString(data: formattedFeedFeedContent.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil, error: nil)
 
         textView.attributedText = attributedHTMLFeedFeedContent
+        */
         
-        var html_prefix = "<html><head><title>News</title><style type=\"text/css\">body { font-family:Helvetica } a { font-family:Helvetica; font-weight: bold; color: #990000; text-decoration:none; } img{ max-width: 90%; }</style><body>"
+        var html_prefix = "<html><head><title>News</title><style type=\"text/css\">body { font-family:Helvetica; } a { font-family:Helvetica; font-weight: bold; color: #990000; text-decoration:none; } img { width: 90%; height: auto; margin-bottom: 1em; display:block; }</style><body>"
         var html_suffix = "</body></html>"
         
         var html = html_prefix + selectedFeedFeedContent + html_suffix
