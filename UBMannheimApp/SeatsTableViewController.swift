@@ -40,6 +40,7 @@ class SeatsTableViewController: UITableViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        // "cell" might be added as identifier in designer and deleted here - right?
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         // get rid of empty lines
@@ -90,6 +91,27 @@ class SeatsTableViewController: UITableViewController {
         cell.detailTextLabel?.text = loadInPercent.description + "% (von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt)"
         
         return cell
+    }
+    
+    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! UITableViewCell
+        
+        headerCell.textLabel?.text = "Zuletzt aktualisiert: 01.04.2014"
+        headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
+        
+        return headerCell
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 55.0
     }
 
     func loadJSONFromURL() {

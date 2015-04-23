@@ -14,6 +14,8 @@ class FeedPageViewController: UIViewController {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var webView: UIWebView!
+    
     var selectedFeedTitle = String()
     var selectedFeedFeedContent = String()
     var selectedFeedURL = String()
@@ -22,7 +24,9 @@ class FeedPageViewController: UIViewController {
         super.viewDidLoad()
         
         // Populate Label
-         textLabel.text = "title ... \(selectedFeedTitle)"
+        textLabel.text = selectedFeedTitle
+        // --> LabelView around Label ... :)
+        
         // textView.text = "\(selectedFeedFeedContent)"
 
         // Config Text Area
@@ -33,6 +37,8 @@ class FeedPageViewController: UIViewController {
         // Populate Text Area
         // Downcast (String -> NSString) for better String operations
         var formattedFeedFeedContent = selectedFeedFeedContent as NSString
+        
+        // println(formattedFeedFeedContent)
         
         // 2DOs
         // ggf nach <img> IMMER ein <br/>
@@ -72,12 +78,43 @@ class FeedPageViewController: UIViewController {
 
         textView.attributedText = attributedHTMLFeedFeedContent
         
+        var html_prefix = "<html><head><title>News</title><style type=\"text/css\">body { font-family:Helvetica } a { font-family:Helvetica; font-weight: bold; color: #990000; text-decoration:none; } img{ max-width: 90%; }</style><body>"
+        var html_suffix = "</body></html>"
+        
+        var html = html_prefix + selectedFeedFeedContent + html_suffix
+        webView.loadHTMLString(html, baseURL: nil)
+        
+        // println(html)
+        
+        /*
+        var textAttachment: NSTextAttachment = NSTextAttachment();
+        textAttachment.image = UIImage(named: "website");
+        var rects: CGRect = textAttachment.bounds;
+        rects.size.height = 33;
+        rects.size.width = 100;
+        */
+        
+        // textView.attributedText.setValue(value: nil, forKey: "NSAttachment")
+        
+        //println(attributedHTMLFeedFeedContent)
+        
+        
+        // CHANGE Attributed Text Contents
+        // http://stackoverflow.com/questions/29543312/export-image-from-attributed-text-in-swift
         
         // let myHTMLString:String! = "\(selectedFeedFeedContent)"
         // self.webView.loadHTMLString(myHTMLString, baseURL: nil)
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

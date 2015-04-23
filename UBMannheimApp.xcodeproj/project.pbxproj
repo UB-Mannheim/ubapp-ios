@@ -25,6 +25,7 @@
 		B25C7A2E1AB9AE1A0069BB55 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A271AB9AE1A0069BB55 /* FMDatabaseQueue.m */; };
 		B25C7A2F1AB9AE1A0069BB55 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A2A1AB9AE1A0069BB55 /* FMResultSet.m */; };
 		B25C7A321AB9AFFE0069BB55 /* DBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */; };
+		B267895D1AE90E4900D30CF4 /* news.css in Resources */ = {isa = PBXBuildFile; fileRef = B267895C1AE90E4900D30CF4 /* news.css */; };
 		B268FC1B1ADFAC5D0025E318 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */; };
 		B268FC1D1ADFB6530025E318 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268FC1C1ADFB6530025E318 /* PopoverController.swift */; };
 		B26BB8521AE0E254001D3EB5 /* SubMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26BB8511AE0E254001D3EB5 /* SubMenuController.swift */; };
@@ -106,6 +107,7 @@
 		B25C7A291AB9AE1A0069BB55 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		B25C7A2A1AB9AE1A0069BB55 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		B25C7A311AB9AFFE0069BB55 /* DBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBViewController.swift; sourceTree = "<group>"; };
+		B267895C1AE90E4900D30CF4 /* news.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = news.css; sourceTree = "<group>"; };
 		B268FC1A1ADFAC5D0025E318 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		B268FC1C1ADFB6530025E318 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 		B26BB8511AE0E254001D3EB5 /* SubMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubMenuController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				B2FF89F11A8B9D3E00786581 /* FeedWebPageViewController.swift */,
 				B270CED21A778D3F003C981B /* Main.storyboard */,
 				B24261D11ABAD1AE00124AAB /* offline.html */,
+				B267895C1AE90E4900D30CF4 /* news.css */,
 				B24261D51ABAD54C00124AAB /* ublogo.png */,
 				B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */,
 				B270CED51A778D3F003C981B /* Images.xcassets */,
@@ -391,6 +394,7 @@
 				B270CED91A778D3F003C981B /* LaunchScreen.xib in Resources */,
 				B22D050C1AC93CE800904165 /* items.plist in Resources */,
 				B270CED61A778D3F003C981B /* Images.xcassets in Resources */,
+				B267895D1AE90E4900D30CF4 /* news.css in Resources */,
 				B24261D21ABAD1AE00124AAB /* offline.html in Resources */,
 				B2C8B0B21A8E2688002CBA11 /* Help.txt in Resources */,
 				B24261D61ABAD54C00124AAB /* ublogo.png in Resources */,

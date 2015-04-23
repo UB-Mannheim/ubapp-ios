@@ -156,4 +156,34 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         }
     }
     */
+    
+    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        
+        // hide Title/Subtitle View in HeaderCell
+        headerCell.textLabel?.hidden = true
+        headerCell.detailTextLabel?.hidden = true
+        
+        // Create new Label ont the fly and add it to HeaderCell
+        var label = UILabel(frame: CGRectMake(0, 0, 200, 55))
+        label.textAlignment = NSTextAlignment.Center
+        label.text = "Aktuelles aus der UB"
+        headerCell.addSubview(label)
+        
+        headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
+        
+        return headerCell
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 55.0
+    }
 }
