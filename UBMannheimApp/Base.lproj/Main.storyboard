@@ -953,7 +953,7 @@
         <!--SubMenu Controller-->
         <scene sceneID="qsl-r1-IHu">
             <objects>
-                <tableViewController id="dhg-zm-4Ea" userLabel="SubMenu Controller" customClass="SubMenuController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="UB Mannheim" id="dhg-zm-4Ea" userLabel="SubMenu Controller" customClass="SubMenuController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="I9E-eK-bYp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1068,7 +1068,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-bT-Iih" userLabel="Label View">
@@ -1151,7 +1151,7 @@
         <!--Config Controller-->
         <scene sceneID="N8y-Ok-pft">
             <objects>
-                <viewController storyboardIdentifier="ConfigView" id="aPX-70-5vf" userLabel="Config Controller" customClass="ConfigController" customModule="UBMannheimApp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfigView" title="Einstellungen" id="aPX-70-5vf" userLabel="Config Controller" customClass="ConfigController" customModule="UBMannheimApp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4ej-To-d4h"/>
                         <viewControllerLayoutGuide type="bottom" id="MQC-rw-AUd"/>
@@ -1273,10 +1273,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8G-Up-zWU">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="A7r-y2-ZhD">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
@@ -1297,6 +1293,10 @@
                                     <barButtonItem image="Btn_Home_iconbeast" id="Blo-iP-0tN" userLabel="BarButton Home"/>
                                 </items>
                             </toolbar>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8G-Up-zWU">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1370,7 +1370,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adF-2O-rtR">
@@ -1592,7 +1592,7 @@
         <image name="website" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vgt-S6-7ze"/>
+        <segue reference="mmG-0k-rgi"/>
         <segue reference="MZ2-Q0-gUJ"/>
         <segue reference="Phc-Df-0op"/>
     </inferredMetricsTieBreakers>

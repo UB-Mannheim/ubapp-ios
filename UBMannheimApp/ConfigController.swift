@@ -23,6 +23,8 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     var startup_selected: Int = 0
     var cache_enabled = false
     
+    var knews_items: [AnyObject] = []
+    /*
     var myArray : Array<Double>! {
         get {
             if let myArray: AnyObject! = NSUserDefaults.standardUserDefaults().objectForKey("myArray") {
@@ -38,6 +40,7 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    */
 /*
 var cacheEnabled:Bool = false
 var startupWith:Int = 0
@@ -244,6 +247,7 @@ var newsCount:Int = 0
         
         return element
     }
+    
     
     @IBAction func saveConfig() {
         
