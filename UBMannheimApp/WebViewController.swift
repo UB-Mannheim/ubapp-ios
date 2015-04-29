@@ -21,6 +21,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // Fallback
     var website:NSString = "http://www.google.de"
     
+    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,7 +49,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             if(self.website.containsString("www.bib.uni-mannheim.de")) {
                 self.title = "Website"
             }
-      
+           
         } else {
             
             let url = NSBundle.mainBundle().URLForResource("offline", withExtension:"html")
@@ -66,8 +68,12 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             
             let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
                 // MainView set as storyboard ID of MainViewController
-                let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
+                
+                let firstRunReference = 0
+                self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
             }
             
             let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in

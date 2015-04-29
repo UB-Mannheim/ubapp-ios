@@ -13,11 +13,15 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     var myFeed : NSArray = []
     var url: NSURL = NSURL()
     
+    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    
+    var news_cache: [[String]] = []
+    
     // UIRefreshControl
     func refresh(sender:AnyObject)
     {
         // Updating your data here...
-        loadRss(url);
+        loadRss(url)
         
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
@@ -42,21 +46,157 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // Set feed url. http://www.formula1.com/rss/news/latest.rss
         // url = NSURL(string: "http://www.skysports.com/rss/0,20514,11661,00.xml")!
         url = NSURL(string: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
+        
+        // if Network Connection online
+        if IJReachability.isConnectedToNetwork() {
+            
+            var news_rssdata: AnyObject = loadRss(url)
+            
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+            
+            //  if Cache on
+            if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
+              
+            println("Cache on ....................................................")
+                //  update Cache Entries
+                var maxnews_count = userDefaults.objectForKey("newsCount") as! Int
+                
+                ////////
+                // ERROR maxnews_count >> picker_select(0,1,2) != count(5,10,15)
+                ////////
+                
+                switch(maxnews_count) {
+                case 0: maxnews_count = 5
+                    break
+                case 1: maxnews_count = 10
+                    break
+                case 2: maxnews_count = 15
+                    break
+                default: maxnews_count = 5
+                }
+                
+                // println("maxnews_count \(maxnews_count) ....................................................")
+                
+                // print("NEWS COUNT")
+                // println(news_rssdata.count)
+                
+                if(news_rssdata.count < maxnews_count) {
+                    maxnews_count = news_rssdata.count
+                }
+                
+                var news_item = ["", "", "", "", ""]
+                
+                for (var i = 0; i < maxnews_count; i++) {
+                    
+                    // println("row per row ....................................................")
+                    println("News mit ID=\(i) \(news_rssdata[i])")
+                    
+                    news_item[0] = news_rssdata[i].objectForKey("title") as! String
+                    news_item[1] = news_rssdata[i].objectForKey("description") as! String
+                    news_item[2] = news_rssdata[i].objectForKey("content:encoded") as! String
+                    news_item[3] = news_rssdata[i].objectForKey("pubDate") as! String
+                    news_item[4] = news_rssdata[i].objectForKey("link") as! String
+                 
+                    self.news_cache.append(news_item)
+                }
+                
+                userDefaults.setObject(self.news_cache, forKey: "newsCache")
+                userDefaults.synchronize()
+            }
+            
+            
+        } else {
+            println("No Network available")
+            
+            // if Cache on
+            if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
+                
+                loadCache()
+                
+            } else {
+                
+                // showNetworkError
+                
+                let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden", preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                    // MainView set as storyboard ID of MainViewController
+                    // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                    let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+                    self.navigationController?.pushViewController(homeViewController, animated: true)
+                    
+                    // später auslagern, für den test reicht es
+                    var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
+                    if (firstRunReference == nil) {
+                        firstRunReference = 1
+                    } else {
+                        // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
+                        firstRunReference = 0
+                        self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                    }
+                }
+                
+                let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                    self.viewDidLoad()
+                }
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }
+        }
+        
+        /*
         // url = NSURL(string: "http://blog.bib.uni-mannheim.de/Aktuelles_Ex/?feed=rss2&cat=4")!
         // Call custom function.
         loadRss(url);
-
+        */
     }
     
-    func loadRss(data: NSURL) {
+    func loadRss(data: NSURL) -> AnyObject {
         // XmlParserManager instance/object/variable
         var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as! XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
         
         tableView.reloadData()
+        
+        return myFeed
     }
-
+    
+    func loadCache() {
+        
+        /*
+        var cacheFeed = ["title": "", "description": "", "content:encoded": "", "link": "", "pubDate": ""]
+        
+        for news_item in self.news_cache {
+            cacheFeed["title"] = news_item[0]
+            cacheFeed["description"] = news_item[1]
+            cacheFeed["content:encoded"] = news_item[2]
+            cacheFeed["pubDate"] = news_item[3]
+            cacheFeed["link"] = news_item[4]
+        }
+        */
+        
+        var cacheFeed: [String] = []
+        
+        /*
+        for (var i = 0; i < self.news_cache.count; i++) {
+            cacheFeed[i] = "'content:encoded' = '"+(self.news_cache[i][2])+"';" +
+                            "\ntitle = '"+(self.news_cache[i][1])+"';" +
+                            "\npubDate = '"+(self.news_cache[i][3])+"';" +
+                            "\nlink = '"+(self.news_cache[i][4])+"';" +
+                            "\ntitle = '"+(self.news_cache[i][1])+"';"
+        }
+        */
+        
+        myFeed = cacheFeed
+        
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -140,6 +140,9 @@ var newsCount:Int = 0
         return already_set
     }*/
     
+    // später auslagern in initConfigClass ... (+FeedTableVIewController, firstRunReference)
+    // ausgelagert in MainMenuController
+    /*
     func init_preferences() {
         
         var cacheReference: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
@@ -168,7 +171,7 @@ var newsCount:Int = 0
         userDefaults.setObject(newsReference, forKey: "newsCount")
         
     }
-    
+    */
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -206,6 +209,10 @@ var newsCount:Int = 0
         if pickerView.tag == 2 {
             name = startup_picker[row]
             self.startup_selected = row
+            
+            userDefaults.setObject(1, forKey: "firstRun")
+            print("Config State of firstRun: ")
+            println(userDefaults.objectForKey("firstRun"))
         }
         
         /*

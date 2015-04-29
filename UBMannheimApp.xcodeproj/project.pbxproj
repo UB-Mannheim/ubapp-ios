@@ -15,6 +15,7 @@
 		B241F4E81AE7BC6200ADE3A1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B241F4E71AE7BC6200ADE3A1 /* CustomTableViewCell.swift */; };
 		B24261D21ABAD1AE00124AAB /* offline.html in Resources */ = {isa = PBXBuildFile; fileRef = B24261D11ABAD1AE00124AAB /* offline.html */; };
 		B24261D61ABAD54C00124AAB /* ublogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B24261D51ABAD54C00124AAB /* ublogo.png */; };
+		B24B5FB21AF0B5FD00692950 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24B5FB11AF0B5FD00692950 /* News.swift */; };
 		B2506BD91AD6ACD90057AE61 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */; };
 		B2506BDB1ADBB72E0057AE61 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */; };
 		B25923EE1A8CDC26000654B8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25923ED1A8CDC26000654B8 /* TestViewController.swift */; };
@@ -90,6 +91,7 @@
 		B241F4E71AE7BC6200ADE3A1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B24261D11ABAD1AE00124AAB /* offline.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = offline.html; sourceTree = "<group>"; };
 		B24261D51ABAD54C00124AAB /* ublogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ublogo.png; sourceTree = "<group>"; };
+		B24B5FB11AF0B5FD00692950 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B25923ED1A8CDC26000654B8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				B26BB8511AE0E254001D3EB5 /* SubMenuController.swift */,
 				B241F4E51AE7B9DF00ADE3A1 /* Help2ViewController.swift */,
 				B241F4E71AE7BC6200ADE3A1 /* CustomTableViewCell.swift */,
+				B24B5FB11AF0B5FD00692950 /* News.swift */,
 			);
 			path = UBMannheimApp;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */,
 				B268FC1B1ADFAC5D0025E318 /* HelpViewController.swift in Sources */,
 				B25C7A2F1AB9AE1A0069BB55 /* FMResultSet.m in Sources */,
+				B24B5FB21AF0B5FD00692950 /* News.swift in Sources */,
 				B22D050A1AC93A5C00904165 /* MenuItem.swift in Sources */,
 				B2CF14CC1AC2B2C000F56F36 /* DBHelper.swift in Sources */,
 				B2CD07B91AC2D482007E1E3E /* ConfigController.swift in Sources */,

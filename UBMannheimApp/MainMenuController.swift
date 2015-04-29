@@ -21,6 +21,24 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     var menuItems: [MenuItem] = []
     
+    // Defaults loeschen
+    var myArray : Array<Double>! {
+        get {
+            if let myArray: AnyObject! = NSUserDefaults.standardUserDefaults().objectForKey("myArray") {
+                println("\(myArray)")
+                return myArray as! Array<Double>!
+            }
+            
+            return nil
+        }
+        set {
+            println(myArray)
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "myArray")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+
+    
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
     /*
@@ -36,17 +54,34 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if ((kstartup != nil) && (kstartup != 0)) {
             
-            if(kstartup == 1) { showWebView("website") }
-            if(kstartup == 2) { showWebView("primo") }
-            if(kstartup == 3) { showNews() }
-            if(kstartup == 4) { showSeats() }
-        
+            // check "firstRun" of Apllication to avoid loops
+            if(userDefaults.objectForKey("firstRun")?.integerValue == 1) {
+            
+                // select action and following controller
+                if(kstartup == 1) { showWebView("website") }
+                if(kstartup == 2) { showWebView("primo") }
+                if(kstartup == 3) { showNews() }
+                if(kstartup == 4) { showSeats() }
+            }
+            
             // old way
             // let startController = self.storyboard!.instantiateViewControllerWithIdentifier("ConfigView") as! ConfigController
             // self.navigationController!.pushViewController(startController, animated: true)
         }
     
         initMenuItems()
+        
+        init_preferences()
+        
+        println("Configuration States: ")
+        print("firstRun :: ")
+        println(userDefaults.objectForKey("firstRun"))
+        print("cacheEnabled :: ")
+        println(userDefaults.objectForKey("cacheEnabled"))
+        print("startupWith :: ")
+        println(userDefaults.objectForKey("startupWith"))
+        print("newsCount :: ")
+        println(userDefaults.objectForKey("newsCount"))
         
         // init toolbar (hidden in storyboard)
         // self.tabBarController?.tabBar.hidden = true
@@ -482,6 +517,35 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         }
         
         menuItems = items
+    }
+    
+    func init_preferences() {
+        
+        var cacheReference: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        if (cacheReference == nil) {
+            cacheReference = false
+        } else {
+            cacheReference = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        }
+        
+        var startupReference: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        if (startupReference == nil) {
+            startupReference = 0
+        } else {
+            startupReference = userDefaults.objectForKey("startupWith") as! Int?
+        }
+        
+        var newsReference: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        if (newsReference == nil) {
+            newsReference = 5
+        } else {
+            newsReference = userDefaults.objectForKey("newsCount") as! Int?
+        }
+        
+        userDefaults.setObject(cacheReference, forKey: "cacheEnabled")
+        userDefaults.setObject(startupReference, forKey: "startupWith")
+        userDefaults.setObject(newsReference, forKey: "newsCount")
+        userDefaults.synchronize()
     }
 
     
