@@ -74,7 +74,7 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
         let row = indexPath.row
         
         if ( row==0 ) {
-        performSegueWithIdentifier("showConfig", sender: self)
+        performSegueWithIdentifier("showNewConfig", sender: self)
         }
         
         if ( row==1 ) {

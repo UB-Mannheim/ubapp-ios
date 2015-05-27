@@ -1,3 +1,4 @@
+
 //
 //  ConfigController.swift
 //  UBMannheimApp
@@ -8,22 +9,28 @@
 
 import UIKit
 
-class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ConfigController: UITableViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // http://makeapppie.com/tag/uipickerview-in-swift/
     
     @IBOutlet weak var cacheSwitch: UISwitch!
-    @IBOutlet weak var startup: UIPickerView!
-    @IBOutlet weak var news: UIPickerView!
+    @IBOutlet weak var newsPicker: UIPickerView!
+    @IBOutlet weak var startupPicker: UIPickerView!
     
-    let news_picker = ["5","10","15"]
-    let startup_picker = ["Startmenü","Website","Primo","News","Freie Plätze"]
+    let news_elements = ["5","10","15"]
+    let startup_elements = ["Startmenü","Website","Primo","News","Freie Plätze"]
     
+    // alles nur temoporaere - oder?
     var news_selected: Int = 0
+    var news_count: Int = 0
+    
     var startup_selected: Int = 0
+    var startup_count: Int = 0
+    
     var cache_enabled = false
     
     var knews_items: [AnyObject] = []
+    
     /*
     var myArray : Array<Double>! {
         get {
@@ -41,6 +48,7 @@ class ConfigController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         }
     }
     */
+    
 /*
 var cacheEnabled:Bool = false
 var startupWith:Int = 0
@@ -50,6 +58,7 @@ var newsCount:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        println("viewDidLoad ....................................................")
         
         // init_preferences()
         
@@ -63,32 +72,36 @@ var newsCount:Int = 0
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
         
+        println("kcache \(kcache)")
+        println("knews \(knews)")
+        println("kstartup \(kstartup)")
+        
         let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
         println("Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries")
         
         if((knews_items?.last != nil) && (knews_items!.count > 0)) {
-            println("News stack contains \(knews_items!.count) elements")
+            // println("News stack contains \(knews_items!.count) elements")
         }
         
         // http://www.ioscreator.com/tutorials/uiswitch-tutorial-in-ios8-with-swift
         cacheSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
-        // news = UIPickerView()
-        // startup = UIPickerView()
+        // newsPicker = UIPickerView()
+        // startupPicker = UIPickerView()
         
         // http://www.codingexplorer.com/nsuserdefaults-a-swift-introduction/
         
         // 2DO: PREFERENCE MANAGER
         
-        news.tag = 1
-        startup.tag = 2
+        newsPicker.tag = 1
+        startupPicker.tag = 2
         
-        news.dataSource = self
-        news.delegate = self
+        newsPicker.dataSource = self
+        newsPicker.delegate = self
         
-        startup.dataSource = self
-        startup.delegate = self
+        startupPicker.dataSource = self
+        startupPicker.delegate = self
         
         // layout form elements
         
@@ -103,13 +116,13 @@ var newsCount:Int = 0
         
         if(knews != nil) {
         
-            news.selectRow(knews!, inComponent: 0, animated: true)
+            newsPicker.selectRow(knews!, inComponent: 0, animated: true)
         
             // set picker view-news inactive if cache=off
             if (kcache == false) {
-                news.userInteractionEnabled = false
+                newsPicker.userInteractionEnabled = false
             } else {
-                news.userInteractionEnabled = true
+                newsPicker.userInteractionEnabled = true
             }
         }
         
@@ -118,7 +131,7 @@ var newsCount:Int = 0
         
         if(kstartup != nil) {
             
-            startup.selectRow(kstartup!, inComponent: 0, animated: true)
+            startupPicker.selectRow(kstartup!, inComponent: 0, animated: true)
         
         }
         
@@ -130,10 +143,10 @@ var newsCount:Int = 0
         var already_set = false
         
         let cache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let news: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        let startup: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let newsPicker: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let startupPicker: Int? = userDefaults.objectForKey("newsCount") as! Int?
 
-        if(cache != nil || news == nil || startup == nil) {
+        if(cache != nil || newsPicker == nil || startupPicker == nil) {
             already_set = true
         }
         
@@ -172,28 +185,28 @@ var newsCount:Int = 0
         
     }
     */
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
+    // func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
+            
         var count:Int = 0
         
         if pickerView.tag == 1 {
-            count = news_picker.count
+            count = news_elements.count
             // zuweisung userDefaults Picker1
             news_selected = count
         }
         if pickerView.tag == 2 {
-            count = startup_picker.count
+            count = startup_elements.count
             // Zuweisung userDefaults Picker2
             startup_selected = count
-            
         }
         
         // self.newsCount = count
-        
         return count
     }
     
@@ -203,16 +216,16 @@ var newsCount:Int = 0
         var id:Int = 0
         
         if pickerView.tag == 1 {
-            name = news_picker[row]
+            name = news_elements[row]
             self.news_selected = row
         }
         if pickerView.tag == 2 {
-            name = startup_picker[row]
+            name = startup_elements[row]
             self.startup_selected = row
             
-            userDefaults.setObject(1, forKey: "firstRun")
-            print("Config State of firstRun: ")
-            println(userDefaults.objectForKey("firstRun"))
+            // userDefaults.setObject(1, forKey: "firstRun")
+            // print("Config State of firstRun: ")
+            // println(userDefaults.objectForKey("firstRun"))
         }
         
         /*
@@ -266,6 +279,8 @@ var newsCount:Int = 0
         userDefaults.setObject(cache_enabled, forKey: "cacheEnabled")
         userDefaults.setObject(startup_selected, forKey: "startupWith")
         userDefaults.setObject(news_selected, forKey: "newsCount")
+
+/* NO NEWS TODAY :) TEMP FOR PREFERENCE CHECK
         
         // ggf News Items auch hier speichern?
         var nitems = [AnyObject]()
@@ -286,9 +301,10 @@ var newsCount:Int = 0
         }
         
         userDefaults.setObject(nitems, forKey: "newsItems")
+*/
         userDefaults.synchronize()
         
-        println("News ITEMS: \(nitems)")
+// println("News ITEMS: \(nitems)")
         
         // reload
         viewDidLoad()
@@ -344,7 +360,7 @@ var newsCount:Int = 0
     
     /*
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        myLabel.text = news_picker[row]
+        myLabel.text = news_elements[row]
     }
     */
 }
