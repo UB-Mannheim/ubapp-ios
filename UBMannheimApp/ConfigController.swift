@@ -70,8 +70,8 @@ var newsCount:Int = 0
         // get rid of empty lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        
-        // init_preferences()
+        // GENAU DAS FEHLT NOCH, LADEN DER EINSTELLUNGEN UND ANZEIGE IM FORMULAR BZW. STANDARD ANZEIGE
+        init_preferences()
         
         // Delete ALL USER PREFERENCES
         // let appDomain = NSBundle.mainBundle().bundleIdentifier!
@@ -166,14 +166,16 @@ var newsCount:Int = 0
     
     // später auslagern in initConfigClass ... (+FeedTableVIewController, firstRunReference)
     // ausgelagert in MainMenuController
-    /*
+    
     func init_preferences() {
         
         var cacheReference: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         if (cacheReference == nil) {
             cacheReference = false
+            newsPicker.userInteractionEnabled = false
         } else {
             cacheReference = userDefaults.objectForKey("cacheEnabled") as! Bool?
+            newsPicker.userInteractionEnabled = true
         }
         
         var startupReference: Int? = userDefaults.objectForKey("startupWith") as! Int?
@@ -185,7 +187,7 @@ var newsCount:Int = 0
 
         var newsReference: Int? = userDefaults.objectForKey("newsCount") as! Int?
         if (newsReference == nil) {
-            newsReference = 5
+            newsReference = 0
         } else {
             newsReference = userDefaults.objectForKey("newsCount") as! Int?
         }
@@ -195,7 +197,7 @@ var newsCount:Int = 0
         userDefaults.setObject(newsReference, forKey: "newsCount")
     
     }
-    */
+    
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -325,6 +327,31 @@ var newsCount:Int = 0
     }
     
     @IBAction func deleteAllPreferences() {
+        
+        // Delete ALL USER PREFERENCES
+        let appDomain = NSBundle.mainBundle().bundleIdentifier!
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        
+        /*
+        userDefaults.removeObjectForKey("cacheEnabled")
+        userDefaults.removeObjectForKey("newsCount")
+        userDefaults.removeObjectForKey("startupWith")
+        userDefaults.removeObjectForKey("newsItems")
+        */
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
+        
+        println("kcache \(kcache)")
+        println("knews \(knews)")
+        println("kstartup \(kstartup)")
+        
+        // let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
+        
+        println("*DEL* Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries")
+        
+        userDefaults.synchronize()
         
     }
     

@@ -1299,7 +1299,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="deleteAllPreferences" destination="Bmv-dk-pWF" eventType="touchUpInside" id="zDd-p5-02f"/>
-                                                        <action selector="saveConfig" destination="Bmv-dk-pWF" eventType="touchUpInside" id="FhA-cd-2e0"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
