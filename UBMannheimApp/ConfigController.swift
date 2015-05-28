@@ -60,6 +60,16 @@ var newsCount:Int = 0
         super.viewDidLoad()
         println("viewDidLoad ....................................................")
         
+        //table layout
+        // Cell height.
+        self.tableView.rowHeight = 70
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
+        // get rid of empty lines
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        
         // init_preferences()
         
         // Delete ALL USER PREFERENCES
@@ -182,7 +192,7 @@ var newsCount:Int = 0
         userDefaults.setObject(cacheReference, forKey: "cacheEnabled")
         userDefaults.setObject(startupReference, forKey: "startupWith")
         userDefaults.setObject(newsReference, forKey: "newsCount")
-        
+    
     }
     */
     
@@ -243,6 +253,11 @@ var newsCount:Int = 0
         
         return name
         
+    }
+    
+    //size the components of the UIPickerView
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 30.0
     }
     
     /*

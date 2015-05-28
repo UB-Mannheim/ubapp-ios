@@ -1172,7 +1172,7 @@
         <!--Config Controller-->
         <scene sceneID="zdU-wf-lmH">
             <objects>
-                <tableViewController storyboardIdentifier="ConfigViewNew" title="Einstellungen" id="Bmv-dk-pWF" userLabel="Config Controller" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ConfigViewNew" title="Einstellungen" id="Bmv-dk-pWF" userLabel="Config Controller" customClass="ConfigController" customModule="UBMannheimApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6ac-sh-xiY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1185,15 +1185,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RNd-Fp-r1o" id="n6c-gE-7PB">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftf-HM-RkL">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Datencache" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l64-LM-g14">
-                                                    <rect key="frame" x="8" y="11" width="527" height="21"/>
+                                                    <rect key="frame" x="13" y="11" width="499" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftf-HM-RkL">
-                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
-                                                </switch>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1203,7 +1203,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Anzahl der News-Einträge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NxR-sI-5Ad">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <rect key="frame" x="16" y="11" width="584" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1211,13 +1211,13 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="GPX-nU-WQG" userLabel="News Picker">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="GPX-nU-WQG" userLabel="News Picker Cell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GPX-nU-WQG" id="jSE-5q-Jrx">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dK-S9-Xqi">
-                                                    <rect key="frame" x="0.0" y="-59" width="600" height="162"/>
+                                                    <rect key="frame" x="0.0" y="-36" width="600" height="162"/>
                                                 </pickerView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1228,7 +1228,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starte UB-App mit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8B3-VL-ty8">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <rect key="frame" x="13" y="11" width="556" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1236,13 +1236,13 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gqA-ux-xD2" userLabel="Startup Picker">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="gqA-ux-xD2" userLabel="Startup Picker Cell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gqA-ux-xD2" id="3P9-Xs-FH7">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NfH-sR-yJD">
-                                                    <rect key="frame" x="0.0" y="-59" width="600" height="162"/>
+                                                    <rect key="frame" x="0.0" y="-6" width="600" height="162"/>
                                                 </pickerView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1257,6 +1257,9 @@
                                                     <state key="normal" title="Speichern">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="saveConfig" destination="Bmv-dk-pWF" eventType="touchUpInside" id="a1p-Pn-dzE"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1269,6 +1272,11 @@
                             <outlet property="delegate" destination="Bmv-dk-pWF" id="2Dp-Xj-SDV"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="cacheSwitch" destination="ftf-HM-RkL" id="fEs-3d-mGY"/>
+                        <outlet property="newsPicker" destination="9dK-S9-Xqi" id="8wQ-XX-C3I"/>
+                        <outlet property="startupPicker" destination="NfH-sR-yJD" id="ZZo-vG-Mcj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fT-A0-dTE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1631,8 +1639,8 @@
         <image name="website" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MZ2-Q0-gUJ"/>
+        <segue reference="bgF-9n-HYC"/>
         <segue reference="Phc-Df-0op"/>
-        <segue reference="vgt-S6-7ze"/>
+        <segue reference="MZ2-Q0-gUJ"/>
     </inferredMetricsTieBreakers>
 </document>
