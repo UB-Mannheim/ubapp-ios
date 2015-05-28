@@ -49,6 +49,7 @@ class ConfigController: UITableViewController, UITableViewDataSource, UITableVie
     }
     */
     
+    
 /*
 var cacheEnabled:Bool = false
 var startupWith:Int = 0
@@ -254,6 +255,46 @@ var newsCount:Int = 0
         return name
         
     }
+    /*
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+        var pickerLabel = view as! UILabel!
+        
+        if(pickerView.tag == 1) {
+            
+            if view == nil {  //if no label there yet
+                pickerLabel = UILabel()
+                
+                //color  and center the label's background
+                let hue = CGFloat(row)/CGFloat(news_elements.count)
+                pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness:1.0, alpha: 1.0)
+                pickerLabel.textAlignment = .Center
+                
+            }
+            let titleData = news_elements[row]
+            let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+            pickerLabel!.attributedText = myTitle
+            
+        }
+        if(pickerView.tag == 2) {
+        
+        if view == nil {  //if no label there yet
+            pickerLabel = UILabel()
+            
+            //color  and center the label's background
+            let hue = CGFloat(row)/CGFloat(startup_elements.count)
+            pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness:1.0, alpha: 1.0)
+            pickerLabel.textAlignment = .Center
+            
+        }
+        let titleData = startup_elements[row]
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+        pickerLabel!.attributedText = myTitle
+        }
+        
+        return pickerLabel
+        
+    }
+*/
     
     //size the components of the UIPickerView
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -281,6 +322,10 @@ var newsCount:Int = 0
         var element = [news_id, date, title, description, link] as Array<AnyObject>
         
         return element
+    }
+    
+    @IBAction func deleteAllPreferences() {
+        
     }
     
     

@@ -15,6 +15,8 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
+    var news_feed : Int = 5
+    
     var news_cache: [[String]] = []
     
     // UIRefreshControl
@@ -30,6 +32,19 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let news_entries = userDefaults.objectForKey("newsCount") as! Int?
+        if (news_entries != nil) {
+            switch(news_entries as Int!) {
+            case 0: news_feed = 5
+            case 1: news_feed = 10
+            case 2: news_feed = 15
+            default: news_feed = 15
+            }
+        }
+        
+        println("Show: \(news_feed) News entries")
+        
+        
         // if pulled down, refresh
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
 
