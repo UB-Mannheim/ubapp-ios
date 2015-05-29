@@ -100,10 +100,12 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 // print("NEWS COUNT")
                 // println(news_rssdata.count)
                 
+                
                 if(news_rssdata.count < maxnews_count) {
                     maxnews_count = news_rssdata.count
                 }
                 
+                // println("maxnews_count = \(maxnews_count)")
                 var news_item = ["", "", "", "", ""]
                 
                 for (var i = 0; i < maxnews_count; i++) {
@@ -122,6 +124,9 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 
                 userDefaults.setObject(self.news_cache, forKey: "newsCache")
                 userDefaults.synchronize()
+                
+                let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
+                //println(newsentries)
             }
             
             
@@ -181,12 +186,28 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // Put feed in array
         myFeed = myParser.feeds
         
+        // println(myFeed)
+        
+        /*
+        (
+        {
+        "content:encoded" = "";
+        description = "";
+        link = "";
+        pubDate = "";
+        title = "";
+        },
+        )
+        */
+        
         tableView.reloadData()
         
         return myFeed
     }
     
     func loadCache() {
+        // add parameter max_anz
+        // already only execeuted when network is disconnected
         
         /*
         var cacheFeed = ["title": "", "description": "", "content:encoded": "", "link": "", "pubDate": ""]
@@ -200,7 +221,12 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         }
         */
         
-        var cacheFeed: [String] = []
+        let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
+        println("Get Entry Nr.: 0 \(newsentries[0])")
+        println("Get Entry Nr.: 0 and Title \(newsentries[0][0])")
+        
+        // var dict : NSDictionary! = []
+        // var cacheFeed : NSArray = []
         
         /*
         for (var i = 0; i < self.news_cache.count; i++) {
@@ -212,7 +238,29 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         }
         */
         
-        myFeed = cacheFeed
+        /*
+        for (var i = 0; i < self.news_cache.count; i++) {
+            cacheFeed += "'content:encoded' = \(newsentries[i][2]);"
+            cacheFeed += "\ntitle = \(newsentries[i][1]);"
+            cacheFeed += "\npubDate = \(newsentries[i][3]);"
+            cacheFeed += "\nlink = \(newsentries[i][4]);"
+        }
+        */
+        
+        var myNewDictArray: [[String:AnyObject]] = []
+        
+        for (var i = 0; i < 5; i++) {
+            
+        var tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
+        
+        // println(tmp)
+        
+        myNewDictArray.append(tmp)
+        }
+        
+        myFeed = myNewDictArray
+        
+        // println(myNewDictArray)
         
         tableView.reloadData()
     }
