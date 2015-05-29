@@ -49,19 +49,48 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // simple redirection if startup option ist chosen
+        println("DEBUG MSG MainMenuController : System starting ...")
+        
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
+        let wback: Int? = userDefaults.objectForKey("backFromWebView") as! Int?
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        
+        
+        // simple redirection if startup option ist chosen
+        // let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int? >> s.o.
         
         if ((kstartup != nil) && (kstartup != 0)) {
             
-            // check "firstRun" of Apllication to avoid loops
-            if(userDefaults.objectForKey("firstRun")?.integerValue == 1) {
+            if(wback != 1) {
+                // check "firstRun" of Apllication to avoid loops
+                if(userDefaults.objectForKey("firstRun")?.integerValue == 1) {
             
-                // select action and following controller
-                if(kstartup == 1) { showWebView("website") }
-                if(kstartup == 2) { showWebView("primo") }
-                if(kstartup == 3) { showNews() }
-                if(kstartup == 4) { showSeats() }
+                    // select action and following controller
+                    if(kstartup == 1) { showWebView("website") }
+                    if(kstartup == 2) { showWebView("primo") }
+                    if(kstartup == 3) { showNews() }
+                    if(kstartup == 4) { showSeats() }
+                }
+            } else {
+                // when application returns from webview (no network), forwarding to custom module is off
+                // -> if webview before selected as startmodule, this would produce a loop
+                // if connectivity check now returns true, variable is overwritten and forwarding ok
+                if IJReachability.isConnectedToNetwork() {
+                    userDefaults.setObject(0, forKey: "backFromWebView")
+                    
+                    if(userDefaults.objectForKey("firstRun")?.integerValue == 1) {
+                        
+                        // select action and following controller
+                        if(kstartup == 1) { showWebView("website") }
+                        if(kstartup == 2) { showWebView("primo") }
+                        if(kstartup == 3) { showNews() }
+                        if(kstartup == 4) { showSeats() }
+                    }
+                }
+                
             }
             
             // old way
@@ -73,6 +102,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         init_preferences()
         
+        /*
         println("Configuration States: ")
         print("firstRun :: ")
         println(userDefaults.objectForKey("firstRun"))
@@ -82,6 +112,10 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         println(userDefaults.objectForKey("startupWith"))
         print("newsCount :: ")
         println(userDefaults.objectForKey("newsCount"))
+        */
+        
+        println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        
         
         // init toolbar (hidden in storyboard)
         // self.tabBarController?.tabBar.hidden = true

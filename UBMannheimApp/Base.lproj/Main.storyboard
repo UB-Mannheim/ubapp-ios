@@ -1384,25 +1384,33 @@
                                     <barButtonItem image="Btn_Home_iconbeast" id="Blo-iP-0tN" userLabel="BarButton Home"/>
                                 </items>
                             </toolbar>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8G-Up-zWU">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8G-Up-zWU">
+                                <rect key="frame" x="0.0" y="64" width="600" height="486"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="A7r-y2-ZhD" secondAttribute="centerX" id="3h0-v0-Xsz"/>
+                            <constraint firstItem="C8G-Up-zWU" firstAttribute="bottom" secondItem="2WZ-tX-bGo" secondAttribute="top" constant="-50" id="GWG-YQ-cx0"/>
                             <constraint firstItem="C8G-Up-zWU" firstAttribute="leading" secondItem="3Lp-RF-w9B" secondAttribute="leading" id="Y5g-bs-i2z"/>
                             <constraint firstItem="C8G-Up-zWU" firstAttribute="top" secondItem="Cob-kc-tc6" secondAttribute="bottom" id="Z2e-61-1Uv"/>
                             <constraint firstItem="2WZ-tX-bGo" firstAttribute="top" secondItem="C8G-Up-zWU" secondAttribute="bottom" id="aC0-fz-izd"/>
                             <constraint firstAttribute="centerY" secondItem="A7r-y2-ZhD" secondAttribute="centerY" id="crx-Yc-e6l"/>
                             <constraint firstAttribute="trailing" secondItem="C8G-Up-zWU" secondAttribute="trailing" id="efF-Kk-afY"/>
                             <constraint firstAttribute="trailing" secondItem="EMV-CF-Mhd" secondAttribute="trailing" id="gX5-MS-KCd"/>
+                            <constraint firstItem="2WZ-tX-bGo" firstAttribute="top" secondItem="C8G-Up-zWU" secondAttribute="bottom" constant="50" id="h2t-Tc-zaL"/>
                             <constraint firstAttribute="centerX" secondItem="EMV-CF-Mhd" secondAttribute="centerX" id="hz3-DN-4dL"/>
                             <constraint firstItem="2WZ-tX-bGo" firstAttribute="top" secondItem="C8G-Up-zWU" secondAttribute="bottom" constant="-44" id="lJw-03-jUN"/>
                             <constraint firstItem="2WZ-tX-bGo" firstAttribute="top" secondItem="EMV-CF-Mhd" secondAttribute="bottom" id="q1f-bS-2jc"/>
                             <constraint firstItem="EMV-CF-Mhd" firstAttribute="leading" secondItem="3Lp-RF-w9B" secondAttribute="leading" id="wDe-nN-Wwc"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="aC0-fz-izd"/>
+                                <exclude reference="lJw-03-jUN"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="activity" destination="A7r-y2-ZhD" id="Q7c-DM-xcV"/>

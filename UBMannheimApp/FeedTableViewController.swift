@@ -42,8 +42,12 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             }
         }
         
-        println("Show: \(news_feed) News entries")
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
+        println("DEBUG MSG FeedTabVController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Info: showing \(news_feed) Entries]")
         
         // if pulled down, refresh
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -73,7 +77,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             //  if Cache on
             if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
               
-            println("Cache on ....................................................")
+            // println("Cache on ....................................................")
                 //  update Cache Entries
                 var maxnews_count = userDefaults.objectForKey("newsCount") as! Int
                 
@@ -105,7 +109,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 for (var i = 0; i < maxnews_count; i++) {
                     
                     // println("row per row ....................................................")
-                    println("News mit ID=\(i) \(news_rssdata[i])")
+                // println("News mit ID=\(i) \(news_rssdata[i])") TMP s.o. voher ausgabe der news, aus debugzwecken ausgeklammert
                     
                     news_item[0] = news_rssdata[i].objectForKey("title") as! String
                     news_item[1] = news_rssdata[i].objectForKey("description") as! String

@@ -34,12 +34,18 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
         // self.tableView.reloadData()
         
         
-        
+        /*
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("startupWith") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("newsCount") as! Int?
         
         println("\(kcache) :: \(kstartup) :: \(knews)")
+        */
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        println("DEBUG MSG SubMenuController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
         
     }
     
@@ -81,7 +87,7 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
             performSegueWithIdentifier("showHelp2", sender: self)
         }
         
-        println(row)
+        // println(row)
     }
     
     /*override func viewDidLoad() {

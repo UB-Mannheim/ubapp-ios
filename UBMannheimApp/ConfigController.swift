@@ -59,7 +59,7 @@ var newsCount:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("viewDidLoad ....................................................")
+        // println("viewDidLoad ....................................................")
         
         //table layout
         // Cell height.
@@ -77,19 +77,16 @@ var newsCount:Int = 0
         // let appDomain = NSBundle.mainBundle().bundleIdentifier!
         // NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         
-        
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        
         // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
-        
-        println("kcache \(kcache)")
-        println("knews \(knews)")
-        println("kstartup \(kstartup)")
-        
         let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
-        println("Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries")
+        // println("Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries") >> s.o.
         
         if((knews_items?.last != nil) && (knews_items!.count > 0)) {
             // println("News stack contains \(knews_items!.count) elements")
@@ -143,7 +140,7 @@ var newsCount:Int = 0
         if(kstartup != nil) {
             
             startupPicker.selectRow(kstartup!, inComponent: 0, animated: true)
-        
+            
         }
         
     }
@@ -166,6 +163,7 @@ var newsCount:Int = 0
     
     // später auslagern in initConfigClass ... (+FeedTableVIewController, firstRunReference)
     // ausgelagert in MainMenuController
+    
     
     func init_preferences() {
         
@@ -338,18 +336,24 @@ var newsCount:Int = 0
         userDefaults.removeObjectForKey("startupWith")
         userDefaults.removeObjectForKey("newsItems")
         */
+        
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
         
+        /*
         println("kcache \(kcache)")
         println("knews \(knews)")
         println("kstartup \(kstartup)")
+        */
+        println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: deleteAllPreferences]")
+        
         
         // let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
-        println("*DEL* Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries")
+        // println("*DEL* Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries")
         
         userDefaults.synchronize()
         
@@ -363,6 +367,7 @@ var newsCount:Int = 0
         // Dann neustarten und Testen
         // :)
         
+        userDefaults.setObject(1, forKey: "firstRun")
         userDefaults.setObject(cache_enabled, forKey: "cacheEnabled")
         userDefaults.setObject(startup_selected, forKey: "startupWith")
         userDefaults.setObject(news_selected, forKey: "newsCount")
@@ -389,6 +394,14 @@ var newsCount:Int = 0
         
         userDefaults.setObject(nitems, forKey: "newsItems")
 */
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        
+        println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]")
+        
+        
         userDefaults.synchronize()
         
 // println("News ITEMS: \(nitems)")

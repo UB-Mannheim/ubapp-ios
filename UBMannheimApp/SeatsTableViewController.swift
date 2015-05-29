@@ -16,6 +16,8 @@ class SeatsTableViewController: UITableViewController {
     var items: NSArray = NSArray()
     var data: NSMutableData = NSMutableData()
     
+    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    
     // UIRefreshControl
     func refresh(sender:AnyObject)
     {
@@ -48,6 +50,14 @@ class SeatsTableViewController: UITableViewController {
 
         
         // self.tableView.reloadData()
+        
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        
+        println("DEBUG MSG SeatsTabController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]")
+        
         
     }
     
@@ -121,7 +131,7 @@ class SeatsTableViewController: UITableViewController {
         var request: NSURLRequest = NSURLRequest(URL: url)
         var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
         
-        println("Search UB JSON Bereichsauslastung at URL \(url)")
+    // println("Search UB JSON Bereichsauslastung at URL \(url)")
         
         connection.start()
     }

@@ -25,6 +25,8 @@ class Help2ViewController: UITableViewController {
     
     var items = []
     
+    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -40,6 +42,13 @@ class Help2ViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 68.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        println("DEBUG MSG HelpViewController_: FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
         
     }
     

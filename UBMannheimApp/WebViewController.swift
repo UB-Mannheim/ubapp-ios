@@ -33,6 +33,13 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             webView.loadRequest(request)
         */
         
+        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
+        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        println("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        
+        
         if IJReachability.isConnectedToNetwork() {
         
             // check if necessary and why
@@ -72,8 +79,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
                 let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
                 
-                let firstRunReference = 0
-                self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                // let firstRunReference = 0
+                // self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                let backFromWebView = 1
+                self.userDefaults.setObject(backFromWebView, forKey: "backFromWebView")
+                
             }
             
             let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
@@ -86,7 +96,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
             
             // UINavigationController(rootViewController: WebViewController())
-        }  
+        }
+        
+        println("didLoad")
 
    
     }
@@ -94,6 +106,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        println("didReceiveMemoryWarning")
     }
     
     
@@ -165,6 +178,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         // self.webView.stringByEvaluatingJavaScriptFromString("myFunction();")
         
         self.webView.stringByEvaluatingJavaScriptFromString(www_js)
+        
+        println("didFinishLoad")
         
     }
 
