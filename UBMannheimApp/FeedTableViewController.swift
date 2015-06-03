@@ -188,7 +188,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 
                 // showNetworkError
                 
-                let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der News nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
                 
                 let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
                     // MainView set as storyboard ID of MainViewController
@@ -196,6 +196,8 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                     let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                     self.navigationController?.pushViewController(homeViewController, animated: true)
                     
+                    
+                    // prufen ob das hier gebraucht wird, koop verhindern
                     // später auslagern, für den test reicht es
                     var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
                     if (firstRunReference == nil) {
@@ -205,6 +207,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                         firstRunReference = 0
                         self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
                     }
+                    
                 }
                 
                 let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in

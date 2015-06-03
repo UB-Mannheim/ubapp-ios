@@ -25,7 +25,7 @@ class SeatsTableViewController: UITableViewController {
             
         // Updating your data here...
         loadJSONFromURL()
-        
+            
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     
@@ -48,25 +48,6 @@ class SeatsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // if pulled down, refresh
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
-        // searchItunesFor("JQ Software")
-        loadJSONFromURL()
-        
-        // Cell height.
-        self.tableView.rowHeight = 70
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
-        // "cell" might be added as identifier in designer and deleted here - right?
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        // get rid of empty lines
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
-
-        
-        // self.tableView.reloadData()
         
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
@@ -74,6 +55,90 @@ class SeatsTableViewController: UITableViewController {
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
         println("DEBUG MSG SeatsTabController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]")
+        
+        
+        // if pulled down, refresh
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        
+        // if Network Connection online
+        if IJReachability.isConnectedToNetwork() {
+            
+            println("connected")
+            
+            // searchItunesFor("JQ Software")
+            loadJSONFromURL()
+            
+            // Cell height.
+            self.tableView.rowHeight = 70
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            
+            
+            // "cell" might be added as identifier in designer and deleted here - right?
+            self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            
+            
+            // self.tableView.reloadData()
+        
+        } else {
+            
+            // if() cache active
+            
+            if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
+            
+                if(userDefaults.objectForKey("wlanCache")!.count != 0) {
+                    let wlan_entries: AnyObject = userDefaults.objectForKey("wlanCache")!
+                    println("freshly filled preference: \(wlan_entries)")
+                    
+                    // loadJSONFromCache
+                    
+                } else {
+                    
+                    // kein Primaerabzug erfolgt
+                }
+                
+            } else {
+            
+            // showNetworkError
+            
+            let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                // MainView set as storyboard ID of MainViewController
+                // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+                
+                // prufen ob das hier gebraucht wird, koop verhindern
+                // später auslagern, für den test reicht es
+                var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
+                if (firstRunReference == nil) {
+                    firstRunReference = 1
+                } else {
+                    // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
+                    firstRunReference = 0
+                    self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                }
+            }
+            
+            let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                self.viewDidLoad()
+            }
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        
+            }
+        
+        }
+        
+        
+        // get rid of empty lines
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
         
         
     }
@@ -131,7 +196,12 @@ class SeatsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! UITableViewCell
         
-        headerCell.textLabel?.text = "Zuletzt aktualisiert: 01.04.2014"
+        var lastUpdate : String = ""
+        if(userDefaults.objectForKey("dateWLAN") != nil) {
+            lastUpdate = userDefaults.objectForKey("dateWLAN") as! String
+        }
+        
+        headerCell.textLabel?.text = "Zuletzt aktualisiert: " + lastUpdate
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
         
         return headerCell
@@ -151,6 +221,27 @@ class SeatsTableViewController: UITableViewController {
     // println("Search UB JSON Bereichsauslastung at URL \(url)")
         
         connection.start()
+        
+        /*
+        let date = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        formatter.stringFromDate(date)
+        */
+        
+        let date = getTimeStamp()
+        println("Date: \(date)")
+        
+        userDefaults.setObject(date, forKey: "dateWLAN")
+        userDefaults.synchronize()
+    }
+    
+    func getTimeStamp() -> String {
+        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+        
+        let timestring : String = timestamp as String!
+        
+        return timestring
     }
     
     /*
@@ -185,15 +276,69 @@ class SeatsTableViewController: UITableViewController {
         // Request complete, self.data should now hold the resulting info
         // Convert the retrieved data in to an object through JSON deserialization
         var err: NSError
-        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
         
-        if jsonResult.count>0 /*&& jsonResult["results"].count>0*/ {
-            var results: NSArray = jsonResult["sections"] as! NSArray
-            self.items = results
-            self.tableView.reloadData()
+        if (userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
             
+        // wenn cache enabled -> anzeigen und speichern
+            
+        // if (IJReachability.isConnectedToNetwork() && (userDefaults.objectForKey("cacheEnabled")?.boolValue == true)) {
+                
+            // save online wlan data in cache
+            
+            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+        
+            var wlan_load = jsonResult
+            
+            userDefaults.setObject(wlan_load, forKey: "wlanCache")
+            userDefaults.synchronize()
+            
+            if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
+                var results: NSArray = jsonResult["sections"] as! NSArray
+                self.items = results
+                self.tableView.reloadData()
+                
+                // println(self.items)
+            }
+        
+        } else {
+            
+            // wenn nicht nur aufrufen
+            
+            if (IJReachability.isConnectedToNetwork()) { // aus dem web
+            
+            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+            
+                if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
+                    var results: NSArray = jsonResult["sections"] as! NSArray
+                    self.items = results
+                    self.tableView.reloadData()     // println(self.items)
+                }
+
+            } else {    // aus dem cache
+        
+            if (userDefaults.objectForKey("wlanCache")?.count > 0) {
+                
+                print("WLANNNNNNNNNNNNNNNNNNN")
+            
+                var cachedData : NSData = userDefaults.objectForKey("wlanCache") as! NSData
+            
+                var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(cachedData, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+            
+                if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
+                    var results: NSArray = jsonResult["sections"] as! NSArray
+                    self.items = results
+                    self.tableView.reloadData()     // println(self.items)
+                    }
+                
+                } else {
+                    println("Kein Primaerabzug, keine Datene, kein Cache")
+                }
+
+        
+                /* var wlan_load = self.items // userDefaults.setObject(wlan_load, forKey: "wlanCache") // userDefaults.synchronize() */
+            }
+    
         }
     }
-    
 
 }
