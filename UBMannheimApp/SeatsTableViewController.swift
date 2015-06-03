@@ -318,7 +318,7 @@ class SeatsTableViewController: UITableViewController {
         
             if (userDefaults.objectForKey("wlanCache")?.count > 0) {
                 
-                print("WLANNNNNNNNNNNNNNNNNNN")
+                print("WLANNNNNNNNNNNNNNNNNNNNN")
             
                 var cachedData : NSData = userDefaults.objectForKey("wlanCache") as! NSData
             
