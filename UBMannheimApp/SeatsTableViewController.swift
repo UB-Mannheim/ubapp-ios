@@ -21,11 +21,28 @@ class SeatsTableViewController: UITableViewController {
     // UIRefreshControl
     func refresh(sender:AnyObject)
     {
+        if IJReachability.isConnectedToNetwork() {
+            
         // Updating your data here...
         loadJSONFromURL()
         
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
+    
+        } else {
+            
+            let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                self.viewDidLoad()
+            }
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            self.refreshControl?.endRefreshing()
+        }
+    
     }
     
     override func viewDidLoad() {

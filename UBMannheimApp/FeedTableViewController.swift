@@ -19,14 +19,33 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     var news_cache: [[String]] = []
     
+    var news_rss_items = 0
+    
     // UIRefreshControl
     func refresh(sender:AnyObject)
     {
+        if IJReachability.isConnectedToNetwork() {
+            
         // Updating your data here...
         loadRss(url)
         
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
+        
+        } else {
+            
+            let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                self.viewDidLoad()
+            }
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            self.refreshControl?.endRefreshing()
+        }
+        
     }
 
     override func viewDidLoad() {
@@ -60,7 +79,6 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // get rid of empty lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-
         
         // Set feed url. http://www.formula1.com/rss/news/latest.rss
         // url = NSURL(string: "http://www.skysports.com/rss/0,20514,11661,00.xml")!
@@ -69,7 +87,12 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // if Network Connection online
         if IJReachability.isConnectedToNetwork() {
             
+            println("connected")
+            
             var news_rssdata: AnyObject = loadRss(url)
+            news_rss_items = news_rssdata.count
+            println("news rss data count: \(news_rss_items)")
+            
             
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
@@ -126,7 +149,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 userDefaults.synchronize()
                 
                 let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
-                //println(newsentries)
+                println("freshly filled preference: \(newsentries)")
             }
             
             
@@ -136,7 +159,30 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             // if Cache on
             if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
                 
-                loadCache()
+                var maxnews_id = userDefaults.objectForKey("newsCount") as! Int
+                var maxnews_count = 0
+                
+                switch(maxnews_id as Int!) {
+                    case 0: maxnews_count = 5
+                    case 1: maxnews_count = 10
+                    case 2: maxnews_count = 15
+                    default: maxnews_count = 0
+                }
+                
+                println("MAXNEWS ID \(maxnews_id)")
+                println("MAXNEWS COUNT \(maxnews_count)")
+                
+                news_rss_items = userDefaults.objectForKey("newsCache")!.count
+                
+                if(news_rss_items < maxnews_count) {
+                    maxnews_count = news_rss_items
+                }
+                
+                if(news_rss_items != 0) {
+                    loadCache(maxnews_count)
+                } else {
+                    println("no cache , no data , no network")
+                }
                 
             } else {
                 
@@ -202,10 +248,18 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         tableView.reloadData()
         
+        println("myFeed.count \(myFeed.count)")
+        
         return myFeed
     }
     
-    func loadCache() {
+    func loadCache(newsCount: Int) {
+        
+        
+    // if (cache not empty)
+    // else kann cache aufgrund fehlender Netzkonnektivität Cache nicht aufbauen
+    // besser: in ConfigController
+        
         // add parameter max_anz
         // already only execeuted when network is disconnected
         
@@ -221,6 +275,22 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         }
         */
         
+        var news_count = newsCount
+
+        println("news_count uebergabe wert: \(news_count)")
+        /*
+        var news_count = 5
+        
+        switch(newsCount as Int!) {
+            case 0: news_count = 5
+            case 1: news_count = 10
+            case 2: news_count = 15
+            default: news_count = 5
+            }
+        */
+        // println(news_count)
+        
+        // if empty: no cache no network, reload?
         let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
         println("Get Entry Nr.: 0 \(newsentries[0])")
         println("Get Entry Nr.: 0 and Title \(newsentries[0][0])")
@@ -249,7 +319,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         var myNewDictArray: [[String:AnyObject]] = []
         
-        for (var i = 0; i < 5; i++) {
+        println("newsentries.count \(newsentries.count)")
+        
+        // wenn konfiguration offline geändert und noch keine reload des cache erfolgt ist
+        if(newsentries.count < news_count) {
+            news_count = newsentries.count
+        }
+        
+        for (var i = 0; i < news_count; i++) {
             
         var tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
         

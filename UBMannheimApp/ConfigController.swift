@@ -402,6 +402,12 @@ var newsCount:Int = 0
         println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]")
         
         
+        
+        // BEACHTEN : BEI SPEICHERN AUF NETZWERK PRUEFEN (TRUE) UND EINEN ABZUG DER NEWS ERSTELLEN 
+        // WENN NICHT HINWEIS ZUM FESTELEGEN BZW;
+        // HINWEIS auf NEWSFEED WENN KEIN CACHE UND KEIN NETZ ABER CACHE AKTIV
+        
+        
         userDefaults.synchronize()
         
 // println("News ITEMS: \(nitems)")
