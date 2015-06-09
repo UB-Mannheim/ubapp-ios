@@ -60,6 +60,11 @@ class SeatsTableViewController: UITableViewController {
         // if pulled down, refresh
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
+        // Cell height.
+        self.tableView.rowHeight = 70
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
         
         // if Network Connection online
         if IJReachability.isConnectedToNetwork() {
@@ -69,17 +74,9 @@ class SeatsTableViewController: UITableViewController {
             // searchItunesFor("JQ Software")
             loadJSONFromURL()
             
-            // Cell height.
-            self.tableView.rowHeight = 70
-            self.tableView.dataSource = self
-            self.tableView.delegate = self
-            
-            
             // "cell" might be added as identifier in designer and deleted here - right?
             self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-            
-            
-            // self.tableView.reloadData()
+            self.tableView.reloadData()
         
         } else {
             
@@ -88,14 +85,49 @@ class SeatsTableViewController: UITableViewController {
             if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
             
                 if(userDefaults.objectForKey("wlanCache")!.count != 0) {
-                    let wlan_entries: AnyObject = userDefaults.objectForKey("wlanCache")!
-                    println("freshly filled preference: \(wlan_entries)")
                     
-                    // loadJSONFromCache
+                    let wlan_data: AnyObject = userDefaults.objectForKey("wlanCache")!
+                    println("freshly filled preference: \(wlan_data)")
+                    
+                    // load From Cache
+    
+                    // var wlan_item = [["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]
+                    println("------------ before for ---------------")
+                    println(wlan_data["sections"])
+                    
+                    var wlan_item = wlan_data["sections"]
+                    
+                    self.items = wlan_item as! NSArray
+                    self.tableView.reloadData()
+                    
+                    println("------------ items after ---------------")
+                    println(self.items)
+                    
+                    
+                    // http://stackoverflow.com/questions/26840736/converting-json-to-nsdata-and-nsdata-to-json-in-swift
+                    
+                    
+                    /*
+                    for (var i = 0; i < wlan_item.; i++) {
+                        
+                        println("for \(i)")
+                        
+                        var id = wlan_data["sections"][i]["id"] as! String
+                        var max = wlan_data[1][i].objectForKey("max") as! String
+                        var name = wlan_data[1][i].objectForKey("name") as! String
+                        var percent = wlan_data[1][i].objectForKey("percent") as! String
+                        
+                        wlan_item[i] = [id, max, name, percent]
+                        println(wlan_item[i])
+                        
+                        // self.data.appendData(wlan_item)
+                    }
+                    */
                     
                 } else {
                     
                     // kein Primaerabzug erfolgt
+                    println("kein primaerabzug")
                 }
                 
             } else {
@@ -236,6 +268,11 @@ class SeatsTableViewController: UITableViewController {
         userDefaults.synchronize()
     }
     
+    func loadJSONFromCache() {
+    
+    }
+    
+    
     func getTimeStamp() -> String {
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
         
@@ -277,68 +314,20 @@ class SeatsTableViewController: UITableViewController {
         // Convert the retrieved data in to an object through JSON deserialization
         var err: NSError
         
-        if (userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
+        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
             
-        // wenn cache enabled -> anzeigen und speichern
-            
-        // if (IJReachability.isConnectedToNetwork() && (userDefaults.objectForKey("cacheEnabled")?.boolValue == true)) {
-                
-            // save online wlan data in cache
-            
-            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
-        
-            var wlan_load = jsonResult
-            
+                if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
+                    var results: NSArray = jsonResult["sections"] as! NSArray
+                    self.items = results
+                    self.tableView.reloadData()     // println(self.items)
+                }
+
+        /* 
+            var wlan_load = self.items
             userDefaults.setObject(wlan_load, forKey: "wlanCache")
-            userDefaults.synchronize()
-            
-            if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
-                var results: NSArray = jsonResult["sections"] as! NSArray
-                self.items = results
-                self.tableView.reloadData()
-                
-                // println(self.items)
-            }
+            userDefaults.synchronize() 
+        */
         
-        } else {
-            
-            // wenn nicht nur aufrufen
-            
-            if (IJReachability.isConnectedToNetwork()) { // aus dem web
-            
-            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
-            
-                if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
-                    var results: NSArray = jsonResult["sections"] as! NSArray
-                    self.items = results
-                    self.tableView.reloadData()     // println(self.items)
-                }
-
-            } else {    // aus dem cache
-        
-            if (userDefaults.objectForKey("wlanCache")?.count > 0) {
-                
-                print("WLANNNNNNNNNNNNNNNNNNNNN")
-            
-                var cachedData : NSData = userDefaults.objectForKey("wlanCache") as! NSData
-            
-                var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(cachedData, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
-            
-                if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
-                    var results: NSArray = jsonResult["sections"] as! NSArray
-                    self.items = results
-                    self.tableView.reloadData()     // println(self.items)
-                    }
-                
-                } else {
-                    println("Kein Primaerabzug, keine Datene, kein Cache")
-                }
-
-        
-                /* var wlan_load = self.items // userDefaults.setObject(wlan_load, forKey: "wlanCache") // userDefaults.synchronize() */
-            }
-    
-        }
     }
 
 }
