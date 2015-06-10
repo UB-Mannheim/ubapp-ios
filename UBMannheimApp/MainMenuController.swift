@@ -20,6 +20,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     @IBOutlet var collectionView: UICollectionView!
     
     var menuItems: [MenuItem] = []
+    var redirect = false
     
     // Defaults loeschen
     var myArray : Array<Double>! {
@@ -52,18 +53,87 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         println("DEBUG MSG MainMenuController : System starting ...")
         
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let wback: Int? = userDefaults.objectForKey("backFromWebView") as! Int?
+        // let wback: Int? = userDefaults.objectForKey("backFromWebView") as! Int?
+        let wback: Int? = userDefaults.objectForKey("backFromWebview") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
-        
+        println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | backFromWebview = \(wback) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
         
         // simple redirection if startup option ist chosen
         // let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int? >> s.o.
         
+        // startupWith selected module
         if ((kstartup != nil) && (kstartup != 0)) {
             
+            // online
+            if (IJReachability.isConnectedToNetwork()) {
+                redirect = true
+                
+            // offline
+            } else {
+                // www || primo (webview)
+                if((kstartup == 1) || (kstartup == 2)) {
+                    redirect = false
+                
+                // news || freie plaetze
+                } else {
+                    if(kcache == true) {
+                        redirect = true
+                    
+                    } else {
+                        
+                        /*
+                        // wenn cache aus eigentlich nicht weiterleiten
+                        if ((kstartup == 1) || (kstartup == 2)) {
+                            redirect = false
+                        // aber im falle von news || freie platze schon?
+                        } else {
+                            redirect = true
+                        }
+                        */
+                        
+                        // oder mit Ausgabe: keine Weiterleitung möglich, da keine Offline Inhalte vorhanden
+                        redirect = false
+                        
+                        // hinweis: Weiterleitung nicht möglich // ggf  var:firstRun nutzen
+                        if(wback != 1) {
+                            
+                            // marker setzen zur einmaligen anzeige bei start ohne internet und cache
+                            userDefaults.setObject(1, forKey: "backFromWebview")
+                        
+                            let alertController = UIAlertController(title: "Fehler", message: "Weiterleitung zum ausgewählten Startmodul nicht möglich. Es stehen weder eine Internetverbindung, noch Offline Inhalte zur Verfügung. Bitte stellen Sie zur Nutzung der App eine Verbindung zum Internet her.", preferredStyle: .Alert)
+                     
+                            let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+                                self.viewDidLoad()
+                            }
+                        
+                            alertController.addAction(okAction)
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        }
+                        
+                    }
+                    
+                }
+            }
+            
+            if (redirect == true) {
+                
+                // if not set back because of coming back from webview (offline)
+                if (wback != 1) {
+                    // select action and following controller
+                    if(kstartup == 1) { showWebView("website") }
+                    if(kstartup == 2) { showWebView("primo") }
+                    if(kstartup == 3) { showNews() }
+                    if(kstartup == 4) { showSeats() }
+                
+                    // if online again an not back from webview
+                } else {
+                    userDefaults.setObject(0, forKey: "backFromWebview")
+                }
+            }
+            
+            /*
             if(wback != 1) {
                 // check "firstRun" of Apllication to avoid loops
                 if(userDefaults.objectForKey("firstRun")?.integerValue == 1) {
@@ -79,7 +149,9 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 // -> if webview before selected as startmodule, this would produce a loop
                 // if connectivity check now returns true, variable is overwritten and forwarding ok
                 if IJReachability.isConnectedToNetwork() {
-                    userDefaults.setObject(0, forKey: "backFromWebView")
+                    // userDefaults.setObject(0, forKey: "backFromWebView")
+                    userDefaults.setObject(0, forKey: "backFromWebview")
+                    userDefaults.synchronize()
                     
                     if(userDefaults.objectForKey("firstRun")?.integerValue == 1) {
                         
@@ -92,6 +164,24 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 }
                 
             }
+            */
+            
+            /*
+            var redir = true
+            // if newtork off && cache off
+            if ((IJReachability.isConnectedToNetwork() != false) && (kcache == false)) {
+                redir = false
+            }
+            
+            if(redir != false) {
+            // redirect
+            // select action and following controller
+                if(kstartup == 1) { showWebView("website") }
+                if(kstartup == 2) { showWebView("primo") }
+                if(kstartup == 3) { showNews() }
+                if(kstartup == 4) { showSeats() }
+            }
+            */
             
             // old way
             // let startController = self.storyboard!.instantiateViewControllerWithIdentifier("ConfigView") as! ConfigController
@@ -367,7 +457,9 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         // self.presentViewController(alert, animated: true, completion: nil)
         
-        
+        // as in webview controller - is it better using available controllers?
+        // http://stackoverflow.com/questions/29993085/ios-swift-returning-to-the-same-instance-of-a-view-controller
+            
         switch(indexPath.item) {
         case 0: showWebView("website")
             break

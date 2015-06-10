@@ -196,7 +196,16 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                     let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                     self.navigationController?.pushViewController(homeViewController, animated: true)
                     
+                    // if at the moment of pressing back network is alive, activate redirection
+                    if IJReachability.isConnectedToNetwork() {
+                        self.userDefaults.setObject(1, forKey: "firstRun")
+                    } else {
+                        self.userDefaults.setObject(0, forKey: "firstRun")
+                        // self.userDefaults.setObject(1, forKey: "backFromWebview")
+                    }
+                    self.userDefaults.synchronize()
                     
+                    /*
                     // prufen ob das hier gebraucht wird, koop verhindern
                     // später auslagern, für den test reicht es
                     var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
@@ -207,6 +216,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                         firstRunReference = 0
                         self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
                     }
+                    */
                     
                 }
                 

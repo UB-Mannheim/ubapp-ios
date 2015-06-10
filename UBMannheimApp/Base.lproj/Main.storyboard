@@ -1294,7 +1294,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-52-Kmz">
                                                     <rect key="frame" x="0.0" y="8" width="600" height="30"/>
-                                                    <state key="normal" title="Alle Einstellungen löschen">
+                                                    <state key="normal" title="Alle Einstellungen löschen (Neustart)">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>

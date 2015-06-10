@@ -326,16 +326,17 @@ var newsCount:Int = 0
     
     @IBAction func deleteAllPreferences() {
         
+        
+        
         // Delete ALL USER PREFERENCES
         let appDomain = NSBundle.mainBundle().bundleIdentifier!
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         
-        /*
-        userDefaults.removeObjectForKey("cacheEnabled")
-        userDefaults.removeObjectForKey("newsCount")
-        userDefaults.removeObjectForKey("startupWith")
-        userDefaults.removeObjectForKey("newsItems")
-        */
+        // userDefaults.removeObjectForKey("cacheEnabled")
+        // userDefaults.removeObjectForKey("newsCount")
+        // userDefaults.removeObjectForKey("startupWith")
+        // userDefaults.removeObjectForKey("newsItems")
+        
         
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
@@ -343,11 +344,10 @@ var newsCount:Int = 0
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
         
-        /*
-        println("kcache \(kcache)")
-        println("knews \(knews)")
-        println("kstartup \(kstartup)")
-        */
+        // println("kcache \(kcache)")
+        // println("knews \(knews)")
+        // println("kstartup \(kstartup)")
+        
         println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: deleteAllPreferences]")
         
         
@@ -355,7 +355,11 @@ var newsCount:Int = 0
         
         // println("*DEL* Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries")
         
+
         userDefaults.synchronize()
+        
+        
+        exit(0)
         
     }
     

@@ -74,15 +74,22 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden", preferredStyle: .Alert)
             
             let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                
+                self.userDefaults.setObject(1, forKey: "backFromWebview")
+                
+                // creating a new controller?
                 // MainView set as storyboard ID of MainViewController
                 // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                 let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
                 
+                // running a available controller
+                // http://stackoverflow.com/questions/29993085/ios-swift-returning-to-the-same-instance-of-a-view-controller
+                
+                // so you don't have to use this
                 // let firstRunReference = 0
                 // self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
-                let backFromWebView = 1
-                self.userDefaults.setObject(backFromWebView, forKey: "backFromWebView")
+                
                 
             }
             

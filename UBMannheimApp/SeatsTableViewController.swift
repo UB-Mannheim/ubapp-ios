@@ -92,16 +92,14 @@ class SeatsTableViewController: UITableViewController {
                     // load From Cache
     
                     // var wlan_item = [["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]
-                    println("------------ before for ---------------")
-                    println(wlan_data["sections"])
+                    // println("------------ before for ---------------")
+                    // println(wlan_data)
                     
-                    var wlan_item = wlan_data["sections"]
-                    
-                    self.items = wlan_item as! NSArray
+                    self.items = wlan_data as! NSArray
                     self.tableView.reloadData()
                     
-                    println("------------ items after ---------------")
-                    println(self.items)
+                    // println("------------ items after ---------------")
+                    // println(self.items)
                     
                     
                     // http://stackoverflow.com/questions/26840736/converting-json-to-nsdata-and-nsdata-to-json-in-swift
@@ -129,7 +127,7 @@ class SeatsTableViewController: UITableViewController {
                     // kein Primaerabzug erfolgt
                     println("kein primaerabzug")
                     
-                    Keine Verbindung zum Netzwerk vorhanden, kein Primärabzug erfolgt.
+                    // Keine Verbindung zum Netzwerk vorhanden, kein Primärabzug erfolgt.
                     
                     let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
                     
@@ -353,11 +351,10 @@ class SeatsTableViewController: UITableViewController {
                     self.tableView.reloadData()     // println(self.items)
                 }
 
-        /* 
+        
             var wlan_load = self.items
             userDefaults.setObject(wlan_load, forKey: "wlanCache")
             userDefaults.synchronize() 
-        */
         
     }
 
