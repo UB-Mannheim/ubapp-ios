@@ -38,6 +38,9 @@
 		B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D31A92468000C54592 /* JsonAPI.swift */; };
 		B29F73D61A9332C100C54592 /* SeatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */; };
 		B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2266FB31A825C1500C11E08 /* MainViewController.swift */; };
+		B2C1F1DF1B28666B00767F47 /* JLToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1F1DE1B28666B00767F47 /* JLToast.swift */; };
+		B2C1F1E21B2866B800767F47 /* JLToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1F1E11B2866B800767F47 /* JLToastView.swift */; };
+		B2C1F1E51B2866F000767F47 /* JLToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1F1E41B2866F000767F47 /* JLToastCenter.swift */; };
 		B2C4A7A21A8B413500B79B10 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A11A8B413500B79B10 /* WebViewController.swift */; };
 		B2C4A7A41A8B483800B79B10 /* SeatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */; };
 		B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4A7A71A8B842700B79B10 /* TableViewController.swift */; };
@@ -125,6 +128,10 @@
 		B270CEE41A778D3F003C981B /* UBMannheimAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBMannheimAppTests.swift; sourceTree = "<group>"; };
 		B29F73D31A92468000C54592 /* JsonAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonAPI.swift; sourceTree = "<group>"; };
 		B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatsTableViewController.swift; sourceTree = "<group>"; };
+		B2C1F1DE1B28666B00767F47 /* JLToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToast.swift; sourceTree = "<group>"; };
+		B2C1F1E11B2866B800767F47 /* JLToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastView.swift; sourceTree = "<group>"; };
+		B2C1F1E31B2866DB00767F47 /* JLToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLToast.h; sourceTree = "<group>"; };
+		B2C1F1E41B2866F000767F47 /* JLToastCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastCenter.swift; sourceTree = "<group>"; };
 		B2C4A7A11A8B413500B79B10 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B2C4A7A31A8B483800B79B10 /* SeatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		B2C4A7A71A8B842700B79B10 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -286,9 +293,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B2C1F1E01B2866A400767F47 /* JLToast */ = {
+			isa = PBXGroup;
+			children = (
+				B2C1F1DE1B28666B00767F47 /* JLToast.swift */,
+				B2C1F1E11B2866B800767F47 /* JLToastView.swift */,
+				B2C1F1E31B2866DB00767F47 /* JLToast.h */,
+				B2C1F1E41B2866F000767F47 /* JLToastCenter.swift */,
+			);
+			name = JLToast;
+			sourceTree = "<group>";
+		};
 		B2C8B0AF1A8E09F0002CBA11 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B2C1F1E01B2866A400767F47 /* JLToast */,
 				B25C7A301AB9AE480069BB55 /* fmdb */,
 				B2CF14CB1AC2B2C000F56F36 /* DBHelper.swift */,
 				B2CF14C91AC2B25C00F56F36 /* DBHelper_.swift */,
@@ -418,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2C1F1E51B2866F000767F47 /* JLToastCenter.swift in Sources */,
 				B241F4E61AE7B9DF00ADE3A1 /* Help2ViewController.swift in Sources */,
 				B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */,
 				B241F4E81AE7BC6200ADE3A1 /* CustomTableViewCell.swift in Sources */,
@@ -431,6 +451,7 @@
 				B2E223041AC6D9E7000D1B76 /* MenuItemViewController.swift in Sources */,
 				B2506BD91AD6ACD90057AE61 /* MainMenuController.swift in Sources */,
 				B2E223001AC6D8FC000D1B76 /* LocationInfo.swift in Sources */,
+				B2C1F1DF1B28666B00767F47 /* JLToast.swift in Sources */,
 				B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */,
 				B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */,
 				B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */,
@@ -439,6 +460,7 @@
 				B24B5FB21AF0B5FD00692950 /* News.swift in Sources */,
 				B22D050A1AC93A5C00904165 /* MenuItem.swift in Sources */,
 				B2CF14CC1AC2B2C000F56F36 /* DBHelper.swift in Sources */,
+				B2C1F1E21B2866B800767F47 /* JLToastView.swift in Sources */,
 				B2CD07B91AC2D482007E1E3E /* ConfigController.swift in Sources */,
 				B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */,
 				B270CED11A778D3F003C981B /* ViewController.swift in Sources */,

@@ -358,7 +358,6 @@ var newsCount:Int = 0
 
         userDefaults.synchronize()
         
-        
         exit(0)
         
     }
@@ -449,6 +448,19 @@ var newsCount:Int = 0
         self.presentViewController(alertController2, animated: true, completion: nil)
         
         */
+        
+        
+        
+        // https://github.com/devxoul/JLToast
+        
+        JLToastView.setDefaultValue(
+            UIColor.grayColor(),
+            forAttributeName: JLToastViewBackgroundColorAttributeName,
+            userInterfaceIdiom: .Phone
+        )
+        
+        JLToast.makeText("Einstellungen gespeichert.").show()
+        
     }
     
     // nur wenn statechanged ... 2do auch sonst speichern saveConfig()
