@@ -68,10 +68,11 @@ class MyCollectionViewCell: UICollectionViewCell {
         innerUIView.addSubview(textLabel2) // not added - but why?
         
         outerUIView.addSubview(imageView)
-        outerUIView.addSubview(innerUIView)
+        // // outerUIView.addSubview(innerUIView)
         
         contentView.addSubview(outerUIView)
-        contentView.addSubview(innerUIView)
+        // hide labels
+        // contentView.addSubview(innerUIView)
         
     }
     

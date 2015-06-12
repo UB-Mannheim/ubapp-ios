@@ -4,25 +4,25 @@
 <array>
 	<dict>
 		<key>itemImage</key>
-		<string>website</string>
+		<string>website_flat</string>
 		<key>itemTitle</key>
 		<string>Website</string>
 	</dict>
 	<dict>
 		<key>itemImage</key>
-		<string>primo</string>
+		<string>primo_flat</string>
 		<key>itemTitle</key>
 		<string>Primo</string>
 	</dict>
 	<dict>
 		<key>itemImage</key>
-		<string>news</string>
+		<string>news_flat</string>
 		<key>itemTitle</key>
 		<string>News</string>
 	</dict>
 	<dict>
 		<key>itemImage</key>
-		<string>seats</string>
+		<string>seats_flat</string>
 		<key>itemTitle</key>
 		<string>Freie Plätze</string>
 	</dict>
