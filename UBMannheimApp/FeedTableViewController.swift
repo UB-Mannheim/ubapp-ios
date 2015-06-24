@@ -26,6 +26,11 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     {
         if IJReachability.isConnectedToNetwork() {
             
+            
+        // PRUEFEN:
+            // ANZAHL DER NEWS BEI AKTIVEM NETZ
+            // EINSCHRAENKUNG EINHALTEN Test Isa: 5 < 7
+            
         // Updating your data here...
         loadRss(url)
         
@@ -409,7 +414,26 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myFeed.count
+        // return myFeed.count
+        
+        var feed_count = myFeed.count
+        
+        if (userDefaults.objectForKey("newsCount") != nil) {
+            
+            var maxnews_id = userDefaults.objectForKey("newsCount") as! Int
+            var maxnews_count = 0
+            
+            switch(maxnews_id as Int!) {
+            case 0: maxnews_count = 5
+            case 1: maxnews_count = 10
+            case 2: maxnews_count = 15
+            default: maxnews_count = 0
+            }
+            
+            feed_count = maxnews_count
+        }
+        
+        return feed_count
     }
 
     
@@ -437,7 +461,25 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         let substringIndex = stringLength - 12
         date = date.substringToIndex(advance(date.startIndex, substringIndex))
         
+        println("PUBATE WAS: \(date)")
+        
+        // Englische in Deutsche Tage umformatieren
+        date = date.stringByReplacingOccurrencesOfString("Mon", withString: "Mo")
+        date = date.stringByReplacingOccurrencesOfString("Tue", withString: "Di")
+        date = date.stringByReplacingOccurrencesOfString("Wed", withString: "Mi")
+        date = date.stringByReplacingOccurrencesOfString("Thu", withString: "Do")
+        date = date.stringByReplacingOccurrencesOfString("Fri", withString: "Fr")
+        date = date.stringByReplacingOccurrencesOfString("Sat", withString: "Sa")
+        date = date.stringByReplacingOccurrencesOfString("Sun", withString: "So")
+        
+        // "." hinter Tag hinzufügen
+        date = replace(date, index: 6, newCharac: ".")
+        
+        println("PUBATE IS: \(date)")
+        
+        
         cell.detailTextLabel?.text = date
+        // cell.detailTextLabel?.text = newDate
         
         var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
         // println("FeedTableView: "+content!)
@@ -482,5 +524,15 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 55.0
+    }
+    
+    func replace(myString:String, index:Int, newCharac:Character) -> String {
+        
+        var modifiedString = myString
+        let range = Range<String.Index>(
+            start: advance(myString.startIndex, index),
+            end: advance(myString.startIndex, index + 1))
+        modifiedString.replaceRange(range, with: "\(newCharac)")
+        return modifiedString
     }
 }

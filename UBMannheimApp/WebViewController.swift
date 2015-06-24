@@ -291,8 +291,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    @IBAction func stop(sender: UIBarButtonItem) {
-        self.webView.stopLoading()
+    @IBAction func home(sender: UIBarButtonItem) {
+        // self.webView.stopLoading()
+        let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
+        let request = NSURLRequest(URL: requestURL!)
+        self.webView.loadRequest(request)
     }
     
     @IBAction func reload(sender: UIBarButtonItem) {

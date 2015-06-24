@@ -71,8 +71,8 @@ class MyCollectionViewCell: UICollectionViewCell {
         // // outerUIView.addSubview(innerUIView)
         
         contentView.addSubview(outerUIView)
-        // hide labels
-        // contentView.addSubview(innerUIView)
+        // hide sub-labels below icons
+        contentView.addSubview(innerUIView)
         
     }
     

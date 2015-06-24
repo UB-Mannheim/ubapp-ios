@@ -128,7 +128,8 @@ var newsCount:Int = 0
         
             // set picker view-news inactive if cache=off
             if (kcache == false) {
-                newsPicker.userInteractionEnabled = false
+                // changed behaviour
+                // newsPicker.userInteractionEnabled = false
             } else {
                 newsPicker.userInteractionEnabled = true
             }

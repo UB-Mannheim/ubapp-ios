@@ -1375,13 +1375,24 @@
                                             <action selector="back:" destination="T1i-kN-BFg" id="W6p-cv-ZSZ"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="RPM-t9-J9y"/>
                                     <barButtonItem image="Btn_ArrRight" id="Zv8-kn-EGE" userLabel="BarButton Forward">
                                         <connections>
                                             <action selector="forward:" destination="T1i-kN-BFg" id="0Gh-yj-emr"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="refresh" id="CsW-5b-AFP" userLabel="BarButton Refresh"/>
-                                    <barButtonItem image="Btn_Home_iconbeast" id="Blo-iP-0tN" userLabel="BarButton Home"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Q9G-LQ-5v5"/>
+                                    <barButtonItem systemItem="refresh" id="CsW-5b-AFP" userLabel="BarButton Refresh">
+                                        <connections>
+                                            <action selector="reload:" destination="T1i-kN-BFg" id="g1l-W5-sV7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hLf-Ot-dId"/>
+                                    <barButtonItem image="Btn_Home_iconbeast" id="Blo-iP-0tN" userLabel="BarButton Home">
+                                        <connections>
+                                            <action selector="home:" destination="T1i-kN-BFg" id="Aub-05-Jp1"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8G-Up-zWU">
@@ -1469,7 +1480,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
+                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adF-2O-rtR">
@@ -1484,7 +1495,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-Qg-XeC">
+                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-Qg-XeC">
                                 <rect key="frame" x="0.0" y="51" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8c-v9-IMG">
