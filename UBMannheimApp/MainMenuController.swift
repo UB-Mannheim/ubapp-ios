@@ -355,7 +355,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         // let barButtomItemC = UIBarButtonItem(image: image, style: .Plain, target: nil, action: nil)
         // navigationItem.rightBarButtonItem = barButtomItemC
         
-        
+        // initMenuItems()
         
         
         // trying to connect the popover view to main view, to get navigation controllers
@@ -405,17 +405,53 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func rotated()
     {
+        // urspruenglich wurde die orientierung ueber das geraet bestimmt
+        // das fuehrte allerdings dazu dass bei waagrechter haltung keine 
+        // gueltige orientierung bestimmt werden konnte
+        // daher wird im else zweig (not valid) die orientierung der status 
+        // bar benutzt
+        
         // println("rotate")
+        
+        if (UIDeviceOrientationIsValidInterfaceOrientation(UIDevice.currentDevice().orientation)) {
+        println("valid orientation")
             
-        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
-        {
-            // println("landscape")
-            setLayout("landscape")
-        }
-        if (UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
-        {
-            // println("portrait")
-            setLayout("portrait")
+            if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
+            {
+                println("landscape")
+                setLayout("landscape")
+            }
+            else if (UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
+            {
+                println("portrait")
+                setLayout("portrait")
+            }
+            else {
+                println("something different")
+            
+            }
+            
+        } else {
+            println("no valid orientation")
+            // hack: decide orientation by status bar
+            // http://stackoverflow.com/questions/25796545/getting-device-orientation-in-swift
+            
+            // UIInterfaceOrientation orientation = UIApplication.sharedApplication().statusBarOrientation
+            
+            if( UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) ) {
+                    
+                //Portrait orientation
+                println("portrait alt")
+                setLayout("portrait")
+            }
+            
+            if( UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) ) {
+                    
+                //Landscape orientation
+                println("landscape alt")
+                setLayout("landscape")
+            }
+        
         }
         
     }
