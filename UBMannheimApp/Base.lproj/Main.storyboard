@@ -939,6 +939,7 @@
                             <constraint firstItem="zJR-o9-6Rt" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leadingMargin" id="VdC-zO-wUO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zJR-o9-6Rt" secondAttribute="trailing" id="d5Q-PW-xkj"/>
                             <constraint firstAttribute="trailing" secondItem="QdW-gH-SCb" secondAttribute="trailing" id="sKC-Lb-xbz"/>
+                            <constraint firstItem="QdW-gH-SCb" firstAttribute="top" secondItem="TQY-eG-yNP" secondAttribute="bottom" id="wcu-vu-iPw"/>
                         </constraints>
                     </view>
                     <connections>
