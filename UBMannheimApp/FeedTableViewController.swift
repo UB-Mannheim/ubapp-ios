@@ -24,6 +24,8 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     // UIRefreshControl
     func refresh(sender:AnyObject)
     {
+    println("refresh::start")
+        
         if IJReachability.isConnectedToNetwork() {
             
             
@@ -54,6 +56,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
 
     override func viewDidLoad() {
+    println("didLoad::start")
         super.viewDidLoad()
 
         let news_entries = userDefaults.objectForKey("newsCount") as! Int?
@@ -161,8 +164,11 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         } else {
             println("No Network available")
             
+            
             // if Cache on
-            if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
+            if ( (userDefaults.objectForKey("cacheEnabled")?.boolValue == true) ) { // && (userDefaults.objectForKey("newsCache") != nil) ) {
+            
+            
                 
                 var maxnews_id = userDefaults.objectForKey("newsCount") as! Int
                 var maxnews_count = 0
@@ -177,27 +183,72 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 println("MAXNEWS ID \(maxnews_id)")
                 println("MAXNEWS COUNT \(maxnews_count)")
                 
+                if(userAlreadyExist("newsCache")) {
                 news_rss_items = userDefaults.objectForKey("newsCache")!.count
-                
-                if(news_rss_items < maxnews_count) {
-                    maxnews_count = news_rss_items
-                }
-                
-                if(news_rss_items != 0) {
-                    loadCache(maxnews_count)
                 } else {
-                    println("no cache , no data , no network")
+                    news_rss_items = 0
+                    println("rss items = 0")
                 }
+            
+                    if(news_rss_items < maxnews_count) {
+                        println("temp temp temp")
+                        maxnews_count = news_rss_items
+                    }
                 
+                    if(news_rss_items != 0) {
+                        println("loading cache ...")
+                        loadCache(maxnews_count)
+                    } else {
+                        println("no cache , no data , no network")
+                        
+                        // kein Primaerabzug erfolgt
+                        println("kein primaerabzug II (copy)")
+                        
+                        
+                        let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+                        
+                        let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                            // MainView set as storyboard ID of MainViewController
+                            // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                            let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+                            self.navigationController?.pushViewController(homeViewController, animated: true)
+                            
+                            // prufen ob das hier gebraucht wird, koop verhindern
+                            // später auslagern, für den test reicht es
+                            var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
+                            if (firstRunReference == nil) {
+                                firstRunReference = 1
+                            } else {
+                                // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
+                                firstRunReference = 0
+                                self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                            }
+                        }
+                        
+                        let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                            self.viewDidLoad()
+                        }
+                        
+                        alertController.addAction(cancelAction)
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        //breakpoint
+                        
+                    }
+                    
+
             } else {
                 
+                
                 // showNetworkError
+                
+                println("alert")
                 
                 let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der News nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
                 
                 let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
-                    // MainView set as storyboard ID of MainViewController
-                    // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                     let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                     self.navigationController?.pushViewController(homeViewController, animated: true)
                     
@@ -210,18 +261,17 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                     }
                     self.userDefaults.synchronize()
                     
-                    /*
-                    // prufen ob das hier gebraucht wird, koop verhindern
-                    // später auslagern, für den test reicht es
-                    var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
-                    if (firstRunReference == nil) {
-                        firstRunReference = 1
-                    } else {
-                        // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
-                        firstRunReference = 0
-                        self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
-                    }
-                    */
+                    //// // prufen ob das hier gebraucht wird, koop verhindern
+                    //// // später auslagern, für den test reicht es
+                    ////var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
+                    ////if (firstRunReference == nil) {
+                    ////    firstRunReference = 1
+                    ////} else {
+                    ////    // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
+                    ////    firstRunReference = 0
+                    ////    self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                    //// }
+
                     
                 }
                 
@@ -234,7 +284,11 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
                 
+                
+                println("after alert")
             }
+            
+            println ("out of sight")
         }
         
         /*
@@ -245,6 +299,8 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
     
     func loadRss(data: NSURL) -> AnyObject {
+    println("loadRSS::start")
+        
         // XmlParserManager instance/object/variable
         var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as! XmlParserManager
         // Put feed in array
@@ -272,7 +328,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
     
     func loadCache(newsCount: Int) {
-        
+    println("loadCache::start")
         
     // if (cache not empty)
     // else kann cache aufgrund fehlender Netzkonnektivität Cache nicht aufbauen
@@ -414,6 +470,8 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    println("tableView::return_feed_count")
+        
         // return myFeed.count
         
         var feed_count = myFeed.count
@@ -438,51 +496,60 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    println("tableView::return_cell")
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         
         // Feed Image
         // cell.imageView?.image = UIImage (named: "news_pre")
         
-        // Feeds dictionary.
-        var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as! NSDictionary
+        if(myFeed.count > 0) {
+            // Feeds dictionary.
+            var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as! NSDictionary
         
-        // Set cell properties.
-        cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
+            // Set cell properties.
+            cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
         
-        // It seems that cell.textLabel?.text is no longer an optionional.
-        // If the above line throws an error then comment it out and uncomment the below line.
-        //cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
+            // It seems that cell.textLabel?.text is no longer an optionional.
+            // If the above line throws an error then comment it out and uncomment the below line.
+            //cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
 
-        var formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
+            var formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
         
-        var date: String = formattedFeedTitle!
-        let stringLength = count(date)
-        let substringIndex = stringLength - 12
-        date = date.substringToIndex(advance(date.startIndex, substringIndex))
+            var date: String = formattedFeedTitle!
+            let stringLength = count(date)
+            let substringIndex = stringLength - 12
+            date = date.substringToIndex(advance(date.startIndex, substringIndex))
         
-        println("PUBATE WAS: \(date)")
+            println("PUBATE WAS: \(date)")
         
-        // Englische in Deutsche Tage umformatieren
-        date = date.stringByReplacingOccurrencesOfString("Mon", withString: "Mo")
-        date = date.stringByReplacingOccurrencesOfString("Tue", withString: "Di")
-        date = date.stringByReplacingOccurrencesOfString("Wed", withString: "Mi")
-        date = date.stringByReplacingOccurrencesOfString("Thu", withString: "Do")
-        date = date.stringByReplacingOccurrencesOfString("Fri", withString: "Fr")
-        date = date.stringByReplacingOccurrencesOfString("Sat", withString: "Sa")
-        date = date.stringByReplacingOccurrencesOfString("Sun", withString: "So")
+            // Englische in Deutsche Tage umformatieren
+            date = date.stringByReplacingOccurrencesOfString("Mon", withString: "Mo")
+            date = date.stringByReplacingOccurrencesOfString("Tue", withString: "Di")
+            date = date.stringByReplacingOccurrencesOfString("Wed", withString: "Mi")
+            date = date.stringByReplacingOccurrencesOfString("Thu", withString: "Do")
+            date = date.stringByReplacingOccurrencesOfString("Fri", withString: "Fr")
+            date = date.stringByReplacingOccurrencesOfString("Sat", withString: "Sa")
+            date = date.stringByReplacingOccurrencesOfString("Sun", withString: "So")
         
-        // "." hinter Tag hinzufügen
-        date = replace(date, index: 6, newCharac: ".")
+            // "." hinter Tag hinzufügen
+            date = replace(date, index: 6, newCharac: ".")
         
-        println("PUBATE IS: \(date)")
+            println("PUBATE IS: \(date)")
         
         
-        cell.detailTextLabel?.text = date
-        // cell.detailTextLabel?.text = newDate
+            cell.detailTextLabel?.text = date
+            // cell.detailTextLabel?.text = newDate
         
-        var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
-        // println("FeedTableView: "+content!)
+            var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
+            // println("FeedTableView: "+content!)
+        } else {
+        
+            // Set dummy cell properties (emtpy lines, no display of "title", "subtitle" ...)
+            cell.textLabel?.text = ""
+            cell.detailTextLabel?.text = ""
+        
+        }
         
         return cell
     }
@@ -505,6 +572,8 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    println("tableView::return_header_cell")
+        
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         
         // hide Title/Subtitle View in HeaderCell
@@ -534,5 +603,16 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             end: advance(myString.startIndex, index + 1))
         modifiedString.replaceRange(range, with: "\(newCharac)")
         return modifiedString
+    }
+    
+    // auch in freeseats vorhanden
+    func userAlreadyExist(kUSERID: String) -> Bool {
+        var userDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if (userDefaults.objectForKey(kUSERID) != nil) {
+            return true
+        }
+        
+        return false
     }
 }

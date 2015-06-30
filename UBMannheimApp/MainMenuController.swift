@@ -78,11 +78,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 
                 // news || freie plaetze
                 } else {
-                    if(kcache == true) {
+                    if (kcache == true) { // && (knews > 0)) { // enabled ja ... aber auch gefuellt? // count news != 0
                         redirect = true
-                    
+                        
+                        println("A")
+                        //
                     } else {
                         
+                        println("B")
                         /*
                         // wenn cache aus eigentlich nicht weiterleiten
                         if ((kstartup == 1) || (kstartup == 2)) {

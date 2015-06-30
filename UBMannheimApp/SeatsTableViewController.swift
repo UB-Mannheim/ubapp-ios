@@ -84,6 +84,7 @@ class SeatsTableViewController: UITableViewController {
             
             if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
             
+                if(userAlreadyExist("wlanCache")) {
                 if(userDefaults.objectForKey("wlanCache")!.count != 0) {
                     
                     let wlan_data: AnyObject = userDefaults.objectForKey("wlanCache")!
@@ -157,6 +158,43 @@ class SeatsTableViewController: UITableViewController {
                     alertController.addAction(okAction)
                     
                     self.presentViewController(alertController, animated: true, completion: nil)
+                }
+                    
+                } else { // cache set, but wlan cache not filled
+                
+                    // kein Primaerabzug erfolgt
+                    println("kein primaerabzug II")
+                    
+                    
+                    let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+                    
+                    let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                        // MainView set as storyboard ID of MainViewController
+                        // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+                        self.navigationController?.pushViewController(homeViewController, animated: true)
+                        
+                        // prufen ob das hier gebraucht wird, koop verhindern
+                        // später auslagern, für den test reicht es
+                        var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
+                        if (firstRunReference == nil) {
+                            firstRunReference = 1
+                        } else {
+                            // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
+                            firstRunReference = 0
+                            self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                        }
+                    }
+                    
+                    let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                        self.viewDidLoad()
+                    }
+                    
+                    alertController.addAction(cancelAction)
+                    alertController.addAction(okAction)
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                
                 }
                 
             } else {
@@ -356,6 +394,16 @@ class SeatsTableViewController: UITableViewController {
             userDefaults.setObject(wlan_load, forKey: "wlanCache")
             userDefaults.synchronize() 
         
+    }
+    
+    func userAlreadyExist(kUSERID: String) -> Bool {
+        var userDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if (userDefaults.objectForKey(kUSERID) != nil) {
+            return true
+        }
+        
+        return false
     }
 
 }
