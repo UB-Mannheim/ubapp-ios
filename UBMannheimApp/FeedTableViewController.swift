@@ -16,9 +16,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
     var news_feed : Int = 5
-    
     var news_cache: [[String]] = []
-    
     var news_rss_items = 0
     
     // UIRefreshControl
@@ -123,7 +121,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                     break
                 case 2: maxnews_count = 15
                     break
-                default: maxnews_count = 5
+                default: maxnews_count = 5 // ? s.u. 0
                 }
                 
                 // println("maxnews_count \(maxnews_count) ....................................................")
@@ -177,7 +175,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                     case 0: maxnews_count = 5
                     case 1: maxnews_count = 10
                     case 2: maxnews_count = 15
-                    default: maxnews_count = 0
+                    default: maxnews_count = 0 // ? s.o. 5
                 }
                 
                 println("MAXNEWS ID \(maxnews_id)")
@@ -485,11 +483,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             case 0: maxnews_count = 5
             case 1: maxnews_count = 10
             case 2: maxnews_count = 15
-            default: maxnews_count = 0
+            default: maxnews_count = 5 // war 0
             }
             
             feed_count = maxnews_count
+            
         }
+        
+        println("feeed count")
         
         return feed_count
     }
