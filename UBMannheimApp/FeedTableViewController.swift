@@ -488,9 +488,12 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             
             feed_count = maxnews_count
             
+            if(myFeed.count < feed_count) {
+                feed_count = myFeed.count
+            }
         }
         
-        println("feeed count")
+        println("feeed count: \(feed_count)")
         
         return feed_count
     }
