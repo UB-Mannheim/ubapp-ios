@@ -11,8 +11,6 @@ import UIKit
 
 class ConfigController: UITableViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // http://makeapppie.com/tag/uipickerview-in-swift/
-    
     @IBOutlet weak var cacheSwitch: UISwitch!
     @IBOutlet weak var newsPicker: UIPickerView!
     @IBOutlet weak var startupPicker: UIPickerView!
@@ -92,14 +90,14 @@ var newsCount:Int = 0
             // println("News stack contains \(knews_items!.count) elements")
         }
         
-        // http://www.ioscreator.com/tutorials/uiswitch-tutorial-in-ios8-with-swift
+        // #1
         cacheSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
+        // #2
         // newsPicker = UIPickerView()
         // startupPicker = UIPickerView()
         
-        // http://www.codingexplorer.com/nsuserdefaults-a-swift-introduction/
-        
+        // #3   
         // 2DO: PREFERENCE MANAGER
         
         newsPicker.tag = 1
@@ -452,7 +450,7 @@ var newsCount:Int = 0
         
         
         
-        // https://github.com/devxoul/JLToast
+        // #4
         
         JLToastView.setDefaultValue(
             UIColor.grayColor(),

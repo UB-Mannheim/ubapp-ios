@@ -55,6 +55,7 @@
 		B2E223001AC6D8FC000D1B76 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E222FF1AC6D8FC000D1B76 /* LocationInfo.swift */; };
 		B2E223041AC6D9E7000D1B76 /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E223031AC6D9E7000D1B76 /* MenuItemViewController.swift */; };
 		B2E46A3A1A8CA77A00C88E7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B270CED21A778D3F003C981B /* Main.storyboard */; };
+		B2F620931B457B3C008D2833 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F620921B457B3C008D2833 /* Comments.swift */; };
 		B2FF89F31A8B9D3E00786581 /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */; };
 		B2FF89F41A8B9D3E00786581 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */; };
 		B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */; };
@@ -145,6 +146,7 @@
 		B2E222FD1AC6D747000D1B76 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		B2E222FF1AC6D8FC000D1B76 /* LocationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
 		B2E223031AC6D9E7000D1B76 /* MenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemViewController.swift; sourceTree = "<group>"; };
+		B2F620921B457B3C008D2833 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comments.swift; path = ../Comments.swift; sourceTree = "<group>"; };
 		B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		B2FF89F01A8B9D3E00786581 /* NewFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeedViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				B241F4E51AE7B9DF00ADE3A1 /* Help2ViewController.swift */,
 				B241F4E71AE7BC6200ADE3A1 /* CustomTableViewCell.swift */,
 				B24B5FB11AF0B5FD00692950 /* News.swift */,
+				B2F620921B457B3C008D2833 /* Comments.swift */,
 			);
 			path = UBMannheimApp;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				B2506BD91AD6ACD90057AE61 /* MainMenuController.swift in Sources */,
 				B2E223001AC6D8FC000D1B76 /* LocationInfo.swift in Sources */,
 				B2C1F1DF1B28666B00767F47 /* JLToast.swift in Sources */,
+				B2F620931B457B3C008D2833 /* Comments.swift in Sources */,
 				B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */,
 				B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */,
 				B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */,

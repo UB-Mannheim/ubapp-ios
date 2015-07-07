@@ -66,11 +66,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             webView.delegate = self
             
             
-            // UIAlertController
-            
-            // http://appcoda.com/uialertcontroller-swift-closures-enum
-            // http://nshipster/uialertcontroller
-            // http://stackoverflow.com/questions/25375409/how-to-switch-view-controllers-in-swift
+            // #1
             
             let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden", preferredStyle: .Alert)
             
@@ -84,8 +80,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
                 let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
                 
-                // running a available controller
-                // http://stackoverflow.com/questions/29993085/ios-swift-returning-to-the-same-instance-of-a-view-controller
+                // #2 running a available controller
                 
                 // so you don't have to use this
                 // let firstRunReference = 0
@@ -228,8 +223,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         // let myjsaction = self.webView.stringByEvaluatingJavaScriptFromString("alert(document.documentElement.innerHTML);")
         
-        // http://iphoneincubator.com/blog/windows-views/how-to-inject-javascript-functions-into-a-uiwebview
-        
+        // #3
+    
         /*
         var js: String = "var script = document.createElement('script');" +
         "script.type = 'text/javascript';" +

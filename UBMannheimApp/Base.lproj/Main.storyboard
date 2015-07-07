@@ -937,7 +937,10 @@
                         <constraints>
                             <constraint firstItem="QdW-gH-SCb" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leading" id="Ryq-T4-wMK"/>
                             <constraint firstItem="zJR-o9-6Rt" firstAttribute="leading" secondItem="Auw-Sx-c6Q" secondAttribute="leadingMargin" id="VdC-zO-wUO"/>
+                            <constraint firstItem="zJR-o9-6Rt" firstAttribute="top" secondItem="QdW-gH-SCb" secondAttribute="bottom" constant="55" id="WDP-8a-j1e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zJR-o9-6Rt" secondAttribute="trailing" id="d5Q-PW-xkj"/>
+                            <constraint firstItem="zJR-o9-6Rt" firstAttribute="top" secondItem="QdW-gH-SCb" secondAttribute="bottom" id="owv-La-b5K"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="zJR-o9-6Rt" secondAttribute="bottom" id="p9a-qQ-fPX"/>
                             <constraint firstAttribute="trailing" secondItem="QdW-gH-SCb" secondAttribute="trailing" id="sKC-Lb-xbz"/>
                             <constraint firstItem="QdW-gH-SCb" firstAttribute="top" secondItem="TQY-eG-yNP" secondAttribute="bottom" id="wcu-vu-iPw"/>
                         </constraints>
@@ -1070,7 +1073,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
+                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLB-sb-UgL" userLabel="MenuItem View">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-bT-Iih" userLabel="Label View">
@@ -1481,7 +1484,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-8D-W95">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adF-2O-rtR">
