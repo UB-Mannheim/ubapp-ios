@@ -289,7 +289,17 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     @IBAction func home(sender: UIBarButtonItem) {
         // self.webView.stopLoading()
-        let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
+        // let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
+        
+        var homeStr = "http://www.bib.uni-mannheim.de/mobile"
+        
+        if(self.website.containsString("primo.bib.uni-mannheim.de")) {
+            // println("primo")
+            homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+        }
+        
+        let requestURL = NSURL(string: homeStr)
+        
         let request = NSURLRequest(URL: requestURL!)
         self.webView.loadRequest(request)
     }

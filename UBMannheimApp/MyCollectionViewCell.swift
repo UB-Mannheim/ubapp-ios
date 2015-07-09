@@ -45,6 +45,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         let textFrame = CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5)
         textLabel = UILabel(frame: textFrame)
         
+        // braucht man das gar nicht mehr??
         // textLabel.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
         textLabel.font = UIFont.systemFontOfSize(frame.size.height/10)
         textLabel.textColor = UIColor.grayColor()
@@ -54,13 +55,30 @@ class MyCollectionViewCell: UICollectionViewCell {
         
         outerUIView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height*2/3))
         // imageView s.o.
-        innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5))
+        
+        println("Frame Height: \(frame.size.height) Frame Width: \(frame.size.width)")
+        
+        // Display iPad and landscape views using Swift Autolayout and Size Classes Programmatically (NEW)
+        // http://www.digistarters.com/swift-autolayout-and-size-classes-programmatically/
+        
+        
+        
+        if (frame.size.width > frame.size.height) {
+            //iPod landscape
+            innerUIView = UIView(frame: CGRect(x: frame.size.width/3.3, y: frame.size.height/1.2, width: frame.size.width/2.5, height: frame.size.height/5))
+            textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/3.3, y: 0, width: frame.size.width, height: frame.size.height/5))
+        
+        } else {
+            //iPod portrait
+            innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5))
+            textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
+        }
+        
         innerUIView.backgroundColor = UIColor.whiteColor()
         innerUIView.layer.cornerRadius = 10.0
         innerUIView.layer.opacity = 0.8
         // textLabel s.o.
         
-        textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
         textLabel2.font = UIFont.systemFontOfSize(frame.size.height/10)
         textLabel2.textColor = UIColor.grayColor()
         textLabel2.textAlignment = .Center
