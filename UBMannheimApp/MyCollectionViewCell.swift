@@ -67,11 +67,37 @@ class MyCollectionViewCell: UICollectionViewCell {
             //iPod landscape
             innerUIView = UIView(frame: CGRect(x: frame.size.width/3.3, y: frame.size.height/1.2, width: frame.size.width/2.5, height: frame.size.height/5))
             textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/3.3, y: 0, width: frame.size.width, height: frame.size.height/5))
+            
+            //iPad landscape
+            if (traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact) {
+                // Compact
+            } else {
+                // Regular
+                println("iPad landscape")
+                imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/4, width: frame.size.width, height: frame.size.height*2/3))
+                imageView.contentMode = UIViewContentMode.ScaleAspectFit
+                
+                innerUIView = UIView(frame: CGRect(x: frame.size.width/4, y: frame.size.height/1.05, width: frame.size.width/2, height: frame.size.height/5))
+                textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/4, y: frame.size.height/80, width: frame.size.width, height: frame.size.height/5))
+            }
         
         } else {
             //iPod portrait
             innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5))
             textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
+            
+            //iPad protrait
+            if (traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact) {
+                // Compact
+            } else {
+                // Regular
+                println("iPad portrait")
+                imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/8, width: frame.size.width, height: frame.size.height*2/3))
+                imageView.contentMode = UIViewContentMode.ScaleAspectFit
+                
+                innerUIView = UIView(frame: CGRect(x: frame.size.width/19, y: frame.size.height/1.2, width: frame.size.width/1.12, height: frame.size.height/5))
+                textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/19, y: frame.size.height/100, width: frame.size.width, height: frame.size.height/5))
+            }
         }
         
         innerUIView.backgroundColor = UIColor.whiteColor()
