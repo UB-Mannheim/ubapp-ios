@@ -64,49 +64,45 @@ class MyCollectionViewCell: UICollectionViewCell {
         var model: String = UIDevice.currentDevice().model
         println(model)
         
+        // LANDSCAPE
         if (frame.size.width > frame.size.height) {
             
-            if(model.rangeOfString("iPod touch") != nil) {
-            //iPod landscape
-            innerUIView = UIView(frame: CGRect(x: frame.size.width/3.3, y: frame.size.height/1.2, width: frame.size.width/2.5, height: frame.size.height/5))
-            textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/3.3, y: 0, width: frame.size.width, height: frame.size.height/5))
+            if( (model.rangeOfString("iPod") != nil) || (model.rangeOfString("iPhone") != nil) ) {
+                innerUIView = UIView(frame: CGRect(x: frame.size.width/3.3, y: frame.size.height/1.2, width: frame.size.width/2.5, height: frame.size.height/5))
+                textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/3.3, y: 0, width: frame.size.width, height: frame.size.height/5))
             }
             
             if(model.rangeOfString("iPad") != nil) {
-            //iPad landscape
-            // if (traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact)  {
+                // test: layout by userinterface size class ... not really useful
+                // if (traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact)  {
                 // self.uiView.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular
                 // self.uiView.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Unspecified
             
-                // Regular
-                println("iPad landscape")
-                
                 imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/4, width: frame.size.width, height: frame.size.height*2/3))
                 imageView.contentMode = UIViewContentMode.ScaleAspectFit
-                
                 innerUIView = UIView(frame: CGRect(x: frame.size.width/4, y: frame.size.height/1.05, width: frame.size.width/2, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/4, y: frame.size.height/80, width: frame.size.width, height: frame.size.height/5))
             }
-        
+    
+        // PORTRAIT
         } else {
-            if(model.rangeOfString("iPod touch") != nil) {
-            //iPod portrait
-            innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5))
-            textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
+            if(model.rangeOfString("iPod") != nil) {
+                innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5))
+                textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
             }
         
             if(model.rangeOfString("iPad") != nil) {
-            //iPad protrait
-            // Regular
-                println("iPad portrait")
-                
                 imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/8, width: frame.size.width, height: frame.size.height*2/3))
                 imageView.contentMode = UIViewContentMode.ScaleAspectFit
-                
                 innerUIView = UIView(frame: CGRect(x: frame.size.width/19, y: frame.size.height/1.2, width: frame.size.width/1.12, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/19, y: frame.size.height/100, width: frame.size.width, height: frame.size.height/5))
-                
             }
+            
+            if(model.rangeOfString("iPhone") != nil) {
+                innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.3, width: frame.size.width, height: frame.size.height/5))
+                textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
+            }
+            
         }
         
         innerUIView.backgroundColor = UIColor.whiteColor()
