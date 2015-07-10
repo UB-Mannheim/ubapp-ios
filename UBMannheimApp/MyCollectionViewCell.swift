@@ -61,19 +61,26 @@ class MyCollectionViewCell: UICollectionViewCell {
         // Display iPad and landscape views using Swift Autolayout and Size Classes Programmatically (NEW)
         // http://www.digistarters.com/swift-autolayout-and-size-classes-programmatically/
         
-        
+        var model: String = UIDevice.currentDevice().model
+        println(model)
         
         if (frame.size.width > frame.size.height) {
+            
+            if(model.rangeOfString("iPod touch") != nil) {
             //iPod landscape
             innerUIView = UIView(frame: CGRect(x: frame.size.width/3.3, y: frame.size.height/1.2, width: frame.size.width/2.5, height: frame.size.height/5))
             textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/3.3, y: 0, width: frame.size.width, height: frame.size.height/5))
+            }
             
+            if(model.rangeOfString("iPad") != nil) {
             //iPad landscape
-            if (traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact) {
-                // Compact
-            } else {
+            // if (traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact)  {
+                // self.uiView.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular
+                // self.uiView.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Unspecified
+            
                 // Regular
                 println("iPad landscape")
+                
                 imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/4, width: frame.size.width, height: frame.size.height*2/3))
                 imageView.contentMode = UIViewContentMode.ScaleAspectFit
                 
@@ -82,21 +89,23 @@ class MyCollectionViewCell: UICollectionViewCell {
             }
         
         } else {
+            if(model.rangeOfString("iPod touch") != nil) {
             //iPod portrait
             innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5))
             textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
-            
+            }
+        
+            if(model.rangeOfString("iPad") != nil) {
             //iPad protrait
-            if (traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact) {
-                // Compact
-            } else {
-                // Regular
+            // Regular
                 println("iPad portrait")
+                
                 imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/8, width: frame.size.width, height: frame.size.height*2/3))
                 imageView.contentMode = UIViewContentMode.ScaleAspectFit
                 
                 innerUIView = UIView(frame: CGRect(x: frame.size.width/19, y: frame.size.height/1.2, width: frame.size.width/1.12, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/19, y: frame.size.height/100, width: frame.size.width, height: frame.size.height/5))
+                
             }
         }
         

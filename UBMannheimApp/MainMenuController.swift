@@ -413,6 +413,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         // println("rotate")
         
+        /*
         if (UIDeviceOrientationIsValidInterfaceOrientation(UIDevice.currentDevice().orientation)) {
         println("valid orientation")
             
@@ -452,6 +453,21 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 setLayout("landscape")
             }
         
+        }
+        */
+        
+        if( UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) ) {
+            
+            //Portrait orientation
+            println("portrait")
+            setLayout("portrait")
+        }
+        
+        if( UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) ) {
+            
+            //Landscape orientation
+            println("landscape")
+            setLayout("landscape")
         }
         
     }
