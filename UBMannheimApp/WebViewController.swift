@@ -40,7 +40,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         println("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
         
-        
         if IJReachability.isConnectedToNetwork() {
         
             // check if necessary and why
@@ -203,6 +202,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // webview request
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if(navigationType == UIWebViewNavigationType.LinkClicked) {
+            println("tapped")
+        }
     return true;
     }
     
@@ -307,5 +309,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     @IBAction func reload(sender: UIBarButtonItem) {
         self.webView.reload()
     }
+    
 }
 
