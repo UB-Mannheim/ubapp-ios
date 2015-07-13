@@ -64,8 +64,12 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             webView.loadRequest(request)
             webView.delegate = self
             
+            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
             
             // #1
+            /* 
+            
+            ausgelagert in eigene Funktion
             
             let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden", preferredStyle: .Alert)
             
@@ -98,6 +102,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
             
             // UINavigationController(rootViewController: WebViewController())
+            
+            */
         }
         
         println("didLoad")
@@ -202,9 +208,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // webview request
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if(navigationType == UIWebViewNavigationType.LinkClicked) {
+        
+        if( (navigationType == UIWebViewNavigationType.LinkClicked) && (IJReachability.isConnectedToNetwork() == false) ) {
             println("tapped")
+            
+            returnNetworkError("Verbindung zum Netzwerk unterbrochen")
+                
         }
+        
     return true;
     }
     
@@ -278,14 +289,22 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // end
 
     @IBAction func back(sender: UIBarButtonItem) {
-        if (self.webView.canGoBack) {
-            self.webView.goBack()
+        if (IJReachability.isConnectedToNetwork()) {
+            if (self.webView.canGoBack) {
+                self.webView.goBack()
+            }
+        } else {
+            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
         }
     }
     
     @IBAction func forward(sender: UIBarButtonItem) {
-        if (self.webView.canGoForward) {
-            self.webView.goForward()
+        if (IJReachability.isConnectedToNetwork()) {
+            if (self.webView.canGoForward) {
+                self.webView.goForward()
+            }
+        } else {
+            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
         }
     }
     
@@ -302,12 +321,43 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         let requestURL = NSURL(string: homeStr)
         
-        let request = NSURLRequest(URL: requestURL!)
-        self.webView.loadRequest(request)
+        if (IJReachability.isConnectedToNetwork()) {
+            let request = NSURLRequest(URL: requestURL!)
+            self.webView.loadRequest(request)
+        } else {
+            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
+        }
     }
     
     @IBAction func reload(sender: UIBarButtonItem) {
-        self.webView.reload()
+        if (IJReachability.isConnectedToNetwork()) {
+            self.webView.reload()
+        } else {
+            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
+        }
+    }
+    
+    func returnNetworkError(error_msg: String) {
+    
+        let alertController = UIAlertController(title: "Fehler", message: error_msg, preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+            
+            self.userDefaults.setObject(1, forKey: "backFromWebview")
+            
+            let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+            self.navigationController?.pushViewController(homeViewController, animated: true)
+            
+        }
+        
+            let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+            self.viewDidLoad()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
 }
