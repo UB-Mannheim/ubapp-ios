@@ -40,6 +40,15 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         println("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
         
+        
+        if(self.website.containsString("primo.bib.uni-mannheim.de")) {
+            self.title = "Primo"
+        }
+        
+        if(self.website.containsString("www.bib.uni-mannheim.de")) {
+            self.title = "Website"
+        }
+        
         if IJReachability.isConnectedToNetwork() {
         
             // check if necessary and why
@@ -48,14 +57,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             webView.delegate = self
             // check if necessary and why
             // self.view.addSubview(webView)
-            
-            if(self.website.containsString("primo.bib.uni-mannheim.de")) {
-                self.title = "Primo"
-            }
-            
-            if(self.website.containsString("www.bib.uni-mannheim.de")) {
-                self.title = "Website"
-            }
            
         } else {
             
