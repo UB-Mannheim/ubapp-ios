@@ -4,6 +4,11 @@
 //
 //  Created by Alexander Wagner on 09.04.15.
 //  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+// 
+//  Hard Coded Bundle Identifier 
+//  $(PRODUCT_NAME:rfc1034identifier) -> app
+//  http://stackoverflow.com/questions/28118970/xcode-6-how-to-set-a-custom-bundle-identifier
+//
 //
 
 import UIKit
