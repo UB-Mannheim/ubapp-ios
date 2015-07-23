@@ -10,6 +10,9 @@ import UIKit
 
 class FeedWebPageViewController: UIViewController {
     
+    var DEBUG: Bool = false
+    // if (DEBUG) {
+    
     var feedURL = ""
 
     @IBOutlet var myWebView: UIWebView!

@@ -11,6 +11,7 @@ import UIKit
 
 class WebViewController: UIViewController, UIWebViewDelegate {
 
+    var DEBUG: Bool = false
     
     //Toolbar Icons
     // Iconbeast
@@ -38,7 +39,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        println("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        if (DEBUG) { println("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
@@ -107,7 +108,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             */
         }
         
-        println("didLoad")
+        if (DEBUG) { println("didLoad") }
 
    
     }
@@ -115,7 +116,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        println("didReceiveMemoryWarning")
+        if (DEBUG) { println("didReceiveMemoryWarning") }
     }
     
     
@@ -188,7 +189,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         self.webView.stringByEvaluatingJavaScriptFromString(www_js)
         
-        println("didFinishLoad")
+        if (DEBUG) { println("didFinishLoad") }
         
     }
 
@@ -211,7 +212,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if( (navigationType == UIWebViewNavigationType.LinkClicked) && (IJReachability.isConnectedToNetwork() == false) ) {
-            println("tapped")
+            if (DEBUG) { println("tapped") }
             
             returnNetworkError("Verbindung zum Netzwerk unterbrochen")
                 
@@ -316,7 +317,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         var homeStr = "http://www.bib.uni-mannheim.de/mobile"
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
-            // println("primo")
+            // if (DEBUG) { println("primo") }
             homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
         }
         

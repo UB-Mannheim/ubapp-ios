@@ -15,6 +15,9 @@ import UIKit
 
 class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate, UIApplicationDelegate {
 
+    var DEBUG: Bool = false
+    // if (DEBUG) {
+    
     // exkurs: tutorial adaptive layout
     // https://youtu.be/E3glNbNnokw
     
@@ -31,14 +34,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     var myArray : Array<Double>! {
         get {
             if let myArray: AnyObject! = NSUserDefaults.standardUserDefaults().objectForKey("myArray") {
-                println("\(myArray)")
+                if (DEBUG) { println("\(myArray)") }
                 return myArray as! Array<Double>!
             }
             
             return nil
         }
         set {
-            println(myArray)
+            if (DEBUG) { println(myArray) }
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "myArray")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
@@ -55,7 +58,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("DEBUG MSG MainMenuController : System starting ...")
+        if (DEBUG) { println("DEBUG MSG MainMenuController : System starting ...") }
         
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         // let wback: Int? = userDefaults.objectForKey("backFromWebView") as! Int?
@@ -63,7 +66,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | backFromWebview = \(wback) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        if (DEBUG) { println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | backFromWebview = \(wback) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
         // simple redirection if startup option ist chosen
         // let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int? >> s.o.
@@ -86,11 +89,11 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                     if (kcache == true) { // && (knews > 0)) { // enabled ja ... aber auch gefuellt? // count news != 0
                         redirect = true
                         
-                        println("A")
+                        if (DEBUG) { /* println("A") */ }
                         //
                     } else {
                         
-                        println("B")
+                        if (DEBUG) { /* println("B") */ }
                         /*
                         // wenn cache aus eigentlich nicht weiterleiten
                         if ((kstartup == 1) || (kstartup == 2)) {
@@ -201,6 +204,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         init_preferences()
         
         /*
+        if (DEBUG) { 
         println("Configuration States: ")
         print("firstRun :: ")
         println(userDefaults.objectForKey("firstRun"))
@@ -210,9 +214,10 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         println(userDefaults.objectForKey("startupWith"))
         print("newsCount :: ")
         println(userDefaults.objectForKey("newsCount"))
+        }
         */
         
-        println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+                if (DEBUG) { println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
         
         // init toolbar (hidden in storyboard)
@@ -464,14 +469,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         if( UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) ) {
             
             //Portrait orientation
-            println("portrait")
+            if (DEBUG) { println("portrait") }
             setLayout("portrait")
         }
         
         if( UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) ) {
             
             //Landscape orientation
-            println("landscape")
+            if (DEBUG) { println("landscape") }
             setLayout("landscape")
         }
         
@@ -636,7 +641,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     // Segue Preparation END
         
     func openConfigDialog() {
-        println("opened")
+        if (DEBUG) { println("opened") }
     }
     
     /*

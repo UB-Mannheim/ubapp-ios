@@ -13,6 +13,9 @@ import Foundation
 
 class SeatsTableViewController: UITableViewController {
 
+    var DEBUG: Bool = false
+    // if (DEBUG) {
+    
     var items: NSArray = NSArray()
     var data: NSMutableData = NSMutableData()
     
@@ -54,7 +57,7 @@ class SeatsTableViewController: UITableViewController {
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
-        println("DEBUG MSG SeatsTabController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]")
+        if (DEBUG) { println("DEBUG MSG SeatsTabController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]") }
         
         
         // if pulled down, refresh
@@ -69,7 +72,7 @@ class SeatsTableViewController: UITableViewController {
         // if Network Connection online
         if IJReachability.isConnectedToNetwork() {
             
-            println("connected")
+            if (DEBUG) { println("connected") }
             
             // searchItunesFor("JQ Software")
             loadJSONFromURL()
@@ -88,19 +91,19 @@ class SeatsTableViewController: UITableViewController {
                 if(userDefaults.objectForKey("wlanCache")!.count != 0) {
                     
                     let wlan_data: AnyObject = userDefaults.objectForKey("wlanCache")!
-                    println("freshly filled preference: \(wlan_data)")
+                    if (DEBUG) { println("freshly filled preference: \(wlan_data)") }
                     
                     // load From Cache
     
                     // var wlan_item = [["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]
-                    // println("------------ before for ---------------")
-                    // println(wlan_data)
+                    // if (DEBUG) { println("------------ before for ---------------") }
+                    // if (DEBUG) { println(wlan_data) }
                     
                     self.items = wlan_data as! NSArray
                     self.tableView.reloadData()
                     
-                    // println("------------ items after ---------------")
-                    // println(self.items)
+                    // if (DEBUG) { println("------------ items after ---------------") }
+                    // if (DEBUG) { println(self.items) }
                     
                     
                     // http://stackoverflow.com/questions/26840736/converting-json-to-nsdata-and-nsdata-to-json-in-swift
@@ -109,7 +112,7 @@ class SeatsTableViewController: UITableViewController {
                     /*
                     for (var i = 0; i < wlan_item.; i++) {
                         
-                        println("for \(i)")
+                        if (DEBUG) { println("for \(i)") }
                         
                         var id = wlan_data["sections"][i]["id"] as! String
                         var max = wlan_data[1][i].objectForKey("max") as! String
@@ -117,7 +120,7 @@ class SeatsTableViewController: UITableViewController {
                         var percent = wlan_data[1][i].objectForKey("percent") as! String
                         
                         wlan_item[i] = [id, max, name, percent]
-                        println(wlan_item[i])
+                        if (DEBUG) { println(wlan_item[i]) }
                         
                         // self.data.appendData(wlan_item)
                     }
@@ -126,7 +129,7 @@ class SeatsTableViewController: UITableViewController {
                 } else {
                     
                     // kein Primaerabzug erfolgt
-                    println("kein primaerabzug")
+                    if (DEBUG) { println("kein primaerabzug") }
                     
                     // Keine Verbindung zum Netzwerk vorhanden, kein Primärabzug erfolgt.
                     
@@ -163,7 +166,7 @@ class SeatsTableViewController: UITableViewController {
                 } else { // cache set, but wlan cache not filled
                 
                     // kein Primaerabzug erfolgt
-                    println("kein primaerabzug II")
+                    if (DEBUG) { println("kein primaerabzug II") }
                     
                     
                     let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
@@ -279,7 +282,7 @@ class SeatsTableViewController: UITableViewController {
             cell.imageView?.image = UIImage(named: "sign_green.png")
         }
         
-        cell.detailTextLabel?.text = loadInPercent.description + "% (von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt)"
+        cell.detailTextLabel?.text = loadInPercent.description + "% von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt"
         
         return cell
     }
@@ -329,7 +332,7 @@ class SeatsTableViewController: UITableViewController {
         */
         
         let date = getTimeStamp()
-        println("Date: \(date)")
+        if (DEBUG) { println("Date: \(date)") }
         
         userDefaults.setObject(date, forKey: "dateWLAN")
         userDefaults.synchronize()

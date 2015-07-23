@@ -8,6 +8,8 @@
 import UIKit
 
 class HelpViewController: UITableViewController, UITableViewDataSource {
+  
+    // OLD HELP CONTROLLER, SHOULD BE DELETED
     
     var items = []
     

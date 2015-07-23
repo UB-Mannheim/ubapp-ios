@@ -11,6 +11,9 @@ import UIKit
 
 class FeedPageViewController: UIViewController {
 
+    var DEBUG: Bool = false
+    // if (DEBUG) {
+    
     @IBOutlet weak var textLabel: UILabel!
     // @IBOutlet weak var textView: UITextView!
     
@@ -38,7 +41,7 @@ class FeedPageViewController: UIViewController {
         // Downcast (String -> NSString) for better String operations
         var formattedFeedFeedContent = selectedFeedFeedContent as NSString
         
-        // println(formattedFeedFeedContent)
+        // if (DEBUG) { println(formattedFeedFeedContent) }
         
         // 2DOs
         // ggf nach <img> IMMER ein <br/>
@@ -70,7 +73,7 @@ class FeedPageViewController: UIViewController {
         // strip whitespaces and linebreaks beginning and end
         outputStr = outputStr.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        println("FeedPageDetail: "+outputStr)
+        if (DEBUG) { println("FeedPageDetail: "+outputStr) }
         
         textView.text = "\(outputStr)"+" \(selectedFeedURL)"
 */
@@ -88,7 +91,7 @@ class FeedPageViewController: UIViewController {
         var html = html_prefix + selectedFeedFeedContent + html_suffix
         webView.loadHTMLString(html, baseURL: nil)
         
-        // println(html)
+        // if (DEBUG) { println(html) }
         
         /*
         var textAttachment: NSTextAttachment = NSTextAttachment();
@@ -100,7 +103,7 @@ class FeedPageViewController: UIViewController {
         
         // textView.attributedText.setValue(value: nil, forKey: "NSAttachment")
         
-        //println(attributedHTMLFeedFeedContent)
+        // if (DEBUG) { println(attributedHTMLFeedFeedContent) }
         
         
         // CHANGE Attributed Text Contents

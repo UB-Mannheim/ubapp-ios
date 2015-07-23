@@ -9,6 +9,9 @@
 import UIKit
 
 class NewFeedViewController: UIViewController {
+    
+    // Testing NewsFeed via RSSWift
+    // non-productive
 
     @IBOutlet var textFieldNewFeedUrl: UITextField!
     

@@ -13,6 +13,9 @@ import UIKit
 
 class MyCollectionViewCell: UICollectionViewCell {
     
+    var DEBUG: Bool = false
+    // if (DEBUG) {
+    
     var textLabel: UILabel!
     var imageView: UIImageView!
     var uiView: UIView!
@@ -56,13 +59,13 @@ class MyCollectionViewCell: UICollectionViewCell {
         outerUIView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height*2/3))
         // imageView s.o.
         
-        println("Frame Height: \(frame.size.height) Frame Width: \(frame.size.width)")
+        if (DEBUG) { println("Frame Height: \(frame.size.height) Frame Width: \(frame.size.width)") }
         
         // Display iPad and landscape views using Swift Autolayout and Size Classes Programmatically (NEW)
         // http://www.digistarters.com/swift-autolayout-and-size-classes-programmatically/
         
         var model: String = UIDevice.currentDevice().model
-        println(model)
+        if (DEBUG) { println(model) }
         
         // LANDSCAPE
         if (frame.size.width > frame.size.height) {

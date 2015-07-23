@@ -1292,6 +1292,7 @@
                                                 <constraint firstAttribute="centerX" secondItem="YF4-dn-xyn" secondAttribute="centerX" id="gnE-yz-QHU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="N4V-bd-2E6" userLabel="Delete Config Cell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1708,8 +1709,8 @@
         <image name="website" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bgF-9n-HYC"/>
-        <segue reference="Phc-Df-0op"/>
         <segue reference="MZ2-Q0-gUJ"/>
+        <segue reference="Phc-Df-0op"/>
+        <segue reference="mmG-0k-rgi"/>
     </inferredMetricsTieBreakers>
 </document>
