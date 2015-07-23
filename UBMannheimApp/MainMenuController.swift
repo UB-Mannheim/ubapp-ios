@@ -232,8 +232,8 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         // http://stackoverflow.com/questions/25666269/ios8-swift-how-to-detect-orientation-change
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
-        
         rotated()
+        
         /*
         // Do any additional setup after loading the view, typically from a nib.
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -376,6 +376,10 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let vc_conf : UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConfigView") as! UIViewController;
         self.presentViewController(vc_conf, animated: true, completion: nil)
         */
+        
+        // Back Button in Child-View pressed, action if back to main Menu
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        rotated()
     }
     
     func setLayout(myLayout: NSString) -> Void {
