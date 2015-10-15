@@ -25,7 +25,7 @@ class MyCollectionViewCell: UICollectionViewCell {
     var textLabel2: UILabel!
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override init(frame: CGRect) {
@@ -59,13 +59,13 @@ class MyCollectionViewCell: UICollectionViewCell {
         outerUIView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height*2/3))
         // imageView s.o.
         
-        if (DEBUG) { println("Frame Height: \(frame.size.height) Frame Width: \(frame.size.width)") }
+        if (DEBUG) { print("Frame Height: \(frame.size.height) Frame Width: \(frame.size.width)") }
         
         // Display iPad and landscape views using Swift Autolayout and Size Classes Programmatically (NEW)
         // http://www.digistarters.com/swift-autolayout-and-size-classes-programmatically/
         
         var model: String = UIDevice.currentDevice().model
-        if (DEBUG) { println(model) }
+        if (DEBUG) { print(model) }
         
         // LANDSCAPE
         if (frame.size.width > frame.size.height) {

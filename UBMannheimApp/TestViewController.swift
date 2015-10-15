@@ -10,6 +10,10 @@ import UIKit
 
 class TestViewController: UIViewController, NSURLConnectionDelegate {
 
+    /* 
+
+    Deactivated because of errors in Swift 2 and not used
+
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -35,14 +39,14 @@ class TestViewController: UIViewController, NSURLConnectionDelegate {
         //2
         let jsonQuery = urlSession.dataTaskWithURL(url, completionHandler: { data, response, error -> Void in
             if (error != nil) {
-                println(error.localizedDescription)
+                print(error.localizedDescription)
             }
             var err: NSError?
             
             // 3
             var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
             if (err != nil) {
-                println("JSON Error \(err!.localizedDescription)")
+                print("JSON Error \(err!.localizedDescription)")
             }
 
             let json = JSON(jsonResult)
@@ -68,38 +72,38 @@ class TestViewController: UIViewController, NSURLConnectionDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    /*
-    override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    startConnection()
-    }
+    
+    // override func viewWillAppear(animated: Bool) {
+    // super.viewWillAppear(animated)
+    // startConnection()
+    // }
     
     
-    func startConnection(){
-        let urlPath: String = "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
-        connection.start()
-    }
+    // func startConnection(){
+    //     let urlPath: String = "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json"
+    //     var url: NSURL = NSURL(string: urlPath)!
+    //     var request: NSURLRequest = NSURLRequest(URL: url)
+    //     var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
+    //     connection.start()
+    // }
     
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!){
-        self.data.appendData(data)
-    }
+    // func connection(connection: NSURLConnection!, didReceiveData data: NSData!){
+    //     self.data.appendData(data)
+    // }
     
-    func buttonAction(sender: UIButton!){
-        startConnection()
-    }
+    // func buttonAction(sender: UIButton!){
+    //     startConnection()
+    // }
     
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        var err: NSError
-        // throwing an error on the line below (can't figure out where the error message is)
-        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-        println(jsonResult)
+    // func connectionDidFinishLoading(connection: NSURLConnection!) {
+    //     var err: NSError
+        // // throwing an error on the line below (can't figure out where the error message is)
+    //  var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+    //     print(jsonResult)
         
         // var labelString = jsonResult["date"] as String
         
     }
+//
     */
-
 }

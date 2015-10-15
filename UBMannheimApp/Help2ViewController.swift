@@ -55,7 +55,7 @@ class Help2ViewController: UITableViewController {
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        if (DEBUG) { println("DEBUG MSG HelpViewController_: FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+        if (DEBUG) { print("DEBUG MSG HelpViewController_: FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
     }
     
@@ -110,7 +110,7 @@ class Help2ViewController: UITableViewController {
         
         // http://www.ioscreator.com/tutorials/customizing-header-footer-table-view-ios8-swift
         
-        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! UITableViewCell
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell")! as UITableViewCell
         
         headerCell.textLabel?.text = "FAQ"
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)

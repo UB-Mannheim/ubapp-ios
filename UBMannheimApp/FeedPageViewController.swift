@@ -41,7 +41,7 @@ class FeedPageViewController: UIViewController {
         // Downcast (String -> NSString) for better String operations
         var formattedFeedFeedContent = selectedFeedFeedContent as NSString
         
-        // if (DEBUG) { println(formattedFeedFeedContent) }
+        // if (DEBUG) { print(formattedFeedFeedContent) }
         
         // 2DOs
         // ggf nach <img> IMMER ein <br/>
@@ -73,7 +73,7 @@ class FeedPageViewController: UIViewController {
         // strip whitespaces and linebreaks beginning and end
         outputStr = outputStr.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        if (DEBUG) { println("FeedPageDetail: "+outputStr) }
+        if (DEBUG) { print("FeedPageDetail: "+outputStr) }
         
         textView.text = "\(outputStr)"+" \(selectedFeedURL)"
 */
@@ -91,7 +91,7 @@ class FeedPageViewController: UIViewController {
         var html = html_prefix + selectedFeedFeedContent + html_suffix
         webView.loadHTMLString(html, baseURL: nil)
         
-        // if (DEBUG) { println(html) }
+        // if (DEBUG) { print(html) }
         
         /*
         var textAttachment: NSTextAttachment = NSTextAttachment();
@@ -103,7 +103,7 @@ class FeedPageViewController: UIViewController {
         
         // textView.attributedText.setValue(value: nil, forKey: "NSAttachment")
         
-        // if (DEBUG) { println(attributedHTMLFeedFeedContent) }
+        // if (DEBUG) { print(attributedHTMLFeedFeedContent) }
         
         
         // CHANGE Attributed Text Contents

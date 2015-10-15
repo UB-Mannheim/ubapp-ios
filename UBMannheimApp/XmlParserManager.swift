@@ -44,22 +44,22 @@ class XmlParserManager: NSObject, NSXMLParserDelegate {
         return feeds
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         element = elementName
         
         if (element as NSString).isEqualToString("item") {
-            elements = NSMutableDictionary.alloc()
+            elements = NSMutableDictionary()
             elements = [:]
-            ftitle = NSMutableString.alloc()
+            ftitle = NSMutableString()
             ftitle = ""
-            link = NSMutableString.alloc()
+            link = NSMutableString()
             link = ""
-            fdescription = NSMutableString.alloc()
+            fdescription = NSMutableString()
             fdescription = ""
-            fdate = NSMutableString.alloc()
+            fdate = NSMutableString()
             fdate = ""
             
-            fcontent = NSMutableString.alloc()
+            fcontent = NSMutableString()
             fcontent = ""
         }
     }

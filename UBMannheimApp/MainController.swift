@@ -103,7 +103,7 @@ class MainController: UIViewController {
         self.navigationController?.pushViewController(homeViewController, animated: true)
                 break
             
-        default: println("default action")
+        default: print("default action")
         }
     }
     

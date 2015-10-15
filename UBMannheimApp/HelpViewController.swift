@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class HelpViewController: UITableViewController, UITableViewDataSource {
+class HelpViewController: UITableViewController {
   
     // OLD HELP CONTROLLER, SHOULD BE DELETED
     
@@ -100,7 +100,7 @@ class HelpViewController: UITableViewController, UITableViewDataSource {
         cell.textLabel?.preferredMaxLayoutWidth = CGRectGetWidth(cell.textLabel!.frame)
         // cell.detailTextLabel?.preferredMaxLayoutWidth = CGRectGetWidth(cell.detailTextLabel!.frame)
         */
-        println(title)
+        print(title)
         
         return cell
     }

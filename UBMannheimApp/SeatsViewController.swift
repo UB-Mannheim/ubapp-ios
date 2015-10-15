@@ -56,8 +56,8 @@ class SeatsViewController: UITableViewController {
             if (data != nil) {
                 self.items = NSMutableArray(array: data)
                 self.tableView!.reloadData()            } else {
-                println("api.getData failed")
-                println(error)
+                print("api.getData failed")
+                print(error)
             }
         })
         */
@@ -133,7 +133,7 @@ class SeatsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("You selected cell #\(indexPath.row)!")
+        print("You selected cell #\(indexPath.row)!")
     }
 
 }

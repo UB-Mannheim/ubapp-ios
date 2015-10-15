@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ConfigController: UITableViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var DEBUG: Bool = false
     
@@ -36,14 +36,14 @@ class ConfigController: UITableViewController, UITableViewDataSource, UITableVie
     var myArray : Array<Double>! {
         get {
             if let myArray: AnyObject! = NSUserDefaults.standardUserDefaults().objectForKey("myArray") {
-                println("\(myArray)")
+                print("\(myArray)")
                 return myArray as! Array<Double>!
             }
             
             return nil
         }
         set {
-            println(myArray)
+            print(myArray)
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "myArray")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
@@ -61,7 +61,7 @@ var newsCount:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // println("viewDidLoad ....................................................")
+        // print("viewDidLoad ....................................................")
         
         //table layout
         // Cell height.
@@ -84,15 +84,15 @@ var newsCount:Int = 0
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
-        if (DEBUG) { println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+        if (DEBUG) { print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
         // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
         let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
-        // if (DEBUG) { println("Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries") } // >> s.o.
+        // if (DEBUG) { print("Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries") } // >> s.o.
         
         if((knews_items?.last != nil) && (knews_items!.count > 0)) {
-            // println("News stack contains \(knews_items!.count) elements")
+            // print("News stack contains \(knews_items!.count) elements")
         }
         
         // #1
@@ -240,7 +240,7 @@ var newsCount:Int = 0
             
             // userDefaults.setObject(1, forKey: "firstRun")
             // if (DEBUG) {  print("Config State of firstRun: ") }
-            // if (DEBUG) { println(userDefaults.objectForKey("firstRun")) }
+            // if (DEBUG) { print(userDefaults.objectForKey("firstRun")) }
         }
         
         /*
@@ -348,16 +348,16 @@ var newsCount:Int = 0
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
         
-        // if (DEBUG) { println("kcache \(kcache)") }
-        // if (DEBUG) { println("knews \(knews)") }
-        // if (DEBUG) { println("kstartup \(kstartup)") }
+        // if (DEBUG) { print("kcache \(kcache)") }
+        // if (DEBUG) { print("knews \(knews)") }
+        // if (DEBUG) { print("kstartup \(kstartup)") }
         
-        if (DEBUG) { println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: deleteAllPreferences]") }
+        if (DEBUG) { print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: deleteAllPreferences]") }
         
         
         // let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
-        // if (DEBUG) { println("*DEL* Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries") }
+        // if (DEBUG) { print("*DEL* Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries") }
         
 
         userDefaults.synchronize()
@@ -406,7 +406,7 @@ var newsCount:Int = 0
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
-        if (DEBUG) { println("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]") }
+        if (DEBUG) { print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]") }
         
         
         
@@ -417,7 +417,7 @@ var newsCount:Int = 0
         
         userDefaults.synchronize()
         
-        // if (DEBUG) { println("News ITEMS: \(nitems)") }
+        // if (DEBUG) { print("News ITEMS: \(nitems)") }
         
         // reload
         viewDidLoad()

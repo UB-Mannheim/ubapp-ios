@@ -39,7 +39,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        if (DEBUG) { println("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+        if (DEBUG) { print("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
@@ -108,7 +108,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             */
         }
         
-        if (DEBUG) { println("didLoad") }
+        if (DEBUG) { print("didLoad") }
 
    
     }
@@ -116,7 +116,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        if (DEBUG) { println("didReceiveMemoryWarning") }
+        if (DEBUG) { print("didReceiveMemoryWarning") }
     }
     
     
@@ -189,7 +189,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         self.webView.stringByEvaluatingJavaScriptFromString(www_js)
         
-        if (DEBUG) { println("didFinishLoad") }
+        if (DEBUG) { print("didFinishLoad") }
         
     }
 
@@ -203,7 +203,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     // webview error
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         print("Webview fail with error \(error)");
     }
     
@@ -212,7 +212,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if( (navigationType == UIWebViewNavigationType.LinkClicked) && (IJReachability.isConnectedToNetwork() == false) ) {
-            if (DEBUG) { println("tapped") }
+            if (DEBUG) { print("tapped") }
             
             returnNetworkError("Verbindung zum Netzwerk unterbrochen")
                 
@@ -317,7 +317,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         var homeStr = "http://www.bib.uni-mannheim.de/mobile"
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
-            // if (DEBUG) { println("primo") }
+            // if (DEBUG) { print("primo") }
             homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
         }
         

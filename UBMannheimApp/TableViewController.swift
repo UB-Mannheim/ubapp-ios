@@ -25,7 +25,7 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
         feeds = []
         // var url: NSURL = NSURL(fileURLWithPath: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
-        var url: NSURL = NSURL(fileURLWithPath: "http://www.skysports.com/rss/0,20514,11661,00.xml")!
+        var url: NSURL = NSURL(fileURLWithPath: "http://www.skysports.com/rss/0,20514,11661,00.xml")
         parser = NSXMLParser(contentsOfURL: url)!
         parser.delegate = self
         parser.shouldProcessNamespaces = false
@@ -35,20 +35,20 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
             
         element = elementName
             
         // instantiate feed properties
         if(element as NSString).isEqualToString("item") {
         
-            elements = NSMutableDictionary.alloc()
+            elements = NSMutableDictionary()
             elements = [:]
-            ftitle = NSMutableString.alloc()
+            ftitle = NSMutableString()
             ftitle = ""
-            link = NSMutableString.alloc()
+            link = NSMutableString()
             link = ""
-            fdescription = NSMutableString.alloc()
+            fdescription = NSMutableString()
             fdescription = ""
                 
         }

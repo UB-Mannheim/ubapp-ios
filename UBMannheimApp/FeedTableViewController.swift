@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate, NSXMLParserDelegate {
+class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
 
     var DEBUG: Bool = false
     
@@ -24,7 +24,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     // UIRefreshControl
     func refresh(sender:AnyObject)
     {
-        if (DEBUG) { println("refresh::start") }
+        if (DEBUG) { print("refresh::start") }
         
         if IJReachability.isConnectedToNetwork() {
             
@@ -57,7 +57,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
 
     override func viewDidLoad() {
         
-        if (DEBUG) { println("didLoad::start") }
+        if (DEBUG) { print("didLoad::start") }
         
         super.viewDidLoad()
 
@@ -76,7 +76,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
-        if (DEBUG) { println("DEBUG MSG FeedTabVController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Info: showing \(news_feed) Entries]") }
+        if (DEBUG) { print("DEBUG MSG FeedTabVController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Info: showing \(news_feed) Entries]") }
         
         // if pulled down, refresh
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -97,11 +97,11 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // if Network Connection online
         if IJReachability.isConnectedToNetwork() {
             
-            if (DEBUG) { println("connected") }
+            if (DEBUG) { print("connected") }
             
             var news_rssdata: AnyObject = loadRss(url)
             news_rss_items = news_rssdata.count
-            if (DEBUG) { println("news rss data count: \(news_rss_items)") }
+            if (DEBUG) { print("news rss data count: \(news_rss_items)") }
             
             
             self.tableView.reloadData()
@@ -110,7 +110,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             //  if Cache on
             if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
               
-            // if (DEBUG) { println("Cache on ....................................................") }
+            // if (DEBUG) { print("Cache on ....................................................") }
                 //  update Cache Entries
                 var maxnews_count = userDefaults.objectForKey("newsCount") as! Int
                 
@@ -128,23 +128,23 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 default: maxnews_count = 5 // ? s.u. 0
                 }
                 
-                // if (DEBUG) { println("maxnews_count \(maxnews_count) ....................................................") }
+                // if (DEBUG) { print("maxnews_count \(maxnews_count) ....................................................") }
                 
                 // if (DEBUG) { print("NEWS COUNT") }
-                // if (DEBUG) { println(news_rssdata.count) }
+                // if (DEBUG) { print(news_rssdata.count) }
                 
                 
                 if(news_rssdata.count < maxnews_count) {
                     maxnews_count = news_rssdata.count
                 }
                 
-                // if (DEBUG) { println("maxnews_count = \(maxnews_count)") }
+                // if (DEBUG) { print("maxnews_count = \(maxnews_count)") }
                 var news_item = ["", "", "", "", ""]
                 
                 for (var i = 0; i < maxnews_count; i++) {
                     
-                    // if (DEBUG) { println("row per row ....................................................") }
-                    // if (DEBUG) { println("News mit ID=\(i) \(news_rssdata[i])") TMP s.o. voher ausgabe der news, aus debugzwecken ausgeklammert }
+                    // if (DEBUG) { print("row per row ....................................................") }
+                    // if (DEBUG) { print("News mit ID=\(i) \(news_rssdata[i])") TMP s.o. voher ausgabe der news, aus debugzwecken ausgeklammert }
                     
                     news_item[0] = news_rssdata[i].objectForKey("title") as! String
                     news_item[1] = news_rssdata[i].objectForKey("description") as! String
@@ -159,13 +159,13 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 userDefaults.synchronize()
                 
                 let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
-                if (DEBUG) { println("freshly filled preference: \(newsentries)") }
+                if (DEBUG) { print("freshly filled preference: \(newsentries)") }
             }
             
             
         } else {
             
-            if (DEBUG) { println("No Network available") }
+            if (DEBUG) { print("No Network available") }
             
             
             // if Cache on
@@ -183,29 +183,29 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                     default: maxnews_count = 0 // ? s.o. 5
                 }
                 
-                if (DEBUG) { println("MAXNEWS ID \(maxnews_id)") }
-                if (DEBUG) { println("MAXNEWS COUNT \(maxnews_count)") }
+                if (DEBUG) { print("MAXNEWS ID \(maxnews_id)") }
+                if (DEBUG) { print("MAXNEWS COUNT \(maxnews_count)") }
                 
                 if(userAlreadyExist("newsCache")) {
                 news_rss_items = userDefaults.objectForKey("newsCache")!.count
                 } else {
                     news_rss_items = 0
-                    if (DEBUG) { println("rss items = 0") }
+                    if (DEBUG) { print("rss items = 0") }
                 }
             
                     if(news_rss_items < maxnews_count) {
-                        if (DEBUG) { println("temp temp temp") }
+                        if (DEBUG) { print("temp temp temp") }
                         maxnews_count = news_rss_items
                     }
                 
                     if(news_rss_items != 0) {
-                        if (DEBUG) { println("loading cache ...") }
+                        if (DEBUG) { print("loading cache ...") }
                         loadCache(maxnews_count)
                     } else {
-                        if (DEBUG) { println("no cache , no data , no network") }
+                        if (DEBUG) { print("no cache , no data , no network") }
                         
                         // kein Primaerabzug erfolgt
-                        if (DEBUG) { println("kein primaerabzug II (copy)") }
+                        if (DEBUG) { print("kein primaerabzug II (copy)") }
                         
                         
                         let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
@@ -247,7 +247,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 
                 // showNetworkError
                 
-                if (DEBUG) { println("alert") }
+                if (DEBUG) { print("alert") }
                 
                 let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der News nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
                 
@@ -288,10 +288,10 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
                 self.presentViewController(alertController, animated: true, completion: nil)
                 
                 
-                if (DEBUG) { println("after alert") }
+                if (DEBUG) { print("after alert") }
             }
             
-                if (DEBUG) { println ("out of sight") }
+                if (DEBUG) { print ("out of sight") }
         }
         
         /*
@@ -303,14 +303,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     func loadRss(data: NSURL) -> AnyObject {
         
-        if (DEBUG) { println("loadRSS::start") }
+        if (DEBUG) { print("loadRSS::start") }
         
         // XmlParserManager instance/object/variable
-        var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as! XmlParserManager
+        var myParser : XmlParserManager = XmlParserManager().initWithURL(data) as! XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
         
-        // if (DEBUG) { println(myFeed) }
+        // if (DEBUG) { print(myFeed) }
         
         /*
         (
@@ -326,14 +326,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         tableView.reloadData()
         
-        if (DEBUG) { println("myFeed.count \(myFeed.count)") }
+        if (DEBUG) { print("myFeed.count \(myFeed.count)") }
         
         return myFeed
     }
     
     func loadCache(newsCount: Int) {
         
-        if (DEBUG) { println("loadCache::start") }
+        if (DEBUG) { print("loadCache::start") }
         
     // if (cache not empty)
     // else kann cache aufgrund fehlender Netzkonnektivität Cache nicht aufbauen
@@ -356,7 +356,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         var news_count = newsCount
 
-        if (DEBUG) { println("news_count uebergabe wert: \(news_count)") }
+        if (DEBUG) { print("news_count uebergabe wert: \(news_count)") }
         /*
         var news_count = 5
         
@@ -367,12 +367,12 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             default: news_count = 5
             }
         */
-        // if (DEBUG) { println(news_count) }
+        // if (DEBUG) { print(news_count) }
         
         // if empty: no cache no network, reload?
         let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
-        if (DEBUG) { println("Get Entry Nr.: 0 \(newsentries[0])") }
-        if (DEBUG) { println("Get Entry Nr.: 0 and Title \(newsentries[0][0])") }
+        if (DEBUG) { print("Get Entry Nr.: 0 \(newsentries[0])") }
+        if (DEBUG) { print("Get Entry Nr.: 0 and Title \(newsentries[0][0])") }
         
         // var dict : NSDictionary! = []
         // var cacheFeed : NSArray = []
@@ -398,7 +398,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         var myNewDictArray: [[String:AnyObject]] = []
         
-        if (DEBUG) { println("newsentries.count \(newsentries.count)") }
+        if (DEBUG) { print("newsentries.count \(newsentries.count)") }
         
         // wenn konfiguration offline geändert und noch keine reload des cache erfolgt ist
         if(newsentries.count < news_count) {
@@ -409,14 +409,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             
         var tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
         
-        // if (DEBUG) { println(tmp) }
+        // if (DEBUG) { print(tmp) }
         
         myNewDictArray.append(tmp)
         }
         
         myFeed = myNewDictArray
         
-        // if (DEBUG) { println(myNewDictArray) }
+        // if (DEBUG) { print(myNewDictArray) }
         
         tableView.reloadData()
     }
@@ -438,7 +438,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         else if segue.identifier == "openPage" {
             
-            var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
+            var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
             // let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
             let selectedFTitle: String = myFeed[indexPath.row].objectForKey("title") as! String
             // let selectedFContent: String = myFeed[indexPath.row].objectForKey("description") as String
@@ -450,7 +450,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
 
             fpvc.selectedFeedTitle = selectedFTitle
             fpvc.selectedFeedFeedContent = selectedFContent
-            // if (DEBUG) { println(selectedFContent) }
+            // if (DEBUG) { print(selectedFContent) }
             fpvc.selectedFeedURL = selectedFURL
             
         }
@@ -463,7 +463,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         var content: String = content
         
         if let match = content.rangeOfString("<a\\s(?=.*?)[^>]*>$", options: .RegularExpressionSearch) {
-            if (DEBUG) { println("\(content) with image") }
+            if (DEBUG) { print("\(content) with image") }
         }
 
     }
@@ -475,7 +475,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (DEBUG) { println("tableView::return_feed_count") }
+        if (DEBUG) { print("tableView::return_feed_count") }
         
         // return myFeed.count
         
@@ -500,14 +500,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             }
         }
         
-        if (DEBUG) { println("feeed count: \(feed_count)") }
+        if (DEBUG) { print("feeed count: \(feed_count)") }
         
         return feed_count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if (DEBUG) { println("tableView::return_cell") }
+        if (DEBUG) { print("tableView::return_cell") }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         
@@ -528,11 +528,12 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             var formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
         
             var date: String = formattedFeedTitle!
-            let stringLength = count(date)
+            let stringLength = date.characters.count
             let substringIndex = stringLength - 12
-            date = date.substringToIndex(advance(date.startIndex, substringIndex))
-        
-            if (DEBUG) { println("PUBATE WAS: \(date)") }
+            // date = date.substringToIndex(advance(date.startIndex, substringIndex))
+            date = date.substringToIndex(date.startIndex.advancedBy(substringIndex))
+            
+            if (DEBUG) { print("PUBATE WAS: \(date)") }
         
             // Englische in Deutsche Tage umformatieren
             date = date.stringByReplacingOccurrencesOfString("Mon", withString: "Mo")
@@ -546,14 +547,14 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             // "." hinter Tag hinzufügen
             date = replace(date, index: 6, newCharac: ".")
         
-            if (DEBUG) { println("PUBATE IS: \(date)") }
+            if (DEBUG) { print("PUBATE IS: \(date)") }
         
         
             cell.detailTextLabel?.text = date
             // cell.detailTextLabel?.text = newDate
         
             var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
-            // if (DEBUG) { println("FeedTableView: "+content!) }
+            // if (DEBUG) { print("FeedTableView: "+content!) }
         } else {
         
             // Set dummy cell properties (emtpy lines, no display of "title", "subtitle" ...)
@@ -583,9 +584,9 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if (DEBUG) { println("tableView::return_header_cell") }
+        if (DEBUG) { print("tableView::return_header_cell") }
         
-        let  headerCell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         
         // hide Title/Subtitle View in HeaderCell
         headerCell.textLabel?.hidden = true
@@ -610,8 +611,10 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         
         var modifiedString = myString
         let range = Range<String.Index>(
-            start: advance(myString.startIndex, index),
-            end: advance(myString.startIndex, index + 1))
+            // start: advance(myString.startIndex, index),
+            // end: advance(myString.startIndex, index + 1))
+            start: myString.startIndex.advancedBy(index),
+            end: myString.startIndex.advancedBy(index+1))
         modifiedString.replaceRange(range, with: "\(newCharac)")
         return modifiedString
     }

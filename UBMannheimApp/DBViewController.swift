@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import Foundation
+
+public extension String {
+    var NS: NSString { return (self as NSString) }
+}
+
 
 class DBViewController: UIViewController {
     
@@ -24,7 +30,7 @@ class DBViewController: UIViewController {
         super.viewDidLoad()
         
         let db = DBHelper()
-        println("DBHelper Class loaded")
+        print("DBHelper Class loaded")
         
         let filemgr = NSFileManager.defaultManager()
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
@@ -32,31 +38,31 @@ class DBViewController: UIViewController {
         let docsDir = dirPaths[0] as! String
         
         // let currentPath = docsDir
-        // println(currentPath)
+        // print(currentPath)
         // databasePath = docsDir.stringByAppendingPathComponent(currentPath+"/"+"database.db")
-        databasePath = docsDir.stringByAppendingPathComponent("database.db")
+        databasePath = docsDir.NS.stringByAppendingPathComponent("database.db")
         
         if !filemgr.fileExistsAtPath(databasePath as String) {
             
             let contactDB = FMDatabase(path: databasePath as String)
             
             if contactDB == nil {
-                println("Error: \(contactDB.lastErrorMessage())")
+                print("Error: \(contactDB.lastErrorMessage())")
             }
             
             if contactDB.open() {
                 
                 let sql_stmt = "CREATE TABLE IF NOT EXISTS CONTACTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT, PHONE TEXT)"
                 if !contactDB.executeStatements(sql_stmt) {
-                    println("Error: \(contactDB.lastErrorMessage())")
+                    print("Error: \(contactDB.lastErrorMessage())")
                 }
                 contactDB.close()
             } else {
-                println("Error: \(contactDB.lastErrorMessage())")
+                print("Error: \(contactDB.lastErrorMessage())")
             }
         
         // } else {
-        //    println("DBViewController.swift: File not found")
+        //    print("DBViewController.swift: File not found")
         // }
         
         }
@@ -65,9 +71,9 @@ class DBViewController: UIViewController {
     @IBAction func saveData(sender: AnyObject) {
         let contactDB = FMDatabase(path: databasePath as String)
         
-        println(__FUNCTION__ + " in " + __FILE__.lastPathComponent)
-        println("------------------------------------------------")
-        println("-"+(databasePath as String)+"-")
+        print(__FUNCTION__ + " in " + __FILE__.NS.lastPathComponent)
+        print("------------------------------------------------")
+        print("-"+(databasePath as String)+"-")
         
         if contactDB.open() {
             
@@ -77,7 +83,7 @@ class DBViewController: UIViewController {
             
             if !result {
                 status.text = "Failded to add to contact"
-                println("Error: \(contactDB.lastErrorMessage())")
+                print("Error: \(contactDB.lastErrorMessage())")
             } else {
                 status.text = "Contact added"
                 name.text = ""
@@ -87,7 +93,7 @@ class DBViewController: UIViewController {
             contactDB.close() //?
             
         } else {
-            println("Error: \(contactDB.lastErrorMessage())")
+            print("Error: \(contactDB.lastErrorMessage())")
         }
         
     }
@@ -112,7 +118,7 @@ class DBViewController: UIViewController {
             contactDB.close()
         
         } else {
-            println("Error: \(contactDB.lastErrorMessage())")
+            print("Error: \(contactDB.lastErrorMessage())")
 
         }
         
@@ -127,9 +133,9 @@ class DBViewController: UIViewController {
         let docsDir = dirPaths[0] as! String
         
         // let currentPath = docsDir
-        // println(currentPath)
+        // print(currentPath)
         // databasePath = docsDir.stringByAppendingPathComponent(currentPath+"/"+"database.db")
-        var dbPath = docsDir.stringByAppendingPathComponent("bibservice.db")
+        var dbPath = docsDir.NS.stringByAppendingPathComponent("bibservice.db")
         
         let myDB = FMDatabase(path: dbPath)
         
@@ -148,7 +154,7 @@ class DBViewController: UIViewController {
             myDB.close()
             
         } else {
-            println("Error: \(myDB.lastErrorMessage())")
+            print("Error: \(myDB.lastErrorMessage())")
             
         }
         

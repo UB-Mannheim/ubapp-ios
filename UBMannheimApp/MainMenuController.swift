@@ -34,14 +34,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     var myArray : Array<Double>! {
         get {
             if let myArray: AnyObject! = NSUserDefaults.standardUserDefaults().objectForKey("myArray") {
-                if (DEBUG) { println("\(myArray)") }
+                if (DEBUG) { print("\(myArray)") }
                 return myArray as! Array<Double>!
             }
             
             return nil
         }
         set {
-            if (DEBUG) { println(myArray) }
+            if (DEBUG) { print(myArray) }
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "myArray")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
@@ -58,7 +58,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (DEBUG) { println("DEBUG MSG MainMenuController : System starting ...") }
+        if (DEBUG) { print("DEBUG MSG MainMenuController : System starting ...") }
         
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         // let wback: Int? = userDefaults.objectForKey("backFromWebView") as! Int?
@@ -66,7 +66,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        if (DEBUG) { println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | backFromWebview = \(wback) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+        if (DEBUG) { print("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | backFromWebview = \(wback) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
         // simple redirection if startup option ist chosen
         // let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int? >> s.o.
@@ -89,11 +89,11 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                     if (kcache == true) { // && (knews > 0)) { // enabled ja ... aber auch gefuellt? // count news != 0
                         redirect = true
                         
-                        if (DEBUG) { /* println("A") */ }
+                        if (DEBUG) { /* print("A") */ }
                         //
                     } else {
                         
-                        if (DEBUG) { /* println("B") */ }
+                        if (DEBUG) { /* print("B") */ }
                         /*
                         // wenn cache aus eigentlich nicht weiterleiten
                         if ((kstartup == 1) || (kstartup == 2)) {
@@ -205,19 +205,19 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         /*
         if (DEBUG) { 
-        println("Configuration States: ")
+        print("Configuration States: ")
         print("firstRun :: ")
-        println(userDefaults.objectForKey("firstRun"))
+        print(userDefaults.objectForKey("firstRun"))
         print("cacheEnabled :: ")
-        println(userDefaults.objectForKey("cacheEnabled"))
+        print(userDefaults.objectForKey("cacheEnabled"))
         print("startupWith :: ")
-        println(userDefaults.objectForKey("startupWith"))
+        print(userDefaults.objectForKey("startupWith"))
         print("newsCount :: ")
-        println(userDefaults.objectForKey("newsCount"))
+        print(userDefaults.objectForKey("newsCount"))
         }
         */
         
-                if (DEBUG) { println("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+                if (DEBUG) { print("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
         
         // init toolbar (hidden in storyboard)
@@ -227,7 +227,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         /*
         var currentDevice: UIDevice = UIDevice.currentDevice()
         var orientation: UIDeviceOrientation = currentDevice.orientation
-        println(orientation)
+        print(orientation)
         */
         
         // http://stackoverflow.com/questions/25666269/ios8-swift-how-to-detect-orientation-change
@@ -283,8 +283,13 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     // standard
     @IBAction func popOut_(sender: UIView) {
         // https://www.shinobicontrols.com/blog/posts/2014/08/26/ios8-day-by-day-day-21-alerts-and-popovers
-        
-        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("PopoverController") as! UIViewController
+    
+    print("POPOut deactivated")
+/*
+
+Deactivate PopOverController, cause there are problems in Swift 2 and Controller is not used
+
+        let popoverVC = storyboard?.instantiateViewControllerWithIdentifier("PopoverController") as UIViewController
             popoverVC.modalPresentationStyle = .Popover
             popoverVC.preferredContentSize = CGSizeMake(200,100)
         
@@ -296,14 +301,21 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         }
         
         presentViewController(popoverVC, animated: true, completion: nil)
-        
+*/
     }
     
     // middle of screen, linked to navbar
     func popOut(sender: UIView) {
+        
+    print("POPOut deactivated")
+
+/*
+
+Deactivate PopOverController, cause there are problems in Swift 2 and Controller is not used
+
         // http://stackoverflow.com/questions/24635744/how-to-present-popover-properly-in-ios-8
     
-        var popoverContent = storyboard?.instantiateViewControllerWithIdentifier("PopoverController") as! UIViewController
+        var popoverContent = storyboard?.instantiateViewControllerWithIdentifier("PopoverController") as UIViewController
             popoverContent.preferredContentSize = CGSizeMake(200,100)
         
         var nav = UINavigationController(rootViewController: popoverContent)
@@ -316,6 +328,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
             popover!.sourceRect = CGRectMake(100,100,360,0)
     
         self.presentViewController(nav, animated: true, completion: nil)
+*/
     }
     
     func popOutProg(sender: UIBarButtonItem) {
@@ -425,29 +438,29 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         // daher wird im else zweig (not valid) die orientierung der status 
         // bar benutzt
         
-        // println("rotate")
+        // print("rotate")
         
         /*
         if (UIDeviceOrientationIsValidInterfaceOrientation(UIDevice.currentDevice().orientation)) {
-        println("valid orientation")
+        print("valid orientation")
             
             if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
             {
-                println("landscape")
+                print("landscape")
                 setLayout("landscape")
             }
             else if (UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
             {
-                println("portrait")
+                print("portrait")
                 setLayout("portrait")
             }
             else {
-                println("something different")
+                print("something different")
             
             }
             
         } else {
-            println("no valid orientation")
+            print("no valid orientation")
             // hack: decide orientation by status bar
             // http://stackoverflow.com/questions/25796545/getting-device-orientation-in-swift
             
@@ -456,14 +469,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
             if( UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) ) {
                     
                 //Portrait orientation
-                println("portrait alt")
+                print("portrait alt")
                 setLayout("portrait")
             }
             
             if( UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) ) {
                     
                 //Landscape orientation
-                println("landscape alt")
+                print("landscape alt")
                 setLayout("landscape")
             }
         
@@ -473,14 +486,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         if( UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) ) {
             
             //Portrait orientation
-            if (DEBUG) { println("portrait") }
+            if (DEBUG) { print("portrait") }
             setLayout("portrait")
         }
         
         if( UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) ) {
             
             //Landscape orientation
-            if (DEBUG) { println("landscape") }
+            if (DEBUG) { print("landscape") }
             setLayout("landscape")
         }
         
@@ -541,7 +554,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.navigationController?.pushViewController(homeViewController, animated: true)
             break
             
-        default: println("default action")
+        default: print("default action")
         }
     }
     
@@ -557,6 +570,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (destination=="primo") {
             url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            // url = "http://primo-demo.exlibrisgroup.com:1701/primo-explore2/"
         }
         
         webViewController.website = url
@@ -645,7 +659,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     // Segue Preparation END
         
     func openConfigDialog() {
-        if (DEBUG) { println("opened") }
+        if (DEBUG) { print("opened") }
     }
     
     /*

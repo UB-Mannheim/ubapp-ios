@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubMenuController: UITableViewController, UITableViewDelegate {
+class SubMenuController: UITableViewController {
     
     var DEBUG: Bool = false
     // if (DEBUG) {
@@ -41,13 +41,13 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
         let knews: Int? = userDefaults.objectForKey("startupWith") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("newsCount") as! Int?
         
-        if (DEBUG) { println("\(kcache) :: \(kstartup) :: \(knews)") }
+        if (DEBUG) { print("\(kcache) :: \(kstartup) :: \(knews)") }
         */
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        if (DEBUG) { println("DEBUG MSG SubMenuController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+        if (DEBUG) { print("DEBUG MSG SubMenuController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
     }
     
@@ -89,7 +89,7 @@ class SubMenuController: UITableViewController, UITableViewDelegate {
             performSegueWithIdentifier("showHelp2", sender: self)
         }
         
-        // if (DEBUG) { println(row) }
+        // if (DEBUG) { print(row) }
     }
     
     /*override func viewDidLoad() {

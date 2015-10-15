@@ -71,14 +71,14 @@ class DBHelper {
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = dirPaths[0] as! String
         
-        self.mydatabasePath = docsDir.stringByAppendingPathComponent("bibservice.db")
+        self.mydatabasePath = docsDir.NS.stringByAppendingPathComponent("bibservice.db")
         
         if filemgr.fileExistsAtPath(self.mydatabasePath as String) {
             
             let bibDB = FMDatabase(path: self.mydatabasePath as String)
             
             if bibDB == nil {
-                println("Error: \(bibDB.lastErrorMessage())")
+                print("Error: \(bibDB.lastErrorMessage())")
             }
             
             if bibDB.open() {
@@ -97,10 +97,10 @@ class DBHelper {
                 
                 for sql in sql_statements {
                     
-                    // println(sql)
+                    // print(sql)
                     
                     if !bibDB.executeStatements(sql) {
-                        println("Error: \(bibDB.lastErrorMessage())")
+                        print("Error: \(bibDB.lastErrorMessage())")
                     }
                     
                 }
@@ -109,7 +109,7 @@ class DBHelper {
                 
             } else {
                 
-                println("Error: \(bibDB.lastErrorMessage())")
+                print("Error: \(bibDB.lastErrorMessage())")
             }
             
         }
@@ -182,7 +182,7 @@ class DBHelper {
         var newscount:Int32! = 0
         
         let db = FMDatabase(path: self.mydatabasePath as String)
-        println(self.mydatabasePath)
+        print(self.mydatabasePath)
         
         // get news latest news id
         if db.open() {
@@ -191,17 +191,17 @@ class DBHelper {
             let results:FMResultSet? = db.executeQuery(querySQL, withArgumentsInArray: nil)
             
             if results?.next() == true {
-                println("---")
-                println(results?.intForColumnIndex(0))
-                println("---")
+                print("---")
+                print(results?.intForColumnIndex(0))
+                print("---")
                 newscount = results?.intForColumnIndex(0)
             } else {
-                println("Query returned emtpy result")
+                print("Query returned emtpy result")
             }
             db.close()
             
         } else {
-            println("Error: \(db.lastErrorMessage())")
+            print("Error: \(db.lastErrorMessage())")
             
         }
         
@@ -213,19 +213,19 @@ class DBHelper {
             let insertSQL = "INSERT INTO "+TABLE_NEWS+" ("+KEY_ID+", "+KEY_NEWS_TITLE+", "+KEY_NEWS_DESCRIPTION+", "+KEY_NEWS_URL+", "+KEY_NEWS_POST_ID+") VALUES ('\(next_id)', '\(title)', '\(desc)', '\(url)', '\(post_id)')"
             
             let result = db.executeUpdate(insertSQL, withArgumentsInArray: nil)
-            println(result)
+            print(result)
             
             if !result {
-                println("Failed to add to news")
-                println("Error: \(db.lastErrorMessage())")
+                print("Failed to add to news")
+                print("Error: \(db.lastErrorMessage())")
             } else {
-                println("Success: News added")
+                print("Success: News added")
             }
             db.close() //?
             
         } else {
-            println("EEEE")
-            println("Error: \(db.lastErrorMessage())")
+            print("EEEE")
+            print("Error: \(db.lastErrorMessage())")
         }
         
         
