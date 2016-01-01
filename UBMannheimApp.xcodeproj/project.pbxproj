@@ -146,6 +146,8 @@
 		B2E222FD1AC6D747000D1B76 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		B2E222FF1AC6D8FC000D1B76 /* LocationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
 		B2E223031AC6D9E7000D1B76 /* MenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemViewController.swift; sourceTree = "<group>"; };
+		B2F500B71C36D782007F95B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		B2F500B81C36D782007F95B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B2F620921B457B3C008D2833 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comments.swift; path = ../Comments.swift; sourceTree = "<group>"; };
 		B2FF89EE1A8B9D3E00786581 /* FeedPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		B2FF89EF1A8B9D3E00786581 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B270CED31A778D3F003C981B /* Base */,
+				B2F500B71C36D782007F95B9 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B270CED81A778D3F003C981B /* Base */,
+				B2F500B81C36D782007F95B9 /* de */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

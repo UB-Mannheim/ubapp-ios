@@ -17,12 +17,36 @@ class SubMenuController: UITableViewController {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
+    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    var lang = "en"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // lang
+        if preferredLanguage == "de" {
+            lang = "de"
+        } else {
+            lang = "en"
+        }
     
-        self.items = [  ["title": "Einstellungen", "subtitle": "(Personalisieren Sie Ihre App)"],
-                        ["title": "Hilfe", "subtitle": "(Hier finden Sie nützliche Tipps zur Bedienung der App)"]
+        
+        var settings_title = "Settings"
+        var settings_sub = "(Personalize your app)"
+        var help_title = "Help"
+        var help_sub = "(Here you can find helpful tips for using the app)"
+        
+        if (lang == "de") {
+            settings_title = "Einstellungen"
+            settings_sub = "(Personalisieren Sie Ihre App)"
+            help_title = "Hilfe"
+            help_sub = "(Hier finden Sie nützliche Tipps zur Bedienung der App)"
+        }
+        
+        self.items = [  ["title": settings_title, "subtitle": settings_sub],
+                        ["title": help_title, "subtitle": help_sub]
                         ]
+            
         // Cell height.
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
