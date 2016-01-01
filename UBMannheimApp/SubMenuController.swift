@@ -18,25 +18,16 @@ class SubMenuController: UITableViewController {
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
     var preferredLanguage = NSLocale.preferredLanguages()[0] as String
-    var lang = "en"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // lang
-        if preferredLanguage == "de" {
-            lang = "de"
-        } else {
-            lang = "en"
-        }
-    
         
         var settings_title = "Settings"
         var settings_sub = "(Personalize your app)"
         var help_title = "Help"
         var help_sub = "(Here you can find helpful tips for using the app)"
         
-        if (lang == "de") {
+        if (preferredLanguage == "de") {
             settings_title = "Einstellungen"
             settings_sub = "(Personalisieren Sie Ihre App)"
             help_title = "Hilfe"

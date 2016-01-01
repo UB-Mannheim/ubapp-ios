@@ -61,20 +61,12 @@ var newsCount:Int = 0
     // check lang (test)
     // http://stackoverflow.com/questions/29193284/check-language-in-ios-app
     var preferredLanguage = NSLocale.preferredLanguages()[0] as String
-    var lang = "en"
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // print("viewDidLoad ....................................................")
-        
-        // lang
-        if preferredLanguage == "de" {
-            lang = "de"
-        } else {
-            lang = "en"
-        }
         
         
         //table layout
@@ -477,11 +469,15 @@ var newsCount:Int = 0
             userInterfaceIdiom: .Phone
         )
         
-        if (lang == "de") {
-            JLToast.makeText("Einstellungen gespeichert.").show()
-        } else {
-            JLToast.makeText("Saved settings.").show()
+        var config_saved = "Saved settings."
+        
+        if (preferredLanguage == "de") {
+            
+            config_saved = "Einstellungen gespeichert."
         }
+        
+        JLToast.makeText(config_saved).show()
+        
     }
     
     // nur wenn statechanged ... 2do auch sonst speichern saveConfig()

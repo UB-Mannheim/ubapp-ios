@@ -47,6 +47,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         }
     }
 
+    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
@@ -716,7 +717,11 @@ Deactivate PopOverController, cause there are problems in Swift 2 and Controller
         
         var items = [MenuItem]()
         
-        let inputFile = NSBundle.mainBundle().pathForResource("items", ofType: "plist")
+        var inputFile = NSBundle.mainBundle().pathForResource("items", ofType: "plist")
+        
+        if (preferredLanguage == "de") {
+            inputFile = NSBundle.mainBundle().pathForResource("items_de", ofType: "plist")
+        }
         
         let inputDataArray = NSArray(contentsOfFile: inputFile!)
         

@@ -34,17 +34,45 @@ class Help2ViewController: UITableViewController {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
+    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        var website_title = "Website"
+        var website_sub = "Opens up the mobile view of our website, containing comprehensive information about the university library."
+        var primo_title = "Primo"
+        var primo_sub = "With the mobile view of our library catalogue, you can use all common functions that are available in the classic view: search, (interlibray) loan and managing your account information."
+        var news_title = "News"
+        var news_sub = "Showing the 5 latest posts from our blog. The count number can be set in the configuration menu."
+        var seats_title = "Free Seats"
+        var seats_sub = "A traffic light system informing about the load and availibility of free seats in the different library sections."
+        var config_title = "Settings"
+        var config_sub = "Additionally the following settings can be changed \n\nThe activation of the cache function creates a database for local storage of the most recently downloaded data for the \"News\" and \"Free Seats\". The stored data is displayed when no Internet access is available. Disabling this function will delete the created database. By default, caching is disabled, in this case all data must be accessed online. \n\nDetermine how many posts from the news-blog \"News\" is displayed: 5 (Default), 10 and 15 \n\nSelect your personal startup function: Startmenü (Default) , Website, Primo, News, Free Seats\n\nAn integrated Help completes the app."
+        
+        if (preferredLanguage == "de") {
+        
+          website_title = "Website"
+          website_sub = "Öffnet die mobile Version der UB-Homepage mit umfassenden Informationen rund um die Bibliothek."
+          primo_title = "Primo"
+          primo_sub = "In der mobilen Version des Online-Katalogs Primo der UB-Mannheim stehen Ihnen alle bekannten Funktionalitäten wie Recherche, Ausleihe, Fernleihe und die Kontofunktionen zur Verfügung."
+          news_title = "News"
+          news_sub = "Anzeige der letzten 5 Meldungen aus dem Aktuelles-Weblog der UB-Mannheim. Die Anzahl der angezeigten Einträge kann über das Menü Einstellungen verändert werden."
+          seats_title = "Freie Plätze"
+          seats_sub = "Ein Ampelsystem informiert über die Verfügbarkeit von Arbeitsplätzen in den einzelnen Bibliotheksbereichen."
+          config_title = "Einstellungen"
+          config_sub = "Bietet Möglichkeiten zur Personalisierung der UB-App. \n\nDaten Cache \nDie Aktivierung der Cache-Funktion erzeugt eine Datenbank zur lokalen Speicherung der zuletzt heruntergeladenen Daten der Funktionen \"News\" und \"Freie Plätze\". Die gespeicherten Daten werden angezeigt, sobald kein Internet-Zugriff zur Verfügung steht. Die Deaktivierung des Daten-Caches löscht die angelegte Datenbank. In der Standardeinstellung ist die Cache-Funktion deaktiviert, d.h. es existiert kein Zwischenspeicher und alle Daten müssen online abgerufen werden. \n\nAngezeigte News-Einträge \nLegen Sie fest, wie viele Beiträge aus dem Aktuelles-Weblog unter \"News\" angezeigt werden:\n5 (Standardeinstellung), 10 oder 15. \n\nStarte UB-App mit\nWählen Sie ihre persönliche Startfunktion der UB-App:\nStartmenü (Standardeinstellung), Website, Primo, News und Freie Plätze."
+            
+        }
+        
         // hotelNames = [String](hotels.keys)
         
-        self.items = [  ["image": "website_bk", "title": "Website", "descr": "Öffnet die mobile Version der UB-Homepage mit umfassenden Informationen rund um die Bibliothek."],
-            ["image": "primo_bk", "title": "Primo", "descr": "In der mobilen Version des Online-Katalogs Primo der UB-Mannheim stehen Ihnen alle bekannten Funktionalitäten wie Recherche, Ausleihe, Fernleihe und die Kontofunktionen zur Verfügung."],
-            ["image": "news_bk", "title": "News", "descr": "Anzeige der letzten 5 Meldungen aus dem Aktuelles-Weblog der UB-Mannheim. Die Anzahl der angezeigten Einträge kann über das Menü Einstellungen verändert werden."],
-            ["image": "seats_bk", "title": "Freie Plätze", "descr": "Ein Ampelsystem informiert über die Verfügbarkeit von Arbeitsplätzen in den einzelnen Bibliotheksbereichen."],
-            ["image": "config_bk", "title": "Einstellungen", "descr": "Bietet Möglichkeiten zur Personalisierung der UB-App. \n\nDaten Cache \nDie Aktivierung der Cache-Funktion erzeugt eine Datenbank zur lokalen Speicherung der zuletzt heruntergeladenen Daten der Funktionen \"News\" und \"Freie Plätze\". Die gespeicherten Daten werden angezeigt, sobald kein Internet-Zugriff zur Verfügung steht. Die Deaktivierung des Daten-Caches löscht die angelegte Datenbank. In der Standardeinstellung ist die Cache-Funktion deaktiviert, d.h. es existiert kein Zwischenspeicher und alle Daten müssen online abgerufen werden. \n\nAngezeigte News-Einträge \nLegen Sie fest, wie viele Beiträge aus dem Aktuelles-Weblog unter \"News\" angezeigt werden:\n5 (Standardeinstellung), 10 oder 15. \n\nStarte UB-App mit\nWählen Sie ihre persönliche Startfunktion der UB-App:\nStartmenü (Standardeinstellung), Website, Primo, News und Freie Plätze."]
+        self.items = [  ["image": "website_bk", "title": website_title, "descr": website_sub],
+            ["image": "primo_bk", "title": primo_title, "descr": primo_sub],
+            ["image": "news_bk", "title": news_title, "descr": news_sub],
+            ["image": "seats_bk", "title": seats_title, "descr": seats_sub],
+            ["image": "config_bk", "title": config_title, "descr": config_sub]
         ]
         
         tableView.estimatedRowHeight = 68.0
