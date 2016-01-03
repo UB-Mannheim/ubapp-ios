@@ -21,6 +21,8 @@ class SeatsTableViewController: UITableViewController {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
+    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    
     // UIRefreshControl
     func refresh(sender:AnyObject)
     {
@@ -34,9 +36,19 @@ class SeatsTableViewController: UITableViewController {
     
         } else {
             
-            let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal.", preferredStyle: .Alert)
+            var alert_msg_error = "Error"
+            var alert_msg_network = "Network connection not available. Updating data is not possible. Please try again later."
+            var alert_msg_ok = "OK"
             
-            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+            if (preferredLanguage == "de") {
+                alert_msg_error = "Fehler"
+                alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal."
+                alert_msg_ok = "OK"
+            }
+            
+            let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: alert_msg_ok, style: .Default) { (action) in
                 self.viewDidLoad()
             }
             
@@ -131,11 +143,23 @@ class SeatsTableViewController: UITableViewController {
                     // kein Primaerabzug erfolgt
                     if (DEBUG) { print("kein primaerabzug") }
                     
+                    var alert_msg_error = "Error"
+                    var alert_msg_network = "Network connection not available. Cache could not be initialized. Displaying Free Seats is not possible. Please connect your device to the internet at least one time and then try again."
+                    var alert_msg_back = "Back"
+                    var alert_msg_reload = "Reload"
+                    
+                    if (preferredLanguage == "de") {
+                        alert_msg_error = "Fehler"
+                        alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                        alert_msg_back = "Zurück"
+                        alert_msg_reload = "Neu laden"
+                    }
+                    
                     // Keine Verbindung zum Netzwerk vorhanden, kein Primärabzug erfolgt.
                     
-                    let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+                    let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
                     
-                    let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                    let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
                         // MainView set as storyboard ID of MainViewController
                         // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -153,7 +177,7 @@ class SeatsTableViewController: UITableViewController {
                         }
                     }
                     
-                    let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                    let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
                         self.viewDidLoad()
                     }
                     
@@ -168,10 +192,21 @@ class SeatsTableViewController: UITableViewController {
                     // kein Primaerabzug erfolgt
                     if (DEBUG) { print("kein primaerabzug II") }
                     
+                    var alert_msg_error = "Error"
+                    var alert_msg_network = "Network connection not available, cache could not be initialized. Displaying Free Seats is not possible at the moment. Please connect your device to the internet at least one time and try again."
+                    var alert_msg_back = "Back"
+                    var alert_msg_reload = "Reload"
                     
-                    let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+                    if (preferredLanguage == "de") {
+                        alert_msg_error = "Fehler"
+                        alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                        alert_msg_back = "Zurück"
+                        alert_msg_reload = "Neu laden"
+                    }
                     
-                    let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                    let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+                    
+                    let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
                         // MainView set as storyboard ID of MainViewController
                         // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -189,7 +224,7 @@ class SeatsTableViewController: UITableViewController {
                         }
                     }
                     
-                    let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                    let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
                         self.viewDidLoad()
                     }
                     
@@ -204,9 +239,22 @@ class SeatsTableViewController: UITableViewController {
             
             // showNetworkError
             
-            let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+                var alert_msg_error = "Error"
+                var alert_msg_network = "Network connection not available, no cache activated. Displaying Free Seats is not possible at the moment. Please connect your device to the internet and try again."
+                var alert_msg_back = "Back"
+                var alert_msg_reload = "Reload"
+                
+                if (preferredLanguage == "de") {
+                    alert_msg_error = "Fehler"
+                    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                    alert_msg_back = "Zurück"
+                    alert_msg_reload = "Neu laden"
+                }
+
+                
+            let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
             
-            let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+            let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
                 // MainView set as storyboard ID of MainViewController
                 // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                 let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -224,7 +272,7 @@ class SeatsTableViewController: UITableViewController {
                 }
             }
             
-            let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+            let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
                 self.viewDidLoad()
             }
             
@@ -282,7 +330,14 @@ class SeatsTableViewController: UITableViewController {
             cell.imageView?.image = UIImage(named: "sign_green.png")
         }
         
-        cell.detailTextLabel?.text = loadInPercent.description + "% von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt"
+        
+        var detailTextLabelText = loadInPercent.description + "% of " + maxCountOfSeats.description + " Seats are occupied" // reserved?
+        
+        if (preferredLanguage == "de") {
+            detailTextLabelText = loadInPercent.description + "% von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt"
+        }
+        
+        cell.detailTextLabel?.text = detailTextLabelText
         
         return cell
     }
@@ -303,7 +358,13 @@ class SeatsTableViewController: UITableViewController {
             lastUpdate = userDefaults.objectForKey("dateWLAN") as! String
         }
         
-        headerCell.textLabel?.text = "Zuletzt aktualisiert: " + lastUpdate
+        var headerCellText = "Last updated on: "
+        
+        if (preferredLanguage == "de") {
+            headerCellText = "Zuletzt aktualisiert: "
+        }
+        
+        headerCell.textLabel?.text = headerCellText + lastUpdate
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
         
         return headerCell
