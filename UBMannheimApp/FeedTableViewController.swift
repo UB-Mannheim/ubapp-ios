@@ -17,6 +17,8 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
+    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    
     var news_feed : Int = 5
     var news_cache: [[String]] = []
     var news_rss_items = 0
@@ -41,9 +43,20 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         } else {
             
-            let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal.", preferredStyle: .Alert)
+            var alert_msg_error  = "Error"
+            var alert_msg_network = "Network connection not available. Updating data not possible. Please try again later."
+            var alert_msg_ok = "OK"
             
-            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+            if (preferredLanguage == "de") {
+                
+                alert_msg_error = "Fehler"
+                alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal."
+                alert_msg_ok = "OK"
+            }
+            
+            let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: alert_msg_ok, style: .Default) { (action) in
                 self.viewDidLoad()
             }
             
@@ -207,10 +220,21 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                         // kein Primaerabzug erfolgt
                         if (DEBUG) { print("kein primaerabzug II (copy)") }
                         
+                        var alert_msg_error = "Error"
+                        var alert_msg_network = "Network connection not available, cache could not be initialized. Displaying free seats ist not possible. Please connect your device to the internet at least one time and then try again."
+                        var alert_msg_back = "Back"
+                        var alert_msg_reload = "Reload"
                         
-                        let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+                        if (preferredLanguage == "de") {
+                            alert_msg_error = "Fehler"
+                            alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                            alert_msg_back = "Zurück"
+                            alert_msg_reload = "Neu laden"
+                        }
                         
-                        let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                        let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+                        
+                        let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
                             // MainView set as storyboard ID of MainViewController
                             // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                             let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -228,7 +252,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                             }
                         }
                         
-                        let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                        let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
                             self.viewDidLoad()
                         }
                         
@@ -249,9 +273,21 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                 
                 if (DEBUG) { print("alert") }
                 
-                let alertController = UIAlertController(title: "Fehler", message: "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der News nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.", preferredStyle: .Alert)
+                var alert_msg_error = "Error"
+                var alert_msg_network = "Network connection not available, no cache activated. Displaying News is not possible at the moment. Please connect your device to the internet and try again."
+                var alert_msg_back = "Back"
+                var alert_msg_reload = "Reload"
                 
-                let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+                if (preferredLanguage == "de") {
+                    alert_msg_error = "Fehler"
+                    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der News nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                    alert_msg_back = "Zurück"
+                    alert_msg_reload = "Reload"
+                }
+                
+                let alertController = UIAlertController(title: alert_msg_network, message: alert_msg_network, preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
                     let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                     self.navigationController?.pushViewController(homeViewController, animated: true)
                     
@@ -278,7 +314,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                     
                 }
                 
-                let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+                let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
                     self.viewDidLoad()
                 }
                 
@@ -586,7 +622,13 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if (DEBUG) { print("tableView::return_header_cell") }
         
-        let  headerCell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
+        let headerCell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
+        
+        var headerCellText = "Latest Library News"
+        
+        if (preferredLanguage == "de") {
+            headerCellText = "Aktuelles aus der UB"
+        }
         
         // hide Title/Subtitle View in HeaderCell
         headerCell.textLabel?.hidden = true
@@ -595,7 +637,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         // Create new Label ont the fly and add it to HeaderCell
         var label = UILabel(frame: CGRectMake(0, 0, 200, 55))
         label.textAlignment = NSTextAlignment.Center
-        label.text = "Aktuelles aus der UB"
+        label.text = headerCellText
         headerCell.addSubview(label)
         
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
