@@ -25,6 +25,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
+    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -66,7 +68,13 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             webView.loadRequest(request)
             webView.delegate = self
             
-            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
+            var err_no_network = "Network connection not available"
+            
+            if (preferredLanguage == "de") {
+                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            }
+            
+            returnNetworkError(err_no_network)
             
             // #1
             /* 
@@ -214,8 +222,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         if( (navigationType == UIWebViewNavigationType.LinkClicked) && (IJReachability.isConnectedToNetwork() == false) ) {
             if (DEBUG) { print("tapped") }
             
-            returnNetworkError("Verbindung zum Netzwerk unterbrochen")
-                
+            var err_network_connection_lost = "Network connection lost"
+            
+            if (preferredLanguage == "de") {
+                err_network_connection_lost = "Verbindung zum Netzwerk unterbrochen"
+            }
+            
+            returnNetworkError(err_network_connection_lost)
+            
         }
         
     return true;
@@ -296,7 +310,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
                 self.webView.goBack()
             }
         } else {
-            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
+            
+            var err_no_network = "Network connection not available"
+            
+            if (preferredLanguage == "de") {
+                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            }
+            
+            returnNetworkError(err_no_network)
         }
     }
     
@@ -306,19 +327,40 @@ class WebViewController: UIViewController, UIWebViewDelegate {
                 self.webView.goForward()
             }
         } else {
-            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
+            
+            var err_no_network = "Network connection not available"
+            
+            if (preferredLanguage == "de") {
+                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            }
+            
+            returnNetworkError(err_no_network)
         }
     }
+    
+    
+    // UI Bar Button Elements
     
     @IBAction func home(sender: UIBarButtonItem) {
         // self.webView.stopLoading()
         // let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
         
-        var homeStr = "http://www.bib.uni-mannheim.de/mobile"
+        
+        var homeStr = "http://www.bib.uni-mannheim.de/mobile/en/"
+        
+        if (preferredLanguage == "de") {
+            homeStr = "http://www.bib.uni-mannheim.de/mobile"
+        }
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
             // if (DEBUG) { print("primo") }
-            homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            // homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            
+            homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=us_US"
+    
+            if (preferredLanguage == "de") {
+                homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=de_DE"
+            }
         }
         
         let requestURL = NSURL(string: homeStr)
@@ -327,7 +369,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             let request = NSURLRequest(URL: requestURL!)
             self.webView.loadRequest(request)
         } else {
-            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
+            
+            var err_no_network = "Network connection not available"
+            
+            if (preferredLanguage == "de") {
+                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            }
+            
+            returnNetworkError(err_no_network)
         }
     }
     
@@ -335,15 +384,32 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         if (IJReachability.isConnectedToNetwork()) {
             self.webView.reload()
         } else {
-            returnNetworkError("Keine Verbindung zum Netzwerk vorhanden")
+            
+            var err_no_network = "Network connection not available"
+            
+            if (preferredLanguage == "de") {
+                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            }
+            
+            returnNetworkError(err_no_network)
         }
     }
     
     func returnNetworkError(error_msg: String) {
-    
-        let alertController = UIAlertController(title: "Fehler", message: error_msg, preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
+        var alert_msg_error = "Error"
+        var alert_msg_back = "Back"
+        var alert_msg_reload = "Reload"
+        
+        if (preferredLanguage == "de") {
+            alert_msg_error = "Fehler"
+            alert_msg_back = "Zurück"
+            alert_msg_reload = "Neu laden"
+        }
+    
+        let alertController = UIAlertController(title: alert_msg_error, message: error_msg, preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
             
             self.userDefaults.setObject(1, forKey: "backFromWebview")
             
@@ -352,7 +418,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             
         }
         
-            let okAction = UIAlertAction(title: "Neu laden", style: .Default) { (action) in
+            let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
             self.viewDidLoad()
         }
         
