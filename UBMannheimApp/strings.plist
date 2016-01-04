@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+
+<array>
+
+    <!-- lang__EN -->
+    <dict>
+
+        <key>labels</key>
+        <dict>
+            <key>appTitle</key>
+            <string>Mannheim University Library</string>
+
+            <key>Website</key>
+            <dict>
+                <key>activityTitle</key>
+                <string>Website</string>
+
+                <!--
+                <key>barButtonBack</key>
+                <string></string>
+                <key>barButtonForward</key>
+                <string></string>
+                <key>barButtonReload</key>
+                <string></string>
+                <key>barButtonHome</key>
+                <string></string>
+                -->
+
+            </dict>
+        </dict>
+
+        <key>urls</key>
+        <dict>
+            <key>Default</key>
+            <string>http://www.google.de</string>
+            <key>Website</key>
+            <string>http://www.bib.uni-mannheim.de/mobile/en/</string>
+            <key>Primo</key>
+            <string>http://primo.bib.uni-mannheim.de/primo_library/libweb/action/preferences.do?fn=change_lang&#38;vid=MAN_MOBILE&#38;prefLang=en_US&#38;prefBackUrl=http:%2F%2Fprimo.bib.uni-mannheim.de%2Fprimo_library%2Flibweb%2Faction%2Fsearch.do?vid=MAN_MOBILE%26vid=MAN_MOBILE</string>
+            <key>News</key>
+            <string></string>
+            <key>Seats</key>
+            <string></string>
+        </dict>
+
+        <key>alertMessages</key>
+        <dict>
+            <key>errorTitle</key>
+            <string>Error</string>
+            <key>okAction</key>
+            <string>OK</string>
+            <key>cancelAction</key>
+            <string>Back</string>
+            <key>reloadAction</key>
+            <string>Reload</string>
+
+            <key>Website</key>
+                <dict>
+                <key>lostConnection</key>
+                <key>noNetwork</key>
+                <string>This is an error: No network connection available</string>
+                <key>noCache</key>
+                <string>This is an error: No cache available</string>
+                <key>initCache</key>
+                <string>This is an error: No cache available</string>
+                </dict>
+        </dict>
+
+    </dict>
+
+</array>
+
+</plist>
