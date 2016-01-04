@@ -471,7 +471,9 @@ var newsCount:Int = 0
         
         var config_saved = "Saved settings."
         
-        if (preferredLanguage == "de") {
+        print(preferredLanguage)
+        
+        if (preferredLanguage == "de-US") {
             
             config_saved = "Einstellungen gespeichert."
         }

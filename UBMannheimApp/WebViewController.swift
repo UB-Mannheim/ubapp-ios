@@ -27,6 +27,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     var preferredLanguage = NSLocale.preferredLanguages()[0] as String
     
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -356,11 +358,43 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             // if (DEBUG) { print("primo") }
             // homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
             
-            homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=us_US"
+            
+            /* Testing PLIST Example */
+            
+            // old version (AppDelegate) http://sweettutos.com/2015/06/03/swift-how-to-read-and-write-into-plist-files/
+            
+            // new version (simple) http://stackoverflow.com/questions/24045570/swift-read-plist (3)
+            
+        // let path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")
+        // let dict = NSDictionary(contentsOfFile: path!)
+            
+            
+        
+            let dict = appDelegate.dict
+            
+            /*
+            var inputFile = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")
+            
+            if (preferredLanguage == "de-US") {
+                inputFile = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")
+                print(preferredLanguage)
+            }
+            
+            let dict = NSDictionary(contentsOfFile: inputFile!)
+            */
+            let primo_url: AnyObject = dict.objectForKey("urls")!.objectForKey("Primo")!
+            
+            /* PLIST Example Ende */
+            
+            // homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=us_US"
+            
+            homeStr = primo_url as! String
     
+            /*
             if (preferredLanguage == "de") {
                 homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=de_DE"
             }
+            */
         }
         
         let requestURL = NSURL(string: homeStr)

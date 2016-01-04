@@ -35,6 +35,9 @@
 		B270CED61A778D3F003C981B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B270CED51A778D3F003C981B /* Images.xcassets */; };
 		B270CED91A778D3F003C981B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B270CED71A778D3F003C981B /* LaunchScreen.xib */; };
 		B270CEE51A778D3F003C981B /* UBMannheimAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270CEE41A778D3F003C981B /* UBMannheimAppTests.swift */; };
+		B28611F31C3A82AE0038C074 /* items_de.plist in Resources */ = {isa = PBXBuildFile; fileRef = B28611F21C3A82AE0038C074 /* items_de.plist */; };
+		B28611F51C3A82C50038C074 /* strings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B28611F41C3A82C50038C074 /* strings.plist */; };
+		B2946F821C3AA73300C791D5 /* strings_de.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2946F811C3AA73300C791D5 /* strings_de.plist */; };
 		B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D31A92468000C54592 /* JsonAPI.swift */; };
 		B29F73D61A9332C100C54592 /* SeatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */; };
 		B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2266FB31A825C1500C11E08 /* MainViewController.swift */; };
@@ -127,6 +130,9 @@
 		B270CEDE1A778D3F003C981B /* UBMannheimAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UBMannheimAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B270CEE31A778D3F003C981B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270CEE41A778D3F003C981B /* UBMannheimAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBMannheimAppTests.swift; sourceTree = "<group>"; };
+		B28611F21C3A82AE0038C074 /* items_de.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = items_de.plist; sourceTree = "<group>"; };
+		B28611F41C3A82C50038C074 /* strings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = strings.plist; sourceTree = "<group>"; };
+		B2946F811C3AA73300C791D5 /* strings_de.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = strings_de.plist; sourceTree = "<group>"; };
 		B29F73D31A92468000C54592 /* JsonAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonAPI.swift; sourceTree = "<group>"; };
 		B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatsTableViewController.swift; sourceTree = "<group>"; };
 		B2C1F1DE1B28666B00767F47 /* JLToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToast.swift; sourceTree = "<group>"; };
@@ -275,6 +281,9 @@
 		B270CECC1A778D3F003C981B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2946F811C3AA73300C791D5 /* strings_de.plist */,
+				B28611F41C3A82C50038C074 /* strings.plist */,
+				B28611F21C3A82AE0038C074 /* items_de.plist */,
 				B22D050B1AC93CE800904165 /* items.plist */,
 				B270CECD1A778D3F003C981B /* Info.plist */,
 			);
@@ -421,7 +430,10 @@
 				B2E46A3A1A8CA77A00C88E7C /* Main.storyboard in Resources */,
 				B270CED91A778D3F003C981B /* LaunchScreen.xib in Resources */,
 				B22D050C1AC93CE800904165 /* items.plist in Resources */,
+				B2946F821C3AA73300C791D5 /* strings_de.plist in Resources */,
+				B28611F51C3A82C50038C074 /* strings.plist in Resources */,
 				B270CED61A778D3F003C981B /* Images.xcassets in Resources */,
+				B28611F31C3A82AE0038C074 /* items_de.plist in Resources */,
 				B267895D1AE90E4900D30CF4 /* news.css in Resources */,
 				B24261D21ABAD1AE00124AAB /* offline.html in Resources */,
 				B2C8B0B21A8E2688002CBA11 /* Help.txt in Resources */,

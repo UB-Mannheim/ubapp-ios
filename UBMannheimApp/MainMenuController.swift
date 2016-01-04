@@ -719,7 +719,7 @@ Deactivate PopOverController, cause there are problems in Swift 2 and Controller
         
         var inputFile = NSBundle.mainBundle().pathForResource("items", ofType: "plist")
         
-        if (preferredLanguage == "de") {
+        if (preferredLanguage == "de-US") {
             inputFile = NSBundle.mainBundle().pathForResource("items_de", ofType: "plist")
         }
         

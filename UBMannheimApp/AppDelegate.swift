@@ -12,7 +12,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var path = String()
+    var dict = NSDictionary()
+    
+    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
 
+    
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -22,7 +28,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-
+    func readDictionary() {
+        
+        path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")!
+        
+        if (preferredLanguage == "de-US") {
+            path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
+        }
+        
+        dict = NSDictionary(contentsOfFile: path)!
+    }
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -58,6 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        self.readDictionary()
     }
 
     func applicationWillTerminate(application: UIApplication) {
