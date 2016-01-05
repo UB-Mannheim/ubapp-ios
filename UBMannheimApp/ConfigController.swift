@@ -3,8 +3,10 @@
 //  ConfigController.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 25.03.15.
-//  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//  Created by Alexander Wagner on 25.03.15,
+//  modified on 05.01.16
+//
+//  Copyright (c) 2015 Alexander Wagner, UB Mannheim. All rights reserved.
 //
 
 import UIKit
@@ -13,12 +15,16 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     
     var DEBUG: Bool = false
     
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     @IBOutlet weak var cacheSwitch: UISwitch!
     @IBOutlet weak var newsPicker: UIPickerView!
     @IBOutlet weak var startupPicker: UIPickerView!
     
+    
     let news_elements = ["5","10","15"]
-    let startup_elements = ["Startmenü","Website","Primo","News","Freie Plätze"]
+    // let startup_elements = ["Startmenü","Website","Primo","News","Freie Plätze"]
+    var startup_elements: [AnyObject] = []
     
     // alles nur temoporaere - oder?
     var news_selected: Int = 0
@@ -60,13 +66,18 @@ var newsCount:Int = 0
     
     // check lang (test)
     // http://stackoverflow.com/questions/29193284/check-language-in-ios-app
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    
+    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // print("viewDidLoad ....................................................")
+        
+
+        let dict = appDelegate.dict
+        startup_elements = dict.objectForKey("labels")?.objectForKey("Modules") as! [AnyObject]
         
         
         //table layout
@@ -241,7 +252,7 @@ var newsCount:Int = 0
             self.news_selected = row
         }
         if pickerView.tag == 2 {
-            name = startup_elements[row]
+            name = startup_elements[row] as! String
             self.startup_selected = row
             
             // userDefaults.setObject(1, forKey: "firstRun")
@@ -375,6 +386,8 @@ var newsCount:Int = 0
     
     @IBAction func saveConfig() {
         
+        let dict = appDelegate.dict
+        
         // EINFACH PREFS ÄNDENR UND NEU LADEN
         
         // Dann neustarten und Testen
@@ -469,16 +482,14 @@ var newsCount:Int = 0
             userInterfaceIdiom: .Phone
         )
         
-        var config_saved = "Saved settings."
+        let toastMsg_savedConfig: String = dict.objectForKey("alertMessages")!.objectForKey("Config")!.objectForKey("savedSettings") as! String
         
-        print(preferredLanguage)
+        // var config_saved = "Saved settings."
+        // if (preferredLanguage == "de-US") {
+        //    config_saved = "Einstellungen gespeichert."
+        // }
         
-        if (preferredLanguage == "de-US") {
-            
-            config_saved = "Einstellungen gespeichert."
-        }
-        
-        JLToast.makeText(config_saved).show()
+        JLToast.makeText(toastMsg_savedConfig).show()
         
     }
     

@@ -4,6 +4,14 @@
 <dict>
 	<key>labels</key>
 	<dict>
+		<key>Modules</key>
+		<array>
+			<string>Startmenü</string>
+			<string>Website</string>
+			<string>Primo</string>
+			<string>News</string>
+			<string>Freie Plätze</string>
+		</array>
 		<key>appTitle</key>
 		<string>Mannheim University Library</string>
 		<key>Website</key>
@@ -17,9 +25,9 @@
 		<key>Default</key>
 		<string>http://www.google.de</string>
 		<key>Website</key>
-		<string>http://www.bib.uni-mannheim.de/mobile/en/</string>
+		<string>http://www.bib.uni-mannheim.de/mobile/de/</string>
 		<key>Primo</key>
-		<string>http://www.google.de</string>
+		<string>http://primo.bib.uni-mannheim.de/primo_library/libweb/action/preferences.do?fn=change_lang&amp;vid=MAN_MOBILE&amp;prefLang=de_DE&amp;prefBackUrl=http:%2F%2Fprimo.bib.uni-mannheim.de%2Fprimo_library%2Flibweb%2Faction%2Fsearch.do?vid=MAN_MOBILE%26vid=MAN_MOBILE</string>
 		<key>News</key>
 		<string></string>
 		<key>Seats</key>
@@ -27,6 +35,11 @@
 	</dict>
 	<key>alertMessages</key>
 	<dict>
+		<key>Config</key>
+		<dict>
+			<key>savedSettings</key>
+			<string>Einstellungen gespeichert</string>
+		</dict>
 		<key>errorTitle</key>
 		<string>Fehler</string>
 		<key>okAction</key>

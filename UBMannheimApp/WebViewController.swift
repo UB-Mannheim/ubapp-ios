@@ -27,7 +27,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -362,14 +362,16 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         // let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
         
         let dict = appDelegate.dict
-        let primo_url: AnyObject = dict.objectForKey("urls")!.objectForKey("Primo")!
+        let primo_url: String = dict.objectForKey("urls")!.objectForKey("Primo") as! String
         let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
         
-        var homeStr = "http://www.bib.uni-mannheim.de/mobile/en/"
         
-        if (preferredLanguage == "de") {
-            homeStr = "http://www.bib.uni-mannheim.de/mobile"
-        }
+        // var homeStr = "http://www.bib.uni-mannheim.de/mobile/en/"
+        // if (preferredLanguage == "de") {
+        //    homeStr = "http://www.bib.uni-mannheim.de/mobile"
+        // }
+        
+        var homeStr = dict.objectForKey("urls")!.objectForKey("Website") as! String
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
             
@@ -385,7 +387,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             // new version (simple) http://stackoverflow.com/questions/24045570/swift-read-plist (3)
             */
             
-            homeStr = primo_url as! String
+            homeStr = primo_url
             
         }
         

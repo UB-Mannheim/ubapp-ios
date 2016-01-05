@@ -4,6 +4,14 @@
 <dict>
 	<key>labels</key>
 	<dict>
+		<key>Modules</key>
+		<array>
+			<string>Startmenu</string>
+			<string>Website</string>
+			<string>Primo</string>
+			<string>News</string>
+			<string>Free Seats</string>
+		</array>
 		<key>appTitle</key>
 		<string>Mannheim University Library</string>
 		<key>Website</key>
@@ -27,6 +35,11 @@
 	</dict>
 	<key>alertMessages</key>
 	<dict>
+		<key>Config</key>
+		<dict>
+			<key>savedSettings</key>
+			<string>Saved Settings</string>
+		</dict>
 		<key>errorTitle</key>
 		<string>Error</string>
 		<key>okAction</key>
