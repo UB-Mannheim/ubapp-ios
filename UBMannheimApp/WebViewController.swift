@@ -1,10 +1,16 @@
-
 //
 //  WebViewController.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 27.01.15.
-//  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//  Created by Alexander Wagner on 27.01.15,
+//  modified on 04.01.16.
+//
+//  Copyright (c) 2015 Alexander Wagner, UB Mannheim. 
+//  All rights reserved.
+//
+//
+//  Toolbar Icons by Iconbeast
+//  Source: http://www.iconbeast.com/free/
 //
 
 import UIKit
@@ -13,14 +19,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
 
     var DEBUG: Bool = false
     
-    //Toolbar Icons
-    // Iconbeast
-    // http://www.iconbeast.com/free/
-    
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
-    // Fallback
+    // Fallback URL (probably always reachable)
     var website:NSString = "http://www.google.de"
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
@@ -45,6 +47,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         if (DEBUG) { print("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
+        let dict = appDelegate.dict
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
             self.title = "Primo"
@@ -70,13 +73,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             webView.loadRequest(request)
             webView.delegate = self
             
-            var err_no_network = "Network connection not available"
+            let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+            // var err_no_network = "Network connection not available" // --> "No network connection available"
             
-            if (preferredLanguage == "de") {
-                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
-            }
+            // if (preferredLanguage == "de") {
+            //    err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            // }
             
-            returnNetworkError(err_no_network)
+            returnNetworkError(alertMsg_Err_noNetwork)
             
             // #1
             /* 
@@ -126,6 +130,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
         if (DEBUG) { print("didReceiveMemoryWarning") }
     }
     
@@ -152,8 +157,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         activity.startAnimating()
         
         // Activity Bar in Top Bar
-        var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
-        var activityBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let activityBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         navigationItem.rightBarButtonItem = activityBarButtonItem
         activityIndicator.startAnimating()
         
@@ -183,10 +188,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         "document.getElementsByTagName('head')[0].appendChild(script);"
         */
         
-        var www_js:String = "document.getElementById('mobile_trailer').style.backgroundColor = 'white'; " + 
+        let www_js:String = "document.getElementById('mobile_trailer').style.backgroundColor = 'white'; " + 
         "document.getElementById('mobile_trailer').style.transition = 'background-color 1000ms linear'; "
         
-        var primo_js:String = "document.getElementById('exlidUserAreaTile').style.padding = '10px'; " +
+        let primo_js:String = "document.getElementById('exlidUserAreaTile').style.padding = '10px'; " +
             "document.getElementById('logos').style.visibility = 'hidden'; " +
             "document.getElementById('exlidSearchTile').style.position = 'relative'; " +
             "document.getElementById('exlidSearchTile').style.top = '-80px'; " +
@@ -221,16 +226,19 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
+        let dict = appDelegate.dict
+        let alertMsg_Err_lostConnection: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("lostConnection") as! String
+        
+        
         if( (navigationType == UIWebViewNavigationType.LinkClicked) && (IJReachability.isConnectedToNetwork() == false) ) {
             if (DEBUG) { print("tapped") }
             
-            var err_network_connection_lost = "Network connection lost"
+            // var err_network_connection_lost = "Network connection lost"
+            // if (preferredLanguage == "de") {
+            //     err_network_connection_lost = "Verbindung zum Netzwerk unterbrochen"
+            // }
             
-            if (preferredLanguage == "de") {
-                err_network_connection_lost = "Verbindung zum Netzwerk unterbrochen"
-            }
-            
-            returnNetworkError(err_network_connection_lost)
+            returnNetworkError(alertMsg_Err_lostConnection)
             
         }
         
@@ -307,36 +315,42 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // end
 
     @IBAction func back(sender: UIBarButtonItem) {
+        
+        let dict = appDelegate.dict
+        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+        
         if (IJReachability.isConnectedToNetwork()) {
             if (self.webView.canGoBack) {
                 self.webView.goBack()
             }
         } else {
             
-            var err_no_network = "Network connection not available"
+            // var err_no_network = "Network connection not available"
+            // if (preferredLanguage == "de") {
+            //    err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            // }
             
-            if (preferredLanguage == "de") {
-                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
-            }
-            
-            returnNetworkError(err_no_network)
+            returnNetworkError(alertMsg_Err_noNetwork)
         }
     }
     
     @IBAction func forward(sender: UIBarButtonItem) {
+        
+        let dict = appDelegate.dict
+        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+        
         if (IJReachability.isConnectedToNetwork()) {
             if (self.webView.canGoForward) {
                 self.webView.goForward()
             }
         } else {
             
-            var err_no_network = "Network connection not available"
+            // var err_no_network = "Network connection not available"
+            // if (preferredLanguage == "de") {
+            //    err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            // }
             
-            if (preferredLanguage == "de") {
-                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
-            }
-            
-            returnNetworkError(err_no_network)
+            returnNetworkError(alertMsg_Err_noNetwork)
         }
     }
     
@@ -347,6 +361,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         // self.webView.stopLoading()
         // let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
         
+        let dict = appDelegate.dict
+        let primo_url: AnyObject = dict.objectForKey("urls")!.objectForKey("Primo")!
+        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
         
         var homeStr = "http://www.bib.uni-mannheim.de/mobile/en/"
         
@@ -355,46 +372,21 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
+            
             // if (DEBUG) { print("primo") }
+            
             // homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
-            
-            
-            /* Testing PLIST Example */
-            
-            // old version (AppDelegate) http://sweettutos.com/2015/06/03/swift-how-to-read-and-write-into-plist-files/
-            
-            // new version (simple) http://stackoverflow.com/questions/24045570/swift-read-plist (3)
-            
-        // let path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")
-        // let dict = NSDictionary(contentsOfFile: path!)
-            
-            
-        
-            let dict = appDelegate.dict
-            
-            /*
-            var inputFile = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")
-            
-            if (preferredLanguage == "de-US") {
-                inputFile = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")
-                print(preferredLanguage)
-            }
-            
-            let dict = NSDictionary(contentsOfFile: inputFile!)
-            */
-            let primo_url: AnyObject = dict.objectForKey("urls")!.objectForKey("Primo")!
-            
-            /* PLIST Example Ende */
-            
             // homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=us_US"
+            // homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=de_DE"
+            
+            
+            /* Testing PLIST Example
+            // old version (AppDelegate) http://sweettutos.com/2015/06/03/swift-how-to-read-and-write-into-plist-files/
+            // new version (simple) http://stackoverflow.com/questions/24045570/swift-read-plist (3)
+            */
             
             homeStr = primo_url as! String
-    
-            /*
-            if (preferredLanguage == "de") {
-                homeStr = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE&lang=de_DE"
-            }
-            */
+            
         }
         
         let requestURL = NSURL(string: homeStr)
@@ -404,46 +396,53 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             self.webView.loadRequest(request)
         } else {
             
-            var err_no_network = "Network connection not available"
+            // var err_no_network = "Network connection not available"
+            // if (preferredLanguage == "de") {
+            //    err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            // }
             
-            if (preferredLanguage == "de") {
-                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
-            }
-            
-            returnNetworkError(err_no_network)
+            returnNetworkError(alertMsg_Err_noNetwork)
         }
     }
     
     @IBAction func reload(sender: UIBarButtonItem) {
+        
+        let dict = appDelegate.dict
+        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+        
         if (IJReachability.isConnectedToNetwork()) {
             self.webView.reload()
         } else {
             
-            var err_no_network = "Network connection not available"
+            // var err_no_network = "Network connection not available"
+            // if (preferredLanguage == "de") {
+            //    err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
+            // }
             
-            if (preferredLanguage == "de") {
-                err_no_network = "Keine Verbindung zum Netzwerk vorhanden"
-            }
-            
-            returnNetworkError(err_no_network)
+            returnNetworkError(alertMsg_Err_noNetwork)
         }
     }
     
     func returnNetworkError(error_msg: String) {
         
-        var alert_msg_error = "Error"
-        var alert_msg_back = "Back"
-        var alert_msg_reload = "Reload"
+        let dict = appDelegate.dict
+        let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+        let alertMsg_Back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
+        let alertMsg_Reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
         
-        if (preferredLanguage == "de") {
-            alert_msg_error = "Fehler"
-            alert_msg_back = "Zurück"
-            alert_msg_reload = "Neu laden"
-        }
+        // var alert_msg_error = "Error"
+        // var alert_msg_back = "Back"
+        // var alert_msg_reload = "Reload"
+        
+        // if (preferredLanguage == "de") {
+        //    alert_msg_error = "Fehler"
+        //    alert_msg_back = "Zurück"
+        //    alert_msg_reload = "Neu laden"
+        // }
     
-        let alertController = UIAlertController(title: alert_msg_error, message: error_msg, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: alertMsg_Error, message: error_msg, preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: alertMsg_Back, style: .Cancel) { (action) in
             
             self.userDefaults.setObject(1, forKey: "backFromWebview")
             
@@ -452,7 +451,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             
         }
         
-            let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
+            let okAction = UIAlertAction(title: alertMsg_Reload, style: .Default) { (action) in
             self.viewDidLoad()
         }
         

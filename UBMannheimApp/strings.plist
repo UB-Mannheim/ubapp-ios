@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>labels</key>
-    <dict>
+	<key>labels</key>
+	<dict>
 		<key>appTitle</key>
 		<string>Mannheim University Library</string>
 		<key>Website</key>
@@ -12,9 +12,8 @@
 			<string>Website</string>
 		</dict>
 	</dict>
-    
-    <key>urls</key>
-    <dict>
+	<key>urls</key>
+	<dict>
 		<key>Default</key>
 		<string>http://www.google.de</string>
 		<key>Website</key>
@@ -26,9 +25,8 @@
 		<key>Seats</key>
 		<string></string>
 	</dict>
-    
-    <key>alertMessages</key>
-    <dict>
+	<key>alertMessages</key>
+	<dict>
 		<key>errorTitle</key>
 		<string>Error</string>
 		<key>okAction</key>
@@ -40,9 +38,9 @@
 		<key>Website</key>
 		<dict>
 			<key>lostConnection</key>
-			<string>This is an error: Connection lost</string>
+			<string>Network connection lost</string>
 			<key>noNetwork</key>
-			<string>This is an error: No network connection available</string>
+			<string>No network connection available</string>
 			<key>noCache</key>
 			<string>This is an error: No cache available</string>
 			<key>initCache</key>

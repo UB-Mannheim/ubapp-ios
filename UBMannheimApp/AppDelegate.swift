@@ -2,8 +2,11 @@
 //  AppDelegate.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 27.01.15.
-//  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//  Created by Alexander Wagner on 27.01.15,
+//  last modified on 04.01.16.
+//
+//  Copyright (c) 2015 Alexander Wagner, UB Mannheim.
+//  All rights reserved.
 //
 
 import UIKit
@@ -13,13 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    // Language Settings
     var path = String()
     var dict = NSDictionary()
-    
     var preferredLanguage = NSLocale.preferredLanguages()[0] as String
 
     
+    // Colors
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
         let blue = CGFloat(rgbValue & 0xFF)/256.0
@@ -28,22 +33,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func readDictionary() {
+    // Load Content (en/de)
+    func loadContentInPreferredLanguage() {
         
-        path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")!
+        self.path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")!
         
-        if (preferredLanguage == "de-US") {
-            path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
+        if (self.preferredLanguage == "de-US") {
+            self.path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
         }
         
-        dict = NSDictionary(contentsOfFile: path)!
+        self.dict = NSDictionary(contentsOfFile: path)!
     }
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        var navigationBarAppearance = UINavigationBar.appearance()
+        let navigationBarAppearance = UINavigationBar.appearance()
         
         navigationBarAppearance.tintColor = uicolorFromHex(0xffffff)
         navigationBarAppearance.barTintColor = uicolorFromHex(0x990000)
@@ -76,7 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        self.readDictionary()
+        // Loading Content in here
+        self.loadContentInPreferredLanguage()
     }
 
     func applicationWillTerminate(application: UIApplication) {

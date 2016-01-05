@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>labels</key>
-    <dict>
+	<key>labels</key>
+	<dict>
 		<key>appTitle</key>
 		<string>Mannheim University Library</string>
 		<key>Website</key>
@@ -12,38 +12,35 @@
 			<string>Website</string>
 		</dict>
 	</dict>
-    
-    <key>urls</key>
-    <dict>
+	<key>urls</key>
+	<dict>
 		<key>Default</key>
 		<string>http://www.google.de</string>
 		<key>Website</key>
 		<string>http://www.bib.uni-mannheim.de/mobile/en/</string>
 		<key>Primo</key>
-        <string>http://www.google.de</string>
-		<!-- string>http://primo.bib.uni-mannheim.de/primo_library/libweb/action/preferences.do?fn=change_lang&amp;vid=MAN_MOBILE&amp;prefLang=en_US&amp;prefBackUrl=http:%2F%2Fprimo.bib.uni-mannheim.de%2Fprimo_library%2Flibweb%2Faction%2Fsearch.do?vid=MAN_MOBILE%26vid=MAN_MOBILE</string -->
+		<string>http://www.google.de</string>
 		<key>News</key>
 		<string></string>
 		<key>Seats</key>
 		<string></string>
 	</dict>
-    
-    <key>alertMessages</key>
-    <dict>
+	<key>alertMessages</key>
+	<dict>
 		<key>errorTitle</key>
-		<string>Error</string>
+		<string>Fehler</string>
 		<key>okAction</key>
 		<string>OK</string>
 		<key>cancelAction</key>
-		<string>Back</string>
+		<string>Zurück</string>
 		<key>reloadAction</key>
-		<string>Reload</string>
+		<string>Neu laden</string>
 		<key>Website</key>
 		<dict>
 			<key>lostConnection</key>
-			<string>This is an error: Connection lost</string>
+			<string>Verbindung zum Netzwerk unterbrochen</string>
 			<key>noNetwork</key>
-			<string>This is an error: No network connection available</string>
+			<string>Keine Verbindung zum Netzwerk vorhanden</string>
 			<key>noCache</key>
 			<string>This is an error: No cache available</string>
 			<key>initCache</key>
