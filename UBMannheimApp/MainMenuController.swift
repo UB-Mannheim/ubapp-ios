@@ -561,20 +561,38 @@ Deactivate PopOverController, cause there are problems in Swift 2 and Controller
     
     func showWebView(destination: String) {
         
-        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as! WebViewController
+        var path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")
         
-        var url: NSString = ""
-        
-        if (destination=="website") {
-            url = "http://www.bib.uni-mannheim.de/mobile"
+        if (preferredLanguage.containsString("de-")) {
+            path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")
         }
         
+        print(preferredLanguage)
+        
+        let dict = NSDictionary(contentsOfFile: path!)
+        
+        // Menu Actions for Webview
+        
+        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as! WebViewController
+        
+        // var url: NSString = ""
+        var url: AnyObject = []
+        
+        if (destination=="website") {
+            // url = "http://www.bib.uni-mannheim.de/mobile"
+            url = dict!.objectForKey("urls")!.objectForKey("Website")!
+        }
+
+        
         if (destination=="primo") {
-            url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            // url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            url = dict!.objectForKey("urls")!.objectForKey("Primo")!
+            
+            // Demo from IGeLU
             // url = "http://primo-demo.exlibrisgroup.com:1701/primo-explore2/"
         }
         
-        webViewController.website = url
+        webViewController.website = url as! NSString
         
         self.navigationController?.pushViewController(webViewController, animated: true)
     }
@@ -622,7 +640,6 @@ Deactivate PopOverController, cause there are problems in Swift 2 and Controller
     //
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        
         
         if (segue.identifier == "showWebsite") {
             
@@ -719,7 +736,9 @@ Deactivate PopOverController, cause there are problems in Swift 2 and Controller
         
         var inputFile = NSBundle.mainBundle().pathForResource("items", ofType: "plist")
         
-        if (preferredLanguage == "de-US") {
+        // if (preferredLanguage == "de-US") {
+        if (preferredLanguage.containsString("de-")) {
+                
             inputFile = NSBundle.mainBundle().pathForResource("items_de", ofType: "plist")
         }
         
