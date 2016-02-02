@@ -21,7 +21,8 @@ class SeatsTableViewController: UITableViewController {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     
     // UIRefreshControl
     func refresh(sender:AnyObject)
@@ -36,19 +37,24 @@ class SeatsTableViewController: UITableViewController {
     
         } else {
             
-            var alert_msg_error = "Error"
-            var alert_msg_network = "Network connection not available. Updating data is not possible. Please try again later."
-            var alert_msg_ok = "OK"
+            let dict = appDelegate.dict
             
-            if (preferredLanguage == "de") {
-                alert_msg_error = "Fehler"
-                alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal."
-                alert_msg_ok = "OK"
-            }
+            let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+            //var alert_msg_error = "Error"
+            let alertMsg_Err_noNetwork: String = dict.objectForKey("FreeSeats")!.objectForKey("noNetwork")! as! String
+            // var alert_msg_network = "Network connection not available. Updating data is not possible. Please try again later."
+            let alertMsg_OK: String = dict.objectForKey("alertMessages")!.objectForKey("okAction")! as! String
+            // var alert_msg_ok = "OK"
             
-            let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+            // if (preferredLanguage == "de") {
+            //    alert_msg_error = "Fehler"
+            //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal."
+            //    alert_msg_ok = "OK"
+            // }
             
-            let okAction = UIAlertAction(title: alert_msg_ok, style: .Default) { (action) in
+            let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: alertMsg_OK, style: .Default) { (action) in
                 self.viewDidLoad()
             }
             
@@ -143,23 +149,31 @@ class SeatsTableViewController: UITableViewController {
                     // kein Primaerabzug erfolgt
                     if (DEBUG) { print("kein primaerabzug") }
                     
-                    var alert_msg_error = "Error"
-                    var alert_msg_network = "Network connection not available. Cache could not be initialized. Displaying Free Seats is not possible. Please connect your device to the internet at least one time and then try again."
-                    var alert_msg_back = "Back"
-                    var alert_msg_reload = "Reload"
+                    let dict = appDelegate.dict
                     
-                    if (preferredLanguage == "de") {
-                        alert_msg_error = "Fehler"
-                        alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                        alert_msg_back = "Zurück"
-                        alert_msg_reload = "Neu laden"
-                    }
+                    let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+                    let alertMsg_Err_initCache: String = dict.objectForKey("FreeSeats")!.objectForKey("initCache")! as! String
+                    let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
+                    let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
+                    
+                    // var alert_msg_error = "Error"
+                    // var alert_msg_network = "Network connection not available. Cache could not be initialized. Displaying Free Seats is not possible. Please connect your device to the internet at least one time and then try again."
+                    // var alert_msg_back = "Back"
+                    // var alert_msg_reload = "Reload"
+                    
+                    // if (preferredLanguage == "de") {
+                    //    alert_msg_error = "Fehler"
+                    //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                    //    alert_msg_back = "Zurück"
+                    //    alert_msg_reload = "Neu laden"
+                    // }
+                    
                     
                     // Keine Verbindung zum Netzwerk vorhanden, kein Primärabzug erfolgt.
                     
-                    let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+                    let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_initCache, preferredStyle: .Alert)
                     
-                    let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
+                    let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
                         // MainView set as storyboard ID of MainViewController
                         // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -177,7 +191,7 @@ class SeatsTableViewController: UITableViewController {
                         }
                     }
                     
-                    let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
+                    let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
                         self.viewDidLoad()
                     }
                     
@@ -192,21 +206,30 @@ class SeatsTableViewController: UITableViewController {
                     // kein Primaerabzug erfolgt
                     if (DEBUG) { print("kein primaerabzug II") }
                     
-                    var alert_msg_error = "Error"
-                    var alert_msg_network = "Network connection not available, cache could not be initialized. Displaying Free Seats is not possible at the moment. Please connect your device to the internet at least one time and try again."
-                    var alert_msg_back = "Back"
-                    var alert_msg_reload = "Reload"
                     
-                    if (preferredLanguage == "de") {
-                        alert_msg_error = "Fehler"
-                        alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                        alert_msg_back = "Zurück"
-                        alert_msg_reload = "Neu laden"
-                    }
+                    let dict = appDelegate.dict
                     
-                    let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+                    let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+                    let alertMsg_Err_createCache: String = dict.objectForKey("FreeSeats")!.objectForKey("createCache")! as! String
+                    let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
+                    let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
                     
-                    let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
+                    
+                    // var alert_msg_error = "Error"
+                    // var alert_msg_network = "Network connection not available, cache could not be initialized. Displaying Free Seats is not possible at the moment. Please connect your device to the internet at least one time and try again."
+                    // var alert_msg_back = "Back"
+                    // var alert_msg_reload = "Reload"
+                    
+                    // if (preferredLanguage == "de") {
+                    //    alert_msg_error = "Fehler"
+                    //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                    //    alert_msg_back = "Zurück"
+                    //    alert_msg_reload = "Neu laden"
+                    // }
+                    
+                    let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_createCache, preferredStyle: .Alert)
+                    
+                    let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
                         // MainView set as storyboard ID of MainViewController
                         // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -224,7 +247,7 @@ class SeatsTableViewController: UITableViewController {
                         }
                     }
                     
-                    let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
+                    let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
                         self.viewDidLoad()
                     }
                     
@@ -238,23 +261,30 @@ class SeatsTableViewController: UITableViewController {
             } else {
             
             // showNetworkError
-            
-                var alert_msg_error = "Error"
-                var alert_msg_network = "Network connection not available, no cache activated. Displaying Free Seats is not possible at the moment. Please connect your device to the internet and try again."
-                var alert_msg_back = "Back"
-                var alert_msg_reload = "Reload"
                 
-                if (preferredLanguage == "de") {
-                    alert_msg_error = "Fehler"
-                    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                    alert_msg_back = "Zurück"
-                    alert_msg_reload = "Neu laden"
-                }
+                let dict = appDelegate.dict
+                
+                let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+                let alertMsg_Err_noCache_noNetwork: String = dict.objectForKey("FreeSeats")!.objectForKey("noCache_noNetwork")! as! String
+                let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
+                let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
+            
+                // var alert_msg_error = "Error"
+                // var alert_msg_network = "Network connection not available, no cache activated. Displaying Free Seats is not possible at the moment. Please connect your device to the internet and try again."
+                // var alert_msg_back = "Back"
+                // var alert_msg_reload = "Reload"
+                
+                // if (preferredLanguage == "de") {
+                //    alert_msg_error = "Fehler"
+                //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
+                //    alert_msg_back = "Zurück"
+                //    alert_msg_reload = "Neu laden"
+                // }
 
                 
-            let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .Alert)
             
-            let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
+            let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
                 // MainView set as storyboard ID of MainViewController
                 // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                 let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -272,7 +302,7 @@ class SeatsTableViewController: UITableViewController {
                 }
             }
             
-            let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
+            let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
                 self.viewDidLoad()
             }
             
@@ -301,7 +331,7 @@ class SeatsTableViewController: UITableViewController {
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        var rowData: NSDictionary = self.items[indexPath.row] as! NSDictionary
+        let rowData: NSDictionary = self.items[indexPath.row] as! NSDictionary
         
         // cell.textLabel?.text = rowData["trackName"] as String!
         cell.textLabel?.text = rowData["id"] as! String!
@@ -316,8 +346,8 @@ class SeatsTableViewController: UITableViewController {
         
         // Get the formatted price string for display in the subtitle
         // var formattedPrice: NSString = rowData["formattedPrice"] as NSString
-        var loadInPercent: Int = rowData["percent"] as! Int
-        var maxCountOfSeats: Int = rowData["max"] as! Int
+        let loadInPercent: Int = rowData["percent"] as! Int
+        let maxCountOfSeats: Int = rowData["max"] as! Int
         
         
         if(loadInPercent >= 81) {
@@ -331,11 +361,18 @@ class SeatsTableViewController: UITableViewController {
         }
         
         
-        var detailTextLabelText = loadInPercent.description + "% of " + maxCountOfSeats.description + " Seats are occupied" // reserved?
+        let dict = appDelegate.dict
         
-        if (preferredLanguage == "de") {
-            detailTextLabelText = loadInPercent.description + "% von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt"
-        }
+        let label_seatsOccupied: String = dict.objectForKey("labels")!.objectForKey("FreeSeats")!.objectForKey("seatsOccupied") as! String
+        let label_ofPercentage: String = dict.objectForKey("labels")!.objectForKey("FreeSeats")!.objectForKey("ofPercentage") as! String
+        
+        let detailTextLabelText = loadInPercent.description + label_ofPercentage + maxCountOfSeats.description + label_seatsOccupied // reserved?
+        
+        // var detailTextLabelText = loadInPercent.description + "% of " + maxCountOfSeats.description + " Seats are occupied" // reserved?
+        
+        // if (preferredLanguage == "de") {
+        //     detailTextLabelText = loadInPercent.description + "% von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt"
+        // }
         
         cell.detailTextLabel?.text = detailTextLabelText
         
@@ -358,11 +395,16 @@ class SeatsTableViewController: UITableViewController {
             lastUpdate = userDefaults.objectForKey("dateWLAN") as! String
         }
         
-        var headerCellText = "Last updated on: "
+        let dict = appDelegate.dict
         
-        if (preferredLanguage == "de") {
-            headerCellText = "Zuletzt aktualisiert: "
-        }
+        let label_lastUpdated: String = dict.objectForKey("labels")!.objectForKey("FreeSeats")!.objectForKey("lastUpdated") as! String
+        let headerCellText = label_lastUpdated
+        
+        // var headerCellText = "Last updated on: "
+        
+        // if (preferredLanguage == "de") {
+        //    headerCellText = "Zuletzt aktualisiert: "
+        // }
         
         headerCell.textLabel?.text = headerCellText + lastUpdate
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
@@ -376,10 +418,13 @@ class SeatsTableViewController: UITableViewController {
 
     func loadJSONFromURL() {
         
-        var urlPath = "http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
+        let dict = appDelegate.dict
+        let url_FreeSeats: String = dict.objectForKey("urls")!.objectForKey("FreeSeats") as! String
+        
+        let urlPath = url_FreeSeats
+        let url: NSURL = NSURL(string: urlPath)!
+        let request: NSURLRequest = NSURLRequest(URL: url)
+        let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
         
     // print("Search UB JSON Bereichsauslastung at URL \(url)")
         

@@ -17,7 +17,9 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
     
     var news_feed : Int = 5
     var news_cache: [[String]] = []
@@ -43,6 +45,13 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         } else {
             
+            let dict = appDelegate.dict
+            
+            let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+            let alertMsg_Err_noNetwork: String = dict.objectForKey("News")!.objectForKey("noNetwork")! as! String
+            let alertMsg_OK: String = dict.objectForKey("alertMessages")!.objectForKey("okAction")! as! String
+            
+            /*
             var alert_msg_error  = "Error"
             var alert_msg_network = "Network connection not available. Updating data not possible. Please try again later."
             var alert_msg_ok = "OK"
@@ -53,10 +62,11 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                 alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal."
                 alert_msg_ok = "OK"
             }
+            */
             
-            let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .Alert)
             
-            let okAction = UIAlertAction(title: alert_msg_ok, style: .Default) { (action) in
+            let okAction = UIAlertAction(title: alertMsg_OK, style: .Default) { (action) in
                 self.viewDidLoad()
             }
             
@@ -220,6 +230,14 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                         // kein Primaerabzug erfolgt
                         if (DEBUG) { print("kein primaerabzug II (copy)") }
                         
+                        let dict = appDelegate.dict
+                        
+                        let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+                        let alertMsg_Err_initCache: String = dict.objectForKey("News")!.objectForKey("initCache")! as! String
+                        let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
+                        let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
+                        
+                        /*
                         var alert_msg_error = "Error"
                         var alert_msg_network = "Network connection not available, cache could not be initialized. Displaying free seats ist not possible. Please connect your device to the internet at least one time and then try again."
                         var alert_msg_back = "Back"
@@ -231,10 +249,11 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                             alert_msg_back = "Zurück"
                             alert_msg_reload = "Neu laden"
                         }
+                        */
                         
-                        let alertController = UIAlertController(title: alert_msg_error, message: alert_msg_network, preferredStyle: .Alert)
+                        let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_initCache, preferredStyle: .Alert)
                         
-                        let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
+                        let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
                             // MainView set as storyboard ID of MainViewController
                             // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                             let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
@@ -252,7 +271,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                             }
                         }
                         
-                        let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
+                        let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
                             self.viewDidLoad()
                         }
                         
@@ -273,6 +292,14 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                 
                 if (DEBUG) { print("alert") }
                 
+                let dict = appDelegate.dict
+                
+                let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
+                let alertMsg_Err_noCache_noNetwork: String = dict.objectForKey("News")!.objectForKey("noCache_noNetwork")! as! String
+                let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
+                let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
+                
+                /*
                 var alert_msg_error = "Error"
                 var alert_msg_network = "Network connection not available, no cache activated. Displaying News is not possible at the moment. Please connect your device to the internet and try again."
                 var alert_msg_back = "Back"
@@ -284,10 +311,11 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                     alert_msg_back = "Zurück"
                     alert_msg_reload = "Reload"
                 }
+                */
+
+                let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .Alert)
                 
-                let alertController = UIAlertController(title: alert_msg_network, message: alert_msg_network, preferredStyle: .Alert)
-                
-                let cancelAction = UIAlertAction(title: alert_msg_back, style: .Cancel) { (action) in
+                let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
                     let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                     self.navigationController?.pushViewController(homeViewController, animated: true)
                     
@@ -314,7 +342,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                     
                 }
                 
-                let okAction = UIAlertAction(title: alert_msg_reload, style: .Default) { (action) in
+                let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
                     self.viewDidLoad()
                 }
                 
@@ -624,11 +652,18 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         let headerCell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         
+        let dict = appDelegate.dict
+        
+        let label_newsHeader: String = dict.objectForKey("labels")!.objectForKey("News")!.objectForKey("title") as! String
+        let headerCellText = label_newsHeader
+        
+        /*
         var headerCellText = "Latest Library News"
         
         if (preferredLanguage == "de") {
             headerCellText = "Aktuelles aus der UB"
         }
+        */
         
         // hide Title/Subtitle View in HeaderCell
         headerCell.textLabel?.hidden = true

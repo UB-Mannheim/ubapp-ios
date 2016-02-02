@@ -4,6 +4,31 @@
 <dict>
 	<key>labels</key>
 	<dict>
+		<key>Submenu</key>
+		<dict>
+			<key>help_subtitle</key>
+			<string>(Here you can find helpful tips for using the app)</string>
+			<key>help_title</key>
+			<string>Help</string>
+			<key>settings_subtitle</key>
+			<string>(Personalize your app)</string>
+			<key>settings_title</key>
+			<string>Settings</string>
+		</dict>
+		<key>News</key>
+		<dict>
+			<key>title</key>
+			<string>Latest Library News</string>
+		</dict>
+		<key>FreeSeats</key>
+		<dict>
+			<key>lastUpdated</key>
+			<string>Last updated on: </string>
+			<key>seatsOccupied</key>
+			<string> Seats are occupied</string>
+			<key>ofPercentage</key>
+			<string>% of </string>
+		</dict>
 		<key>Modules</key>
 		<array>
 			<string>Startmenu</string>
@@ -30,11 +55,31 @@
 		<string>http://primo.bib.uni-mannheim.de/primo_library/libweb/action/preferences.do?fn=change_lang&amp;vid=MAN_MOBILE&amp;prefLang=en_US&amp;prefBackUrl=http:%2F%2Fprimo.bib.uni-mannheim.de%2Fprimo_library%2Flibweb%2Faction%2Fsearch.do?vid=MAN_MOBILE%26vid=MAN_MOBILE</string>
 		<key>News</key>
 		<string></string>
-		<key>Seats</key>
-		<string></string>
+		<key>FreeSeats</key>
+		<string>http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json</string>
 	</dict>
 	<key>alertMessages</key>
 	<dict>
+		<key>News</key>
+		<dict>
+			<key>noCache_noNetwork</key>
+			<string>Network connection not available, no cache activated. Displaying News is not possible at the moment. Please connect your device to the internet and try again.</string>
+			<key>initCache</key>
+			<string>Network connection not available, cache could not be initialized. Displaying News ist not possible. Please connect your device to the internet at least one time and then try again.</string>
+			<key>noNetwork</key>
+			<string>Network connection not available. Updating data is not possible. Please try again later.</string>
+		</dict>
+		<key>FreeSeats</key>
+		<dict>
+			<key>noCache_noNetwork</key>
+			<string>Network connection not available, no cache activated. Displaying Free Seats is not possible at the moment. Please connect your device to the internet and try again.</string>
+			<key>createCache</key>
+			<string>Network connection not available, cache could not be initialized. Displaying Free Seats is not possible at the moment. Please connect your device to the internet at least one time and try again.</string>
+			<key>initCache</key>
+			<string>Network connection not available. Cache could not be initialized. Displaying Free Seats is not possible. Please connect your device to the internet at least one time and then try again.</string>
+			<key>noNetwork</key>
+			<string>Network connection not available. Updating data ist not possible. Please connect your device to the internet and try again later.</string>
+		</dict>
 		<key>Config</key>
 		<dict>
 			<key>savedSettings</key>

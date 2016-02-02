@@ -4,6 +4,31 @@
 <dict>
 	<key>labels</key>
 	<dict>
+		<key>Submenu</key>
+		<dict>
+			<key>help_subtitle</key>
+			<string>(Hier finden Sie nützliche Tipps zur Bedienung der App)</string>
+			<key>help_title</key>
+			<string>Hilfe</string>
+			<key>settings_subtitle</key>
+			<string>(Personalisieren Sie Ihre App)</string>
+			<key>settings_title</key>
+			<string>Einstellungen</string>
+		</dict>
+		<key>News</key>
+		<dict>
+			<key>title</key>
+			<string>Aktuelles aus der UB</string>
+		</dict>
+		<key>FreeSeats</key>
+		<dict>
+			<key>lastUpdated</key>
+			<string>Zuletzt aktualisiert: </string>
+			<key>seatsOccupied</key>
+			<string> Arbeitsplätzen sind belegt</string>
+			<key>ofPercentage</key>
+			<string>% von </string>
+		</dict>
 		<key>Modules</key>
 		<array>
 			<string>Startmenü</string>
@@ -30,11 +55,31 @@
 		<string>http://primo.bib.uni-mannheim.de/primo_library/libweb/action/preferences.do?fn=change_lang&amp;vid=MAN_MOBILE&amp;prefLang=de_DE&amp;prefBackUrl=http:%2F%2Fprimo.bib.uni-mannheim.de%2Fprimo_library%2Flibweb%2Faction%2Fsearch.do?vid=MAN_MOBILE%26vid=MAN_MOBILE</string>
 		<key>News</key>
 		<string></string>
-		<key>Seats</key>
-		<string></string>
+		<key>FreeSeats</key>
+		<string>http://www.bib.uni-mannheim.de/bereichsauslastung/index.php?json</string>
 	</dict>
 	<key>alertMessages</key>
 	<dict>
+		<key>News</key>
+		<dict>
+			<key>noCache_noNetwork</key>
+			<string>Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Die Darstellung der News ist nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.</string>
+			<key>initCache</key>
+			<string>Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der News ist nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.</string>
+			<key>noNetwork</key>
+			<string>Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal.</string>
+		</dict>
+		<key>FreeSeats</key>
+		<dict>
+			<key>noCache_noNetwork</key>
+			<string>Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.</string>
+			<key>createCache</key>
+			<string>Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.</string>
+			<key>initCache</key>
+			<string>Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut.</string>
+			<key>noNetwork</key>
+			<string>Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal.</string>
+		</dict>
 		<key>Config</key>
 		<dict>
 			<key>savedSettings</key>

@@ -17,11 +17,26 @@ class SubMenuController: UITableViewController {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let dict = appDelegate.dict
+        
+        let label_settings_title: String = dict.objectForKey("labels")!.objectForKey("Submenu")!.objectForKey("settings_title") as! String
+        let label_settings_subtitle: String = dict.objectForKey("labels")!.objectForKey("Submenu")!.objectForKey("settings_subtitle") as! String
+        let label_help_title: String = dict.objectForKey("labels")!.objectForKey("Submenu")!.objectForKey("help_title") as! String
+        let label_help_subtitle: String = dict.objectForKey("labels")!.objectForKey("Submenu")!.objectForKey("help_subtitle") as! String
+        
+        var settings_title = label_settings_title
+        var settings_sub = label_settings_subtitle
+        var help_title = label_help_title
+        var help_sub = label_help_subtitle
+        
+        /*
         var settings_title = "Settings"
         var settings_sub = "(Personalize your app)"
         var help_title = "Help"
@@ -33,6 +48,7 @@ class SubMenuController: UITableViewController {
             help_title = "Hilfe"
             help_sub = "(Hier finden Sie nützliche Tipps zur Bedienung der App)"
         }
+        */
         
         self.items = [  ["title": settings_title, "subtitle": settings_sub],
                         ["title": help_title, "subtitle": help_sub]

@@ -38,7 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")!
         
-        if (self.preferredLanguage == "de-US") {
+        //if (self.preferredLanguage == "de-US") {
+        //    self.path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
+        //}
+        
+        if (self.preferredLanguage.containsString("de-")) {
             self.path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
         }
         
