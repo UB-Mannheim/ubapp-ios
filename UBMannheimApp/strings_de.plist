@@ -4,6 +4,31 @@
 <dict>
 	<key>labels</key>
 	<dict>
+		<key>Help</key>
+		<dict>
+			<key>help_title</key>
+			<string>FAQ</string>
+			<key>config_subtitle</key>
+			<string>Bietet Möglichkeiten zur Personalisierung der UB-App. \n\nDaten Cache \nDie Aktivierung der Cache-Funktion erzeugt eine Datenbank zur lokalen Speicherung der zuletzt heruntergeladenen Daten der Funktionen \&quot;News\&quot; und \&quot;Freie Plätze\&quot;. Die gespeicherten Daten werden angezeigt, sobald kein Internet-Zugriff zur Verfügung steht. Die Deaktivierung des Daten-Caches löscht die angelegte Datenbank. In der Standardeinstellung ist die Cache-Funktion deaktiviert, d.h. es existiert kein Zwischenspeicher und alle Daten müssen online abgerufen werden. \n\nAngezeigte News-Einträge \nLegen Sie fest, wie viele Beiträge aus dem Aktuelles-Weblog unter \&quot;News\&quot; angezeigt werden:\n5 (Standardeinstellung), 10 oder 15. \n\nStarte UB-App mit\nWählen Sie ihre persönliche Startfunktion der UB-App:\nStartmenü (Standardeinstellung), Website, Primo, News und Freie Plätze.</string>
+			<key>config_title</key>
+			<string>Einstellungen</string>
+			<key>seats_subtitle</key>
+			<string>Ein Ampelsystem informiert über die Verfügbarkeit von Arbeitsplätzen in den einzelnen Bibliotheksbereichen.</string>
+			<key>seats_title</key>
+			<string>Freie Plätze</string>
+			<key>news_subtitle</key>
+			<string>Anzeige der letzten 5 Meldungen aus dem Aktuelles-Weblog der UB-Mannheim. Die Anzahl der angezeigten Einträge kann über das Menü Einstellungen verändert werden.</string>
+			<key>news_title</key>
+			<string>News</string>
+			<key>primo_subtitle</key>
+			<string>In der mobilen Version des Online-Katalogs Primo der UB-Mannheim stehen Ihnen alle bekannten Funktionalitäten wie Recherche, Ausleihe, Fernleihe und die Kontofunktionen zur Verfügung.</string>
+			<key>primo_title</key>
+			<string>Primo</string>
+			<key>website_title</key>
+			<string>Website</string>
+			<key>website_subtitle</key>
+			<string>Öffnet die mobile Version der UB-Homepage mit umfassenden Informationen rund um die Bibliothek.</string>
+		</dict>
 		<key>Submenu</key>
 		<dict>
 			<key>help_subtitle</key>
@@ -47,6 +72,8 @@
 	</dict>
 	<key>urls</key>
 	<dict>
+		<key>Offline</key>
+		<string>offline_de</string>
 		<key>Default</key>
 		<string>http://www.google.de</string>
 		<key>Website</key>

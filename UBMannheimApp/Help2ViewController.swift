@@ -34,12 +34,27 @@ class Help2ViewController: UITableViewController {
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        let dict = appDelegate.dict
+        
+        let website_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("website_title") as! String
+        let website_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("website_subtitle") as! String
+        let primo_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("primo_title") as! String
+        let primo_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("primo_subtitle") as! String
+        let news_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("news_title") as! String
+        let news_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("news_subtitle") as! String
+        let seats_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("seats_title") as! String
+        let seats_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("seats_subtitle") as! String
+        let config_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("config_title") as! String
+        let config_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("config_subtitle") as! String
+        /*
         var website_title = "Website"
         var website_sub = "Opens up the mobile view of our website, containing comprehensive information about the university library."
         var primo_title = "Primo"
@@ -65,6 +80,7 @@ class Help2ViewController: UITableViewController {
           config_sub = "Bietet Möglichkeiten zur Personalisierung der UB-App. \n\nDaten Cache \nDie Aktivierung der Cache-Funktion erzeugt eine Datenbank zur lokalen Speicherung der zuletzt heruntergeladenen Daten der Funktionen \"News\" und \"Freie Plätze\". Die gespeicherten Daten werden angezeigt, sobald kein Internet-Zugriff zur Verfügung steht. Die Deaktivierung des Daten-Caches löscht die angelegte Datenbank. In der Standardeinstellung ist die Cache-Funktion deaktiviert, d.h. es existiert kein Zwischenspeicher und alle Daten müssen online abgerufen werden. \n\nAngezeigte News-Einträge \nLegen Sie fest, wie viele Beiträge aus dem Aktuelles-Weblog unter \"News\" angezeigt werden:\n5 (Standardeinstellung), 10 oder 15. \n\nStarte UB-App mit\nWählen Sie ihre persönliche Startfunktion der UB-App:\nStartmenü (Standardeinstellung), Website, Primo, News und Freie Plätze."
             
         }
+        */
         
         // hotelNames = [String](hotels.keys)
         
@@ -140,7 +156,10 @@ class Help2ViewController: UITableViewController {
         
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell")! as UITableViewCell
         
-        headerCell.textLabel?.text = "FAQ"
+        let dict = appDelegate.dict
+        let help_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("help_title") as! String
+        
+        headerCell.textLabel?.text = help_title
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
         /*
         switch (section) {

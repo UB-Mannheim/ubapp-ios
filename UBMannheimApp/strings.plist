@@ -4,6 +4,31 @@
 <dict>
 	<key>labels</key>
 	<dict>
+		<key>Help</key>
+		<dict>
+			<key>help_title</key>
+			<string>FAQ</string>
+			<key>config_subtitle</key>
+			<string>Additionally the following settings can be changed \n\nThe activation of the cache function creates a database for local storage of the most recently downloaded data for the \&quot;News\&quot; and \&quot;Free Seats\&quot;. The stored data is displayed when no Internet access is available. Disabling this function will delete the created database. By default, caching is disabled, in this case all data must be accessed online. \n\nDetermine how many posts from the news-blog \&quot;News\&quot; is displayed: 5 (Default), 10 and 15 \n\nSelect your personal startup function: Startmenü (Default) , Website, Primo, News, Free Seats\n\nAn integrated Help completes the app.</string>
+			<key>config_title</key>
+			<string>Settings</string>
+			<key>seats_subtitle</key>
+			<string>A traffic light system informing about the load and availibility of free seats in the different library sections.</string>
+			<key>seats_title</key>
+			<string>Free Seats</string>
+			<key>news_subtitle</key>
+			<string>Showing the 5 latest posts from our blog. The count number can be set in the configuration menu.</string>
+			<key>news_title</key>
+			<string>News</string>
+			<key>primo_subtitle</key>
+			<string>With the mobile view of our library catalogue, you can use all common functions that are available in the classic view: search, (interlibray) loan and managing your account information.</string>
+			<key>primo_title</key>
+			<string>Primo</string>
+			<key>website_title</key>
+			<string>Website</string>
+			<key>website_subtitle</key>
+			<string>Opens up the mobile view of our website, containing comprehensive information about the university library.</string>
+		</dict>
 		<key>Submenu</key>
 		<dict>
 			<key>help_subtitle</key>
@@ -47,6 +72,8 @@
 	</dict>
 	<key>urls</key>
 	<dict>
+		<key>Offline</key>
+		<string>offline</string>
 		<key>Default</key>
 		<string>http://www.google.de</string>
 		<key>Website</key>

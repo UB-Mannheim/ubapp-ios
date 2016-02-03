@@ -68,7 +68,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
            
         } else {
             
-            let url = NSBundle.mainBundle().URLForResource("offline", withExtension:"html")
+            let offlineError: String = dict.objectForKey("urls")!.objectForKey("Offline") as! String
+            let url = NSBundle.mainBundle().URLForResource(offlineError, withExtension:"html")
+            
             let request = NSURLRequest(URL: url!)
             webView.loadRequest(request)
             webView.delegate = self

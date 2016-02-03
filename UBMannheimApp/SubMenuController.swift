@@ -31,10 +31,10 @@ class SubMenuController: UITableViewController {
         let label_help_title: String = dict.objectForKey("labels")!.objectForKey("Submenu")!.objectForKey("help_title") as! String
         let label_help_subtitle: String = dict.objectForKey("labels")!.objectForKey("Submenu")!.objectForKey("help_subtitle") as! String
         
-        var settings_title = label_settings_title
-        var settings_sub = label_settings_subtitle
-        var help_title = label_help_title
-        var help_sub = label_help_subtitle
+        let settings_title = label_settings_title
+        let settings_sub = label_settings_subtitle
+        let help_title = label_help_title
+        let help_sub = label_help_subtitle
         
         /*
         var settings_title = "Settings"
