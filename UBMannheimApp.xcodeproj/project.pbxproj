@@ -19,7 +19,7 @@
 		B2506BD91AD6ACD90057AE61 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */; };
 		B2506BDB1ADBB72E0057AE61 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */; };
 		B25923EE1A8CDC26000654B8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25923ED1A8CDC26000654B8 /* TestViewController.swift */; };
-		B25C7A0B1AB9ABA90069BB55 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */; };
+		B25C7A0B1AB9ABA90069BB55 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */; };
 		B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A231AB9AE1A0069BB55 /* FMDatabaseAdditions.m */; };
 		B25C7A2D1AB9AE1A0069BB55 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A251AB9AE1A0069BB55 /* FMDatabasePool.m */; };
@@ -563,6 +563,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Universitaet Mannheim (RQPA3FUCZR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -584,6 +585,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -606,6 +608,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Universitaet Mannheim (RQPA3FUCZR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -619,6 +622,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -629,7 +633,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Universitaet Mannheim (RQPA3FUCZR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = UBMannheimApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -648,7 +652,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Universitaet Mannheim (RQPA3FUCZR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = UBMannheimApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

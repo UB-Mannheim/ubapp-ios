@@ -446,7 +446,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         else if segue.identifier == "openPage" {
             
-            var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
+            let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
             // let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
             let selectedFTitle: String = myFeed[indexPath.row].objectForKey("title") as! String
             // let selectedFContent: String = myFeed[indexPath.row].objectForKey("description") as String
@@ -491,7 +491,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         if (userDefaults.objectForKey("newsCount") != nil) {
             
-            var maxnews_id = userDefaults.objectForKey("newsCount") as! Int
+            let maxnews_id = userDefaults.objectForKey("newsCount") as! Int
             var maxnews_count = 0
             
             switch(maxnews_id as Int!) {
@@ -517,14 +517,14 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (DEBUG) { print("tableView::return_cell") }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
         // Feed Image
         // cell.imageView?.image = UIImage (named: "news_pre")
         
         if(myFeed.count > 0) {
             // Feeds dictionary.
-            var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as! NSDictionary
+            // var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as! NSDictionary
         
             // Set cell properties.
             cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
@@ -533,7 +533,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             // If the above line throws an error then comment it out and uncomment the below line.
             //cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
 
-            var formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
+            let formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
         
             var date: String = formattedFeedTitle!
             let stringLength = date.characters.count
@@ -561,7 +561,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             cell.detailTextLabel?.text = date
             // cell.detailTextLabel?.text = newDate
         
-            var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
+            // var content = myFeed.objectAtIndex(indexPath.row).objectForKey("content:encoded") as? String
             // if (DEBUG) { print("FeedTableView: "+content!) }
         } else {
         
@@ -614,7 +614,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         headerCell.detailTextLabel?.hidden = true
         
         // Create new Label ont the fly and add it to HeaderCell
-        var label = UILabel(frame: CGRectMake(0, 0, 200, 55))
+        let label = UILabel(frame: CGRectMake(0, 0, 200, 55))
         label.textAlignment = NSTextAlignment.Center
         label.text = headerCellText
         headerCell.addSubview(label)
@@ -642,7 +642,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     
     // auch in freeseats vorhanden
     func userAlreadyExist(kUSERID: String) -> Bool {
-        var userDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         if (userDefaults.objectForKey(kUSERID) != nil) {
             return true
