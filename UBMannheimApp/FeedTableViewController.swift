@@ -5,6 +5,9 @@
 //  Created by Arled Kola on 20/09/2014.
 //  Copyright (c) 2014 Arled. All rights reserved.
 //
+//  Latest Changes by Alexander Wagner on 16/02/2016
+//
+//
 
 import UIKit
 
@@ -19,8 +22,6 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
-    
     var news_feed : Int = 5
     var news_cache: [[String]] = []
     var news_rss_items = 0
@@ -31,7 +32,6 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         if (DEBUG) { print("refresh::start") }
         
         if IJReachability.isConnectedToNetwork() {
-            
             
         // PRUEFEN:
             // ANZAHL DER NEWS BEI AKTIVEM NETZ
@@ -50,19 +50,6 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
             let alertMsg_Err_noNetwork: String = dict.objectForKey("News")!.objectForKey("noNetwork")! as! String
             let alertMsg_OK: String = dict.objectForKey("alertMessages")!.objectForKey("okAction")! as! String
-            
-            /*
-            var alert_msg_error  = "Error"
-            var alert_msg_network = "Network connection not available. Updating data not possible. Please try again later."
-            var alert_msg_ok = "OK"
-            
-            if (preferredLanguage == "de") {
-                
-                alert_msg_error = "Fehler"
-                alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal."
-                alert_msg_ok = "OK"
-            }
-            */
             
             let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .Alert)
             
@@ -122,7 +109,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             
             if (DEBUG) { print("connected") }
             
-            var news_rssdata: AnyObject = loadRss(url)
+            let news_rssdata: AnyObject = loadRss(url)
             news_rss_items = news_rssdata.count
             if (DEBUG) { print("news rss data count: \(news_rss_items)") }
             
@@ -195,8 +182,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             if ( (userDefaults.objectForKey("cacheEnabled")?.boolValue == true) ) { // && (userDefaults.objectForKey("newsCache") != nil) ) {
             
             
-                
-                var maxnews_id = userDefaults.objectForKey("newsCount") as! Int
+                let maxnews_id = userDefaults.objectForKey("newsCount") as! Int
                 var maxnews_count = 0
                 
                 switch(maxnews_id as Int!) {
@@ -237,25 +223,9 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                         let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
                         let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
                         
-                        /*
-                        var alert_msg_error = "Error"
-                        var alert_msg_network = "Network connection not available, cache could not be initialized. Displaying free seats ist not possible. Please connect your device to the internet at least one time and then try again."
-                        var alert_msg_back = "Back"
-                        var alert_msg_reload = "Reload"
-                        
-                        if (preferredLanguage == "de") {
-                            alert_msg_error = "Fehler"
-                            alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                            alert_msg_back = "Zurück"
-                            alert_msg_reload = "Neu laden"
-                        }
-                        */
-                        
                         let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_initCache, preferredStyle: .Alert)
                         
                         let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
-                            // MainView set as storyboard ID of MainViewController
-                            // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
                             let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                             self.navigationController?.pushViewController(homeViewController, animated: true)
                             
@@ -298,20 +268,6 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                 let alertMsg_Err_noCache_noNetwork: String = dict.objectForKey("News")!.objectForKey("noCache_noNetwork")! as! String
                 let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
                 let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
-                
-                /*
-                var alert_msg_error = "Error"
-                var alert_msg_network = "Network connection not available, no cache activated. Displaying News is not possible at the moment. Please connect your device to the internet and try again."
-                var alert_msg_back = "Back"
-                var alert_msg_reload = "Reload"
-                
-                if (preferredLanguage == "de") {
-                    alert_msg_error = "Fehler"
-                    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der News nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                    alert_msg_back = "Zurück"
-                    alert_msg_reload = "Reload"
-                }
-                */
 
                 let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .Alert)
                 
@@ -327,18 +283,6 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                         // self.userDefaults.setObject(1, forKey: "backFromWebview")
                     }
                     self.userDefaults.synchronize()
-                    
-                    //// // prufen ob das hier gebraucht wird, koop verhindern
-                    //// // später auslagern, für den test reicht es
-                    ////var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
-                    ////if (firstRunReference == nil) {
-                    ////    firstRunReference = 1
-                    ////} else {
-                    ////    // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
-                    ////    firstRunReference = 0
-                    ////    self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
-                    //// }
-
                     
                 }
                 
@@ -370,7 +314,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         if (DEBUG) { print("loadRSS::start") }
         
         // XmlParserManager instance/object/variable
-        var myParser : XmlParserManager = XmlParserManager().initWithURL(data) as! XmlParserManager
+        let myParser : XmlParserManager = XmlParserManager().initWithURL(data) as! XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
         
@@ -471,7 +415,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         for (var i = 0; i < news_count; i++) {
             
-        var tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
+        let tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
         
         // if (DEBUG) { print(tmp) }
         

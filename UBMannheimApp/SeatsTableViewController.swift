@@ -3,13 +3,13 @@
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 17.02.15.
+//  modified on 11.02.16.
+//
 //  Copyright (c) 2015 Alexander Wagner. All rights reserved.
 //
 
 import UIKit
 import Foundation
-
-// https://medium.com/swift-programming/http-in-swift-693b3a7bf086
 
 class SeatsTableViewController: UITableViewController {
 
@@ -40,18 +40,8 @@ class SeatsTableViewController: UITableViewController {
             let dict = appDelegate.dict
             
             let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
-            //var alert_msg_error = "Error"
             let alertMsg_Err_noNetwork: String = dict.objectForKey("FreeSeats")!.objectForKey("noNetwork")! as! String
-            // var alert_msg_network = "Network connection not available. Updating data is not possible. Please try again later."
             let alertMsg_OK: String = dict.objectForKey("alertMessages")!.objectForKey("okAction")! as! String
-            // var alert_msg_ok = "OK"
-            
-            // if (preferredLanguage == "de") {
-            //    alert_msg_error = "Fehler"
-            //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Aktualisierung der Daten nicht möglich. Bitte probieren Sie es später noch einmal."
-            //    alert_msg_ok = "OK"
-            // }
-            
             let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: alertMsg_OK, style: .Default) { (action) in
@@ -92,7 +82,7 @@ class SeatsTableViewController: UITableViewController {
             
             if (DEBUG) { print("connected") }
             
-            // searchItunesFor("JQ Software")
+            // getJSON from Endpoint
             loadJSONFromURL()
             
             // "cell" might be added as identifier in designer and deleted here - right?
@@ -156,26 +146,12 @@ class SeatsTableViewController: UITableViewController {
                     let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
                     let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
                     
-                    // var alert_msg_error = "Error"
-                    // var alert_msg_network = "Network connection not available. Cache could not be initialized. Displaying Free Seats is not possible. Please connect your device to the internet at least one time and then try again."
-                    // var alert_msg_back = "Back"
-                    // var alert_msg_reload = "Reload"
-                    
-                    // if (preferredLanguage == "de") {
-                    //    alert_msg_error = "Fehler"
-                    //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                    //    alert_msg_back = "Zurück"
-                    //    alert_msg_reload = "Neu laden"
-                    // }
-                    
-                    
                     // Keine Verbindung zum Netzwerk vorhanden, kein Primärabzug erfolgt.
                     
                     let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_initCache, preferredStyle: .Alert)
                     
                     let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
-                        // MainView set as storyboard ID of MainViewController
-                        // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                        
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                         self.navigationController?.pushViewController(homeViewController, animated: true)
                         
@@ -185,7 +161,6 @@ class SeatsTableViewController: UITableViewController {
                         if (firstRunReference == nil) {
                             firstRunReference = 1
                         } else {
-                            // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
                             firstRunReference = 0
                             self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
                         }
@@ -214,24 +189,10 @@ class SeatsTableViewController: UITableViewController {
                     let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
                     let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
                     
-                    
-                    // var alert_msg_error = "Error"
-                    // var alert_msg_network = "Network connection not available, cache could not be initialized. Displaying Free Seats is not possible at the moment. Please connect your device to the internet at least one time and try again."
-                    // var alert_msg_back = "Back"
-                    // var alert_msg_reload = "Reload"
-                    
-                    // if (preferredLanguage == "de") {
-                    //    alert_msg_error = "Fehler"
-                    //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden. Der Cache wurde noch nicht angelegt, da noch kein Primärabzug erfolgt ist. Die Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                    //    alert_msg_back = "Zurück"
-                    //    alert_msg_reload = "Neu laden"
-                    // }
-                    
                     let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_createCache, preferredStyle: .Alert)
                     
                     let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
-                        // MainView set as storyboard ID of MainViewController
-                        // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                        
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                         self.navigationController?.pushViewController(homeViewController, animated: true)
                         
@@ -269,24 +230,10 @@ class SeatsTableViewController: UITableViewController {
                 let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
                 let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
             
-                // var alert_msg_error = "Error"
-                // var alert_msg_network = "Network connection not available, no cache activated. Displaying Free Seats is not possible at the moment. Please connect your device to the internet and try again."
-                // var alert_msg_back = "Back"
-                // var alert_msg_reload = "Reload"
                 
-                // if (preferredLanguage == "de") {
-                //    alert_msg_error = "Fehler"
-                //    alert_msg_network = "Keine Verbindung zum Netzwerk vorhanden, kein Cache aktiviert. Darstellung der Auslastungsanzeige nicht möglich. Bitte stellen Sie eine Verbindung zum Internet her und probieren Sie es erneut."
-                //    alert_msg_back = "Zurück"
-                //    alert_msg_reload = "Neu laden"
-                // }
-
-                
-            let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .Alert)
+                let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .Alert)
             
-            let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
-                // MainView set as storyboard ID of MainViewController
-                // let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainView") as! MainViewController
+                let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
                 let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
                 
@@ -319,8 +266,6 @@ class SeatsTableViewController: UITableViewController {
         // get rid of empty lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        
-        
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -336,16 +281,6 @@ class SeatsTableViewController: UITableViewController {
         // cell.textLabel?.text = rowData["trackName"] as String!
         cell.textLabel?.text = rowData["id"] as! String!
         
-        // Grab the artworkUrl60 key to get an image URL for the app's thumbnail
-        // var urlString: NSString = rowData["artworkUrl60"] as NSString
-        // var imgURL: NSURL = NSURL(string: urlString)!
-        
-        // Download an NSData representation of the image at the URL
-        // var imgData: NSData = NSData(contentsOfURL: imgURL)!
-        // cell.imageView?.image = UIImage(data: imgData)
-        
-        // Get the formatted price string for display in the subtitle
-        // var formattedPrice: NSString = rowData["formattedPrice"] as NSString
         let loadInPercent: Int = rowData["percent"] as! Int
         let maxCountOfSeats: Int = rowData["max"] as! Int
         
@@ -367,12 +302,6 @@ class SeatsTableViewController: UITableViewController {
         let label_ofPercentage: String = dict.objectForKey("labels")!.objectForKey("FreeSeats")!.objectForKey("ofPercentage") as! String
         
         let detailTextLabelText = loadInPercent.description + label_ofPercentage + maxCountOfSeats.description + label_seatsOccupied // reserved?
-        
-        // var detailTextLabelText = loadInPercent.description + "% of " + maxCountOfSeats.description + " Seats are occupied" // reserved?
-        
-        // if (preferredLanguage == "de") {
-        //     detailTextLabelText = loadInPercent.description + "% von " + maxCountOfSeats.description + " Arbeitsplätzen sind belegt"
-        // }
         
         cell.detailTextLabel?.text = detailTextLabelText
         
@@ -400,12 +329,6 @@ class SeatsTableViewController: UITableViewController {
         let label_lastUpdated: String = dict.objectForKey("labels")!.objectForKey("FreeSeats")!.objectForKey("lastUpdated") as! String
         let headerCellText = label_lastUpdated
         
-        // var headerCellText = "Last updated on: "
-        
-        // if (preferredLanguage == "de") {
-        //    headerCellText = "Zuletzt aktualisiert: "
-        // }
-        
         headerCell.textLabel?.text = headerCellText + lastUpdate
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
         
@@ -426,16 +349,9 @@ class SeatsTableViewController: UITableViewController {
         let request: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
         
-    // print("Search UB JSON Bereichsauslastung at URL \(url)")
+        // print("Search UB JSON Bereichsauslastung at URL \(url)")
         
         connection.start()
-        
-        /*
-        let date = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        formatter.stringFromDate(date)
-        */
         
         let date = getTimeStamp()
         if (DEBUG) { print("Date: \(date)") }
@@ -457,24 +373,6 @@ class SeatsTableViewController: UITableViewController {
         return timestring
     }
     
-    /*
-    func searchItunesFor(searchTerm: String) {
-        // The iTunes API wants multiple terms separated by + symbols, so replace spaces with + signs
-        var itunesSearchTerm = searchTerm.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
-        
-        // Now escape anything else that isn't URL-friendly
-        var escapedSearchTerm = itunesSearchTerm.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        var urlPath = "https://itunes.apple.com/search?term="+escapedSearchTerm!+"&media=software"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
-        
-        print("Search iTunes API at URL \(url)")
-        
-        connection.start()
-    }
-    */
-    
     func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
         // Recieved a new request, clear out the data object
         self.data = NSMutableData()
@@ -488,13 +386,13 @@ class SeatsTableViewController: UITableViewController {
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         // Request complete, self.data should now hold the resulting info
         // Convert the retrieved data in to an object through JSON deserialization
-        var err: NSError
+        let err: NSError
 
         do {
-        var jsonResult: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+        let jsonResult: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
             
                 if (jsonResult.count>0) /*&& jsonResult["results"].count>0*/ {
-                    var results: NSArray = jsonResult["sections"] as! NSArray
+                    let results: NSArray = jsonResult["sections"] as! NSArray
                     self.items = results
                     self.tableView.reloadData()     // print(self.items)
                 }
@@ -502,14 +400,14 @@ class SeatsTableViewController: UITableViewController {
             print(err)
         }
         
-            var wlan_load = self.items
+            let wlan_load = self.items
             userDefaults.setObject(wlan_load, forKey: "wlanCache")
             userDefaults.synchronize() 
         
     }
     
     func userAlreadyExist(kUSERID: String) -> Bool {
-        var userDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         if (userDefaults.objectForKey(kUSERID) != nil) {
             return true
