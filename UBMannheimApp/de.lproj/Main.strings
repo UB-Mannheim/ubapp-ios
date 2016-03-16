@@ -1,0 +1,159 @@
+
+/* Class = "UILabel"; text = "Phone"; ObjectID = "3lb-Wn-9aB"; */
+"3lb-Wn-9aB.text" = "Phone";
+
+/* done */
+/* Class = "UINavigationItem"; title = "UB Mannheim"; ObjectID = "5hp-TF-aA8"; */
+"5hp-TF-aA8.title" = "UB Mannheim";
+
+/* done */
+/* Class = "UILabel"; text = "Primo"; ObjectID = "61L-c1-x8x"; */
+"61L-c1-x8x.text" = "Primo";
+
+/* done */
+/* Class = "UILabel"; text = "Starte UB-App mit"; ObjectID = "8B3-VL-ty8"; */
+"8B3-VL-ty8.text" = "Starte UB-App mit";
+
+/* done */
+/* Class = "UIButton"; normalTitle = "Hilfe"; ObjectID = "A8c-v9-IMG"; */
+"A8c-v9-IMG.normalTitle" = "Hilfe";
+
+/* done */
+/* Class = "UIButton"; normalTitle = "Hilfe"; ObjectID = "AkX-n4-Xmc"; */
+"AkX-n4-Xmc.normalTitle" = "Hilfe";
+
+/* done */
+/* Class = "UITableViewController"; title = "Einstellungen"; ObjectID = "Bmv-dk-pWF"; */
+"Bmv-dk-pWF.title" = "Einstellungen";
+
+/* done */
+/* Class = "UITableViewController"; title = "Hilfe"; ObjectID = "C2m-TP-OQh"; */
+"C2m-TP-OQh.title" = "Hilfe";
+
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "DDa-Im-vxb"; */
+"DDa-Im-vxb.normalTitle" = "Button";
+
+/* done */
+/* Class = "UITableViewController"; title = "Freie Plätze"; ObjectID = "H6L-xW-tWA"; */
+"H6L-xW-tWA.title" = "Freie Plätze";
+
+/* Class = "UILabel"; text = "_"; ObjectID = "H7T-jo-I3S"; */
+"H7T-jo-I3S.text" = "_";
+
+/* done */
+/* Class = "UITableViewController"; title = "FAQ"; ObjectID = "IEC-1N-fSO"; */
+"IEC-1N-fSO.title" = "FAQ";
+
+/* done */
+/* Class = "UILabel"; text = "Anzahl der News-Einträge"; ObjectID = "NxR-sI-5Ad"; */
+"NxR-sI-5Ad.text" = "Anzahl der News-Einträge";
+
+/* done */
+/* Class = "UIViewController"; title = "Detail"; ObjectID = "OR5-sq-U1U"; */
+"OR5-sq-U1U.title" = "Detail";
+
+/* Class = "UITableViewController"; title = "News"; ObjectID = "PoO-jd-Yy3"; */
+"PoO-jd-Yy3.title" = "News";
+
+/* Class = "UIButton"; normalTitle = "Datenbank Test"; ObjectID = "PzQ-s9-fPu"; */
+"PzQ-s9-fPu.normalTitle" = "Datenbank Test";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "QuE-Ww-48D"; */
+"QuE-Ww-48D.text" = "Address";
+
+/* Class = "UIViewController"; title = "Website"; ObjectID = "T1i-kN-BFg"; */
+"T1i-kN-BFg.title" = "Website";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Tea-BR-CWt"; */
+"Tea-BR-CWt.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Usx-aA-VRU"; */
+"Usx-aA-VRU.normalTitle" = "Save";
+
+/* Class = "UIViewController"; title = "UB Mannheim App"; ObjectID = "XuG-Yb-x5k"; */
+"XuG-Yb-x5k.title" = "UB Mannheim App";
+
+/* done */
+/* Class = "UIButton"; normalTitle = "Speichern"; ObjectID = "YF4-dn-xyn"; */
+"YF4-dn-xyn.normalTitle" = "Speichern";
+
+/* Class = "UILabel"; text = "News"; ObjectID = "ZO9-Z1-pSQ"; */
+"ZO9-Z1-pSQ.text" = "News";
+
+/* Class = "UIButton"; normalTitle = "Config Test"; ObjectID = "ZkH-ya-laW"; */
+"ZkH-ya-laW.normalTitle" = "Config Test";
+
+/* done via GUI */
+/* Class = "UILabel"; text = "Freie Plätze"; ObjectID = "a6a-CH-P2r"; */
+"a6a-CH-P2r.text" = "Freie Plätze";
+
+/* done */
+/* Class = "UIButton"; normalTitle = "Einstellungen"; ObjectID = "adF-2O-rtR"; */
+"adF-2O-rtR.normalTitle" = "Einstellungen";
+
+/* done */
+/* Class = "UINavigationItem"; title = "UB Mannheim"; ObjectID = "d0L-Nb-5gq"; */
+"d0L-Nb-5gq.title" = "UB Mannheim";
+
+/* done */
+/* Class = "UITableViewController"; title = "UB Mannheim"; ObjectID = "dhg-zm-4Ea"; */
+"dhg-zm-4Ea.title" = "UB Mannheim";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "eCB-5x-XBx"; */
+"eCB-5x-XBx.text" = "Address";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "f1P-UP-OUi"; */
+"f1P-UP-OUi.text" = "Name";
+
+/* Class = "UILabel"; text = "Website"; ObjectID = "fxp-8b-eqy"; */
+"fxp-8b-eqy.text" = "Website";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "iui-Xf-XDQ"; */
+"iui-Xf-XDQ.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "j0f-Wf-85Y"; */
+"j0f-Wf-85Y.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kmh-kH-foP"; */
+"kmh-kH-foP.text" = "Label";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "kst-W4-ocP"; */
+"kst-W4-ocP.text" = "Subtitle";
+
+/* done */
+/* Class = "UILabel"; text = "Datencache"; ObjectID = "l64-LM-g14"; */
+"l64-LM-g14.text" = "Datencache";
+
+/* done */
+/* Class = "UIButton"; normalTitle = "Alle Einstellungen löschen (Neustart)"; ObjectID = "m4f-52-Kmz"; */
+"m4f-52-Kmz.normalTitle" = "Alle Einstellungen löschen (Neustart)";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "mZW-DY-2mc"; */
+"mZW-DY-2mc.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Find"; ObjectID = "nUI-2Z-rkM"; */
+"nUI-2Z-rkM.normalTitle" = "Find";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "okk-S9-U9S"; */
+"okk-S9-U9S.text" = "Name";
+
+/* Class = "UILabel"; text = "News"; ObjectID = "pCi-wv-p9m"; */
+"pCi-wv-p9m.text" = "News";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "rcL-PB-ajU"; */
+"rcL-PB-ajU.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "sCb-yP-gOa"; */
+"sCb-yP-gOa.normalTitle" = "Button";
+
+/* done */
+/* Class = "UIButton"; normalTitle = "Einstellungen"; ObjectID = "sce-ZU-RBz"; */
+"sce-ZU-RBz.normalTitle" = "Einstellungen";
+
+/* done */
+/* Class = "UINavigationItem"; title = "UB Mannheim"; ObjectID = "u1Z-5p-7v1"; */
+"u1Z-5p-7v1.title" = "UB Mannheim";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ydc-dl-FRZ"; */
+"ydc-dl-FRZ.normalTitle" = "Button";
