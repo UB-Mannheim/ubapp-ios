@@ -3,13 +3,20 @@
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 16.04.15.
+//  Last modified on 23.03.16
+//
 //  Copyright (c) 2015 Alexander Wagner. All rights reserved.
 //
+//  STATUS: INACTIVE
+//
+//
+
 import UIKit
 
 class HelpViewController: UITableViewController {
   
-    // OLD HELP CONTROLLER, SHOULD BE DELETED
+    // FixMe
+    // That's the old HelpController and should be deleted!
     
     var items = []
     
@@ -36,24 +43,6 @@ class HelpViewController: UITableViewController {
         // get rid of empty lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-
-        // tableView.estimatedRowHeight = 70
-        // tableView.rowHeight = UITableViewAutomaticDimension
-        
-        // http://coding.tabasoft.it/ios/ios8-self-sizing-uitableview-cells/
-        // NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChanged:", name: UIContentSizeCategoryDidChangeNotification, object: nil)
-        
-        // tableView.reloadData()
-        
-        
-        // last try multiple heights of rows
-        // http://www.toptensoftware.com/xibfree/uitableviewcell_variable
-    
-    
-        //possibly here:
-        // http://www.appcoda.com/self-sizing-cells/
-        // DROPBOX!!!
-        
     }
     
     
@@ -74,10 +63,7 @@ class HelpViewController: UITableViewController {
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        /*
-        // http://www.ioscreator.com/tutorials/customizing-header-footer-table-view-ios8-swift
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-        */
+        
         
         let title = self.items[indexPath.row]["title"] as! String
         let subtitle = self.items[indexPath.row]["descr"] as! String
@@ -90,16 +76,6 @@ class HelpViewController: UITableViewController {
         
         cell.imageView?.image = UIImage(named: self.items[indexPath.row]["image"] as! String)
         
-        /*
-        // http://stackoverflow.com/questions/25947146/multiple-uilabels-inside-a-self-sizing-uitableviewcell
-    
-        cell.bounds = CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.bounds), height: 99999)
-        cell.contentView.bounds = cell.bounds
-        cell.layoutIfNeeded()
-        
-        cell.textLabel?.preferredMaxLayoutWidth = CGRectGetWidth(cell.textLabel!.frame)
-        // cell.detailTextLabel?.preferredMaxLayoutWidth = CGRectGetWidth(cell.detailTextLabel!.frame)
-        */
         print(title)
         
         return cell
@@ -110,49 +86,4 @@ class HelpViewController: UITableViewController {
         return items.count
     }
     
-    /*
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        // CUSTOM HEADER
-        
-        // http://stackoverflow.com/questions/27879986/make-button-in-tableview-section-header-float-align-right-programmatically-sw
-        // constraints in code s.u.
-        
-        
-        var headerFrame = tableView.frame
-        
-        var headerView:UIView = UIView(frame: CGRectMake(0, 0, headerFrame.size.width, headerFrame.size.width))
-        headerView.backgroundColor = UIColor.grayColor()
-        
-        var title = UILabel()
-        title.setTranslatesAutoresizingMaskIntoConstraints(false)
-        title.font = UIFont.boldSystemFontOfSize(20.0)
-        title.text = "FAQ"
-        title.textColor = UIColor.whiteColor()
-        headerView.addSubview(title)
-        
-        
-        var viewsDict = Dictionary <String, UIView>()
-        viewsDict["title"] = title
-        // viewsDict["headBttn"] = headBttn
-        
-        headerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-0-[title]-0-|", options: nil, metrics: nil, views: viewsDict))
-        
-        // headerView.addConstraints(
-        //    NSLayoutConstraint.constraintsWithVisualFormat(
-        //        "H:|-10-[title]-[headBttn]-15-|", options: nil, metrics: nil, views: viewsDict))
-        
-        // headerView.addConstraints(
-        //    NSLayoutConstraint.constraintsWithVisualFormat(
-        //        "V:|-[title]-|", options: nil, metrics: nil, views: viewsDict))
-        
-        // headerView.addConstraints(
-        //    NSLayoutConstraint.constraintsWithVisualFormat(
-        //        "V:|-[headBttn]-|", options: nil, metrics: nil, views: viewsDict))
-        
-        return headerView
-    }
-    */
 }

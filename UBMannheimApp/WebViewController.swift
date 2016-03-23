@@ -3,7 +3,7 @@
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 27.01.15,
-//  modified on 11.02.16.
+//  last modified on 22.03.16.
 //
 //  Copyright (c) 2015 Alexander Wagner, UB Mannheim. 
 //  All rights reserved.
@@ -32,22 +32,21 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // Setting Configuration Keys
-        
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
-        if (DEBUG) { print("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
-        
+        if (DEBUG) {
+            print("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        }
         
         // Initializing Language String Dictionary
         let dict = appDelegate.dict
         
         
-        // Setting title according to Website
+        // Setting title according to Websites
         
         if(self.website.containsString("primo.bib.uni-mannheim.de")) {
             self.title = "Primo"
@@ -104,7 +103,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     //  call: self.webViewDidStartLoad(webView)
     
     func webViewDidStartLoad(webView: UIWebView) {
-        // print("Webview started Loading")
         
         activity.hidden = false
         activity.startAnimating()
@@ -122,7 +120,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     //  call: self.webViewDidFinishLoad(webView)
     
     func webViewDidFinishLoad(webView: UIWebView) { //stop
-        // print("Webview did finish load")
         
         activity.hidden = true
         activity.stopAnimating()
@@ -179,42 +176,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
     return true;
     }
-    
-    
-    // no more longer used
-    
-    
-    func setTabBarVisible(visible:Bool, animated:Bool) {
-        
-        //* This cannot be called before viewDidLayoutSubviews(), because the frame is not set before this time
-        
-        // bail if the current state matches the desired state
-        if (tabBarIsVisible() == visible) { return }
-        
-        // get a frame calculation ready
-        let frame = self.tabBarController?.tabBar.frame
-        let height = frame?.size.height
-        let offsetY = (visible ? -height! : height)
-        
-        // zero duration means no animation
-        let duration:NSTimeInterval = (animated ? 0.3 : 0.0)
-        
-        //  animate the tabBar
-        if frame != nil {
-            UIView.animateWithDuration(duration) {
-                self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY!)
-                return
-            }
-        }
-    }
-    
-    func tabBarIsVisible() ->Bool {
-        return self.tabBarController?.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
-    }
-    
-    // end
-    
 
+    // BarButton Back
     @IBAction func back(sender: UIBarButtonItem) {
         
         let dict = appDelegate.dict
@@ -230,6 +193,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    // BarButton Forward
     @IBAction func forward(sender: UIBarButtonItem) {
         
         let dict = appDelegate.dict
@@ -246,8 +210,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
     
     
-    // UI Bar Button Elements
-    
+    // BarButton Home
     @IBAction func home(sender: UIBarButtonItem) {
         // self.webView.stopLoading()
         // let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
@@ -275,6 +238,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    // BarButton Reload
     @IBAction func reload(sender: UIBarButtonItem) {
         
         let dict = appDelegate.dict

@@ -3,9 +3,10 @@
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 17.02.15.
-//  modified on 11.02.16.
+//  Last modified on 22.03.16.
 //
 //  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//
 //
 
 import UIKit
@@ -14,7 +15,7 @@ import Foundation
 class SeatsTableViewController: UITableViewController {
 
     var DEBUG: Bool = false
-    // if (DEBUG) {
+    // if (DEBUG) {}
     
     var items: NSArray = NSArray()
     var data: NSMutableData = NSMutableData()
@@ -68,16 +69,16 @@ class SeatsTableViewController: UITableViewController {
         if (DEBUG) { print("DEBUG MSG SeatsTabController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]") }
         
         
-        // if pulled down, refresh
+        // If pulled down, refresh
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
-        // Cell height.
+        // Set Table Layout and Cell Height.
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         
-        // if Network Connection online
+        // If Network Connection online
         if IJReachability.isConnectedToNetwork() {
             
             if (DEBUG) { print("connected") }
@@ -91,8 +92,7 @@ class SeatsTableViewController: UITableViewController {
         
         } else {
             
-            // if() cache active
-            
+            // If Cache is active
             if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
             
                 if(userAlreadyExist("wlanCache")) {
@@ -102,7 +102,6 @@ class SeatsTableViewController: UITableViewController {
                     if (DEBUG) { print("freshly filled preference: \(wlan_data)") }
                     
                     // load From Cache
-    
                     // var wlan_item = [["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]
                     // if (DEBUG) { print("------------ before for ---------------") }
                     // if (DEBUG) { print(wlan_data) }
@@ -112,10 +111,6 @@ class SeatsTableViewController: UITableViewController {
                     
                     // if (DEBUG) { print("------------ items after ---------------") }
                     // if (DEBUG) { print(self.items) }
-                    
-                    
-                    // http://stackoverflow.com/questions/26840736/converting-json-to-nsdata-and-nsdata-to-json-in-swift
-                    
                     
                     /*
                     for (var i = 0; i < wlan_item.; i++) {
@@ -136,7 +131,7 @@ class SeatsTableViewController: UITableViewController {
                     
                 } else {
                     
-                    // kein Primaerabzug erfolgt
+                    // If data has not been pulled initially yet
                     if (DEBUG) { print("kein primaerabzug") }
                     
                     let dict = appDelegate.dict
@@ -146,7 +141,8 @@ class SeatsTableViewController: UITableViewController {
                     let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
                     let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
                     
-                    // Keine Verbindung zum Netzwerk vorhanden, kein Primärabzug erfolgt.
+                    
+                    // No Network Connection, data has not been pulled initially
                     
                     let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_initCache, preferredStyle: .Alert)
                     
@@ -155,8 +151,9 @@ class SeatsTableViewController: UITableViewController {
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                         self.navigationController?.pushViewController(homeViewController, animated: true)
                         
-                        // prufen ob das hier gebraucht wird, koop verhindern
-                        // später auslagern, für den test reicht es
+                        // FixMe
+                        // Check if still used
+                        // If possible source out
                         var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
                         if (firstRunReference == nil) {
                             firstRunReference = 1
@@ -176,11 +173,10 @@ class SeatsTableViewController: UITableViewController {
                     self.presentViewController(alertController, animated: true, completion: nil)
                 }
                     
-                } else { // cache set, but wlan cache not filled
+                } else { // Cache set, but wlan not filled yet
                 
-                    // kein Primaerabzug erfolgt
+                    // If data has not been pulled initially yet
                     if (DEBUG) { print("kein primaerabzug II") }
-                    
                     
                     let dict = appDelegate.dict
                     
@@ -196,13 +192,13 @@ class SeatsTableViewController: UITableViewController {
                         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                         self.navigationController?.pushViewController(homeViewController, animated: true)
                         
-                        // prufen ob das hier gebraucht wird, koop verhindern
-                        // später auslagern, für den test reicht es
+                        // FixMe
+                        // Check if still used
+                        // If possible source out
                         var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
                         if (firstRunReference == nil) {
                             firstRunReference = 1
                         } else {
-                            // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
                             firstRunReference = 0
                             self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
                         }
@@ -221,7 +217,7 @@ class SeatsTableViewController: UITableViewController {
                 
             } else {
             
-            // showNetworkError
+            // show Network Error
                 
                 let dict = appDelegate.dict
                 
@@ -237,17 +233,17 @@ class SeatsTableViewController: UITableViewController {
                 let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
                 
-                // prufen ob das hier gebraucht wird, koop verhindern
-                // später auslagern, für den test reicht es
-                var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
-                if (firstRunReference == nil) {
-                    firstRunReference = 1
-                } else {
-                    // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
-                    firstRunReference = 0
-                    self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                    // FixMe
+                    // Check if still used
+                    // If possible source out
+                    var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
+                    if (firstRunReference == nil) {
+                        firstRunReference = 1
+                    } else {
+                        firstRunReference = 0
+                        self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                    }
                 }
-            }
             
             let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
                 self.viewDidLoad()
@@ -263,7 +259,7 @@ class SeatsTableViewController: UITableViewController {
         }
         
         
-        // get rid of empty lines
+        // Get rid of empty Table rows
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
     }
@@ -277,8 +273,6 @@ class SeatsTableViewController: UITableViewController {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
         let rowData: NSDictionary = self.items[indexPath.row] as! NSDictionary
-        
-        // cell.textLabel?.text = rowData["trackName"] as String!
         cell.textLabel?.text = rowData["id"] as! String!
         
         let loadInPercent: Int = rowData["percent"] as! Int

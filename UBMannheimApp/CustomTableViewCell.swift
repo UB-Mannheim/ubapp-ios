@@ -5,6 +5,9 @@
 //  Created by Simon Ng on 4/9/14.
 //  Copyright (c) 2014 AppCoda. All rights reserved.
 //
+//  Last modified on 23.03.2016 by Alexander Wagner
+//
+//
 
 import UIKit
 

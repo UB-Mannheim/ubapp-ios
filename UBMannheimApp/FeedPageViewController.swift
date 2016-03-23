@@ -5,14 +5,15 @@
 //  Created by Arled Kola on 27/10/2014.
 //  Copyright (c) 2014 Arled. All rights reserved.
 //
+//  Last modified by Alexander Wagner on 22.03.2016
+//
+//
 
 import UIKit
-
 
 class FeedPageViewController: UIViewController {
 
     var DEBUG: Bool = false
-    // if (DEBUG) {
     
     @IBOutlet weak var textLabel: UILabel!
     // @IBOutlet weak var textView: UITextView!
@@ -24,15 +25,14 @@ class FeedPageViewController: UIViewController {
     var selectedFeedURL = String()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Populate Label
         textLabel.text = selectedFeedTitle
-        // --> LabelView around Label ... :)
         
-        // textView.text = "\(selectedFeedFeedContent)"
-
         // Config Text Area
+        // textView.text = "\(selectedFeedFeedContent)"
         // textView.editable = false
         // textView.contentInset = UIEdgeInsets(top: +60,left: 0,bottom: 0,right: 0)
        
@@ -43,57 +43,27 @@ class FeedPageViewController: UIViewController {
         
         // if (DEBUG) { print(formattedFeedFeedContent) }
         
-        // 2DOs
+        // FixMe
         // ggf nach <img> IMMER ein <br/>
         // ueberfluessige zeichen an anfang und ende abschneiden
         
-/*
-        var endOfStrPos = formattedFeedFeedContent.rangeOfString("<a").location
-        // endOfStrPos = formattedFeedFeedContent.length
-        
-        // Cast backwards (NSString->String)
-        var outputStr = formattedFeedFeedContent.substringToIndex(endOfStrPos) as String
-        // and get rid of unwanted utf-8 xml chars
-        // 124, 8230
-        
-        // outputStr.substringFromIndex(advance(outputStr.startIndex,7))
-        
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#124;", withString: "\n", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#8230;", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#160;", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("&#62;", withString: "&", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        // outputStr = outputStr.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        // strip whitespaces in between
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("  ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("   ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("    ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        outputStr = outputStr.stringByReplacingOccurrencesOfString("     ", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        // strip whitespaces and linebreaks beginning and end
-        outputStr = outputStr.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        
-        if (DEBUG) { print("FeedPageDetail: "+outputStr) }
-        
-        textView.text = "\(outputStr)"+" \(selectedFeedURL)"
-*/
-        
-        // Variration with AttributedText
+        // Variation with AttributedText
         /*
         var attributedHTMLFeedFeedContent = NSAttributedString(data: formattedFeedFeedContent.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil, error: nil)
 
         textView.attributedText = attributedHTMLFeedFeedContent
         */
         
-        var html_prefix = "<html><head><title>News</title><style type=\"text/css\">body { font-family:Helvetica; } a { font-family:Helvetica; font-weight: bold; color: #990000; text-decoration:none; } img { width: 90%; height: auto; margin-bottom: 1em; display:block; }</style><body>"
-        var html_suffix = "</body></html>"
+        let html_prefix = "<html><head><title>News</title><style type=\"text/css\">body { font-family:Helvetica; } a { font-family:Helvetica; font-weight: bold; color: #990000; text-decoration:none; } img { width: 90%; height: auto; margin-bottom: 1em; display:block; }</style><body>"
+        let html_suffix = "</body></html>"
         
-        var html = html_prefix + selectedFeedFeedContent + html_suffix
+        let html = html_prefix + selectedFeedFeedContent + html_suffix
         webView.loadHTMLString(html, baseURL: nil)
         
         // if (DEBUG) { print(html) }
         
         /*
+        // Additional Attachment
         var textAttachment: NSTextAttachment = NSTextAttachment();
         textAttachment.image = UIImage(named: "website");
         var rects: CGRect = textAttachment.bounds;
@@ -106,14 +76,10 @@ class FeedPageViewController: UIViewController {
         // if (DEBUG) { print(attributedHTMLFeedFeedContent) }
         
         
-        // CHANGE Attributed Text Contents
-        // http://stackoverflow.com/questions/29543312/export-image-from-attributed-text-in-swift
-        
+        // Change AttributedText Contents
         // let myHTMLString:String! = "\(selectedFeedFeedContent)"
         // self.webView.loadHTMLString(myHTMLString, baseURL: nil)
         
-        
-        // Do any additional setup after loading the view.
     }
     
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
@@ -137,7 +103,6 @@ class FeedPageViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }

@@ -5,17 +5,20 @@
 //  Created by Arled Kola on 27/10/2014.
 //  Copyright (c) 2014 Arled. All rights reserved.
 //
+//  Last modified by Alexander Wagner on 22.03.2016
+//
+//
 
 import UIKit
 
 class NewFeedViewController: UIViewController {
     
     // Testing NewsFeed via RSSWift
-    // non-productive
+    // ?non-productive?
 
     @IBOutlet var textFieldNewFeedUrl: UITextField!
     
-    // Reusbale member
+    // Reusable member
     var onDataAvailable : ((data: NSURL) -> ())?
     
     override func viewDidLoad() {

@@ -5,7 +5,7 @@
 //  Created by Arled Kola on 20/09/2014.
 //  Copyright (c) 2014 Arled. All rights reserved.
 //
-//  Latest Changes by Alexander Wagner on 16/02/2016
+//  Last modified by Alexander Wagner on 22.03.2016
 //
 //
 
@@ -33,9 +33,10 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         if IJReachability.isConnectedToNetwork() {
             
-        // PRUEFEN:
-            // ANZAHL DER NEWS BEI AKTIVEM NETZ
-            // EINSCHRAENKUNG EINHALTEN Test Isa: 5 < 7
+        // FixMe
+        // Check Newscount when Network ist online
+        // Don't show more News Items than available
+        // i.e. 5 < 7
             
         // Updating your data here...
         loadRss(url)
@@ -88,58 +89,53 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         if (DEBUG) { print("DEBUG MSG FeedTabVController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Info: showing \(news_feed) Entries]") }
         
-        // if pulled down, refresh
+        // If Control pulled down, refresh
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
 
-        // Cell height.
+        // Set Table Layout and Cell Height
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        // get rid of empty lines
+        // Get rid of empty lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         
-        // Set feed url. http://www.formula1.com/rss/news/latest.rss
-        // url = NSURL(string: "http://www.skysports.com/rss/0,20514,11661,00.xml")!
+        // Set Feed URL
         url = NSURL(string: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
         
-        // if Network Connection online
+        // If Network Connection online
         if IJReachability.isConnectedToNetwork() {
             
             if (DEBUG) { print("connected") }
             
             let news_rssdata: AnyObject = loadRss(url)
             news_rss_items = news_rssdata.count
-            if (DEBUG) { print("news rss data count: \(news_rss_items)") }
             
+            if (DEBUG) { print("news rss data count: \(news_rss_items)") }
             
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
             
-            //  if Cache on
+            //  If Cache on
             if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
               
-            // if (DEBUG) { print("Cache on ....................................................") }
-                //  update Cache Entries
+            // If (DEBUG) { print("Cache on ....................................................") }
+                //  Update Cache Entries
                 var maxnews_count = userDefaults.objectForKey("newsCount") as! Int
                 
-                ////////
-                // ERROR maxnews_count >> picker_select(0,1,2) != count(5,10,15)
-                ////////
+                // Attention maxnews_count >> picker_select(0,1,2) != count(5,10,15)
                 
                 switch(maxnews_count) {
-                case 0: maxnews_count = 5
-                    break
-                case 1: maxnews_count = 10
-                    break
-                case 2: maxnews_count = 15
-                    break
-                default: maxnews_count = 5 // ? s.u. 0
+                    case 0: maxnews_count = 5
+                        break
+                    case 1: maxnews_count = 10
+                        break
+                    case 2: maxnews_count = 15
+                        break
+                    default: maxnews_count = 5 // ? s.u. 0
                 }
                 
                 // if (DEBUG) { print("maxnews_count \(maxnews_count) ....................................................") }
-                
                 // if (DEBUG) { print("NEWS COUNT") }
                 // if (DEBUG) { print(news_rssdata.count) }
                 

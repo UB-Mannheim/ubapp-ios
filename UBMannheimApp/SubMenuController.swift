@@ -3,7 +3,10 @@
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 17.04.15.
+//  Last modified on 23.03.16
+//
 //  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//
 //
 
 import UIKit
@@ -11,13 +14,11 @@ import UIKit
 class SubMenuController: UITableViewController {
     
     var DEBUG: Bool = false
-    // if (DEBUG) {
+    // if (DEBUG) {}
     
     var items: NSArray = NSArray()
     
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
-    
-    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
     
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -36,44 +37,22 @@ class SubMenuController: UITableViewController {
         let help_title = label_help_title
         let help_sub = label_help_subtitle
         
-        /*
-        var settings_title = "Settings"
-        var settings_sub = "(Personalize your app)"
-        var help_title = "Help"
-        var help_sub = "(Here you can find helpful tips for using the app)"
-        
-        if (preferredLanguage == "de") {
-            settings_title = "Einstellungen"
-            settings_sub = "(Personalisieren Sie Ihre App)"
-            help_title = "Hilfe"
-            help_sub = "(Hier finden Sie nützliche Tipps zur Bedienung der App)"
-        }
-        */
-        
         self.items = [  ["title": settings_title, "subtitle": settings_sub],
                         ["title": help_title, "subtitle": help_sub]
                         ]
             
-        // Cell height.
+        // Set Table Layout and cell height.
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        // get rid of empty lines
+        // Get rid of empty lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         // self.tableView.reloadData()
         
-        
-        /*
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        let kstartup: Int? = userDefaults.objectForKey("newsCount") as! Int?
-        
-        if (DEBUG) { print("\(kcache) :: \(kstartup) :: \(knews)") }
-        */
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
@@ -120,48 +99,9 @@ class SubMenuController: UITableViewController {
             performSegueWithIdentifier("showHelp2", sender: self)
         }
         
-        // if (DEBUG) { print(row) }
+        if (DEBUG) { print(row) }
     }
     
-    /*override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.tableView.rowHeight = 70
-        
-        /*
-        var sizeRect = UIScreen.mainScreen().applicationFrame;
-        var width = sizeRect.size.width;
-        var height = sizeRect.size.height;
-        */
-        /*
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenWidth: CGFloat = screenSize.width
-        let screenHeight: CGFloat = screenSize.height
-        
-        // configButton.titleLabel!.font = UIFont(name: "Helvetica", size: screenWidth/10)
-        configButton.titleLabel!.font = UIFont.systemFontOfSize(screenHeight/25)
-        configButton.titleLabel!.frame = CGRectOffset(configButton.titleLabel!.frame, 40, 40);
-        configButton.titleLabel!.textAlignment = .Left
-        // configButton.titleLabel!.textColor = UIColor.whiteColor()
-        
-        helpButton.titleLabel!.font = UIFont(name: "Helvetica", size: screenHeight/25)
-        helpButton.titleLabel!.textAlignment = .Left
-        */
-        
-        /*
-        let IS_IPHONE5 = fabs(UIScreen.mainScreen().bounds.size.height-568) < 1;
-        
-        let IS_IPAD = (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad);
-        
-        let IS_IOS8 = (UIDevice.currentDevice().systemVersion.floatValue >= 8)
-        
-        let APP_DEFAULT_FONT_FACE_NAME = "HelveticaNeue-Light";
-        
-        let APP_DEFAULT_FONT_FACE_THIN_NAME = "HelveticaNeue-UltraLight";
-        */
-    }
-
-    */
 }
 
         

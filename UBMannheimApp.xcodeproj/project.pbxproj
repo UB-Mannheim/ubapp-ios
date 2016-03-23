@@ -19,7 +19,6 @@
 		B2506BD91AD6ACD90057AE61 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */; };
 		B2506BDB1ADBB72E0057AE61 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */; };
 		B25923EE1A8CDC26000654B8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25923ED1A8CDC26000654B8 /* TestViewController.swift */; };
-		B25C7A0B1AB9ABA90069BB55 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B25C7A2B1AB9AE1A0069BB55 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */; };
 		B25C7A2C1AB9AE1A0069BB55 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A231AB9AE1A0069BB55 /* FMDatabaseAdditions.m */; };
 		B25C7A2D1AB9AE1A0069BB55 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B25C7A251AB9AE1A0069BB55 /* FMDatabasePool.m */; };
@@ -40,6 +39,7 @@
 		B2946F821C3AA73300C791D5 /* strings_de.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2946F811C3AA73300C791D5 /* strings_de.plist */; };
 		B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D31A92468000C54592 /* JsonAPI.swift */; };
 		B29F73D61A9332C100C54592 /* SeatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */; };
+		B2B02D1A1CA17CC100D5BEE5 /* EmbeddedLinks.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2B02D191CA17CC100D5BEE5 /* EmbeddedLinks.strings */; };
 		B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2266FB31A825C1500C11E08 /* MainViewController.swift */; };
 		B2C1F1DF1B28666B00767F47 /* JLToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1F1DE1B28666B00767F47 /* JLToast.swift */; };
 		B2C1F1E21B2866B800767F47 /* JLToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1F1E11B2866B800767F47 /* JLToastView.swift */; };
@@ -103,7 +103,6 @@
 		B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B25923ED1A8CDC26000654B8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B25C7A1F1AB9AE1A0069BB55 /* UBMannheimApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UBMannheimApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		B25C7A201AB9AE1A0069BB55 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		B25C7A211AB9AE1A0069BB55 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 		B2946F811C3AA73300C791D5 /* strings_de.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = strings_de.plist; sourceTree = "<group>"; };
 		B29F73D31A92468000C54592 /* JsonAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonAPI.swift; sourceTree = "<group>"; };
 		B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatsTableViewController.swift; sourceTree = "<group>"; };
+		B2B02D191CA17CC100D5BEE5 /* EmbeddedLinks.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = EmbeddedLinks.strings; sourceTree = "<group>"; };
 		B2C1F1DE1B28666B00767F47 /* JLToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToast.swift; sourceTree = "<group>"; };
 		B2C1F1E11B2866B800767F47 /* JLToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastView.swift; sourceTree = "<group>"; };
 		B2C1F1E31B2866DB00767F47 /* JLToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLToast.h; sourceTree = "<group>"; };
@@ -169,7 +169,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B25C7A0B1AB9ABA90069BB55 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +226,6 @@
 		B270CEC01A778D3E003C981B = {
 			isa = PBXGroup;
 			children = (
-				B25C7A0A1AB9ABA90069BB55 /* libsqlite3.dylib */,
 				B270CECB1A778D3F003C981B /* UBMannheimApp */,
 				B270CEE11A778D3F003C981B /* UBMannheimAppTests */,
 				B270CECA1A778D3F003C981B /* Products */,
@@ -267,6 +265,7 @@
 				B270CED71A778D3F003C981B /* LaunchScreen.xib */,
 				B270CECC1A778D3F003C981B /* Supporting Files */,
 				B2C8B0B11A8E2688002CBA11 /* Help.txt */,
+				B2B02D191CA17CC100D5BEE5 /* EmbeddedLinks.strings */,
 				B22D05091AC93A5C00904165 /* MenuItem.swift */,
 				B2506BD81AD6ACD90057AE61 /* MainMenuController.swift */,
 				B2506BDA1ADBB72E0057AE61 /* MyCollectionViewCell.swift */,
@@ -438,6 +437,7 @@
 				B2DBF9981C60FD3D00389714 /* offline_de.html in Resources */,
 				B270CED61A778D3F003C981B /* Images.xcassets in Resources */,
 				B28611F31C3A82AE0038C074 /* items_de.plist in Resources */,
+				B2B02D1A1CA17CC100D5BEE5 /* EmbeddedLinks.strings in Resources */,
 				B267895D1AE90E4900D30CF4 /* news.css in Resources */,
 				B24261D21ABAD1AE00124AAB /* offline.html in Resources */,
 				B2C8B0B21A8E2688002CBA11 /* Help.txt in Resources */,

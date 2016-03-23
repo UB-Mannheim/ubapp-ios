@@ -87,6 +87,11 @@
 	</dict>
 	<key>alertMessages</key>
 	<dict>
+		<key>MainMenu</key>
+		<dict>
+			<key>noRedirect</key>
+			<string>Weiterleitung zum ausgewählten Startmodul nicht möglich. Es stehen weder eine Internetverbindung, noch Offline Inhalte zur Verfügung. Bitte stellen Sie zur Nutzung der App eine Verbindung zum Internet her.</string>
+		</dict>
 		<key>News</key>
 		<dict>
 			<key>noCache_noNetwork</key>

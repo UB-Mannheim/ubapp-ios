@@ -1,12 +1,12 @@
-
 //
 //  ConfigController.swift
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 25.03.15,
-//  modified on 05.01.16
+//  last modified on 22.03.16.
 //
-//  Copyright (c) 2015 Alexander Wagner, UB Mannheim. All rights reserved.
+//  Copyright (c) 2015 Alexander Wagner, UB Mannheim. 
+//  All rights reserved.
 //
 
 import UIKit
@@ -23,10 +23,11 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     
     
     let news_elements = ["5","10","15"]
-    // let startup_elements = ["Startmenü","Website","Primo","News","Freie Plätze"]
-    var startup_elements: [AnyObject] = []
     
-    // alles nur temoporaere - oder?
+    var startup_elements: [AnyObject] = []
+    // might be ["Startmenü","Website","Primo","News","Freie Plätze"]
+    
+    // Initializing Values
     var news_selected: Int = 0
     var news_count: Int = 0
     
@@ -38,6 +39,8 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     var knews_items: [AnyObject] = []
     
     /*
+    // Configuration: Show User Defaults
+    
     if (DEBUG) {
     var myArray : Array<Double>! {
         get {
@@ -58,41 +61,27 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     */
     
     
-/*
-var cacheEnabled:Bool = false
-var startupWith:Int = 0
-var newsCount:Int = 0
-*/
-    
-    // check lang (test)
-    // http://stackoverflow.com/questions/29193284/check-language-in-ios-app
-    
-    // var preferredLanguage = NSLocale.preferredLanguages()[0] as String
-    
     let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // print("viewDidLoad ....................................................")
         
+        super.viewDidLoad()
 
+        // Initialize Dictionary
         let dict = appDelegate.dict
         startup_elements = dict.objectForKey("labels")?.objectForKey("Modules") as! [AnyObject]
         
         
-        //table layout
-        // Cell height.
+        // Set Table Layout and Cell height.
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        // get rid of empty lines
+        // And get rid of empty Lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        // GENAU DAS FEHLT NOCH, LADEN DER EINSTELLUNGEN UND ANZEIGE IM FORMULAR BZW. STANDARD ANZEIGE
         init_preferences()
         
-        // Delete ALL USER PREFERENCES
+        // Delete ALL User Preferences (Test)
         // let appDomain = NSBundle.mainBundle().bundleIdentifier!
         // NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         
@@ -101,15 +90,17 @@ var newsCount:Int = 0
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
-        if (DEBUG) { print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
-        // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
+        if (DEBUG) {
+            print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+        }
+        
         let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
-        // if (DEBUG) { print("Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries") } // >> s.o.
-        
-        if((knews_items?.last != nil) && (knews_items!.count > 0)) {
-            // print("News stack contains \(knews_items!.count) elements")
+        if (DEBUG) {
+            if((knews_items?.last != nil) && (knews_items!.count > 0)) {
+                print("News stack contains \(knews_items!.count) elements")
+            }
         }
         
         // #1
@@ -131,22 +122,21 @@ var newsCount:Int = 0
         startupPicker.dataSource = self
         startupPicker.delegate = self
         
-        // layout form elements
+        // Layout Form Elements
         
-        // switch
+        // Switch
         if(kcache != nil) {
             cacheSwitch.setOn(kcache!, animated: true)
             cache_enabled = (kcache! as Bool?)!
         }
         
         
-        // news picker selected
-        
+        // News Picker Selected
         if(knews != nil) {
         
             newsPicker.selectRow(knews!, inComponent: 0, animated: true)
         
-            // set picker view-news inactive if cache=off
+            // Set Picker view-news inactive if cache=off
             if (kcache == false) {
                 // changed behaviour
                 // newsPicker.userInteractionEnabled = false
@@ -156,8 +146,7 @@ var newsCount:Int = 0
         }
         
         
-        // startup selected
-        
+        // Startup Selected
         if(kstartup != nil) {
             
             startupPicker.selectRow(kstartup!, inComponent: 0, animated: true)
@@ -165,26 +154,6 @@ var newsCount:Int = 0
         }
         
     }
-    
-    /*
-    func preferences_set() -> Bool {
-        
-        var already_set = false
-        
-        let cache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let newsPicker: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        let startupPicker: Int? = userDefaults.objectForKey("newsCount") as! Int?
-
-        if(cache != nil || newsPicker == nil || startupPicker == nil) {
-            already_set = true
-        }
-        
-        return already_set
-    }*/
-    
-    // später auslagern in initConfigClass ... (+FeedTableVIewController, firstRunReference)
-    // ausgelagert in MainMenuController
-    
     
     func init_preferences() {
         
@@ -222,30 +191,28 @@ var newsCount:Int = 0
         return 1
     }
     
-    // func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
             
         var count:Int = 0
         
         if pickerView.tag == 1 {
             count = news_elements.count
-            // zuweisung userDefaults Picker1
+            // Allocating UserDefaults to Picker1
             news_selected = count
         }
         if pickerView.tag == 2 {
             count = startup_elements.count
-            // Zuweisung userDefaults Picker2
+            // Allocating UserDefaults to Picker2
             startup_selected = count
         }
         
-        // self.newsCount = count
         return count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var name:String = ""
-        var id:Int = 0
+        // var id:Int = 0
         
         if pickerView.tag == 1 {
             name = news_elements[row]
@@ -256,7 +223,7 @@ var newsCount:Int = 0
             self.startup_selected = row
             
             // userDefaults.setObject(1, forKey: "firstRun")
-            // if (DEBUG) {  print("Config State of firstRun: ") }
+            // if (DEBUG) { print("Config State of firstRun: ") }
             // if (DEBUG) { print(userDefaults.objectForKey("firstRun")) }
         }
         
@@ -276,83 +243,33 @@ var newsCount:Int = 0
         return name
         
     }
-    /*
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
-        var pickerLabel = view as! UILabel!
-        
-        if(pickerView.tag == 1) {
-            
-            if view == nil {  //if no label there yet
-                pickerLabel = UILabel()
-                
-                //color  and center the label's background
-                let hue = CGFloat(row)/CGFloat(news_elements.count)
-                pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness:1.0, alpha: 1.0)
-                pickerLabel.textAlignment = .Center
-                
-            }
-            let titleData = news_elements[row]
-            let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
-            pickerLabel!.attributedText = myTitle
-            
-        }
-        if(pickerView.tag == 2) {
-        
-        if view == nil {  //if no label there yet
-            pickerLabel = UILabel()
-            
-            //color  and center the label's background
-            let hue = CGFloat(row)/CGFloat(startup_elements.count)
-            pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness:1.0, alpha: 1.0)
-            pickerLabel.textAlignment = .Center
-            
-        }
-        let titleData = startup_elements[row]
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
-        pickerLabel!.attributedText = myTitle
-        }
-        
-        return pickerLabel
-        
-    }
-*/
     
-    //size the components of the UIPickerView
+    // Sizing the components of the UIPickerView
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 30.0
     }
     
-    /*
-    //selfmade and probably senceless
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> Int! {
-        
-        var selected = row
-        
-        return selected
-    }
-    */
-    
+    // Generating News Entry
     func generateNewsEntry(id: Int) -> [AnyObject] {
         
-        var news_id = id
-        var date = "01.04.2015"
-        var title = "Titel der News No \(news_id)"
-        var description = "Beschreibung der News No \(news_id)"
-        var link = "http://www.bib.uni-mannheim.de/news/\(news_id)"
+        let news_id = id
+        let date = "01.04.2015"
+        let title = "Titel der News No \(news_id)"
+        let description = "Beschreibung der News No \(news_id)"
+        let link = "http://www.bib.uni-mannheim.de/news/\(news_id)"
         
-        var element = [news_id, date, title, description, link] as Array<AnyObject>
+        let element = [news_id, date, title, description, link] as Array<AnyObject>
         
         return element
     }
     
     @IBAction func deleteAllPreferences() {
         
-        
-        
-        // Delete ALL USER PREFERENCES
+        // Delete all User Preferences
         let appDomain = NSBundle.mainBundle().bundleIdentifier!
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         
+        // Might be the following Keys
         // userDefaults.removeObjectForKey("cacheEnabled")
         // userDefaults.removeObjectForKey("newsCount")
         // userDefaults.removeObjectForKey("startupWith")
@@ -369,109 +286,49 @@ var newsCount:Int = 0
         // if (DEBUG) { print("knews \(knews)") }
         // if (DEBUG) { print("kstartup \(kstartup)") }
         
-        if (DEBUG) { print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: deleteAllPreferences]") }
+        if (DEBUG) {
+            print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: deleteAllPreferences]")
+        }
         
         
         // let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
         
-        // if (DEBUG) { print("*DEL* Cache active: \(kcache) :: Startup With ID= \(kstartup) :: Show \(knews) entries") }
         
-
         userDefaults.synchronize()
         
         exit(0)
         
     }
     
-    
+    // Change Preferences and reload
     @IBAction func saveConfig() {
         
         let dict = appDelegate.dict
-        
-        // EINFACH PREFS ÄNDENR UND NEU LADEN
-        
-        // Dann neustarten und Testen
-        // :)
         
         userDefaults.setObject(1, forKey: "firstRun")
         userDefaults.setObject(cache_enabled, forKey: "cacheEnabled")
         userDefaults.setObject(startup_selected, forKey: "startupWith")
         userDefaults.setObject(news_selected, forKey: "newsCount")
 
-/* NO NEWS TODAY :) TEMP FOR PREFERENCE CHECK
         
-        // ggf News Items auch hier speichern?
-        var nitems = [AnyObject]()
-        
-        // auslesen und zurückspeichern der news
-        if (userDefaults.objectForKey("newsItems")?.count <= 0) {
-            var tmp = generateNewsEntry(1)
-            nitems.append(tmp)
-
-        } else {
-            nitems = (userDefaults.objectForKey("newsItems") as! [NSArray]?)!
-            if(nitems.count > 0) {
-                // nitems.append("test \(nitems.count+1)")
-                // var tmp = ["Date", "Title of News", "Description", "Link", "href"] as Array<AnyObject>
-                var tmp = generateNewsEntry(nitems.count)
-                nitems.append(tmp)
-            }
-        }
-        
-        userDefaults.setObject(nitems, forKey: "newsItems")
-*/
         let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
         let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
         let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
         
-        if (DEBUG) { print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]") }
+        if (DEBUG) {
+            print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]")
+        }
         
-        
-        
+        // FixMe
         // BEACHTEN : BEI SPEICHERN AUF NETZWERK PRUEFEN (TRUE) UND EINEN ABZUG DER NEWS ERSTELLEN 
         // WENN NICHT HINWEIS ZUM FESTELEGEN BZW;
         // HINWEIS auf NEWSFEED WENN KEIN CACHE UND KEIN NETZ ABER CACHE AKTIV
         
-        
         userDefaults.synchronize()
-        
-        // if (DEBUG) { print("News ITEMS: \(nitems)") }
         
         // reload
         viewDidLoad()
-        
-        /*
-        let cache_on = cache_enabled
-        let news_entries = self.news_selected
-        let startup = self.startup_selected
-        let m = "Einstellungen auswgewählt: \(cache_on) : \(news_entries) : \(startup)"
-        let m2 = "vorliegende Preferenzen: \(cacheEnabled) : \(newsCount) : \(startupWith)"
-        
-        
-        // let alertController = UIAlertController(title: "Chosen", message: m, preferredStyle: .Alert)
-        let alertController2 = UIAlertController(title: "Preferences", message: m2, preferredStyle: .Alert)
-        /*
-        let cancelAction = UIAlertAction(title: "Zurück", style: .Cancel) { (action) in
-            // MainView set as storyboard ID of MainViewController
-            let cfgViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConfigView") as ConfigController
-            self.navigationController?.pushViewController(cfgViewController, animated: true)
-        }
-        */
-        
-        let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
-            self.viewDidLoad()
-        }
-        
-        // // alertController.addAction(cancelAction)
-        // alertController.addAction(okAction)
-        alertController2.addAction(okAction)
-        
-        // self.presentViewController(alertController, animated: true, completion: nil)
-        self.presentViewController(alertController2, animated: true, completion: nil)
-        
-        */
-        
         
         
         // #4
@@ -493,26 +350,19 @@ var newsCount:Int = 0
         
     }
     
-    // nur wenn statechanged ... 2do auch sonst speichern saveConfig()
+    // If State of Switch changes saveConfig() too
     func stateChanged(switchState: UISwitch) {
         if switchState.on {
-            // myTextField.text = "The Switch is On"
+            // Switch is On
             cache_enabled = true
-            // self.cacheEnabled = true
         } else {
-            // myTextField.text = "The Switch is Off"
+            // Switch is Off
             cache_enabled = false
-            // self.cacheEnabled = false
         }
         
         userDefaults.setObject(cache_enabled, forKey: "cacheEnabled")
         
         saveConfig()
     }
-    
-    /*
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        myLabel.text = news_elements[row]
-    }
-    */
+  
 }

@@ -3,7 +3,7 @@
 //  UBMannheimApp
 //
 //  Created by Alexander Wagner on 27.01.15,
-//  last modified on 04.01.16.
+//  last modified on 22.03.16.
 //
 //  Copyright (c) 2015 Alexander Wagner, UB Mannheim.
 //  All rights reserved.
@@ -33,14 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // Load Content (en/de)
+    // Load Content (_en/_de)
     func loadContentInPreferredLanguage() {
         
         self.path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")!
-        
-        //if (self.preferredLanguage == "de-US") {
-        //    self.path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
-        //}
         
         if (self.preferredLanguage.containsString("de-")) {
             self.path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
@@ -60,38 +56,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        /*
-        var toolBarAppearance = UIToolbar.appearance()
-        toolBarAppearance.tintColor = uicolorFromHex(0xffffff)
-        toolBarAppearance.barTintColor = uicolorFromHex(0x990000)
-        */
-        
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        // Sent when the application is about to move from active to inactive state. 
+        // This can occur for certain types of temporary interruptions (such as an incoming phone call 
+        // or SMS message) or when the user quits the application and it begins the transition to the 
+        // background state.
+        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. 
+        // Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough 
+        // application state information to restore your application to its current state in case it is 
+        // terminated later.
+        // If your application supports background execution, this method is called instead of 
+        // applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        // Called as part of the transition from the background to the inactive state; here you can undo many 
+        // of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. 
+        // If the application was previously in the background, optionally refresh the user interface.
         
         // Loading Content in here
         self.loadContentInPreferredLanguage()
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Called when the application is about to terminate. Save data if appropriate. 
+        // See also applicationDidEnterBackground:.
     }
 
 
