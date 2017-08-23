@@ -25,18 +25,18 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // Fallback URL (probably always reachable)
     var website:NSString = "http://www.google.de"
     
-    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    let userDefaults:UserDefaults=UserDefaults.standard
     
-    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setting Configuration Keys
-        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
-        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let kfirstrun: Int? = userDefaults.object(forKey: "firstRun") as! Int?
+        let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
+        let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         
         if (DEBUG) {
             print("DEBUG MSG WebViewController_ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
@@ -48,11 +48,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         // Setting title according to Websites
         
-        if(self.website.containsString("primo.bib.uni-mannheim.de")) {
+        if(self.website.contains("primo.bib.uni-mannheim.de")) {
             self.title = "Primo"
         }
         
-        if(self.website.containsString("www.bib.uni-mannheim.de")) {
+        if(self.website.contains("www.bib.uni-mannheim.de")) {
             self.title = "Website"
         }
         
@@ -61,19 +61,19 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         if IJReachability.isConnectedToNetwork() {
         
-            webView.loadRequest(NSURLRequest(URL: NSURL(string: self.website as String)!))
+            webView.loadRequest(URLRequest(url: URL(string: self.website as String)!))
             webView.delegate = self
             
         } else {
             
-            let offlineError: String = dict.objectForKey("urls")!.objectForKey("Offline") as! String
-            let url = NSBundle.mainBundle().URLForResource(offlineError, withExtension:"html")
+            let offlineError: String = (dict.object(forKey: "urls")! as AnyObject).object(forKey: "Offline") as! String
+            let url = Bundle.main.url(forResource: offlineError, withExtension:"html")
             
-            let request = NSURLRequest(URL: url!)
+            let request = URLRequest(url: url!)
             webView.loadRequest(request)
             webView.delegate = self
             
-            let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+            let alertMsg_Err_noNetwork: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Website")! as AnyObject).object(forKey: "noNetwork") as! String
             
             returnNetworkError(alertMsg_Err_noNetwork)
             
@@ -102,13 +102,13 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // -start()
     //  call: self.webViewDidStartLoad(webView)
     
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         
-        activity.hidden = false
+        activity.isHidden = false
         activity.startAnimating()
         
         // Activity Bar in Top Bar
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         let activityBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         navigationItem.rightBarButtonItem = activityBarButtonItem
         activityIndicator.startAnimating()
@@ -119,9 +119,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     // -stop()
     //  call: self.webViewDidFinishLoad(webView)
     
-    func webViewDidFinishLoad(webView: UIWebView) { //stop
+    func webViewDidFinishLoad(_ webView: UIWebView) { //stop
         
-        activity.hidden = true
+        activity.isHidden = true
         activity.stopAnimating()
         
         navigationItem.rightBarButtonItem = nil
@@ -137,9 +137,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             "document.getElementById('exlidHeaderContainer').style.height = '100px'; "
             
             
-        self.webView.stringByEvaluatingJavaScriptFromString(primo_js)
+        self.webView.stringByEvaluatingJavaScript(from: primo_js)
         
-        self.webView.stringByEvaluatingJavaScriptFromString(www_js)
+        self.webView.stringByEvaluatingJavaScript(from: www_js)
         
         if (DEBUG) { print("didFinishLoad") }
         
@@ -155,19 +155,19 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     // Webview Error Handling
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("Webview fail with error \(error)");
     }
     
     // Webview Request
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         let dict = appDelegate.dict
-        let alertMsg_Err_lostConnection: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("lostConnection") as! String
+        let alertMsg_Err_lostConnection: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Website")! as AnyObject).object(forKey: "lostConnection") as! String
         
         
-        if( (navigationType == UIWebViewNavigationType.LinkClicked) && (IJReachability.isConnectedToNetwork() == false) ) {
+        if( (navigationType == UIWebViewNavigationType.linkClicked) && (IJReachability.isConnectedToNetwork() == false) ) {
             if (DEBUG) { print("tapped") }
             
             returnNetworkError(alertMsg_Err_lostConnection)
@@ -178,10 +178,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
 
     // BarButton Back
-    @IBAction func back(sender: UIBarButtonItem) {
+    @IBAction func back(_ sender: UIBarButtonItem) {
         
         let dict = appDelegate.dict
-        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+        let alertMsg_Err_noNetwork: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Website")! as AnyObject).object(forKey: "noNetwork") as! String
         
         if (IJReachability.isConnectedToNetwork()) {
             if (self.webView.canGoBack) {
@@ -194,10 +194,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
     
     // BarButton Forward
-    @IBAction func forward(sender: UIBarButtonItem) {
+    @IBAction func forward(_ sender: UIBarButtonItem) {
         
         let dict = appDelegate.dict
-        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+        let alertMsg_Err_noNetwork: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Website")! as AnyObject).object(forKey: "noNetwork") as! String
         
         if (IJReachability.isConnectedToNetwork()) {
             if (self.webView.canGoForward) {
@@ -211,26 +211,26 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     
     // BarButton Home
-    @IBAction func home(sender: UIBarButtonItem) {
+    @IBAction func home(_ sender: UIBarButtonItem) {
         // self.webView.stopLoading()
         // let requestURL = NSURL(string: "http://www.bib.uni-mannheim.de/mobile")
         
         let dict = appDelegate.dict
-        let primo_url: String = dict.objectForKey("urls")!.objectForKey("Primo") as! String
-        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+        let primo_url: String = (dict.object(forKey: "urls")! as AnyObject).object(forKey: "Primo") as! String
+        let alertMsg_Err_noNetwork: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Website")! as AnyObject).object(forKey: "noNetwork") as! String
         
-        var homeStr = dict.objectForKey("urls")!.objectForKey("Website") as! String
+        var homeStr = (dict.object(forKey: "urls")! as AnyObject).object(forKey: "Website") as! String
         
-        if(self.website.containsString("primo.bib.uni-mannheim.de")) {
+        if(self.website.contains("primo.bib.uni-mannheim.de")) {
             
             homeStr = primo_url
             
         }
         
-        let requestURL = NSURL(string: homeStr)
+        let requestURL = URL(string: homeStr)
         
         if (IJReachability.isConnectedToNetwork()) {
-            let request = NSURLRequest(URL: requestURL!)
+            let request = URLRequest(url: requestURL!)
             self.webView.loadRequest(request)
         } else {
             
@@ -239,10 +239,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
     
     // BarButton Reload
-    @IBAction func reload(sender: UIBarButtonItem) {
+    @IBAction func reload(_ sender: UIBarButtonItem) {
         
         let dict = appDelegate.dict
-        let alertMsg_Err_noNetwork: String = dict.objectForKey("alertMessages")!.objectForKey("Website")!.objectForKey("noNetwork") as! String
+        let alertMsg_Err_noNetwork: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Website")! as AnyObject).object(forKey: "noNetwork") as! String
         
         if (IJReachability.isConnectedToNetwork()) {
             self.webView.reload()
@@ -252,32 +252,32 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func returnNetworkError(error_msg: String) {
+    func returnNetworkError(_ error_msg: String) {
         
         let dict = appDelegate.dict
-        let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
-        let alertMsg_Back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
-        let alertMsg_Reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
+        let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
+        let alertMsg_Back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
+        let alertMsg_Reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
         
-        let alertController = UIAlertController(title: alertMsg_Error, message: error_msg, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: alertMsg_Error, message: error_msg, preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: alertMsg_Back, style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: alertMsg_Back, style: .cancel) { (action) in
             
-            self.userDefaults.setObject(1, forKey: "backFromWebview")
+            self.userDefaults.set(1, forKey: "backFromWebview")
             
-            let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainMenu") as! MainMenuController
             self.navigationController?.pushViewController(homeViewController, animated: true)
             
         }
         
-            let okAction = UIAlertAction(title: alertMsg_Reload, style: .Default) { (action) in
+            let okAction = UIAlertAction(title: alertMsg_Reload, style: .default) { (action) in
             self.viewDidLoad()
         }
         
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }

@@ -15,7 +15,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     
     var DEBUG: Bool = false
     
-    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var cacheSwitch: UISwitch!
     @IBOutlet weak var newsPicker: UIPickerView!
@@ -61,7 +61,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     */
     
     
-    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    let userDefaults:UserDefaults=UserDefaults.standard
     
     override func viewDidLoad() {
         
@@ -69,7 +69,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
 
         // Initialize Dictionary
         let dict = appDelegate.dict
-        startup_elements = dict.objectForKey("labels")?.objectForKey("Modules") as! [AnyObject]
+        startup_elements = (dict.object(forKey: "labels") as AnyObject).object(forKey: "Modules") as! [AnyObject]
         
         
         // Set Table Layout and Cell height.
@@ -77,7 +77,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         self.tableView.dataSource = self
         self.tableView.delegate = self
         // And get rid of empty Lines
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         init_preferences()
         
@@ -85,17 +85,17 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         // let appDomain = NSBundle.mainBundle().bundleIdentifier!
         // NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         
-        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
-        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let kfirstrun: Int? = userDefaults.object(forKey: "firstRun") as! Int?
+        let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
+        let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         
         
         if (DEBUG) {
             print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
         }
         
-        let knews_items: [AnyObject]? = userDefaults.objectForKey("newsItems") as! [AnyObject]?
+        let knews_items: [AnyObject]? = userDefaults.object(forKey: "newsItems") as! [AnyObject]?
         
         if (DEBUG) {
             if((knews_items?.last != nil) && (knews_items!.count > 0)) {
@@ -104,7 +104,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         }
         
         // #1
-        cacheSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        cacheSwitch.addTarget(self, action: #selector(ConfigController.stateChanged(_:)), for: UIControlEvents.valueChanged)
         
         // #2
         // newsPicker = UIPickerView()
@@ -141,7 +141,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
                 // changed behaviour
                 // newsPicker.userInteractionEnabled = false
             } else {
-                newsPicker.userInteractionEnabled = true
+                newsPicker.isUserInteractionEnabled = true
             }
         }
         
@@ -157,41 +157,41 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     
     func init_preferences() {
         
-        var cacheReference: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        var cacheReference: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
         if (cacheReference == nil) {
             cacheReference = false
-            newsPicker.userInteractionEnabled = false
+            newsPicker.isUserInteractionEnabled = false
         } else {
-            cacheReference = userDefaults.objectForKey("cacheEnabled") as! Bool?
-            newsPicker.userInteractionEnabled = true
+            cacheReference = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+            newsPicker.isUserInteractionEnabled = true
         }
         
-        var startupReference: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        var startupReference: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         if (startupReference == nil) {
             startupReference = 0
         } else {
-            startupReference = userDefaults.objectForKey("startupWith") as! Int?
+            startupReference = userDefaults.object(forKey: "startupWith") as! Int?
         }
 
-        var newsReference: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        var newsReference: Int? = userDefaults.object(forKey: "newsCount") as! Int?
         if (newsReference == nil) {
             newsReference = 0
         } else {
-            newsReference = userDefaults.objectForKey("newsCount") as! Int?
+            newsReference = userDefaults.object(forKey: "newsCount") as! Int?
         }
         
-        userDefaults.setObject(cacheReference, forKey: "cacheEnabled")
-        userDefaults.setObject(startupReference, forKey: "startupWith")
-        userDefaults.setObject(newsReference, forKey: "newsCount")
+        userDefaults.set(cacheReference, forKey: "cacheEnabled")
+        userDefaults.set(startupReference, forKey: "startupWith")
+        userDefaults.set(newsReference, forKey: "newsCount")
     
     }
     
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
             
         var count:Int = 0
         
@@ -209,7 +209,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         return count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var name:String = ""
         // var id:Int = 0
@@ -245,12 +245,12 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     }
     
     // Sizing the components of the UIPickerView
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 30.0
     }
     
     // Generating News Entry
-    func generateNewsEntry(id: Int) -> [AnyObject] {
+    func generateNewsEntry(_ id: Int) -> [AnyObject] {
         
         let news_id = id
         let date = "01.04.2015"
@@ -266,8 +266,8 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     @IBAction func deleteAllPreferences() {
         
         // Delete all User Preferences
-        let appDomain = NSBundle.mainBundle().bundleIdentifier!
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
         
         // Might be the following Keys
         // userDefaults.removeObjectForKey("cacheEnabled")
@@ -276,10 +276,10 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         // userDefaults.removeObjectForKey("newsItems")
         
         
-        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
-        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let kfirstrun: Int? = userDefaults.object(forKey: "firstRun") as! Int?
+        let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
+        let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         // let knews_items: [String]? = userDefaults.objectForKey("newsItems") as! [String]?
         
         // if (DEBUG) { print("kcache \(kcache)") }
@@ -305,16 +305,16 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         
         let dict = appDelegate.dict
         
-        userDefaults.setObject(1, forKey: "firstRun")
-        userDefaults.setObject(cache_enabled, forKey: "cacheEnabled")
-        userDefaults.setObject(startup_selected, forKey: "startupWith")
-        userDefaults.setObject(news_selected, forKey: "newsCount")
+        userDefaults.set(1, forKey: "firstRun")
+        userDefaults.set(cache_enabled, forKey: "cacheEnabled")
+        userDefaults.set(startup_selected, forKey: "startupWith")
+        userDefaults.set(news_selected, forKey: "newsCount")
 
         
-        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
-        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let kfirstrun: Int? = userDefaults.object(forKey: "firstRun") as! Int?
+        let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
+        let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         
         if (DEBUG) {
             print("DEBUG MSG ConfigController__ : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]")
@@ -334,12 +334,12 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         // #4
         
         JLToastView.setDefaultValue(
-            UIColor.grayColor(),
+            UIColor.gray,
             forAttributeName: JLToastViewBackgroundColorAttributeName,
-            userInterfaceIdiom: .Phone
+            userInterfaceIdiom: .phone
         )
         
-        let toastMsg_savedConfig: String = dict.objectForKey("alertMessages")!.objectForKey("Config")!.objectForKey("savedSettings") as! String
+        let toastMsg_savedConfig: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Config")! as AnyObject).object(forKey: "savedSettings") as! String
         
         // var config_saved = "Saved settings."
         // if (preferredLanguage == "de-US") {
@@ -351,8 +351,8 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
     }
     
     // If State of Switch changes saveConfig() too
-    func stateChanged(switchState: UISwitch) {
-        if switchState.on {
+    func stateChanged(_ switchState: UISwitch) {
+        if switchState.isOn {
             // Switch is On
             cache_enabled = true
         } else {
@@ -360,7 +360,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
             cache_enabled = false
         }
         
-        userDefaults.setObject(cache_enabled, forKey: "cacheEnabled")
+        userDefaults.set(cache_enabled, forKey: "cacheEnabled")
         
         saveConfig()
     }

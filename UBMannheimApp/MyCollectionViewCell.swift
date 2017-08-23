@@ -33,66 +33,66 @@ class MyCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         imageView = UIImageView(frame: CGRect(x: 0, y: 12, width: frame.size.width, height: frame.size.height*2/3))
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         
         // Earlier sizing
         // let textFrame = CGRect(x: 0, y: frame.size.height/1.5, width: frame.size.width, height: frame.size.height/3)
         let textFrame = CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5)
         textLabel = UILabel(frame: textFrame)
-        textLabel.font = UIFont.systemFontOfSize(frame.size.height/10)
-        textLabel.textColor = UIColor.grayColor()
-        textLabel.textAlignment = .Center
+        textLabel.font = UIFont.systemFont(ofSize: frame.size.height/10)
+        textLabel.textColor = UIColor.gray
+        textLabel.textAlignment = .center
         
         outerUIView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height*2/3))
         
         if (DEBUG) { print("Frame Height: \(frame.size.height) Frame Width: \(frame.size.width)") }
         
-        let model: String = UIDevice.currentDevice().model
+        let model: String = UIDevice.current.model
         if (DEBUG) { print(model) }
         
         // LANDSCAPE
         if (frame.size.width > frame.size.height) {
             
-            if( (model.rangeOfString("iPod") != nil) || (model.rangeOfString("iPhone") != nil) ) {
+            if( (model.range(of: "iPod") != nil) || (model.range(of: "iPhone") != nil) ) {
                 innerUIView = UIView(frame: CGRect(x: frame.size.width/3.3, y: frame.size.height/1.2, width: frame.size.width/2.5, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/3.3, y: 0, width: frame.size.width, height: frame.size.height/5))
             }
             
-            if(model.rangeOfString("iPad") != nil) {
+            if(model.range(of: "iPad") != nil) {
                 imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/4, width: frame.size.width, height: frame.size.height*2/3))
-                imageView.contentMode = UIViewContentMode.ScaleAspectFit
+                imageView.contentMode = UIViewContentMode.scaleAspectFit
                 innerUIView = UIView(frame: CGRect(x: frame.size.width/4, y: frame.size.height/1.05, width: frame.size.width/2, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/4, y: frame.size.height/80, width: frame.size.width, height: frame.size.height/5))
             }
     
         // PORTRAIT
         } else {
-            if(model.rangeOfString("iPod") != nil) {
+            if(model.range(of: "iPod") != nil) {
                 innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.4, width: frame.size.width, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
             }
         
-            if(model.rangeOfString("iPad") != nil) {
+            if(model.range(of: "iPad") != nil) {
                 imageView = UIImageView(frame: CGRect(x: 0, y: frame.size.height/8, width: frame.size.width, height: frame.size.height*2/3))
-                imageView.contentMode = UIViewContentMode.ScaleAspectFit
+                imageView.contentMode = UIViewContentMode.scaleAspectFit
                 innerUIView = UIView(frame: CGRect(x: frame.size.width/19, y: frame.size.height/1.2, width: frame.size.width/1.12, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: -frame.size.width/19, y: frame.size.height/100, width: frame.size.width, height: frame.size.height/5))
             }
             
-            if(model.rangeOfString("iPhone") != nil) {
+            if(model.range(of: "iPhone") != nil) {
                 innerUIView = UIView(frame: CGRect(x: 0, y: frame.size.height/1.3, width: frame.size.width, height: frame.size.height/5))
                 textLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height/5))
             }
             
         }
         
-        innerUIView.backgroundColor = UIColor.whiteColor()
+        innerUIView.backgroundColor = UIColor.white
         innerUIView.layer.cornerRadius = 10.0
         innerUIView.layer.opacity = 0.8
         
-        textLabel2.font = UIFont.systemFontOfSize(frame.size.height/10)
-        textLabel2.textColor = UIColor.grayColor()
-        textLabel2.textAlignment = .Center
+        textLabel2.font = UIFont.systemFont(ofSize: frame.size.height/10)
+        textLabel2.textColor = UIColor.gray
+        textLabel2.textAlignment = .center
         
         innerUIView.addSubview(textLabel2)
         outerUIView.addSubview(imageView)
@@ -102,7 +102,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setMenuItem(item: MenuItem) {
+    func setMenuItem(_ item: MenuItem) {
         // self.backgroundColor = UIColor.blackColor()
         self.textLabel?.text = item.itemTitle
         self.textLabel2?.text = item.itemTitle

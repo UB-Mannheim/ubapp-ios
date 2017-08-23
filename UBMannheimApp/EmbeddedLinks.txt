@@ -18,6 +18,8 @@
  
  // class ConfigController
  
+ */
+ 
  /*
  
  - Documentation
@@ -208,6 +210,4 @@
  http://iphoneincubator.com/blog/windows-views/how-to-inject-javascript-functions-into-a-uiwebview
  
  */
-
-*/
 

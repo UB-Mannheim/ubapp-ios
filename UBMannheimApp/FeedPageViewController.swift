@@ -82,7 +82,7 @@ class FeedPageViewController: UIViewController {
         
     }
     
-    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+    func uicolorFromHex(_ rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
         let blue = CGFloat(rgbValue & 0xFF)/256.0
@@ -90,13 +90,13 @@ class FeedPageViewController: UIViewController {
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if segue.identifier == "openWebPage" {
             
-            let fwpvc: FeedWebPageViewController = segue.destinationViewController as! FeedWebPageViewController
-            selectedFeedURL =  selectedFeedURL.stringByReplacingOccurrencesOfString(" ", withString:"")
-            selectedFeedURL =  selectedFeedURL.stringByReplacingOccurrencesOfString("\n", withString:"")
+            let fwpvc: FeedWebPageViewController = segue.destination as! FeedWebPageViewController
+            selectedFeedURL =  selectedFeedURL.replacingOccurrences(of: " ", with:"")
+            selectedFeedURL =  selectedFeedURL.replacingOccurrences(of: "\n", with:"")
             fwpvc.feedURL = selectedFeedURL
         }
     }

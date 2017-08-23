@@ -27,7 +27,7 @@ public let JLToastViewFontAttributeName = "JLToastViewFontAttributeName"
 public let JLToastViewPortraitOffsetYAttributeName = "JLToastViewPortraitOffsetYAttributeName"
 public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffsetYAttributeName"
 
-@objc public class JLToastView: UIView {
+@objc open class JLToastView: UIView {
     
     var backgroundView: UIView!
     var textLabel: UILabel!
@@ -36,17 +36,17 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         
-        let userInterfaceIdiom = UIDevice.currentDevice().userInterfaceIdiom
+        let userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
         
-        self.userInteractionEnabled = false
+        self.isUserInteractionEnabled = false
         
         self.backgroundView = UIView()
         self.backgroundView.frame = self.bounds
-        self.backgroundView.backgroundColor = self.dynamicType.defaultValueForAttributeName(
+        self.backgroundView.backgroundColor = type(of: self).defaultValueForAttributeName(
             JLToastViewBackgroundColorAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
             ) as? UIColor
-        self.backgroundView.layer.cornerRadius = self.dynamicType.defaultValueForAttributeName(
+        self.backgroundView.layer.cornerRadius = type(of: self).defaultValueForAttributeName(
             JLToastViewCornerRadiusAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
             ) as! CGFloat
@@ -55,23 +55,23 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
         
         self.textLabel = UILabel()
         self.textLabel.frame = self.bounds
-        self.textLabel.textColor = self.dynamicType.defaultValueForAttributeName(
+        self.textLabel.textColor = type(of: self).defaultValueForAttributeName(
             JLToastViewTextColorAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
             ) as? UIColor
-        self.textLabel.backgroundColor = UIColor.clearColor()
-        self.textLabel.font = self.dynamicType.defaultValueForAttributeName(
+        self.textLabel.backgroundColor = UIColor.clear
+        self.textLabel.font = type(of: self).defaultValueForAttributeName(
             JLToastViewFontAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
             ) as! UIFont
         self.textLabel.numberOfLines = 0
-        self.textLabel.textAlignment = .Center;
+        self.textLabel.textAlignment = .center;
         self.addSubview(self.textLabel)
         
-        self.textInsets = (self.dynamicType.defaultValueForAttributeName(
+        self.textInsets = (type(of: self).defaultValueForAttributeName(
             JLToastViewTextInsetsAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
-            ) as! NSValue).UIEdgeInsetsValue()
+            ) as! NSValue).uiEdgeInsetsValue
     }
     
     required convenience public init(coder aDecoder: NSCoder) {
@@ -79,10 +79,10 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
     }
     
     func updateView() {
-        let deviceWidth = CGRectGetWidth(UIScreen.mainScreen().bounds)
+        let deviceWidth = UIScreen.main.bounds.width
         let font = self.textLabel.font
-        let constraintSize = CGSize(width: deviceWidth * (280.0 / 320.0), height: CGFloat.max)
-        var textLabelSize = self.textLabel.sizeThatFits(constraintSize)
+        let constraintSize = CGSize(width: deviceWidth * (280.0 / 320.0), height: CGFloat.greatestFiniteMagnitude)
+        let textLabelSize = self.textLabel.sizeThatFits(constraintSize)
         self.textLabel.frame = CGRect(
             x: self.textInsets.left,
             y: self.textInsets.top,
@@ -101,18 +101,18 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
         var width:CGFloat
         var height:CGFloat
         
-        let screenSize = UIScreen.mainScreen().bounds.size
+        let screenSize = UIScreen.main.bounds.size
         let backgroundViewSize = self.backgroundView.frame.size
         
-        let orientation = UIApplication.sharedApplication().statusBarOrientation
-        let systemVersion = (UIDevice.currentDevice().systemVersion as NSString).floatValue
+        let orientation = UIApplication.shared.statusBarOrientation
+        let systemVersion = (UIDevice.current.systemVersion as NSString).floatValue
         
-        let userInterfaceIdiom = UIDevice.currentDevice().userInterfaceIdiom
-        let portraitOffsetY = self.dynamicType.defaultValueForAttributeName(
+        let userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+        let portraitOffsetY = type(of: self).defaultValueForAttributeName(
             JLToastViewPortraitOffsetYAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
             ) as! CGFloat
-        let landscapeOffsetY = self.dynamicType.defaultValueForAttributeName(
+        let landscapeOffsetY = type(of: self).defaultValueForAttributeName(
             JLToastViewLandscapeOffsetYAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
             ) as! CGFloat
@@ -136,11 +136,11 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
         self.frame = CGRect(x: x, y: y, width: backgroundViewSize.width, height: backgroundViewSize.height);
     }
     
-    override public func hitTest(point: CGPoint, withEvent event: UIEvent!) -> UIView? {
+    override open func hitTest(_ point: CGPoint, with event: UIEvent!) -> UIView? {
         if let superview = self.superview {
-            let pointInWindow = self.convertPoint(point, toView: self.superview)
-            let contains = CGRectContainsPoint(self.frame, pointInWindow)
-            if contains && self.userInteractionEnabled {
+            let pointInWindow = self.convert(point, to: self.superview)
+            let contains = self.frame.contains(pointInWindow)
+            if contains && self.isUserInteractionEnabled {
                 return self
             }
         }
@@ -150,58 +150,58 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
 }
 
 public extension JLToastView {
-    private struct Singleton {
+    fileprivate struct Singleton {
         static var defaultValues: [String: [UIUserInterfaceIdiom: AnyObject]] = [
             // backgroundView.color
             JLToastViewBackgroundColorAttributeName: [
-                .Unspecified: UIColor(white: 0, alpha: 0.7)
+                .unspecified: UIColor(white: 0, alpha: 0.7)
             ],
             
             // backgroundView.layer.cornerRadius
             JLToastViewCornerRadiusAttributeName: [
-                .Unspecified: 5
+                .unspecified: 5 as AnyObject
             ],
             
             JLToastViewTextInsetsAttributeName: [
-                .Unspecified: NSValue(UIEdgeInsets: UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10))
+                .unspecified: NSValue(uiEdgeInsets: UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10))
             ],
             
             // textLabel.textColor
             JLToastViewTextColorAttributeName: [
-                .Unspecified: UIColor.whiteColor()
+                .unspecified: UIColor.white
             ],
             
             // textLabel.font
             JLToastViewFontAttributeName: [
-                .Unspecified: UIFont.systemFontOfSize(12),
-                .Phone: UIFont.systemFontOfSize(12),
-                .Pad: UIFont.systemFontOfSize(16),
+                .unspecified: UIFont.systemFont(ofSize: 12),
+                .phone: UIFont.systemFont(ofSize: 12),
+                .pad: UIFont.systemFont(ofSize: 16),
             ],
             
             JLToastViewPortraitOffsetYAttributeName: [
-                .Unspecified: 30,
-                .Phone: 30,
-                .Pad: 60,
+                .unspecified: 30 as AnyObject,
+                .phone: 30 as AnyObject,
+                .pad: 60 as AnyObject,
             ],
             JLToastViewLandscapeOffsetYAttributeName: [
-                .Unspecified: 20,
-                .Phone: 20,
-                .Pad: 40,
+                .unspecified: 20 as AnyObject,
+                .phone: 20 as AnyObject,
+                .pad: 40 as AnyObject,
             ],
         ]
     }
     
-    class func defaultValueForAttributeName(attributeName: String,
+    class func defaultValueForAttributeName(_ attributeName: String,
         forUserInterfaceIdiom userInterfaceIdiom: UIUserInterfaceIdiom)
         -> AnyObject {
             let valueForAttributeName = Singleton.defaultValues[attributeName]!
             if let value: AnyObject = valueForAttributeName[userInterfaceIdiom] {
                 return value
             }
-            return valueForAttributeName[.Unspecified]!
+            return valueForAttributeName[.unspecified]!
     }
     
-    class func setDefaultValue(value: AnyObject,
+    class func setDefaultValue(_ value: AnyObject,
         forAttributeName attributeName: String,
         userInterfaceIdiom: UIUserInterfaceIdiom) {
             var values = Singleton.defaultValues[attributeName]!

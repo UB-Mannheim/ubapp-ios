@@ -67,21 +67,21 @@ class DBHelper {
     
     func prepare() ->Void {
         
-        let filemgr = NSFileManager.defaultManager()
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let docsDir = dirPaths[0] as! String
+        let filemgr = FileManager.default
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let docsDir = dirPaths[0] 
         
-        self.mydatabasePath = docsDir.NS.stringByAppendingPathComponent("bibservice.db")
+        self.mydatabasePath = docsDir.NS.appendingPathComponent("bibservice.db") as NSString
         
-        if filemgr.fileExistsAtPath(self.mydatabasePath as String) {
+        if filemgr.fileExists(atPath: self.mydatabasePath as String) {
             
             let bibDB = FMDatabase(path: self.mydatabasePath as String)
             
             if bibDB == nil {
-                print("Error: \(bibDB.lastErrorMessage())")
+                print("Error: \(bibDB?.lastErrorMessage())")
             }
             
-            if bibDB.open() {
+            if (bibDB?.open())! {
                 
                 // let sql_stmt = "CREATE TABLE IF NOT EXISTS CONTACTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT, PHONE TEXT)"
                 
@@ -99,17 +99,17 @@ class DBHelper {
                     
                     // print(sql)
                     
-                    if !bibDB.executeStatements(sql) {
-                        print("Error: \(bibDB.lastErrorMessage())")
+                    if !(bibDB?.executeStatements(sql))! {
+                        print("Error: \(bibDB?.lastErrorMessage())")
                     }
                     
                 }
                 
-                bibDB.close()
+                bibDB?.close()
                 
             } else {
                 
-                print("Error: \(bibDB.lastErrorMessage())")
+                print("Error: \(bibDB?.lastErrorMessage())")
             }
             
         }
@@ -185,47 +185,47 @@ class DBHelper {
         print(self.mydatabasePath)
         
         // get news latest news id
-        if db.open() {
+        if (db?.open())! {
             let querySQL = "SELECT count(*) from "+TABLE_NEWS
             
-            let results:FMResultSet? = db.executeQuery(querySQL, withArgumentsInArray: nil)
+            let results:FMResultSet? = db?.executeQuery(querySQL, withArgumentsIn: nil)
             
             if results?.next() == true {
                 print("---")
-                print(results?.intForColumnIndex(0))
+                print(results?.int(forColumnIndex: 0))
                 print("---")
-                newscount = results?.intForColumnIndex(0)
+                newscount = results?.int(forColumnIndex: 0)
             } else {
                 print("Query returned emtpy result")
             }
-            db.close()
+            db?.close()
             
         } else {
-            print("Error: \(db.lastErrorMessage())")
+            print("Error: \(db?.lastErrorMessage())")
             
         }
         
         let next_id = newscount + 1
         
-        if db.open() {
+        if (db?.open())! {
             
             // insert news
             let insertSQL = "INSERT INTO "+TABLE_NEWS+" ("+KEY_ID+", "+KEY_NEWS_TITLE+", "+KEY_NEWS_DESCRIPTION+", "+KEY_NEWS_URL+", "+KEY_NEWS_POST_ID+") VALUES ('\(next_id)', '\(title)', '\(desc)', '\(url)', '\(post_id)')"
             
-            let result = db.executeUpdate(insertSQL, withArgumentsInArray: nil)
+            let result = db?.executeUpdate(insertSQL, withArgumentsIn: nil)
             print(result)
             
-            if !result {
+            if !result! {
                 print("Failed to add to news")
-                print("Error: \(db.lastErrorMessage())")
+                print("Error: \(db?.lastErrorMessage())")
             } else {
                 print("Success: News added")
             }
-            db.close() //?
+            db?.close() //?
             
         } else {
             print("EEEE")
-            print("Error: \(db.lastErrorMessage())")
+            print("Error: \(db?.lastErrorMessage())")
         }
         
         

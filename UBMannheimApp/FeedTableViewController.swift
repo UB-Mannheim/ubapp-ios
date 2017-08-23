@@ -11,23 +11,23 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
+class FeedTableViewController: UITableViewController, XMLParserDelegate {
 
     var DEBUG: Bool = false
     
     var myFeed : NSArray = []
-    var url: NSURL = NSURL()
+    var url: URL = URL()
     
-    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    let userDefaults:UserDefaults=UserDefaults.standard
     
-    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var news_feed : Int = 5
     var news_cache: [[String]] = []
     var news_rss_items = 0
     
     // UIRefreshControl
-    func refresh(sender:AnyObject)
+    func refresh(_ sender:AnyObject)
     {
         if (DEBUG) { print("refresh::start") }
         
@@ -48,19 +48,19 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             
             let dict = appDelegate.dict
             
-            let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
-            let alertMsg_Err_noNetwork: String = dict.objectForKey("News")!.objectForKey("noNetwork")! as! String
-            let alertMsg_OK: String = dict.objectForKey("alertMessages")!.objectForKey("okAction")! as! String
+            let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
+            let alertMsg_Err_noNetwork: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "noNetwork")! as! String
+            let alertMsg_OK: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "okAction")! as! String
             
-            let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: alertMsg_OK, style: .Default) { (action) in
+            let okAction = UIAlertAction(title: alertMsg_OK, style: .default) { (action) in
                 self.viewDidLoad()
             }
             
             alertController.addAction(okAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             self.refreshControl?.endRefreshing()
         }
         
@@ -72,7 +72,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         
         super.viewDidLoad()
 
-        let news_entries = userDefaults.objectForKey("newsCount") as! Int?
+        let news_entries = userDefaults.object(forKey: "newsCount") as! Int?
         if (news_entries != nil) {
             switch(news_entries as Int!) {
             case 0: news_feed = 5
@@ -82,26 +82,26 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             }
         }
         
-        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
-        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let kfirstrun: Int? = userDefaults.object(forKey: "firstRun") as! Int?
+        let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
+        let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         
-        if (DEBUG) { print("DEBUG MSG FeedTabVController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Info: showing \(news_feed) Entries]") }
+        if (DEBUG) { print("DEBUG MSG FeedTabVController : FirstRun = \(String(describing: kfirstrun)) | Cache = \(String(describing: kcache)) | News = \(String(describing: knews)) | Startup \(String(describing: kstartup)) [@Info: showing \(news_feed) Entries]") }
         
         // If Control pulled down, refresh
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(FeedTableViewController.refresh(_:)), for: UIControlEvents.valueChanged)
 
         // Set Table Layout and Cell Height
         self.tableView.rowHeight = 70
         self.tableView.dataSource = self
         self.tableView.delegate = self
         // Get rid of empty lines
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         
         // Set Feed URL
-        url = NSURL(string: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
+        url = URL(string: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
         
         // If Network Connection online
         if IJReachability.isConnectedToNetwork() {
@@ -117,11 +117,11 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             self.refreshControl?.endRefreshing()
             
             //  If Cache on
-            if(userDefaults.objectForKey("cacheEnabled")?.boolValue == true) {
+            if((userDefaults.object(forKey: "cacheEnabled") as AnyObject).boolValue == true) {
               
             // If (DEBUG) { print("Cache on ....................................................") }
                 //  Update Cache Entries
-                var maxnews_count = userDefaults.objectForKey("newsCount") as! Int
+                var maxnews_count = userDefaults.object(forKey: "newsCount") as! Int
                 
                 // Attention maxnews_count >> picker_select(0,1,2) != count(5,10,15)
                 
@@ -147,24 +147,24 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                 // if (DEBUG) { print("maxnews_count = \(maxnews_count)") }
                 var news_item = ["", "", "", "", ""]
                 
-                for (var i = 0; i < maxnews_count; i++) {
+                for i in 0 ..< maxnews_count {
                     
                     // if (DEBUG) { print("row per row ....................................................") }
                     // if (DEBUG) { print("News mit ID=\(i) \(news_rssdata[i])") TMP s.o. voher ausgabe der news, aus debugzwecken ausgeklammert }
                     
-                    news_item[0] = news_rssdata[i].objectForKey("title") as! String
-                    news_item[1] = news_rssdata[i].objectForKey("description") as! String
-                    news_item[2] = news_rssdata[i].objectForKey("content:encoded") as! String
-                    news_item[3] = news_rssdata[i].objectForKey("pubDate") as! String
-                    news_item[4] = news_rssdata[i].objectForKey("link") as! String
+                    news_item[0] = (news_rssdata[i] as AnyObject).object(forKey: "title") as! String
+                    news_item[1] = (news_rssdata[i] as AnyObject).object(forKey: "description") as! String
+                    news_item[2] = (news_rssdata[i] as AnyObject).object(forKey: "content:encoded") as! String
+                    news_item[3] = (news_rssdata[i] as AnyObject).object(forKey: "pubDate") as! String
+                    news_item[4] = (news_rssdata[i] as AnyObject).object(forKey: "link") as! String
                  
                     self.news_cache.append(news_item)
                 }
                 
-                userDefaults.setObject(self.news_cache, forKey: "newsCache")
+                userDefaults.set(self.news_cache, forKey: "newsCache")
                 userDefaults.synchronize()
                 
-                let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
+                let newsentries: AnyObject = userDefaults.object(forKey: "newsCache")! as AnyObject
                 if (DEBUG) { print("freshly filled preference: \(newsentries)") }
             }
             
@@ -175,10 +175,10 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             
             
             // if Cache on
-            if ( (userDefaults.objectForKey("cacheEnabled")?.boolValue == true) ) { // && (userDefaults.objectForKey("newsCache") != nil) ) {
+            if ( ((userDefaults.object(forKey: "cacheEnabled") as AnyObject).boolValue == true) ) { // && (userDefaults.objectForKey("newsCache") != nil) ) {
             
             
-                let maxnews_id = userDefaults.objectForKey("newsCount") as! Int
+                let maxnews_id = userDefaults.object(forKey: "newsCount") as! Int
                 var maxnews_count = 0
                 
                 switch(maxnews_id as Int!) {
@@ -192,7 +192,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                 if (DEBUG) { print("MAXNEWS COUNT \(maxnews_count)") }
                 
                 if(userAlreadyExist("newsCache")) {
-                news_rss_items = userDefaults.objectForKey("newsCache")!.count
+                news_rss_items = (userDefaults.object(forKey: "newsCache")! as AnyObject).count
                 } else {
                     news_rss_items = 0
                     if (DEBUG) { print("rss items = 0") }
@@ -214,37 +214,37 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                         
                         let dict = appDelegate.dict
                         
-                        let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
-                        let alertMsg_Err_initCache: String = dict.objectForKey("News")!.objectForKey("initCache")! as! String
-                        let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
-                        let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
+                        let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
+                        let alertMsg_Err_initCache: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "initCache")! as! String
+                        let alertMsg_back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
+                        let alertMsg_reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
                         
-                        let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_initCache, preferredStyle: .Alert)
+                        let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_initCache, preferredStyle: .alert)
                         
-                        let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
-                            let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+                        let cancelAction = UIAlertAction(title: alertMsg_back, style: .cancel) { (action) in
+                            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainMenu") as! MainMenuController
                             self.navigationController?.pushViewController(homeViewController, animated: true)
                             
                             // prufen ob das hier gebraucht wird, koop verhindern
                             // später auslagern, für den test reicht es
-                            var firstRunReference: Int? = self.userDefaults.objectForKey("firstRun") as! Int?
+                            var firstRunReference: Int? = self.userDefaults.object(forKey: "firstRun") as! Int?
                             if (firstRunReference == nil) {
                                 firstRunReference = 1
                             } else {
                                 // firstRunReference = self.userDefaults.objectForKey("firstRun") as! Int?
                                 firstRunReference = 0
-                                self.userDefaults.setObject(firstRunReference, forKey: "firstRun")
+                                self.userDefaults.set(firstRunReference, forKey: "firstRun")
                             }
                         }
                         
-                        let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
+                        let okAction = UIAlertAction(title: alertMsg_reload, style: .default) { (action) in
                             self.viewDidLoad()
                         }
                         
                         alertController.addAction(cancelAction)
                         alertController.addAction(okAction)
                         
-                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.present(alertController, animated: true, completion: nil)
                         
                         //breakpoint
                         
@@ -260,36 +260,36 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
                 
                 let dict = appDelegate.dict
                 
-                let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
-                let alertMsg_Err_noCache_noNetwork: String = dict.objectForKey("News")!.objectForKey("noCache_noNetwork")! as! String
-                let alertMsg_back: String = dict.objectForKey("alertMessages")!.objectForKey("cancelAction")! as! String
-                let alertMsg_reload: String = dict.objectForKey("alertMessages")!.objectForKey("reloadAction")! as! String
+                let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
+                let alertMsg_Err_noCache_noNetwork: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "noCache_noNetwork")! as! String
+                let alertMsg_back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
+                let alertMsg_reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
 
-                let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .Alert)
+                let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .alert)
                 
-                let cancelAction = UIAlertAction(title: alertMsg_back, style: .Cancel) { (action) in
-                    let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuController
+                let cancelAction = UIAlertAction(title: alertMsg_back, style: .cancel) { (action) in
+                    let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainMenu") as! MainMenuController
                     self.navigationController?.pushViewController(homeViewController, animated: true)
                     
                     // if at the moment of pressing back network is alive, activate redirection
                     if IJReachability.isConnectedToNetwork() {
-                        self.userDefaults.setObject(1, forKey: "firstRun")
+                        self.userDefaults.set(1, forKey: "firstRun")
                     } else {
-                        self.userDefaults.setObject(0, forKey: "firstRun")
+                        self.userDefaults.set(0, forKey: "firstRun")
                         // self.userDefaults.setObject(1, forKey: "backFromWebview")
                     }
                     self.userDefaults.synchronize()
                     
                 }
                 
-                let okAction = UIAlertAction(title: alertMsg_reload, style: .Default) { (action) in
+                let okAction = UIAlertAction(title: alertMsg_reload, style: .default) { (action) in
                     self.viewDidLoad()
                 }
                 
                 alertController.addAction(cancelAction)
                 alertController.addAction(okAction)
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
                 
                 
                 if (DEBUG) { print("after alert") }
@@ -305,7 +305,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         */
     }
     
-    func loadRss(data: NSURL) -> AnyObject {
+    func loadRss(_ data: URL) -> AnyObject {
         
         if (DEBUG) { print("loadRSS::start") }
         
@@ -335,7 +335,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         return myFeed
     }
     
-    func loadCache(newsCount: Int) {
+    func loadCache(_ newsCount: Int) {
         
         if (DEBUG) { print("loadCache::start") }
         
@@ -374,9 +374,9 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         // if (DEBUG) { print(news_count) }
         
         // if empty: no cache no network, reload?
-        let newsentries: AnyObject = userDefaults.objectForKey("newsCache")!
+        let newsentries: AnyObject = userDefaults.object(forKey: "newsCache")! as AnyObject
         if (DEBUG) { print("Get Entry Nr.: 0 \(newsentries[0])") }
-        if (DEBUG) { print("Get Entry Nr.: 0 and Title \(newsentries[0][0])") }
+        // if (DEBUG) { print("Get Entry Nr.: 0 and Title \(newsentries[0][0])") }
         
         // var dict : NSDictionary! = []
         // var cacheFeed : NSArray = []
@@ -409,7 +409,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             news_count = newsentries.count
         }
         
-        for (var i = 0; i < news_count; i++) {
+        for i in 0 ..< news_count {
             
         let tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
         
@@ -418,7 +418,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         myNewDictArray.append(tmp)
         }
         
-        myFeed = myNewDictArray
+        myFeed = myNewDictArray as NSArray
         
         // if (DEBUG) { print(myNewDictArray) }
         
@@ -429,28 +429,28 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let newUrl = segue.destinationViewController as? NewFeedViewController {
+        if let newUrl = segue.destination as? NewFeedViewController {
             newUrl.onDataAvailable = {[weak self]
                 (data) in
                 if let weakSelf = self {
-                    weakSelf.loadRss(data)
+                    weakSelf.loadRss(data as URL)
                 }
             }
         }
         
         else if segue.identifier == "openPage" {
             
-            let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
+            let indexPath: IndexPath = self.tableView.indexPathForSelectedRow!
             // let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
-            let selectedFTitle: String = myFeed[indexPath.row].objectForKey("title") as! String
+            let selectedFTitle: String = (myFeed[indexPath.row] as AnyObject).object(forKey: "title") as! String
             // let selectedFContent: String = myFeed[indexPath.row].objectForKey("description") as String
-            let selectedFContent: String = myFeed[indexPath.row].objectForKey("content:encoded") as! String
-            let selectedFURL: String = myFeed[indexPath.row].objectForKey("link") as! String
+            let selectedFContent: String = (myFeed[indexPath.row] as AnyObject).object(forKey: "content:encoded") as! String
+            let selectedFURL: String = (myFeed[indexPath.row] as AnyObject).object(forKey: "link") as! String
             
             // Instance of our feedpageviewcontrolelr
-            let fpvc: FeedPageViewController = segue.destinationViewController as! FeedPageViewController
+            let fpvc: FeedPageViewController = segue.destination as! FeedPageViewController
 
             fpvc.selectedFeedTitle = selectedFTitle
             fpvc.selectedFeedFeedContent = selectedFContent
@@ -474,20 +474,20 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     */
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (DEBUG) { print("tableView::return_feed_count") }
         
         // return myFeed.count
         
         var feed_count = myFeed.count
         
-        if (userDefaults.objectForKey("newsCount") != nil) {
+        if (userDefaults.object(forKey: "newsCount") != nil) {
             
-            let maxnews_id = userDefaults.objectForKey("newsCount") as! Int
+            let maxnews_id = userDefaults.object(forKey: "newsCount") as! Int
             var maxnews_count = 0
             
             switch(maxnews_id as Int!) {
@@ -510,10 +510,10 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (DEBUG) { print("tableView::return_cell") }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         // Feed Image
         // cell.imageView?.image = UIImage (named: "news_pre")
@@ -523,30 +523,30 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
             // var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as! NSDictionary
         
             // Set cell properties.
-            cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
+            cell.textLabel?.text = (myFeed.object(at: indexPath.row) as AnyObject).object(forKey: "title") as? String
         
             // It seems that cell.textLabel?.text is no longer an optionional.
             // If the above line throws an error then comment it out and uncomment the below line.
             //cell.textLabel?.text = myFeed.objectAtIndex(indexPath.row).objectForKey("title") as? String
 
-            let formattedFeedTitle = myFeed.objectAtIndex(indexPath.row).objectForKey("pubDate") as? String
+            let formattedFeedTitle = (myFeed.object(at: indexPath.row) as AnyObject).object(forKey: "pubDate") as? String
         
             var date: String = formattedFeedTitle!
             let stringLength = date.characters.count
             let substringIndex = stringLength - 12
             // date = date.substringToIndex(advance(date.startIndex, substringIndex))
-            date = date.substringToIndex(date.startIndex.advancedBy(substringIndex))
+            date = date.substring(to: date.characters.index(date.startIndex, offsetBy: substringIndex))
             
             if (DEBUG) { print("PUBATE WAS: \(date)") }
         
             // Englische in Deutsche Tage umformatieren
-            date = date.stringByReplacingOccurrencesOfString("Mon", withString: "Mo")
-            date = date.stringByReplacingOccurrencesOfString("Tue", withString: "Di")
-            date = date.stringByReplacingOccurrencesOfString("Wed", withString: "Mi")
-            date = date.stringByReplacingOccurrencesOfString("Thu", withString: "Do")
-            date = date.stringByReplacingOccurrencesOfString("Fri", withString: "Fr")
-            date = date.stringByReplacingOccurrencesOfString("Sat", withString: "Sa")
-            date = date.stringByReplacingOccurrencesOfString("Sun", withString: "So")
+            date = date.replacingOccurrences(of: "Mon", with: "Mo")
+            date = date.replacingOccurrences(of: "Tue", with: "Di")
+            date = date.replacingOccurrences(of: "Wed", with: "Mi")
+            date = date.replacingOccurrences(of: "Thu", with: "Do")
+            date = date.replacingOccurrences(of: "Fri", with: "Fr")
+            date = date.replacingOccurrences(of: "Sat", with: "Sa")
+            date = date.replacingOccurrences(of: "Sun", with: "So")
         
             // "." hinter Tag hinzufügen
             date = replace(date, index: 6, newCharac: ".")
@@ -579,7 +579,7 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     }
     */
     
-    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+    func uicolorFromHex(_ rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
         let blue = CGFloat(rgbValue & 0xFF)/256.0
@@ -587,14 +587,14 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if (DEBUG) { print("tableView::return_header_cell") }
         
-        let headerCell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         
         let dict = appDelegate.dict
         
-        let label_newsHeader: String = dict.objectForKey("labels")!.objectForKey("News")!.objectForKey("title") as! String
+        let label_newsHeader: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "News")! as AnyObject).object(forKey: "title") as! String
         let headerCellText = label_newsHeader
         
         /*
@@ -606,12 +606,12 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         */
         
         // hide Title/Subtitle View in HeaderCell
-        headerCell.textLabel?.hidden = true
-        headerCell.detailTextLabel?.hidden = true
+        headerCell.textLabel?.isHidden = true
+        headerCell.detailTextLabel?.isHidden = true
         
         // Create new Label ont the fly and add it to HeaderCell
-        let label = UILabel(frame: CGRectMake(0, 0, 200, 55))
-        label.textAlignment = NSTextAlignment.Center
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 55))
+        label.textAlignment = NSTextAlignment.center
         label.text = headerCellText
         headerCell.addSubview(label)
         
@@ -620,27 +620,23 @@ class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
         return headerCell
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 55.0
     }
     
-    func replace(myString:String, index:Int, newCharac:Character) -> String {
+    func replace(_ myString:String, index:Int, newCharac:Character) -> String {
         
         var modifiedString = myString
-        let range = Range<String.Index>(
-            // start: advance(myString.startIndex, index),
-            // end: advance(myString.startIndex, index + 1))
-            start: myString.startIndex.advancedBy(index),
-            end: myString.startIndex.advancedBy(index+1))
-        modifiedString.replaceRange(range, with: "\(newCharac)")
+        let range = (myString.characters.index(myString.startIndex, offsetBy: index) ..< myString.characters.index(myString.startIndex, offsetBy: index+1))
+        modifiedString.replaceSubrange(range, with: "\(newCharac)")
         return modifiedString
     }
     
     // auch in freeseats vorhanden
-    func userAlreadyExist(kUSERID: String) -> Bool {
-        let userDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    func userAlreadyExist(_ kUSERID: String) -> Bool {
+        let userDefaults : UserDefaults = UserDefaults.standard
         
-        if (userDefaults.objectForKey(kUSERID) != nil) {
+        if (userDefaults.object(forKey: kUSERID) != nil) {
             return true
         }
         

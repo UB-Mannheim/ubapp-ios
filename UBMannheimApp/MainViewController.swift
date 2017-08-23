@@ -25,27 +25,27 @@ class MainViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        var nav = self.navigationController?.navigationBar
+    override func viewDidAppear(_ animated: Bool) {
+        _ = self.navigationController?.navigationBar
         
         // nav?.barStyle = UIBarStyle.Black
         // nav?.tintColor = UIColor.yellowColor()
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         
         let image = UIImage(named: "icon_32x32")
         imageView.image = image
         // navigationItem.titleView = imageView
         
         // let barButtomItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: "barButtonItemClicked")
-        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
+        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = barButtomItem
         
         // right Navigation Item, System Icon
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(MainViewController.openConfigDialog)), animated: true)
         
-        let tabBarController = UITabBarController()
+        _ = UITabBarController()
         
     }
 
@@ -54,12 +54,12 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         
         if (segue.identifier == "showWebsite") {
         
-            let destinationViewController = segue.destinationViewController as! WebViewController
+            let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
             website = "http://www.bib.uni-mannheim.de/mobile"
             destinationViewController.website = website
@@ -68,7 +68,7 @@ class MainViewController: UIViewController {
         
         if (segue.identifier == "showPrimo") {
         
-            let destinationViewController = segue.destinationViewController as! WebViewController
+            let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
             website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
             destinationViewController.website = website

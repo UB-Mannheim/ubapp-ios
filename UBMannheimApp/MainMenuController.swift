@@ -16,7 +16,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     var DEBUG: Bool = false
     // if (DEBUG) {}
     
-    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
     @IBOutlet var collectionView: UICollectionView!
@@ -27,7 +27,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     // Delete defaults Values
     var myArray : Array<Double>! {
         get {
-            if let myArray: AnyObject! = NSUserDefaults.standardUserDefaults().objectForKey("myArray") {
+            if let myArray: AnyObject? = UserDefaults.standard.object(forKey: "myArray") as AnyObject {
                 if (DEBUG) { print("\(myArray)") }
                 return myArray as! Array<Double>!
             }
@@ -36,26 +36,26 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         }
         set {
             if (DEBUG) { print(myArray) }
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "myArray")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(newValue, forKey: "myArray")
+            UserDefaults.standard.synchronize()
         }
     }
 
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    var preferredLanguage = Locale.preferredLanguages[0] as String
     
-    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    let userDefaults:UserDefaults=UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if (DEBUG) { print("DEBUG MSG MainMenuController : System starting ...") }
         
-        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let wback: Int? = userDefaults.objectForKey("backFromWebview") as! Int?
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        let kfirstrun: Int? = userDefaults.object(forKey: "firstRun") as! Int?
+        let wback: Int? = userDefaults.object(forKey: "backFromWebview") as! Int?
+        let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
         // Simple redirection if Startup option ist chosen
-        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         
         if (DEBUG) {
             print("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | backFromWebview = \(wback) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
@@ -87,21 +87,21 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                         if(wback != 1) {
                             
                             // Set Marker for unique Display at Start without internet and cache
-                            userDefaults.setObject(1, forKey: "backFromWebview")
+                            userDefaults.set(1, forKey: "backFromWebview")
                      
                             let dict = appDelegate.dict;
                             
-                            let alertMsg_Error: String = dict.objectForKey("alertMessages")!.objectForKey("errorTitle")! as! String
-                            let alertMsg_Ok: String = dict.objectForKey("alertMessages")!.objectForKey("okAction")! as! String
-                            let redirectError: String = dict.objectForKey("alertMessages")!.objectForKey("MainMenu")!.objectForKey("noRedirect") as! String
-                            let alertController = UIAlertController(title: alertMsg_Error, message: redirectError, preferredStyle: .Alert)
+                            let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
+                            let alertMsg_Ok: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "okAction")! as! String
+                            let redirectError: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "MainMenu")! as AnyObject).object(forKey: "noRedirect") as! String
+                            let alertController = UIAlertController(title: alertMsg_Error, message: redirectError, preferredStyle: .alert)
                      
-                            let okAction = UIAlertAction(title: alertMsg_Ok, style: .Default) { (action) in
+                            let okAction = UIAlertAction(title: alertMsg_Ok, style: .default) { (action) in
                                 self.viewDidLoad()
                             }
                         
                             alertController.addAction(okAction)
-                            self.presentViewController(alertController, animated: true, completion: nil)
+                            self.present(alertController, animated: true, completion: nil)
                         }
                         
                     }
@@ -121,7 +121,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 
                     // if online again an not back from webview
                 } else {
-                    userDefaults.setObject(0, forKey: "backFromWebview")
+                    userDefaults.set(0, forKey: "backFromWebview")
                 }
             }
             
@@ -134,18 +134,18 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         if (DEBUG) {
             print("Configuration States: ")
             print("firstRun :: ")
-            print(userDefaults.objectForKey("firstRun"))
+            print(userDefaults.object(forKey: "firstRun"))
             print("cacheEnabled :: ")
-            print(userDefaults.objectForKey("cacheEnabled"))
+            print(userDefaults.object(forKey: "cacheEnabled"))
             print("startupWith :: ")
-            print(userDefaults.objectForKey("startupWith"))
+            print(userDefaults.object(forKey: "startupWith"))
             print("newsCount :: ")
-            print(userDefaults.objectForKey("newsCount"))
+            print(userDefaults.object(forKey: "newsCount"))
         }
         
         if (DEBUG) { print("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainMenuController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         rotated()
         
         // FixMe: No more longer needed?
@@ -153,48 +153,48 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
     }
 
-    func adaptivePresentationStyleForPresentationController(
-        controller: UIPresentationController) -> UIModalPresentationStyle {
-            return .None // Alternative values: .FullScreen, .OverFullScreen
+    func adaptivePresentationStyle(
+        for controller: UIPresentationController) -> UIModalPresentationStyle {
+            return .none // Alternative values: .FullScreen, .OverFullScreen
     }
     
-    func presentationController(controller: UIPresentationController,
+    func presentationController(_ controller: UIPresentationController,
         viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
             return UINavigationController(rootViewController: controller.presentedViewController)
     }
     
     // FixMe: No more longer needed?
-    @IBAction func popOut_(sender: UIView) {
+    @IBAction func popOut_(_ sender: UIView) {
         print("POPOut deactivated")
     }
     
     // FixMe: No more longer needed?
-    func popOut(sender: UIView) {
+    func popOut(_ sender: UIView) {
         print("POPOut deactivated")
     }
     
     // FixMe: No more longer needed?
-    func popOutProg(sender: UIBarButtonItem) {
+    func popOutProg(_ sender: UIBarButtonItem) {
         // popover.presentPopoverFromBarButtonItem(sender, permittedArrowDirections: .Any, animated: true)
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         var nav = self.navigationController?.navigationBar
         
-        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
+        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = barButtomItem
         
         // Back Button in Child-View pressed, action if back to main Menu
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainMenuController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         rotated()
     }
     
-    func setLayout(myLayout: NSString) -> Void {
+    func setLayout(_ myLayout: NSString) -> Void {
     
         var marginTop: CGFloat = 80
         
-        if(myLayout.isEqualToString("landscape")) {
+        if(myLayout.isEqual(to: "landscape")) {
             
             marginTop = 40
         }
@@ -210,12 +210,12 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.registerClass(MyCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        self.collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         
         UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "learning_center")?.drawInRect(self.view.bounds)
+        UIImage(named: "learning_center")?.draw(in: self.view.bounds)
         
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
         self.collectionView.backgroundColor = UIColor(patternImage: image)
@@ -228,14 +228,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     func rotated()
     {
         
-        if( UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) ) {
+        if( UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation) ) {
             
             //Portrait orientation
             if (DEBUG) { print("portrait") }
             setLayout("portrait")
         }
         
-        if( UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) ) {
+        if( UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) ) {
             
             //Landscape orientation
             if (DEBUG) { print("landscape") }
@@ -247,28 +247,28 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     // Images as Buttons and actions
     //
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // return 20
         return menuItems.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! MyCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! MyCollectionViewCell
         cell.setMenuItem(menuItems[indexPath.row])
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let alert = UIAlertController(title: "didSelectItemAtIndexPath:", message: "Indexpath = \(indexPath)", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "didSelectItemAtIndexPath:", message: "Indexpath = \(indexPath)", preferredStyle: .alert)
         
-        let alertAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+        let alertAction = UIAlertAction(title: "Dismiss", style: .destructive, handler: nil)
         alert.addAction(alertAction)
         
         switch(indexPath.item) {
@@ -276,10 +276,10 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
                 break
             case 1: showWebView("primo")
                 break
-            case 2: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as! FeedTableViewController
+            case 2: let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "NewsView") as! FeedTableViewController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
                 break
-            case 3: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as! SeatsTableViewController
+            case 3: let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "SeatsView") as! SeatsTableViewController
                 self.navigationController?.pushViewController(homeViewController, animated: true)
                 break
             
@@ -287,12 +287,12 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         }
     }
     
-    func showWebView(destination: String) {
+    func showWebView(_ destination: String) {
         
-        var path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")
+        var path = Bundle.main.path(forResource: "strings", ofType: "plist")
         
-        if (preferredLanguage.containsString("de-")) {
-            path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")
+        if (preferredLanguage.contains("de-")) {
+            path = Bundle.main.path(forResource: "strings_de", ofType: "plist")
         }
         
         if (DEBUG) { print(preferredLanguage) }
@@ -301,20 +301,20 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let dict = NSDictionary(contentsOfFile: path!)
         
         // Menu Actions for Webview
-        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as! WebViewController
+        let webViewController = self.storyboard?.instantiateViewController(withIdentifier: "WebView") as! WebViewController
         
         // var url: NSString = ""
         var url: AnyObject = []
         
         if (destination=="website") {
             // url = "http://www.bib.uni-mannheim.de/mobile"
-            url = dict!.objectForKey("urls")!.objectForKey("Website")!
+            url = (dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Website")!
         }
 
         
         if (destination=="primo") {
             // url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
-            url = dict!.objectForKey("urls")!.objectForKey("Primo")!
+            url = (dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Primo")!
             
             // Demo from IGeLU
             // url = "test.url"
@@ -327,21 +327,21 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func showSeats() {
         
-        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as! SeatsTableViewController
+        let tableViewController = self.storyboard?.instantiateViewController(withIdentifier: "SeatsView") as! SeatsTableViewController
         
         self.navigationController?.pushViewController(tableViewController, animated: true)
     }
     
     func showNews() {
         
-        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as! FeedTableViewController
+        let tableViewController = self.storyboard?.instantiateViewController(withIdentifier: "NewsView") as! FeedTableViewController
         
         self.navigationController?.pushViewController(tableViewController, animated: true)
     }
     
     func showSubMenu() {
         
-        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("SubMenuView") as! ViewController
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SubMenuView") as! ViewController
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -353,11 +353,11 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     // Segue Perparation
     //
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "showWebsite") {
             
-            let destinationViewController = segue.destinationViewController as! WebViewController
+            let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
             website = "http://www.bib.uni-mannheim.de/mobile"
             destinationViewController.website = website
@@ -366,7 +366,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (segue.identifier == "showPrimo") {
             
-            let destinationViewController = segue.destinationViewController as! WebViewController
+            let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
             website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
             destinationViewController.website = website
@@ -375,14 +375,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (segue.identifier == "showNews") {
             
-            let destinationViewController = segue.destinationViewController as! TableViewController
+            let destinationViewController = segue.destination as! TableViewController
             destinationViewController.viewDidLoad()
             
         }
         
         if (segue.identifier == "showSeats") {
             
-            let destinationViewController = segue.destinationViewController as! ViewController
+            let destinationViewController = segue.destination as! ViewController
             destinationViewController.viewDidLoad()
             
         }
@@ -400,14 +400,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         // Dispose of any resources that can be recreated.
     }
     
-    private func initMenuItems() {
+    fileprivate func initMenuItems() {
         
         var items = [MenuItem]()
-        var inputFile = NSBundle.mainBundle().pathForResource("items", ofType: "plist")
+        var inputFile = Bundle.main.path(forResource: "items", ofType: "plist")
         
-        if (preferredLanguage.containsString("de-")) {
+        if (preferredLanguage.contains("de-")) {
                 
-            inputFile = NSBundle.mainBundle().pathForResource("items_de", ofType: "plist")
+            inputFile = Bundle.main.path(forResource: "items_de", ofType: "plist")
         }
         
         let inputDataArray = NSArray(contentsOfFile: inputFile!)
@@ -422,30 +422,30 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     func init_preferences() {
         
-        var cacheReference: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
+        var cacheReference: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
         if (cacheReference == nil) {
             cacheReference = false
         } else {
-            cacheReference = userDefaults.objectForKey("cacheEnabled") as! Bool?
+            cacheReference = userDefaults.object(forKey: "cacheEnabled") as! Bool?
         }
         
-        var startupReference: Int? = userDefaults.objectForKey("startupWith") as! Int?
+        var startupReference: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         if (startupReference == nil) {
             startupReference = 0
         } else {
-            startupReference = userDefaults.objectForKey("startupWith") as! Int?
+            startupReference = userDefaults.object(forKey: "startupWith") as! Int?
         }
         
-        var newsReference: Int? = userDefaults.objectForKey("newsCount") as! Int?
+        var newsReference: Int? = userDefaults.object(forKey: "newsCount") as! Int?
         if (newsReference == nil) {
             newsReference = 5
         } else {
-            newsReference = userDefaults.objectForKey("newsCount") as! Int?
+            newsReference = userDefaults.object(forKey: "newsCount") as! Int?
         }
         
-        userDefaults.setObject(cacheReference, forKey: "cacheEnabled")
-        userDefaults.setObject(startupReference, forKey: "startupWith")
-        userDefaults.setObject(newsReference, forKey: "newsCount")
+        userDefaults.set(cacheReference, forKey: "cacheEnabled")
+        userDefaults.set(startupReference, forKey: "startupWith")
+        userDefaults.set(newsReference, forKey: "newsCount")
         userDefaults.synchronize()
     }
     

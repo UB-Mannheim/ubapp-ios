@@ -16,29 +16,29 @@ class Help2ViewController: UITableViewController {
     var DEBUG: Bool = false
     // if (DEBUG) {
     
-    var hotelNames:[String] = []
+    // var hotelNames:[String] = []
     
-    var items = []
+    var items:[String] = []
     
-    let userDefaults:NSUserDefaults=NSUserDefaults.standardUserDefaults()
+    let userDefaults:UserDefaults=UserDefaults.standard
     
-    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let dict = appDelegate.dict
         
-        let website_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("website_title") as! String
-        let website_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("website_subtitle") as! String
-        let primo_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("primo_title") as! String
-        let primo_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("primo_subtitle") as! String
-        let news_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("news_title") as! String
-        let news_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("news_subtitle") as! String
-        let seats_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("seats_title") as! String
-        let seats_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("seats_subtitle") as! String
-        let config_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("config_title") as! String
-        let config_sub: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("config_subtitle") as! String
+        let website_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "website_title") as! String
+        let website_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "website_subtitle") as! String
+        let primo_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "primo_title") as! String
+        let primo_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "primo_subtitle") as! String
+        let news_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "news_title") as! String
+        let news_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "news_subtitle") as! String
+        let seats_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "seats_title") as! String
+        let seats_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "seats_subtitle") as! String
+        let config_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_title") as! String
+        let config_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_subtitle") as! String
         
         self.items = [  ["image": "website_bk", "title": website_title, "descr": website_sub],
             ["image": "primo_bk", "title": primo_title, "descr": primo_sub],
@@ -51,11 +51,11 @@ class Help2ViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         
-        let kfirstrun: Int? = userDefaults.objectForKey("firstRun") as! Int?
-        let kcache: Bool? = userDefaults.objectForKey("cacheEnabled") as! Bool?
-        let knews: Int? = userDefaults.objectForKey("newsCount") as! Int?
-        let kstartup: Int? = userDefaults.objectForKey("startupWith") as! Int?
-        if (DEBUG) { print("DEBUG MSG HelpViewController_: FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+        let kfirstrun: Int? = userDefaults.object(forKey: "firstRun") as! Int?
+        let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
+        let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
+        let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
+        if (DEBUG) { print("DEBUG MSG HelpViewController_: FirstRun = \(String(describing: kfirstrun)) | Cache = \(String(describing: kcache)) | News = \(String(describing: knews)) | Startup \(String(describing: kstartup))") }
         
     }
     
@@ -65,15 +65,15 @@ class Help2ViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // return hotels.count
         return self.items.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CustomTableViewCell
         
         let title = self.items[indexPath.row]["title"] as! String
         let subtitle = self.items[indexPath.row]["descr"] as! String
@@ -85,7 +85,7 @@ class Help2ViewController: UITableViewController {
         return cell
     }
     
-    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+    func uicolorFromHex(_ rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
         let blue = CGFloat(rgbValue & 0xFF)/256.0
@@ -93,12 +93,12 @@ class Help2ViewController: UITableViewController {
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell")! as UITableViewCell
+        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell")! as UITableViewCell
         
         let dict = appDelegate.dict
-        let help_title: String = dict.objectForKey("labels")!.objectForKey("Help")!.objectForKey("help_title") as! String
+        let help_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "help_title") as! String
         
         headerCell.textLabel?.text = help_title
         headerCell.backgroundColor = uicolorFromHex(0xf7f7f7)
@@ -106,7 +106,7 @@ class Help2ViewController: UITableViewController {
         return headerCell
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 55.0
     }
 }

@@ -28,36 +28,36 @@ class MainController: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         var nav = self.navigationController?.navigationBar
         
         // nav?.barStyle = UIBarStyle.Black
         // nav?.tintColor = UIColor.yellowColor()
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         
         let image = UIImage(named: "icon_32x32")
         imageView.image = image
         // navigationItem.titleView = imageView
         
         // let barButtomItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: "barButtonItemClicked")
-        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .Plain, target: nil, action: nil)
+        let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = barButtomItem
         
         // right Navigation Item, System Icon
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "openConfigDialog"), animated: true)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(MainController.openConfigDialog)), animated: true)
         
         // delete
         // let tabBarController = UITabBarController()
         
     }
     
-    private func initMenuItems() {
+    fileprivate func initMenuItems() {
         
         var items = [MenuItem]()
         
-        let inputFile = NSBundle.mainBundle().pathForResource("items", ofType: "plist")
+        let inputFile = Bundle.main.path(forResource: "items", ofType: "plist")
         
         let inputDataArray = NSArray(contentsOfFile: inputFile!)
         
@@ -69,23 +69,23 @@ class MainController: UIViewController {
         menuItems = items
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuItems.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MenuItemCollectionViewCell", forIndexPath: indexPath)as! MenuItemCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuItemCollectionViewCell", for: indexPath)as! MenuItemCollectionViewCell
         
         cell.setMenuItem(menuItems[indexPath.row])
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath) {
     
-        let alert = UIAlertController(title: "didSelectItemAtIndexPath:", message: "Indexpath = \(indexPath)", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "didSelectItemAtIndexPath:", message: "Indexpath = \(indexPath)", preferredStyle: .alert)
         
-        let alertAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+        let alertAction = UIAlertAction(title: "Dismiss", style: .destructive, handler: nil)
         alert.addAction(alertAction)
         
         // self.presentViewController(alert, animated: true, completion: nil)
@@ -96,10 +96,10 @@ class MainController: UIViewController {
                 break
         case 1: showWebView("primo")
                 break
-        case 2: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewsView") as! FeedTableViewController
+        case 2: let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "NewsView") as! FeedTableViewController
         self.navigationController?.pushViewController(homeViewController, animated: true)
                 break
-        case 3: let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as! SeatsTableViewController
+        case 3: let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "SeatsView") as! SeatsTableViewController
         self.navigationController?.pushViewController(homeViewController, animated: true)
                 break
             
@@ -107,9 +107,9 @@ class MainController: UIViewController {
         }
     }
     
-    func showWebView(destination: String) {
+    func showWebView(_ destination: String) {
         
-        let webViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WebView") as! WebViewController
+        let webViewController = self.storyboard?.instantiateViewController(withIdentifier: "WebView") as! WebViewController
         
         var url: NSString = ""
         
@@ -128,7 +128,7 @@ class MainController: UIViewController {
     
     func showSeats() {
         
-        let tableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SeatsView") as! TableViewController
+        let tableViewController = self.storyboard?.instantiateViewController(withIdentifier: "SeatsView") as! TableViewController
         
         self.navigationController?.pushViewController(tableViewController, animated: true)
     }
@@ -150,7 +150,7 @@ class MainController: UIViewController {
     */
     
     // reservierter platz fuer bild
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         let picDimensionX = self.view.frame.size.width / 2.5 // 16.0
         let picDimensionY = self.view.frame.size.height / 2.5
@@ -158,11 +158,11 @@ class MainController: UIViewController {
         // 2do
         // check and return minimum sizes
         
-        return CGSizeMake(picDimensionX, picDimensionY)
+        return CGSize(width: picDimensionX, height: picDimensionY)
     }
     
     // aussenabstand des grids
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         let leftRightInset = self.view.frame.size.width / 14.0 // 14.0
         // return UIEdgeInsets(top: 0, left: leftRightInset, bottom: 0, right: leftRightInset)
         return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -175,8 +175,8 @@ class MainController: UIViewController {
         
         //  Add custom view sizing constraints here
         
-        var currentDevice: UIDevice = UIDevice.currentDevice()
-        var orientation: UIDeviceOrientation = currentDevice.orientation
+        let currentDevice: UIDevice = UIDevice.current
+        let orientation: UIDeviceOrientation = currentDevice.orientation
         
         if orientation.isLandscape {
             viewDidLoad()
@@ -197,12 +197,12 @@ class MainController: UIViewController {
         }
     }*/
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         
         if (segue.identifier == "showWebsite") {
             
-            let destinationViewController = segue.destinationViewController as! WebViewController
+            let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
             website = "http://www.bib.uni-mannheim.de/mobile"
             destinationViewController.website = website
@@ -211,7 +211,7 @@ class MainController: UIViewController {
         
         if (segue.identifier == "showPrimo") {
             
-            let destinationViewController = segue.destinationViewController as! WebViewController
+            let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
             website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
             destinationViewController.website = website
@@ -220,14 +220,14 @@ class MainController: UIViewController {
         
         if (segue.identifier == "showNews") {
             
-            let destinationViewController = segue.destinationViewController as! TableViewController
+            let destinationViewController = segue.destination as! TableViewController
             destinationViewController.viewDidLoad()
             
         }
         
         if (segue.identifier == "showSeats") {
             
-            let destinationViewController = segue.destinationViewController as! ViewController
+            let destinationViewController = segue.destination as! ViewController
             destinationViewController.viewDidLoad()
             
         }

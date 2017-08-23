@@ -21,7 +21,7 @@ class MenuItem {
         itemTitle = dataDictionary["itemTitle"]!
     }
     
-    class func newMenuItem(dataDictionary:Dictionary<String,String>) -> MenuItem {
+    class func newMenuItem(_ dataDictionary:Dictionary<String,String>) -> MenuItem {
         return MenuItem(dataDictionary: dataDictionary)
     }
     

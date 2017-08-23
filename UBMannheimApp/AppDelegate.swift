@@ -19,11 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Language Settings
     var path = String()
     var dict = NSDictionary()
-    var preferredLanguage = NSLocale.preferredLanguages()[0] as String
+    var preferredLanguage = Locale.preferredLanguages[0] as String
 
     
     // Colors
-    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+    func uicolorFromHex(_ rgbValue:UInt32)->UIColor{
         
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -36,17 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Load Content (_en/_de)
     func loadContentInPreferredLanguage() {
         
-        self.path = NSBundle.mainBundle().pathForResource("strings", ofType: "plist")!
+        self.path = Bundle.main.path(forResource: "strings", ofType: "plist")!
         
-        if (self.preferredLanguage.containsString("de-")) {
-            self.path = NSBundle.mainBundle().pathForResource("strings_de", ofType: "plist")!
+        if (self.preferredLanguage.contains("de-")) {
+            self.path = Bundle.main.path(forResource: "strings_de", ofType: "plist")!
         }
         
         self.dict = NSDictionary(contentsOfFile: path)!
     }
     
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         let navigationBarAppearance = UINavigationBar.appearance()
@@ -54,12 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearance.tintColor = uicolorFromHex(0xffffff)
         navigationBarAppearance.barTintColor = uicolorFromHex(0x990000)
         
-        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. 
         // This can occur for certain types of temporary interruptions (such as an incoming phone call 
         // or SMS message) or when the user quits the application and it begins the transition to the 
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough 
         // application state information to restore your application to its current state in case it is 
         // terminated later.
@@ -76,12 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many 
         // of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. 
         // If the application was previously in the background, optionally refresh the user interface.
         
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.loadContentInPreferredLanguage()
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. 
         // See also applicationDidEnterBackground:.
     }

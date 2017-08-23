@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, NSXMLParserDelegate {
+class TableViewController: UITableViewController, XMLParserDelegate {
 
-    var parser = NSXMLParser()
+    var parser = XMLParser()
     var feeds = NSMutableArray()
     var elements = NSMutableDictionary()
     var element = NSString()
@@ -25,8 +25,8 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
         feeds = []
         // var url: NSURL = NSURL(fileURLWithPath: "http://blog.bib.uni-mannheim.de/Aktuelles/?feed=rss2&cat=4")!
-        var url: NSURL = NSURL(fileURLWithPath: "http://www.skysports.com/rss/0,20514,11661,00.xml")
-        parser = NSXMLParser(contentsOfURL: url)!
+        let url: URL = URL(fileURLWithPath: "http://www.skysports.com/rss/0,20514,11661,00.xml")
+        parser = XMLParser(contentsOf: url)!
         parser.delegate = self
         parser.shouldProcessNamespaces = false
         parser.shouldReportNamespacePrefixes = false
@@ -35,12 +35,12 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
         
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
             
-        element = elementName
+        element = elementName as NSString
             
         // instantiate feed properties
-        if(element as NSString).isEqualToString("item") {
+        if(element as NSString).isEqual(to: "item") {
         
             elements = NSMutableDictionary()
             elements = [:]
@@ -55,42 +55,42 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
     
     }
 
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         // process feed elements
-        if(elementName as NSString).isEqualToString("item") {
+        if(elementName as NSString).isEqual(to: "item") {
             
             if ftitle != "" {
-                elements.setObject(ftitle, forKey: "title")
+                elements.setObject(ftitle, forKey: "title" as NSCopying)
             }
             
             if link != "" {
-                elements.setObject(link, forKey: "link")
+                elements.setObject(link, forKey: "link" as NSCopying)
             }
             
             if fdescription != "" {
-                elements.setObject(fdescription, forKey: "description")
+                elements.setObject(fdescription, forKey: "description" as NSCopying)
             }
             
-            feeds.addObject(elements)
+            feeds.add(elements)
             
         }
         
     }
     
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+    func parser(_ parser: XMLParser, foundCharacters string: String?) {
         
-        if element.isEqualToString("title") {
-            ftitle.appendString(string!)
-        } else if element.isEqualToString("link") {
-            link.appendString(string!)
-        } else if element.isEqualToString("description") {
-            fdescription.appendString(string!)
+        if element.isEqual(to: "title") {
+            ftitle.append(string!)
+        } else if element.isEqual(to: "link") {
+            link.append(string!)
+        } else if element.isEqual(to: "description") {
+            fdescription.append(string!)
         }
     
     }
     
-    func parserDidEndDocument(parser: NSXMLParser) {
+    func parserDidEndDocument(_ parser: XMLParser) {
         self.tableView.reloadData()
     }
     
@@ -101,24 +101,24 @@ class TableViewController: UITableViewController, NSXMLParserDelegate {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return feeds.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
 
-        cell.textLabel?.text = feeds.objectAtIndex(indexPath.row).objectForKey("title") as? String
+        cell.textLabel?.text = (feeds.object(at: indexPath.row) as AnyObject).object(forKey: "title") as? String
         cell.detailTextLabel?.numberOfLines = 3
-        cell.detailTextLabel?.text = feeds.objectAtIndex(indexPath.row).objectForKey("description") as? String
+        cell.detailTextLabel?.text = (feeds.object(at: indexPath.row) as AnyObject).object(forKey: "description") as? String
 
         return cell
     }

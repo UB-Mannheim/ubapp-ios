@@ -49,7 +49,7 @@ class SeatsViewController: UITableViewController {
         
         self.tableView.rowHeight = 70
         self.dataset = setTableData()
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         /*
         api.getData({data, error -> Void in
@@ -105,26 +105,26 @@ class SeatsViewController: UITableViewController {
         // Arrays in Swift
         // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html
     
-        var ic: [String] = ["Info-Center", "23"]
-        var lc: [String] = ["Learning-Center", "17"]
-        var eo: [String] = ["Ehrenhof (Hasso-Plattner-Bibliothek)", "64"]
-        var bwl: [String] = ["BWL", "32"]
-        var a3: [String] = ["Bereich A3", "83"]
-        var a5: [String] = ["Bereich A5", "52"]
+        let ic: [String] = ["Info-Center", "23"]
+        let lc: [String] = ["Learning-Center", "17"]
+        let eo: [String] = ["Ehrenhof (Hasso-Plattner-Bibliothek)", "64"]
+        let bwl: [String] = ["BWL", "32"]
+        let a3: [String] = ["Bereich A3", "83"]
+        let a5: [String] = ["Bereich A5", "52"]
         
-        var sections = [ic, lc, eo, bwl, a3, a5]
+        let sections = [ic, lc, eo, bwl, a3, a5]
         
-        self.names = sections
+        self.names = sections as NSArray
         
         return sections
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.names.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         
         cell.textLabel?.text = self.names[indexPath.row] as? String
         cell.detailTextLabel?.text = self.ids[indexPath.row]
@@ -132,7 +132,7 @@ class SeatsViewController: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.row)!")
     }
 
