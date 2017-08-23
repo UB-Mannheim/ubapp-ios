@@ -29,7 +29,7 @@ class DBViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let db = DBHelper()
+        _ = DBHelper()
         print("DBHelper Class loaded")
         
         let filemgr = FileManager.default
@@ -47,18 +47,18 @@ class DBViewController: UIViewController {
             let contactDB = FMDatabase(path: databasePath as String)
             
             if contactDB == nil {
-                print("Error: \(contactDB?.lastErrorMessage())")
+                print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
             }
             
             if (contactDB?.open())! {
                 
                 let sql_stmt = "CREATE TABLE IF NOT EXISTS CONTACTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT, PHONE TEXT)"
                 if !(contactDB?.executeStatements(sql_stmt))! {
-                    print("Error: \(contactDB?.lastErrorMessage())")
+                    print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
                 }
                 contactDB?.close()
             } else {
-                print("Error: \(contactDB?.lastErrorMessage())")
+                print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
             }
         
         // } else {
@@ -77,13 +77,13 @@ class DBViewController: UIViewController {
         
         if (contactDB?.open())! {
             
-            let insertSQL = "INSERT INTO CONTACTS (name, address, phone) VALUES ('\(name.text)', '\(address.text)', '\(phone.text)')"
+            let insertSQL = "INSERT INTO CONTACTS (name, address, phone) VALUES ('\(String(describing: name.text))', '\(String(describing: address.text))', '\(String(describing: phone.text))')"
             let result = contactDB?.executeUpdate(insertSQL,
                 withArgumentsIn: nil)
             
             if !result! {
                 status.text = "Failded to add to contact"
-                print("Error: \(contactDB?.lastErrorMessage())")
+                print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
             } else {
                 status.text = "Contact added"
                 name.text = ""
@@ -93,7 +93,7 @@ class DBViewController: UIViewController {
             contactDB?.close() //?
             
         } else {
-            print("Error: \(contactDB?.lastErrorMessage())")
+            print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
         }
         
     }
@@ -102,7 +102,7 @@ class DBViewController: UIViewController {
         let contactDB = FMDatabase(path: databasePath as String)
     
         if (contactDB?.open())! {
-            let querySQL = "SELECT address, phone from CONTACTS where name = '\(name.text)'"
+            let querySQL = "SELECT address, phone from CONTACTS where name = '\(String(describing: name.text))'"
             
             let results:FMResultSet? = contactDB?.executeQuery(querySQL, withArgumentsIn: nil)
             
@@ -118,7 +118,7 @@ class DBViewController: UIViewController {
             contactDB?.close()
         
         } else {
-            print("Error: \(contactDB?.lastErrorMessage())")
+            print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
 
         }
         
@@ -127,7 +127,7 @@ class DBViewController: UIViewController {
 
     @IBAction func findNews(_ sender: AnyObject) {
         
-        let filemgr = FileManager.default
+        _ = FileManager.default
         let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory,
             .userDomainMask, true)
         let docsDir = dirPaths[0] 
@@ -154,7 +154,7 @@ class DBViewController: UIViewController {
             myDB?.close()
             
         } else {
-            print("Error: \(myDB?.lastErrorMessage())")
+            print("Error: \(String(describing: myDB?.lastErrorMessage()))")
             
         }
         

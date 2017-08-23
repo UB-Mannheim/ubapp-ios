@@ -18,7 +18,7 @@ class HelpViewController: UITableViewController {
     // FixMe
     // That's the old HelpController and should be deleted!
     
-    var items = []
+    var items: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,18 +63,23 @@ class HelpViewController: UITableViewController {
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
         
+        // let title = self.items[indexPath.row]["title"] as! String
+        // let subtitle = self.items[indexPath.row]["descr"] as! String
         
+        let elements: NSArray = self.items[indexPath.row] as! NSArray
+        let title: NSString = elements[1] as! NSString
+        let subtitle: NSString = elements[2] as! NSString
         
-        let title = self.items[indexPath.row]["title"] as! String
-        let subtitle = self.items[indexPath.row]["descr"] as! String
-        
-        cell.textLabel?.text = title
+        cell.textLabel?.text = title as! String
         // cell.textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        cell.detailTextLabel?.text = subtitle
+        cell.detailTextLabel?.text = subtitle as! String
         // cell.detailTextLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         cell.detailTextLabel?.numberOfLines = 0
         
-        cell.imageView?.image = UIImage(named: self.items[indexPath.row]["image"] as! String)
+        // cell.imageView?.image = UIImage(named: self.items[indexPath.row]["image"] as! String)
+        
+        let image: NSString = elements[0] as! NSString
+        cell.imageView!.image = UIImage(named: image as! String)
         
         print(title)
         

@@ -66,7 +66,7 @@ class SeatsTableViewController: UITableViewController {
         let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
         let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         
-        if (DEBUG) { print("DEBUG MSG SeatsTabController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup) [@Action: saveConfig]") }
+        if (DEBUG) { print("DEBUG MSG SeatsTabController : FirstRun = \(String(describing: kfirstrun)) | Cache = \(String(describing: kcache)) | News = \(String(describing: knews)) | Startup \(String(describing: kstartup)) [@Action: saveConfig]") }
         
         
         // If pulled down, refresh
@@ -380,7 +380,7 @@ class SeatsTableViewController: UITableViewController {
     func connectionDidFinishLoading(_ connection: NSURLConnection!) {
         // Request complete, self.data should now hold the resulting info
         // Convert the retrieved data in to an object through JSON deserialization
-        let err: NSError
+        let _: NSError
 
         do {
         let jsonResult: NSDictionary = try! JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
@@ -390,8 +390,6 @@ class SeatsTableViewController: UITableViewController {
                     self.items = results
                     self.tableView.reloadData()     // print(self.items)
                 }
-        } catch {
-            print(err)
         }
         
             let wlan_load = self.items

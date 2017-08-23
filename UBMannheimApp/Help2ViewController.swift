@@ -31,20 +31,25 @@ class Help2ViewController: UITableViewController {
         
         let website_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "website_title") as! String
         let website_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "website_subtitle") as! String
+        
         let primo_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "primo_title") as! String
         let primo_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "primo_subtitle") as! String
+        
         let news_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "news_title") as! String
         let news_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "news_subtitle") as! String
+        
         let seats_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "seats_title") as! String
         let seats_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "seats_subtitle") as! String
+        
         let config_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_title") as! String
         let config_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_subtitle") as! String
         
-        self.items = [  ["image": "website_bk", "title": website_title, "descr": website_sub],
-            ["image": "primo_bk", "title": primo_title, "descr": primo_sub],
-            ["image": "news_bk", "title": news_title, "descr": news_sub],
-            ["image": "seats_bk", "title": seats_title, "descr": seats_sub],
-            ["image": "config_bk", "title": config_title, "descr": config_sub]
+        self.items = [
+            String(describing: ["image": "website_bk", "title": website_title, "descr": website_sub]),
+            String(describing: ["image": "primo_bk", "title": primo_title, "descr": primo_sub]),
+            String(describing: ["image": "news_bk", "title": news_title, "descr": news_sub]),
+            String(describing: ["image": "seats_bk", "title": seats_title, "descr": seats_sub]),
+            String(describing: ["image": "config_bk", "title": config_title, "descr": config_sub])
         ]
         
         tableView.estimatedRowHeight = 68.0
@@ -75,12 +80,24 @@ class Help2ViewController: UITableViewController {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CustomTableViewCell
         
-        let title = self.items[indexPath.row]["title"] as! String
-        let subtitle = self.items[indexPath.row]["descr"] as! String
+        /*
+        let title = self.items[indexPath.row]["title"]
+        let subtitle = self.items[indexPath.row]["descr"]
+        */
         
+        let elements: NSArray = self.items[indexPath.row] as! NSArray
+        let title: NSString = elements[1] as! NSString
+        let subtitle: NSString = elements[2] as! NSString
+        
+        // let title = "swift3 title"
+        // let subtitle = "swift3 subtitle"
+         
         cell.nameLabel?.text = title as String?
         cell.addressLabel?.text = subtitle as String?
-        cell.imageView!.image = UIImage(named: self.items[indexPath.row]["image"] as! String)
+        // cell.imageView!.image = UIImage(named: self.items[indexPath.row]["image"] as! String)
+        
+        let image: NSString = elements[0] as! NSString
+        cell.imageView!.image = UIImage(named: image as! String)
         
         return cell
     }

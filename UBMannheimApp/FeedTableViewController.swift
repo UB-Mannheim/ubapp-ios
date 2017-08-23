@@ -16,7 +16,7 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
     var DEBUG: Bool = false
     
     var myFeed : NSArray = []
-    var url: URL = URL()
+    var url: URL = URL(fileURLWithPath: "http://www.bib.uni-mannheim.de")
     
     let userDefaults:UserDefaults=UserDefaults.standard
     
@@ -411,11 +411,21 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
         
         for i in 0 ..< news_count {
             
-        let tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
+        // let tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
         
+            let elements: NSArray = newsentries[i] as! NSArray
+                let title = elements[0]
+                let content = elements[2]
+                let pubdate = elements[3]
+                let link = elements[4]
+        
+        let tmp = ["title":title, "content:encoded":content, "pubDate":pubdate, "link":link]
+            
+            
         // if (DEBUG) { print(tmp) }
-        
-        myNewDictArray.append(tmp)
+        // myNewDictArray.append(tmp)
+            
+        myNewDictArray.append(tmp as [String : AnyObject])
         }
         
         myFeed = myNewDictArray as NSArray

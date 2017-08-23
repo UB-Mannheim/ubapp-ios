@@ -27,14 +27,15 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     // Delete defaults Values
     var myArray : Array<Double>! {
         get {
-            if let myArray: AnyObject? = UserDefaults.standard.object(forKey: "myArray") as AnyObject {
-                if (DEBUG) { print("\(myArray)") }
+        /*    if let myArray: AnyObject UserDefaults.standard.object(forKey: "myArray") as AnyObject {
+                if (DEBUG) { print("\(String(describing: myArray))") }
                 return myArray as! Array<Double>!
             }
-            
+        */
             return nil
         }
         set {
+            // emtpy Array, look above
             if (DEBUG) { print(myArray) }
             UserDefaults.standard.set(newValue, forKey: "myArray")
             UserDefaults.standard.synchronize()
@@ -58,7 +59,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
         
         if (DEBUG) {
-            print("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | backFromWebview = \(wback) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)")
+            print("DEBUG MSG MainMenuController : FirstRun = \(String(describing: kfirstrun)) | backFromWebview = \(String(describing: wback)) | Cache = \(String(describing: kcache)) | News = \(String(describing: knews)) | Startup \(String(describing: kstartup))")
         }
         
         // Now startup with selected Module
@@ -133,17 +134,20 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (DEBUG) {
             print("Configuration States: ")
+            print("stopped because of swift 3 tests")
+            /*
             print("firstRun :: ")
-            print(userDefaults.object(forKey: "firstRun"))
+            print(userDefaults.object(forKey: "firstRun") ?? <#default value#>)
             print("cacheEnabled :: ")
-            print(userDefaults.object(forKey: "cacheEnabled"))
+            print(userDefaults.object(forKey: "cacheEnabled") ?? <#default value#>)
             print("startupWith :: ")
-            print(userDefaults.object(forKey: "startupWith"))
+            print(userDefaults.object(forKey: "startupWith") ?? <#default value#>)
             print("newsCount :: ")
-            print(userDefaults.object(forKey: "newsCount"))
+            print(userDefaults.object(forKey: "newsCount") ?? <#default value#>)
+             */
         }
         
-        if (DEBUG) { print("DEBUG MSG MainMenuController : FirstRun = \(kfirstrun) | Cache = \(kcache) | News = \(knews) | Startup \(kstartup)") }
+        if (DEBUG) { print("DEBUG MSG MainMenuController : FirstRun = \(String(describing: kfirstrun)) | Cache = \(String(describing: kcache)) | News = \(String(describing: knews)) | Startup \(String(describing: kstartup))") }
         
         NotificationCenter.default.addObserver(self, selector: #selector(MainMenuController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         rotated()
@@ -180,7 +184,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        var nav = self.navigationController?.navigationBar
+        _ = self.navigationController?.navigationBar
         
         let barButtomItem = UIBarButtonItem(image: UIImage(named: "bar_button"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = barButtomItem
@@ -304,23 +308,25 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         let webViewController = self.storyboard?.instantiateViewController(withIdentifier: "WebView") as! WebViewController
         
         // var url: NSString = ""
-        var url: AnyObject = []
+        var url: NSString = ""
         
         if (destination=="website") {
             // url = "http://www.bib.uni-mannheim.de/mobile"
-            url = (dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Website")!
+            // ?cannot fix
+            url = ((dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Website")! as AnyObject) as! NSString
         }
 
         
         if (destination=="primo") {
             // url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
-            url = (dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Primo")!
-            
+            url = "primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
+            // ?cannot fix
+            // url = ((dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Primo")! as AnyObject)
             // Demo from IGeLU
             // url = "test.url"
         }
         
-        webViewController.website = url as! NSString
+        webViewController.website = url 
         
         self.navigationController?.pushViewController(webViewController, animated: true)
     }
