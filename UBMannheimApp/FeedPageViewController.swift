@@ -13,11 +13,13 @@ import UIKit
 
 class FeedPageViewController: UIViewController {
 
-    var DEBUG: Bool = true
+    var DEBUG: Bool = false
     
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var webView2: UIWebView!
     // @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var textLabel2: UILabel!
     @IBOutlet weak var webView: UIWebView!
     
     var selectedFeedTitle = String()
@@ -29,7 +31,8 @@ class FeedPageViewController: UIViewController {
         super.viewDidLoad()
         
         // Populate Label
-        textLabel.text = selectedFeedTitle
+        // textLabel.text = selectedFeedTitle
+        textLabel2.text = selectedFeedTitle
         
         // Config Text Area
         // textView.text = "\(selectedFeedFeedContent)"
@@ -58,7 +61,13 @@ class FeedPageViewController: UIViewController {
         let html_suffix = "</body></html>"
         
         let html = html_prefix + selectedFeedFeedContent + html_suffix
-        webView.loadHTMLString(html, baseURL: nil)
+        
+        // do {
+        //     let x = try
+        webView2.loadHTMLString(html, baseURL: nil)
+        // webView.loadRequest(URLRequest(url: URL(string: "https://www.google.de")!))
+        //     print("not properly loaded")
+        // }
         
         if (DEBUG) { print(html) }
         
