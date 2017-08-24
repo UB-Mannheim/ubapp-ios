@@ -413,16 +413,18 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
             
         // let tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
         
-            let elements: NSArray = newsentries[i] as! NSArray
-                let title = elements[0]
-                let content = elements[2]
-                let pubdate = elements[3]
-                let link = elements[4]
         
+            let elements: [AnyObject] = (newsentries[i] as? AnyObject) as! [AnyObject]
+                let title = elements[0] as! String
+                let content = elements[2] as! String
+                let pubdate = elements[3] as! String
+                let link = elements[4] as! String
+            
+ 
         let tmp = ["title":title, "content:encoded":content, "pubDate":pubdate, "link":link]
             
             
-        // if (DEBUG) { print(tmp) }
+        if (DEBUG) { print(tmp) }
         // myNewDictArray.append(tmp)
             
         myNewDictArray.append(tmp as [String : AnyObject])

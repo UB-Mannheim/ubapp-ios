@@ -16,7 +16,8 @@ class SubMenuController: UITableViewController {
     var DEBUG: Bool = false
     // if (DEBUG) {}
     
-    var items: NSArray = NSArray()
+    // var items: NSArray = NSArray()
+    var items: [[String: String]] = []
     
     let userDefaults:UserDefaults=UserDefaults.standard
     
@@ -57,7 +58,9 @@ class SubMenuController: UITableViewController {
         let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
         let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
-        if (DEBUG) { print("DEBUG MSG SubMenuController_ : FirstRun = \(String(describing: kfirstrun)) | Cache = \(kcache) | News = \(String(describing: knews)) | Startup \(String(describing: kstartup))") }
+        if (DEBUG) {
+            print("DEBUG MSG SubMenuController_ : FirstRun = \((kfirstrun?.description)!) | Cache = \((kcache?.description)!) | News = \((knews?.description)!) | Startup \((kstartup?.description)!)")
+            }
         
     }
     
@@ -70,14 +73,17 @@ class SubMenuController: UITableViewController {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
         
         // let title = self.items[indexPath.row]["title"]
-        let elements: NSArray = self.items[indexPath.row] as! NSArray
-        let title: NSString = elements[0] as! NSString
-        
+        // let elements: NSArray = self.items[indexPath.row] as! NSArray
+        // let title: NSString = elements[0] as! NSString
         // let subtitle = self.items[indexPath.row]["subtitle"] as! NSString
-        let subtitle: NSString = elements[1] as! NSString
+        // let subtitle: NSString = elements[1] as! NSString
         
-        cell.textLabel?.text = title as! String
-        cell.detailTextLabel?.text = subtitle as! String
+        let elements = self.items[indexPath.row]
+        let title: String = (elements["title"])!
+        let subtitle: String = (elements["subtitle"])!
+        
+        cell.textLabel?.text = title
+        cell.detailTextLabel?.text = subtitle
         
         
         if(title.isEqual("Einstellungen")) {

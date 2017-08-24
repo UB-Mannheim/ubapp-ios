@@ -319,7 +319,7 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (destination=="primo") {
             // url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
-            url = "primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
+            url = "https://primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
             // ?cannot fix
             // url = ((dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Primo")! as AnyObject)
             // Demo from IGeLU

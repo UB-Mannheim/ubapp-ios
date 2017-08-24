@@ -13,7 +13,7 @@ import UIKit
 
 class FeedPageViewController: UIViewController {
 
-    var DEBUG: Bool = false
+    var DEBUG: Bool = true
     
     @IBOutlet weak var textLabel: UILabel!
     // @IBOutlet weak var textView: UITextView!
@@ -60,7 +60,7 @@ class FeedPageViewController: UIViewController {
         let html = html_prefix + selectedFeedFeedContent + html_suffix
         webView.loadHTMLString(html, baseURL: nil)
         
-        // if (DEBUG) { print(html) }
+        if (DEBUG) { print(html) }
         
         /*
         // Additional Attachment

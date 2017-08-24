@@ -18,7 +18,7 @@ class Help2ViewController: UITableViewController {
     
     // var hotelNames:[String] = []
     
-    var items:[String] = []
+    var items: [[String: String]] = []
     
     let userDefaults:UserDefaults=UserDefaults.standard
     
@@ -45,11 +45,11 @@ class Help2ViewController: UITableViewController {
         let config_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_subtitle") as! String
         
         self.items = [
-            String(describing: ["image": "website_bk", "title": website_title, "descr": website_sub]),
-            String(describing: ["image": "primo_bk", "title": primo_title, "descr": primo_sub]),
-            String(describing: ["image": "news_bk", "title": news_title, "descr": news_sub]),
-            String(describing: ["image": "seats_bk", "title": seats_title, "descr": seats_sub]),
-            String(describing: ["image": "config_bk", "title": config_title, "descr": config_sub])
+            ["image": "website_bk", "title": website_title, "descr": website_sub],
+            ["image": "primo_bk", "title": primo_title, "descr": primo_sub],
+            ["image": "news_bk", "title": news_title, "descr": news_sub],
+            ["image": "seats_bk", "title": seats_title, "descr": seats_sub],
+            ["image": "config_bk", "title": config_title, "descr": config_sub]
         ]
         
         tableView.estimatedRowHeight = 68.0
@@ -60,7 +60,9 @@ class Help2ViewController: UITableViewController {
         let kcache: Bool? = userDefaults.object(forKey: "cacheEnabled") as! Bool?
         let knews: Int? = userDefaults.object(forKey: "newsCount") as! Int?
         let kstartup: Int? = userDefaults.object(forKey: "startupWith") as! Int?
-        if (DEBUG) { print("DEBUG MSG HelpViewController_: FirstRun = \(String(describing: kfirstrun)) | Cache = \(String(describing: kcache)) | News = \(String(describing: knews)) | Startup \(String(describing: kstartup))") }
+        if (DEBUG) {
+            print("DEBUG MSG HelpViewController_ : FirstRun = \((kfirstrun?.description)!) | Cache = \((kcache?.description)!) | News = \((knews?.description)!) | Startup \((kstartup?.description)!)")
+        }
         
     }
     
@@ -85,19 +87,23 @@ class Help2ViewController: UITableViewController {
         let subtitle = self.items[indexPath.row]["descr"]
         */
         
-        let elements: NSArray = self.items[indexPath.row] as! NSArray
-        let title: NSString = elements[1] as! NSString
-        let subtitle: NSString = elements[2] as! NSString
+        // let elements: NSArray = self.items[indexPath.row] as! NSArray
+        // let title: NSString = elements[1] as! NSString
+        // let subtitle: NSString = elements[2] as! NSString
         
-        // let title = "swift3 title"
-        // let subtitle = "swift3 subtitle"
-         
-        cell.nameLabel?.text = title as String?
-        cell.addressLabel?.text = subtitle as String?
+        let elements = self.items[indexPath.row]
+        let title: String = (elements["title"])!
+        let subtitle: String = (elements["descr"])!
+        let img: String = (elements["image"])!
+        
+        cell.nameLabel?.text = title
+        cell.addressLabel?.text = subtitle
         // cell.imageView!.image = UIImage(named: self.items[indexPath.row]["image"] as! String)
+        cell.imageView!.image = UIImage(named: img)
         
-        let image: NSString = elements[0] as! NSString
-        cell.imageView!.image = UIImage(named: image as! String)
+        
+        // let image: NSString = elements[0] as! NSString
+        // cell.imageView!.image = UIImage(named: image as! String)
         
         return cell
     }

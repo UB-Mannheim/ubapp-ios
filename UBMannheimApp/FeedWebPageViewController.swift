@@ -25,6 +25,7 @@ class FeedWebPageViewController: UIViewController {
         myWebView.loadRequest(URLRequest(url: URL(string: feedURL)!))
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
