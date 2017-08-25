@@ -332,7 +332,7 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         
         
         // #4
-        
+        /*
         JLToastView.setDefaultValue(
             UIColor.gray,
             forAttributeName: JLToastViewBackgroundColorAttributeName,
@@ -347,7 +347,17 @@ class ConfigController: UITableViewController, UIPickerViewDataSource, UIPickerV
         // }
         
         JLToast.makeText(toastMsg_savedConfig).show()
+        */
         
+        // #4 
+        
+        let toastMsg_savedConfig: String = ((dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "Config")! as AnyObject).object(forKey: "savedSettings") as! String
+        
+        let appearance = ToastView.appearance()
+        appearance.textInsets = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
+        appearance.cornerRadius = 15
+        
+        Toast(text: toastMsg_savedConfig).show()
     }
     
     // If State of Switch changes saveConfig() too

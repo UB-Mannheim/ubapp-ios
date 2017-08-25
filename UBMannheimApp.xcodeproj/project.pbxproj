@@ -39,6 +39,10 @@
 		B2946F821C3AA73300C791D5 /* strings_de.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2946F811C3AA73300C791D5 /* strings_de.plist */; };
 		B29F73D41A92468000C54592 /* JsonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D31A92468000C54592 /* JsonAPI.swift */; };
 		B29F73D61A9332C100C54592 /* SeatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */; };
+		B2A7DBE41F504D0A0089669D /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A7DBE31F504D0A0089669D /* Toast.swift */; };
+		B2A7DBE61F504D220089669D /* ToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A7DBE51F504D220089669D /* ToastCenter.swift */; };
+		B2A7DBE91F504D380089669D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A7DBE81F504D380089669D /* ToastView.swift */; };
+		B2A7DBEB1F504D400089669D /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A7DBEA1F504D400089669D /* ToastWindow.swift */; };
 		B2B02D1A1CA17CC100D5BEE5 /* EmbeddedLinks.txt in Resources */ = {isa = PBXBuildFile; fileRef = B2B02D191CA17CC100D5BEE5 /* EmbeddedLinks.txt */; };
 		B2B981B21A8CA58E001B390B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2266FB31A825C1500C11E08 /* MainViewController.swift */; };
 		B2C1F1DF1B28666B00767F47 /* JLToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1F1DE1B28666B00767F47 /* JLToast.swift */; };
@@ -136,6 +140,11 @@
 		B2946F811C3AA73300C791D5 /* strings_de.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = strings_de.plist; sourceTree = "<group>"; };
 		B29F73D31A92468000C54592 /* JsonAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonAPI.swift; sourceTree = "<group>"; };
 		B29F73D51A9332C100C54592 /* SeatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatsTableViewController.swift; sourceTree = "<group>"; };
+		B2A7DBE31F504D0A0089669D /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		B2A7DBE51F504D220089669D /* ToastCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastCenter.swift; sourceTree = "<group>"; };
+		B2A7DBE71F504D2E0089669D /* Toaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toaster.h; sourceTree = "<group>"; };
+		B2A7DBE81F504D380089669D /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		B2A7DBEA1F504D400089669D /* ToastWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
 		B2B02D191CA17CC100D5BEE5 /* EmbeddedLinks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EmbeddedLinks.txt; sourceTree = "<group>"; };
 		B2C1F1DE1B28666B00767F47 /* JLToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToast.swift; sourceTree = "<group>"; };
 		B2C1F1E11B2866B800767F47 /* JLToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastView.swift; sourceTree = "<group>"; };
@@ -313,6 +322,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B2A7DBE21F504CCA0089669D /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				B2A7DBE51F504D220089669D /* ToastCenter.swift */,
+				B2A7DBE81F504D380089669D /* ToastView.swift */,
+				B2A7DBE71F504D2E0089669D /* Toaster.h */,
+				B2A7DBEA1F504D400089669D /* ToastWindow.swift */,
+				B2A7DBE31F504D0A0089669D /* Toast.swift */,
+			);
+			name = Toast;
+			sourceTree = "<group>";
+		};
 		B2C1F1E01B2866A400767F47 /* JLToast */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +348,7 @@
 		B2C8B0AF1A8E09F0002CBA11 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B2A7DBE21F504CCA0089669D /* Toast */,
 				B2C1F1E01B2866A400767F47 /* JLToast */,
 				B25C7A301AB9AE480069BB55 /* fmdb */,
 				B2CF14CB1AC2B2C000F56F36 /* DBHelper.swift */,
@@ -472,6 +494,7 @@
 				B22D05041AC935D800904165 /* MenuViewController.swift in Sources */,
 				B2506BDB1ADBB72E0057AE61 /* MyCollectionViewCell.swift in Sources */,
 				B2FF89F61A8B9D3E00786581 /* FeedWebPageViewController.swift in Sources */,
+				B2A7DBE41F504D0A0089669D /* Toast.swift in Sources */,
 				B25C7A321AB9AFFE0069BB55 /* DBViewController.swift in Sources */,
 				B25C7A2D1AB9AE1A0069BB55 /* FMDatabasePool.m in Sources */,
 				B29F73D61A9332C100C54592 /* SeatsTableViewController.swift in Sources */,
@@ -492,9 +515,11 @@
 				B2C1F1E21B2866B800767F47 /* JLToastView.swift in Sources */,
 				B2CD07B91AC2D482007E1E3E /* ConfigController.swift in Sources */,
 				B2FF89F51A8B9D3E00786581 /* NewFeedViewController.swift in Sources */,
+				B2A7DBE61F504D220089669D /* ToastCenter.swift in Sources */,
 				B270CED11A778D3F003C981B /* ViewController.swift in Sources */,
 				B26BB8521AE0E254001D3EB5 /* SubMenuController.swift in Sources */,
 				B2C4A7A81A8B842700B79B10 /* TableViewController.swift in Sources */,
+				B2A7DBE91F504D380089669D /* ToastView.swift in Sources */,
 				B2CF14CA1AC2B25C00F56F36 /* DBHelper_.swift in Sources */,
 				B2CF14CE1AC2B30700F56F36 /* IJReachability.swift in Sources */,
 				B2FF89F71A8B9D3E00786581 /* XmlParserManager.swift in Sources */,
@@ -509,6 +534,7 @@
 				B2C8B0AE1A8E069A002CBA11 /* SwiftyJSON.swift in Sources */,
 				B2E222FC1AC44E92000D1B76 /* MainController.swift in Sources */,
 				B2FF89F31A8B9D3E00786581 /* FeedPageViewController.swift in Sources */,
+				B2A7DBEB1F504D400089669D /* ToastWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
