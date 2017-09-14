@@ -41,7 +41,13 @@ class SeatsTableViewController: UITableViewController {
             let dict = appDelegate.dict
             
             let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
-            let alertMsg_Err_noNetwork: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "noNetwork")! as! String
+            // let alertMsg_Err_noNetwork: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "noNetwork")! as! String
+            
+            let alertDict: NSDictionary = (dict.object(forKey: "alertMessages")! as AnyObject) as! NSDictionary
+            let seatsDict: NSDictionary = (alertDict.object(forKey: "FreeSeats")! as AnyObject) as! NSDictionary
+            let txt: String = seatsDict.object(forKey: "noNetwork")! as! String
+            let alertMsg_Err_noNetwork: String = txt
+            
             let alertMsg_OK: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "okAction")! as! String
             let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .alert)
             
@@ -137,7 +143,13 @@ class SeatsTableViewController: UITableViewController {
                     let dict = appDelegate.dict
                     
                     let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
-                    let alertMsg_Err_initCache: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "initCache")! as! String
+                    
+                    // let alertMsg_Err_initCache: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "initCache")! as! String
+                    let alertDict: NSDictionary = (dict.object(forKey: "alertMessages")! as AnyObject) as! NSDictionary
+                    let seatsDict: NSDictionary = (alertDict.object(forKey: "FreeSeats")! as AnyObject) as! NSDictionary
+                    let txt: String = seatsDict.object(forKey: "initCache")! as! String
+                    let alertMsg_Err_initCache: String = txt
+                    
                     let alertMsg_back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
                     let alertMsg_reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
                     
@@ -181,7 +193,13 @@ class SeatsTableViewController: UITableViewController {
                     let dict = appDelegate.dict
                     
                     let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
-                    let alertMsg_Err_createCache: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "createCache")! as! String
+                    // let alertMsg_Err_createCache: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "createCache")! as! String
+                    
+                    let alertDict: NSDictionary = (dict.object(forKey: "alertMessages")! as AnyObject) as! NSDictionary
+                    let seatsDict: NSDictionary = (alertDict.object(forKey: "FreeSeats")! as AnyObject) as! NSDictionary
+                    let txt: String = seatsDict.object(forKey: "createCache")! as! String
+                    let alertMsg_Err_createCache: String = txt
+                    
                     let alertMsg_back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
                     let alertMsg_reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
                     
@@ -222,7 +240,13 @@ class SeatsTableViewController: UITableViewController {
                 let dict = appDelegate.dict
                 
                 let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
-                let alertMsg_Err_noCache_noNetwork: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "noCache_noNetwork")! as! String
+                // let alertMsg_Err_noCache_noNetwork: String = (dict.object(forKey: "FreeSeats")! as AnyObject).object(forKey: "noCache_noNetwork")! as! String
+                
+                let alertDict: NSDictionary = (dict.object(forKey: "alertMessages")! as AnyObject) as! NSDictionary
+                let seatsDict: NSDictionary = (alertDict.object(forKey: "FreeSeats")! as AnyObject) as! NSDictionary
+                let txt: String = seatsDict.object(forKey: "noCache_noNetwork")! as! String
+                let alertMsg_Err_noCache_noNetwork: String = txt
+                
                 let alertMsg_back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
                 let alertMsg_reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
             

@@ -49,7 +49,13 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
             let dict = appDelegate.dict
             
             let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
-            let alertMsg_Err_noNetwork: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "noNetwork")! as! String
+            
+            // let alertMsg_Err_noNetwork: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "noNetwork")! as! String
+            let alertDict: NSDictionary = (dict.object(forKey: "alertMessages")! as AnyObject) as! NSDictionary
+            let newsDict: NSDictionary = (alertDict.object(forKey: "News")! as AnyObject) as! NSDictionary
+            let txt: String = newsDict.object(forKey: "noNetwork")! as! String
+            let alertMsg_Err_noNetwork: String = txt
+            
             let alertMsg_OK: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "okAction")! as! String
             
             let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noNetwork, preferredStyle: .alert)
@@ -222,7 +228,12 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
                         let dict = appDelegate.dict
                         
                         let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
-                        let alertMsg_Err_initCache: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "initCache")! as! String
+                        // let alertMsg_Err_initCache: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "initCache")! as! String
+                        let alertDict: NSDictionary = (dict.object(forKey: "alertMessages")! as AnyObject) as! NSDictionary
+                        let newsDict: NSDictionary = (alertDict.object(forKey: "News")! as AnyObject) as! NSDictionary
+                        let txt: String = newsDict.object(forKey: "initCache")! as! String
+                        let alertMsg_Err_initCache: String = txt
+                        
                         let alertMsg_back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
                         let alertMsg_reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
                         
@@ -267,10 +278,26 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
                 
                 let dict = appDelegate.dict
                 
+                if (DEBUG) { print("dict loaded") }
+                
+                
                 let alertMsg_Error: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "errorTitle")! as! String
-                let alertMsg_Err_noCache_noNetwork: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "noCache_noNetwork")! as! String
+                if (DEBUG) { print("errorTitle loaded") }
+                
+                // let alertMsg_Err_noCache_noNetwork: String = (dict.object(forKey: "News")! as AnyObject).object(forKey: "noCache_noNetwork")! as! String
+                // let alertMsg_Err_noCache_noNetwork: String = "noCache_noNetwork"
+                
+                let alertDict: NSDictionary = (dict.object(forKey: "alertMessages")! as AnyObject) as! NSDictionary
+                let newsDict: NSDictionary = (alertDict.object(forKey: "News")! as AnyObject) as! NSDictionary
+                let txt: String = newsDict.object(forKey: "noCache_noNetwork")! as! String
+                let alertMsg_Err_noCache_noNetwork: String = txt
+ 
+
+                if (DEBUG) { print("noCache_noNetwork loaded") }
+                
                 let alertMsg_back: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "cancelAction")! as! String
                 let alertMsg_reload: String = (dict.object(forKey: "alertMessages")! as AnyObject).object(forKey: "reloadAction")! as! String
+                if (DEBUG) { print("cancel and reload action loaded") }
 
                 let alertController = UIAlertController(title: alertMsg_Error, message: alertMsg_Err_noCache_noNetwork, preferredStyle: .alert)
                 
@@ -293,8 +320,12 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
                     self.viewDidLoad()
                 }
                 
+                if (DEBUG) { print("alert controller set") }
+                
                 alertController.addAction(cancelAction)
                 alertController.addAction(okAction)
+                
+                if (DEBUG) { print("alert controller will be presented: ...") }
                 
                 self.present(alertController, animated: true, completion: nil)
                 
