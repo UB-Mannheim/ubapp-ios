@@ -13,7 +13,7 @@ import UIKit
 
 class FeedTableViewController: UITableViewController, XMLParserDelegate {
 
-    var DEBUG: Bool = false
+    var DEBUG: Bool = true
     
     var myFeed : NSArray = []
     var url: URL = URL(fileURLWithPath: "http://www.bib.uni-mannheim.de")
@@ -71,7 +71,7 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
         if (DEBUG) { print("didLoad::start") }
         
         super.viewDidLoad()
-
+        
         let news_entries = userDefaults.object(forKey: "newsCount") as! Int?
         if (news_entries != nil) {
             switch(news_entries as Int!) {
@@ -135,7 +135,7 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
                     default: maxnews_count = 5 // ? s.u. 0
                 }
                 
-                // if (DEBUG) { print("maxnews_count \(maxnews_count) ....................................................") }
+                // if (DEBUG) { print("didLoad::maxnews_count \(maxnews_count) ....................................................") }
                 // if (DEBUG) { print("NEWS COUNT") }
                 // if (DEBUG) { print(news_rssdata.count) }
                 
@@ -152,12 +152,20 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
                     // if (DEBUG) { print("row per row ....................................................") }
                     // if (DEBUG) { print("News mit ID=\(i) \(news_rssdata[i])") TMP s.o. voher ausgabe der news, aus debugzwecken ausgeklammert }
                     
-                    news_item[0] = (news_rssdata[i] as AnyObject).object(forKey: "title") as! String
-                    news_item[1] = (news_rssdata[i] as AnyObject).object(forKey: "description") as! String
-                    news_item[2] = (news_rssdata[i] as AnyObject).object(forKey: "content:encoded") as! String
-                    news_item[3] = (news_rssdata[i] as AnyObject).object(forKey: "pubDate") as! String
-                    news_item[4] = (news_rssdata[i] as AnyObject).object(forKey: "link") as! String
-                 
+                    /*
+                    news_item[0] = (news_rssdata.object(forKey: i) as AnyObject).object(forKey: "title") as! String
+                    news_item[1] = (news_rssdata.object(forKey: i) as AnyObject).object(forKey: "description") as! String
+                    news_item[2] = (news_rssdata.object(forKey: i) as AnyObject).object(forKey: "content:encoded") as! String
+                    news_item[3] = (news_rssdata.object(forKey: i) as AnyObject).object(forKey: "pubDate") as! String
+                    news_item[4] = (news_rssdata.object(forKey: i) as AnyObject).object(forKey: "link") as! String
+                    */
+                    
+                    news_item[0] = (news_rssdata.object(at: i) as AnyObject).object(forKey: "title") as! String
+                    news_item[1] = (news_rssdata.object(at: i) as AnyObject).object(forKey: "description") as! String
+                    news_item[2] = (news_rssdata.object(at: i) as AnyObject).object(forKey: "content:encoded") as! String
+                    news_item[3] = (news_rssdata.object(at: i) as AnyObject).object(forKey: "pubDate") as! String
+                    news_item[4] = (news_rssdata.object(at: i) as AnyObject).object(forKey: "link") as! String
+                    
                     self.news_cache.append(news_item)
                 }
                 
@@ -172,7 +180,6 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
         } else {
             
             if (DEBUG) { print("No Network available") }
-            
             
             // if Cache on
             if ( ((userDefaults.object(forKey: "cacheEnabled") as AnyObject).boolValue == true) ) { // && (userDefaults.objectForKey("newsCache") != nil) ) {
@@ -375,7 +382,7 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
         
         // if empty: no cache no network, reload?
         let newsentries: AnyObject = userDefaults.object(forKey: "newsCache")! as AnyObject
-        if (DEBUG) { print("Get Entry Nr.: 0 \(newsentries[0])") }
+        // if (DEBUG) { print("Get Entry Nr.: 0 \(newsentries[0])") }
         // if (DEBUG) { print("Get Entry Nr.: 0 and Title \(newsentries[0][0])") }
         
         // var dict : NSDictionary! = []
@@ -414,7 +421,8 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
         // let tmp = ["title":newsentries[i][0], "content:encoded":newsentries[i][2], "pubDate":newsentries[i][3], "link":newsentries[i][4]]
         
         
-            let elements: [AnyObject] = (newsentries[i] as? AnyObject) as! [AnyObject]
+            // let elements: [AnyObject] = (newsentries.object(forKey: i) as AnyObject) as! [AnyObject]
+            let elements: [AnyObject] = (newsentries.object(at: i) as AnyObject) as! [AnyObject]
                 let title = elements[0] as! String
                 let content = elements[2] as! String
                 let pubdate = elements[3] as! String

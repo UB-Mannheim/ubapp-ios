@@ -48,7 +48,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         // Setting title according to Websites
         
-        if(self.website.contains("primo.bib.uni-mannheim.de")) {
+        // if(self.website.contains("primo.bib.uni-mannheim.de")) {
+        if(self.website.contains("primo-49man.hosted.exlibrisgroup.com")) {
             self.title = "Primo"
         }
         
@@ -221,7 +222,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         var homeStr = (dict.object(forKey: "urls")! as AnyObject).object(forKey: "Website") as! String
         
-        if(self.website.contains("primo.bib.uni-mannheim.de")) {
+        if(self.website.contains("primo-49man.hosted.exlibrisgroup.com")) {
             
             homeStr = primo_url
             

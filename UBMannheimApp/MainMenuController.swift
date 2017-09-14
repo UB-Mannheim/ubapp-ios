@@ -374,7 +374,8 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
             
             let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
-            website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            // website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
+            website = "https://primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
             destinationViewController.website = website
             
         }
