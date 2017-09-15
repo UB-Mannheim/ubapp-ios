@@ -9,7 +9,17 @@
 			<key>help_title</key>
 			<string>FAQ</string>
 			<key>config_subtitle</key>
-			<string>Additionally the following settings can be changed \n\nThe activation of the cache function creates a database for local storage of the most recently downloaded data for the \&quot;News\&quot; and \&quot;Free Seats\&quot;. The stored data is displayed when no Internet access is available. Disabling this function will delete the created database. By default, caching is disabled, in this case all data must be accessed online. \n\nDetermine how many posts from the news-blog \&quot;News\&quot; is displayed: 5 (Default), 10 and 15 \n\nSelect your personal startup function: Startmenü (Default) , Website, Primo, News, Free Seats\n\nAn integrated Help completes the app.</string>
+			<string>Additionally the following settings can be changed
+                
+The activation of the cache function creates a database for local storage of the most recently downloaded data for the &quot;News&quot; and &quot;Free Seats&quot;. The stored data is displayed when no Internet access is available. Disabling this function will delete the created database. By default, caching is disabled, in this case all data must be accessed online.
+                
+Determine how many posts from the news-blog &quot;News&quot; is displayed:
+5 (Default), 10 and 15
+                
+Select your personal startup function:
+Startmenü (Default) , Website, Primo, News, Free Seats
+                
+An integrated Help completes the app.</string>
 			<key>config_title</key>
 			<string>Settings</string>
 			<key>seats_subtitle</key>

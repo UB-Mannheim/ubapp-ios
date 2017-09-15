@@ -9,7 +9,18 @@
 			<key>help_title</key>
 			<string>FAQ</string>
 			<key>config_subtitle</key>
-			<string>Bietet Möglichkeiten zur Personalisierung der UB-App. \n\nDaten Cache \nDie Aktivierung der Cache-Funktion erzeugt eine Datenbank zur lokalen Speicherung der zuletzt heruntergeladenen Daten der Funktionen \&quot;News\&quot; und \&quot;Freie Plätze\&quot;. Die gespeicherten Daten werden angezeigt, sobald kein Internet-Zugriff zur Verfügung steht. Die Deaktivierung des Daten-Caches löscht die angelegte Datenbank. In der Standardeinstellung ist die Cache-Funktion deaktiviert, d.h. es existiert kein Zwischenspeicher und alle Daten müssen online abgerufen werden. \n\nAngezeigte News-Einträge \nLegen Sie fest, wie viele Beiträge aus dem Aktuelles-Weblog unter \&quot;News\&quot; angezeigt werden:\n5 (Standardeinstellung), 10 oder 15. \n\nStarte UB-App mit\nWählen Sie ihre persönliche Startfunktion der UB-App:\nStartmenü (Standardeinstellung), Website, Primo, News und Freie Plätze.</string>
+			<string>Bietet Möglichkeiten zur Personalisierung der UB-App.
+                
+Daten Cache
+Die Aktivierung der Cache-Funktion erzeugt eine Datenbank zur lokalen Speicherung der zuletzt heruntergeladenen Daten der Funktionen &quot;News&quot; und &quot;Freie Plätze&quot;. Die gespeicherten Daten werden angezeigt, sobald kein Internet-Zugriff zur Verfügung steht. Die Deaktivierung des Daten-Caches löscht die angelegte Datenbank. In der Standardeinstellung ist die Cache-Funktion deaktiviert, d.h. es existiert kein Zwischenspeicher und alle Daten müssen online abgerufen werden.
+                
+Angezeigte News-Einträge
+Legen Sie fest, wie viele Beiträge aus dem Aktuelles-Weblog unter &quot;News&quot; angezeigt werden:
+5 (Standardeinstellung), 10 oder 15.
+                
+Starte UB-App mit
+Wählen Sie ihre persönliche Startfunktion der UB-App:
+Startmenü (Standardeinstellung), Website, Primo, News und Freie Plätze.</string>
 			<key>config_title</key>
 			<string>Einstellungen</string>
 			<key>seats_subtitle</key>

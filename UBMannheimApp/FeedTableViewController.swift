@@ -13,7 +13,7 @@ import UIKit
 
 class FeedTableViewController: UITableViewController, XMLParserDelegate {
 
-    var DEBUG: Bool = true
+    var DEBUG: Bool = false
     
     var myFeed : NSArray = []
     var url: URL = URL(fileURLWithPath: "http://www.bib.uni-mannheim.de")
