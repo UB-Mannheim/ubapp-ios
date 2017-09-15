@@ -29,6 +29,9 @@ class Help2ViewController: UITableViewController {
         
         let dict = appDelegate.dict
         
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let build = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        
         let website_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "website_title") as! String
         let website_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "website_subtitle") as! String
         
@@ -42,7 +45,7 @@ class Help2ViewController: UITableViewController {
         let seats_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "seats_subtitle") as! String
         
         let config_title: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_title") as! String
-        let config_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_subtitle") as! String
+        let config_sub: String = ((dict.object(forKey: "labels")! as AnyObject).object(forKey: "Help")! as AnyObject).object(forKey: "config_subtitle") as! String + "\r\n\n(Version: \(version).\(build))"
         
         self.items = [
             ["image": "website_bk", "title": website_title, "descr": website_sub],
