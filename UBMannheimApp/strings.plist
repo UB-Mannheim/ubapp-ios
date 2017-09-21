@@ -138,13 +138,13 @@ An integrated Help completes the app.</string>
 		<key>Website</key>
 		<dict>
 			<key>lostConnection</key>
-			<string>Network connection lost</string>
+			<string>Network connection lost.</string>
 			<key>noNetwork</key>
-			<string>No network connection available</string>
+			<string>No network connection available.</string>
 			<key>noCache</key>
-			<string>This is an error: No cache available</string>
+			<string>This is an error: No cache available.</string>
 			<key>initCache</key>
-			<string>This is an error: No cache available</string>
+			<string>This is an error: No cache available.</string>
 		</dict>
 	</dict>
 </dict>

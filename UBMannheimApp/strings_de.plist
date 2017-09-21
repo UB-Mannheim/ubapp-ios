@@ -139,13 +139,13 @@ Startmenü (Standardeinstellung), Website, Primo, News und Freie Plätze.</strin
 		<key>Website</key>
 		<dict>
 			<key>lostConnection</key>
-			<string>Verbindung zum Netzwerk unterbrochen</string>
+			<string>Verbindung zum Netzwerk unterbrochen.</string>
 			<key>noNetwork</key>
-			<string>Keine Verbindung zum Netzwerk vorhanden</string>
+			<string>Keine Verbindung zum Netzwerk vorhanden.</string>
 			<key>noCache</key>
-			<string>This is an error: No cache available</string>
+			<string>This is an error: No cache available.</string>
 			<key>initCache</key>
-			<string>This is an error: No cache available</string>
+			<string>This is an error: No cache available.</string>
 		</dict>
 	</dict>
 </dict>
