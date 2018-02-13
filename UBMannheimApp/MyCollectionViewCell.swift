@@ -5,7 +5,7 @@
 //  Created by Brian Coleman on 2014-09-04.
 //  Copyright (c) 2014 Brian Coleman. All rights reserved.
 //
-//  Last modified on 22.03.2016 by Alexander Wagner
+//  Last modified on 22.03.2016 by Universitätsbibliothek Mannheim
 //
 //
 

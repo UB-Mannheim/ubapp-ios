@@ -2,10 +2,10 @@
 //  AppDelegate.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 27.01.15,
+//  Created by Universitätsbibliothek Mannheim on 27.01.15,
 //  last modified on 22.03.16.
 //
-//  Copyright (c) 2015 Alexander Wagner, UB Mannheim.
+//  Copyright (c) 2015 Universitätsbibliothek Mannheim, UB Mannheim.
 //  All rights reserved.
 //
 

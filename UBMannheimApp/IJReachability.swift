@@ -2,8 +2,8 @@
 //  IJReachability.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 19.03.15.
-//  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//  Created by Universitätsbibliothek Mannheim on 19.03.15.
+//  Copyright (c) 2015 Universitätsbibliothek Mannheim. All rights reserved.
 //
 
 //

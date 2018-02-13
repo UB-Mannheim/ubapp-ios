@@ -5,7 +5,7 @@
 //  Created by Arled Kola on 20/10/2014.
 //  Copyright (c) 2014 Arled. All rights reserved.
 //
-//  Changed by Alexander Wagner on 16/04/2015
+//  Changed by Universitätsbibliothek Mannheim on 16/04/2015
 //
 
 import Foundation

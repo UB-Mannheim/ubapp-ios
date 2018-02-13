@@ -2,10 +2,10 @@
 //  ConfigController.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 25.03.15,
+//  Created by Universitätsbibliothek Mannheim on 25.03.15,
 //  last modified on 22.03.16.
 //
-//  Copyright (c) 2015 Alexander Wagner, UB Mannheim. 
+//  Copyright (c) 2015 Universitätsbibliothek Mannheim. 
 //  All rights reserved.
 //
 

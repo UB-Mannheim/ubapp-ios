@@ -2,8 +2,8 @@
 //  DBHelper.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 24.03.15.
-//  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//  Created by Universitätsbibliothek Mannheim on 24.03.15.
+//  Copyright (c) 2015 Universitätsbibliothek Mannheim. All rights reserved.
 //
 
 import Foundation

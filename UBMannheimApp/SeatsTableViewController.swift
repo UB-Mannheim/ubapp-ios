@@ -2,10 +2,10 @@
 //  SeatsTableViewController.swift
 //  UBMannheimApp
 //
-//  Created by Alexander Wagner on 17.02.15.
+//  Created by Universitätsbibliothek Mannheim on 17.02.15.
 //  Last modified on 22.03.16.
 //
-//  Copyright (c) 2015 Alexander Wagner. All rights reserved.
+//  Copyright (c) 2015 Universitätsbibliothek Mannheim. All rights reserved.
 //
 //
 
