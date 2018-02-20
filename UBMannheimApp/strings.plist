@@ -100,7 +100,7 @@ An integrated Help completes the app.</string>
 		<key>MainMenu</key>
 		<dict>
 			<key>noRedirect</key>
-			<string>Redirection to selected Startscreen not possible. There is no Network Connection and no Cache availabe. Please connect your device to the Internet and try again.</string>
+			<string>Redirection to selected Startscreen not possible. There is no Network Connection and no Cache available. Please connect your device to the Internet and try again.</string>
 		</dict>
 		<key>News</key>
 		<dict>
