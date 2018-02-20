@@ -392,12 +392,12 @@ class SeatsTableViewController: UITableViewController {
     }
     
     func connection(_ didReceiveResponse: NSURLConnection!, didReceiveResponse response: URLResponse!) {
-        // Recieved a new request, clear out the data object
+        // Received a new request, clear out the data object
         self.data = NSMutableData()
     }
     
     func connection(_ connection: NSURLConnection!, didReceiveData data: Data!) {
-        // Append the recieved chunk of data to our data object
+        // Append the received chunk of data to our data object
         self.data.append(data)
     }
     
