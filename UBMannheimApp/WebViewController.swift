@@ -51,8 +51,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         // if(self.website.contains("primo.bib.uni-mannheim.de")) {
         if(self.website.contains("primo-49man.hosted.exlibrisgroup.com")) {
             self.title = "Primo"
+        } else if (self.website.contains("primo.bib.uni-mannheim.de")) {
+            self.title = "Primo"
         }
-        
+
         if(self.website.contains("www.bib.uni-mannheim.de")) {
             self.title = "Website"
         }
@@ -226,7 +228,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             
             homeStr = primo_url
             
+        } else if (self.website.contains("primo.bib.uni-mannheim.de")) {
+            homeStr = primo_url
+
         }
+        
         
         let requestURL = URL(string: homeStr)
         

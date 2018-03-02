@@ -319,7 +319,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
         
         if (destination=="primo") {
             // url = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
-            url = "https://primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
+            //url = "https://primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
+            let langStr = Locale.current.languageCode
+            if (langStr == "de") {
+                url = "https://primo.bib.uni-mannheim.de/primo-explore/search?vid=MAN_UB&lang=de_DE"
+            } else {
+                url = "https://primo.bib.uni-mannheim.de/primo-explore/search?vid=MAN_UB&lang=en_US"
+            }
+
             // ?cannot fix
             // url = ((dict!.object(forKey: "urls")! as AnyObject).object(forKey: "Primo")! as AnyObject)
             // Demo from IGeLU
@@ -361,11 +368,19 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
+        let langStr = Locale.current.languageCode
+        
         if (segue.identifier == "showWebsite") {
             
             let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
-            website = "http://www.bib.uni-mannheim.de/mobile"
+            //website = "http://www.bib.uni-mannheim.de/mobile"
+            //website = "https://www.bib.uni-mannheim.de/"
+            if (langStr == "de") {
+                website = "https://www.bib.uni-mannheim.de/"
+            } else {
+                website = "https://www.bib.uni-mannheim.de/en/"
+            }
             destinationViewController.website = website
             
         }
@@ -375,7 +390,14 @@ class MainMenuController: UIViewController, UICollectionViewDelegateFlowLayout, 
             let destinationViewController = segue.destination as! WebViewController
             var website:NSString = ""
             // website = "http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE"
-            website = "https://primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
+            //website = "https://primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=MAN_UB&lang=de_DE"
+            //website = "https://primo.bib.uni-mannheim.de/primo-explore/search?vid=MAN_UB&lang=de_DE"
+            if (langStr == "de") {
+                website = "https://primo.bib.uni-mannheim.de/primo-explore/search?vid=MAN_UB&lang=de_DE"
+            } else {
+                website = "https://primo.bib.uni-mannheim.de/primo-explore/search?vid=MAN_UB&lang=en_US"
+            }
+
             destinationViewController.website = website
             
         }

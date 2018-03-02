@@ -87,9 +87,9 @@ An integrated Help completes the app.</string>
 		<key>Default</key>
 		<string>http://www.google.de</string>
 		<key>Website</key>
-		<string>http://www.bib.uni-mannheim.de/mobile/en/</string>
+		<string>https://www.bib.uni-mannheim.de/en/</string>
 		<key>Primo</key>
-		<string>https://primo-49man.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&amp;vid=MAN_UB</string>
+		<string>https://primo.bib.uni-mannheim.de/primo-explore/search?vid=MAN_UB&amp;lang=en_US</string>
 		<key>News</key>
 		<string></string>
 		<key>FreeSeats</key>

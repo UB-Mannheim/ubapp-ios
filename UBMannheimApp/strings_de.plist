@@ -88,9 +88,9 @@ Startmenü (Standardeinstellung), Website, Primo, News und Freie Plätze.</strin
 		<key>Default</key>
 		<string>http://www.google.de</string>
 		<key>Website</key>
-		<string>http://www.bib.uni-mannheim.de/mobile/de/</string>
+		<string>https://www.bib.uni-mannheim.de/</string>
 		<key>Primo</key>
-		<string>http://primo.bib.uni-mannheim.de/primo_library/libweb/action/search.do?vid=MAN_MOBILE</string>
+		<string>https://primo.bib.uni-mannheim.de/primo-explore/search?vid=MAN_UB&amp;lang=de_DE</string>
 		<key>News</key>
 		<string></string>
 		<key>FreeSeats</key>

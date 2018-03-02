@@ -16,7 +16,7 @@ class FeedTableViewController: UITableViewController, XMLParserDelegate {
     var DEBUG: Bool = false
     
     var myFeed : NSArray = []
-    var url: URL = URL(fileURLWithPath: "http://www.bib.uni-mannheim.de")
+    var url: URL = URL(fileURLWithPath: "https://www.bib.uni-mannheim.de")
     
     let userDefaults:UserDefaults=UserDefaults.standard
     
